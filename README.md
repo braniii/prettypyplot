@@ -27,7 +27,9 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 # Changelog:
 - tba:
+  - add version numbering and bumbversion cfg
   - refactored in two submodules (one for colors one for plotting)
+  - fix arg order in plot()
 - v0.1:
   - intial release
 
