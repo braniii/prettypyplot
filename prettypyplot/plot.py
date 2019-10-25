@@ -245,7 +245,7 @@ def imshow(X, ax=None, cmap=None, norm=None, aspect=None,
     return im
 
 
-def plot(ax=None, *args, scalex=True, scaley=True, data=None, **kwargs):
+def plot(*args, ax=None, scalex=True, scaley=True, data=None, **kwargs):
     """
     Plot simple lineplot.
 
@@ -266,7 +266,11 @@ def plot(ax=None, *args, scalex=True, scaley=True, data=None, **kwargs):
         ax = plt.gca()
     elif any([isinstance(arg, mpl.axes.Axes) for arg in args]):
         # print("in args is axes")
-        ax = [arg for arg in args if isinstance(arg, mpl.axes.Axes)][0]
+        ax = [arg for arg in args if isinstance(arg, mpl.axes.Axes)]
+        if len(ax):  # use first stated axes
+            ax = ax[0]
+        else:  # no axes found
+            ax = plt.gca()
         args = tuple(arg for arg in args if not isinstance(arg, mpl.axes.Axes))
     else:
         # print("fallback")
