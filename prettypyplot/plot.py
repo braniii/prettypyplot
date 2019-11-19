@@ -362,7 +362,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     fig.set_size_inches(set_figsize)
 
 
-def legend(outside=False, *args, **kwargs):
+def legend(*args, outside=False, **kwargs):
     """
     Generate a nice legend.
 
@@ -474,7 +474,7 @@ def colorbar(imshow=None, width='5%', pad='3%', position='right'):
     cax_reset.set_visible(False)
 
 
-def grid(ax=None, *args, **kwargs):
+def grid(*args, ax=None, **kwargs):
     """
     Generate grid.
 
