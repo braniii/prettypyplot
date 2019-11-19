@@ -28,7 +28,8 @@ def setup_pyplot(ssh=False,
                  figsize=(3,),
                  figratio='golden',
                  mode=__MODE,
-                 style=__STYLE):
+                 style=__STYLE,
+                 ipython=False):
     """
     Define default matplotlib style.
 
@@ -55,6 +56,8 @@ def setup_pyplot(ssh=False,
         - default: enables grid and upper and right spines
         - minimal: removes all unneeded lines
         - none: no changes to style
+    ipython: deactivate high-res in jpg for compatibility with IPyhton, e.g.
+        jupyter notebook/lab.
 
     """
     # set selected mode and style
@@ -202,7 +205,8 @@ def setup_pyplot(ssh=False,
         plt.rcParams['ytick.labelsize'] = 'small'  # 'normal'
 
         plt.rcParams['font.size'] = __get_scale()['fontsize']
-        plt.rcParams['figure.dpi'] = 384
+        if not ipython:
+            plt.rcParams['figure.dpi'] = 384
 
     if style == 'minimal':
         plt.rcParams['axes.grid'] = False
