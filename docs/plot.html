@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.2" />
+<title>prettypyplot.plot API documentation</title>
+<meta name="description" content="Set-up matplotlib environment …" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>prettypyplot.plot</code></h1>
+</header>
+<section id="section-intro">
+<p>Set-up matplotlib environment.</p>
+<p>BSD 3-Clause License
+Copyright (c) 2020, Daniel Nagel
+All rights reserved.</p>
+<p>Author: Daniel Nagel</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Set-up matplotlib environment.
+
+BSD 3-Clause License
+Copyright (c) 2020, Daniel Nagel
+All rights reserved.
+
+Author: Daniel Nagel
+
+&#34;&#34;&#34;
+# ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import os.path
+
+import matplotlib as mpl  # mpl = dm.tryImport(&#39;matplotlib&#39;)
+import matplotlib.pyplot as plt
+import mpl_toolkits.axes_grid1
+import numpy as np  # np = dm.tryImport(&#39;numpy&#39;)
+
+import prettypyplot.colors
+from prettypyplot import tools
+
+# ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+__MODE = &#39;default&#39;  # default mode
+__STYLE = &#39;default&#39;  # default style
+
+
+# ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def setup_pyplot(ssh=False, colors=&#39;pastel5&#39;, cmap=&#39;viridis&#39;, ncs=10,
+                 figsize=(3,), figratio=&#39;golden&#39;, mode=__MODE, style=__STYLE,
+                 ipython=False):
+    &#34;&#34;&#34;
+    Define default matplotlib style.
+
+    Parameters
+    ----------
+    ssh : bool, optional
+        Disables interactive display for ssh usage
+
+    colors : matplotlib colormap, optional
+        Set the default color cycler from continuous or discrete maps. Use any
+        of matplotlibs defaults or specified in the colors submodule.
+
+    cmap : matplotlib colormap, optional
+        Set the default colormap.
+
+    ncs : int, optional
+        Number of colors if continuous cmap is selected.
+
+    figsize : int or int tuple, optional
+        Give size of default figure in inches, either as tuple (x, y) or a
+        single float for the x-axis. The y-axis will be determined by figratio.
+
+    figratio : str or float, optional
+        Set ratio of figsize x:y to 1:1/&#39;option&#39;, where &#39;option&#39; is one
+        of [&#39;sqrt(2)&#39;, &#39;golden&#39;, &#39;sqrt(3)&#39;] or any number. Golden stands for
+        the golden ratio (1.618). This option is ignored if figsize is used
+        with tuple.
+
+    mode : str, optional
+        One of the following modes.
+        default: use matplotlib defaults
+        beamer: extra large fontsize
+        print: default sizes
+        poster: for Din A0 posters
+
+    style : str, optional
+        One of the following styles.
+        default: enables grid and upper and right spines
+        minimal: removes all unneeded lines
+        none: no changes to style
+
+    ipython : bool, optional
+        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
+        jupyter notebook/lab.
+
+    &#34;&#34;&#34;
+    # set selected mode and style
+    global __MODE
+    __MODE = mode
+    global __STYLE
+    __STYLE = style
+
+    if ssh:
+        mpl.use(&#39;Agg&#39;)
+        plt.ioff()
+
+    # setup LaTeX font
+    plt.rc(&#39;text&#39;, usetex=True)  # use latex with raw string: r&#39;string...&#39;
+    plt.rc(&#39;font&#39;, family=&#39;serif&#39;)
+    plt.rc(&#39;pdf&#39;, fonttype=42)  # embbed font in pdf
+
+    # include advanced math functions and modern encoding
+    plt.rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{amsmath}&#39;,
+                                           r&#39;\usepackage{lmodern}&#39;]
+
+    # register own continuous and discrete cmaps
+    prettypyplot.colors.load_colors()
+
+    # convert figratio to value
+    figratio = tools._parse_figratio(figratio)
+
+    # setup figsize
+    figsize = tools._parse_figsize(figsize, figratio)
+
+    # setup figure
+    plt.rcParams[&#39;savefig.transparent&#39;] = True
+    plt.rcParams[&#39;savefig.facecolor&#39;] = &#39;#ffffff&#39;
+    plt.rcParams[&#39;savefig.edgecolor&#39;] = &#39;#ffffff&#39;
+    plt.rcParams[&#39;savefig.format&#39;] = &#39;pdf&#39;
+    # set manually in savefig for consistent padding
+    plt.rcParams[&#39;savefig.bbox&#39;] = &#39;tight&#39;  # &#39;standard&#39;
+    # pad_inches is only used for bbox=&#39;tight&#39;
+    plt.rcParams[&#39;savefig.pad_inches&#39;] = 0.1  # 0.1
+    plt.rcParams[&#39;path.simplify_threshold&#39;] = 0.02  # 0.1
+    plt.rcParams[&#39;pdf.compression&#39;] = 9
+
+    # set color cycle and cmap
+    # try if discrete cmap was selected
+    if style != &#39;none&#39;:
+        try:
+            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
+        except AttributeError:
+            color_cycler = plt.cycler(
+                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
+
+        plt.rcParams[&#39;axes.prop_cycle&#39;] = color_cycler
+        plt.rcParams[&#39;image.cmap&#39;] = cmap
+
+        # change default colors
+        if colors == &#39;ufcd&#39; or cmap == &#39;ufcd&#39;:
+            gray_dark = prettypyplot.colors.ufcd_grays[&#39;dark&#39;]
+            gray_light = prettypyplot.colors.ufcd_grays[&#39;light&#39;]
+        else:
+            gray_dark = prettypyplot.colors.default_grays[&#39;dark&#39;]
+            gray_light = prettypyplot.colors.default_grays[&#39;light&#39;]
+        plt.rcParams[&#39;axes.edgecolor&#39;] = gray_dark
+        plt.rcParams[&#39;axes.labelcolor&#39;] = gray_dark
+        plt.rcParams[&#39;text.color&#39;] = gray_dark
+        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
+        plt.rcParams[&#39;xtick.color&#39;] = gray_dark
+        plt.rcParams[&#39;ytick.color&#39;] = gray_dark
+        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
+        # grid color
+        plt.rcParams[&#39;grid.color&#39;] = gray_light
+
+        # grid
+        plt.rcParams[&#39;grid.linestyle&#39;] = &#39;--&#39;
+        plt.rcParams[&#39;axes.axisbelow&#39;] = True
+        plt.rcParams[&#39;image.origin&#39;] = &#39;lower&#39;
+        plt.rcParams[&#39;hist.bins&#39;] = 50
+        plt.rcParams[&#39;agg.path.chunksize&#39;] = 20000
+
+        # set legend
+        plt.rcParams[&#39;legend.fontsize&#39;] = &#39;small&#39;
+        plt.rcParams[&#39;legend.title_fontsize&#39;] = &#39;small&#39;
+        plt.rcParams[&#39;legend.edgecolor&#39;] = &#39;inherit&#39;  # from axes.edgecolor
+        plt.rcParams[&#39;legend.framealpha&#39;] = 1
+        plt.rcParams[&#39;legend.fancybox&#39;] = False
+        # border whitespace
+        plt.rcParams[&#39;legend.borderpad&#39;] = 0.5
+        # the vertical space between the legend entries
+        plt.rcParams[&#39;legend.labelspacing&#39;] = 0.4
+        # the length of the legend lines
+        plt.rcParams[&#39;legend.handlelength&#39;] = 1.4
+        # the height of the legend lines
+        plt.rcParams[&#39;legend.handleheight&#39;] = 0.7
+        # the space between the legend line and legend text
+        plt.rcParams[&#39;legend.handletextpad&#39;] = 0.5
+        # the border between the axes and legend edge
+        if style == &#39;minimal&#39;:
+            plt.rcParams[&#39;legend.borderaxespad&#39;] = 0.2
+        else:
+            plt.rcParams[&#39;legend.borderaxespad&#39;] = 0.
+        # column separation
+        plt.rcParams[&#39;legend.columnspacing&#39;] = 1.0
+
+        # set figure
+        plt.rcParams[&#39;figure.figsize&#39;] = figsize  # (8./2.54, 5./2.54)
+        plt.rcParams[&#39;figure.subplot.left&#39;] = 0.125
+        plt.rcParams[&#39;figure.subplot.right&#39;] = 0.9
+        plt.rcParams[&#39;figure.subplot.bottom&#39;] = 0.2  # 0.11
+        plt.rcParams[&#39;figure.subplot.top&#39;] = 0.9  # 0.8
+
+        # change widths depending on MODE
+        plt.rcParams[&#39;lines.linewidth&#39;] = __get_scale()[&#39;large_scale&#39;] * 1.5
+        plt.rcParams[&#39;patch.linewidth&#39;] = __get_scale()[&#39;medium_scale&#39;] * 1.0
+        plt.rcParams[&#39;hatch.linewidth&#39;] = __get_scale()[&#39;medium_scale&#39;] * 1.0
+        plt.rcParams[&#39;axes.linewidth&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;grid.linewidth&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        # ticks
+        plt.rcParams[&#39;xtick.major.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;ytick.major.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;xtick.minor.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 2.0
+        plt.rcParams[&#39;ytick.minor.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 2.0
+        plt.rcParams[&#39;xtick.major.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;ytick.major.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;xtick.minor.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.6
+        plt.rcParams[&#39;ytick.minor.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.6
+        plt.rcParams[&#39;xtick.major.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;ytick.major.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;xtick.minor.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.4
+        plt.rcParams[&#39;ytick.minor.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.4
+        plt.rcParams[&#39;xtick.labelsize&#39;] = &#39;small&#39;  # &#39;normal&#39;
+        plt.rcParams[&#39;ytick.labelsize&#39;] = &#39;small&#39;  # &#39;normal&#39;
+
+        plt.rcParams[&#39;font.size&#39;] = __get_scale()[&#39;fontsize&#39;]
+        if not ipython:
+            plt.rcParams[&#39;figure.dpi&#39;] = 384
+
+    if style == &#39;minimal&#39;:
+        plt.rcParams[&#39;axes.grid&#39;] = False
+        plt.rcParams[&#39;axes.spines.top&#39;] = False
+        plt.rcParams[&#39;axes.spines.right&#39;] = False
+        plt.rcParams[&#39;axes.autolimit_mode&#39;] = &#39;data&#39;  # &#39;round_numbers&#39;
+        plt.rcParams[&#39;axes.xmargin&#39;] = 0.1  # 0.05
+        plt.rcParams[&#39;axes.ymargin&#39;] = 0.1  # 0.05
+    elif style == &#39;default&#39;:
+        plt.rcParams[&#39;axes.grid&#39;] = True
+        plt.rcParams[&#39;axes.spines.top&#39;] = True
+        plt.rcParams[&#39;axes.spines.right&#39;] = True
+        plt.rcParams[&#39;axes.autolimit_mode&#39;] = &#39;data&#39;  # &#39;round_numbers&#39;
+        plt.rcParams[&#39;axes.xmargin&#39;] = 0.05  # 0.05
+        plt.rcParams[&#39;axes.ymargin&#39;] = 0.05  # 0.05
+
+
+def imshow(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Display an image, i.e. data on a 2D regular raster.
+
+    This is a wrapper of pyplot.imshow().
+
+    Parameters
+    ----------
+    ax : matplotlib axes, optional
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
+
+    &#34;&#34;&#34;
+    args, ax = tools._parse_axes(*args, ax)
+
+    if &#39;zorder&#39; not in kwargs:
+        kwargs[&#39;zorder&#39;] = 1
+
+    # plot
+    im = ax.imshow(*args, **kwargs)
+
+    return im
+
+
+def plot(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Plot simple lineplot.
+
+    Wrapping pyplot.plot() to adjust to style. For more information on the
+    arguments see in matplotlib documentation.
+    If STYLE=&#39;minimal&#39;, spines will be limited to plotting range.
+
+    Parameters
+    ----------
+    ax : matplotlib axes
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
+
+    &#34;&#34;&#34;
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
+
+    # plot
+    axes = ax.plot(*args, **kwargs)
+
+    if __STYLE == &#39;minimal&#39;:
+        # TODO: change this to function
+        xminmax = __xminmax(ax)
+        xticks = ax.get_xticks()
+        if xticks.size:
+            ax.spines[&#39;bottom&#39;].set_bounds(xminmax[0], xminmax[1])
+            ax.spines[&#39;top&#39;].set_bounds(xminmax[0], xminmax[1])
+            # firsttick = np.compress(xticks &gt;= min(ax.get_xlim()), xticks)[0]
+            # lasttick = np.compress(xticks &lt;= max(ax.get_xlim()), xticks)[-1]
+            # ax.spines[&#39;bottom&#39;].set_bounds(firsttick, lasttick)
+            # ax.spines[&#39;top&#39;].set_bounds(firsttick, lasttick)
+            # newticks = xticks.compress(xticks &lt;= lasttick)
+            # newticks = newticks.compress(newticks &gt;= firsttick)
+            # ax.set_xticks(newticks)
+
+        yminmax = __yminmax(ax)
+        yticks = ax.get_yticks()
+        if yticks.size:
+            ax.spines[&#39;left&#39;].set_bounds(yminmax[0], yminmax[1])
+            ax.spines[&#39;right&#39;].set_bounds(yminmax[0], yminmax[1])
+            # firsttick = np.compress(yticks &gt;= min(ax.get_ylim()), yticks)[0]
+            # lasttick = np.compress(yticks &lt;= max(ax.get_ylim()), yticks)[-1]
+            # ax_i.spines[&#39;left&#39;].set_bounds(firsttick, lasttick)
+            # ax_i.spines[&#39;right&#39;].set_bounds(firsttick, lasttick)
+            # newticks = yticks.compress(yticks &lt;= lasttick)
+            # newticks = newticks.compress(newticks &gt;= firsttick)
+            # ax.set_yticks(newticks)
+
+    return axes
+
+
+def savefig(fname, use_canvas_size=True, **kwargs):
+    &#34;&#34;&#34;
+    Save figure as png and pdf.
+
+    This methods corrects figsize for poster/beamer mode.
+
+    Parameters
+    ----------
+    fname : str
+        Output filename. If no file ending, pdf will be used.
+
+    use_canvas_size : bool, optional
+        If True the specified figsize will be used as canvas size.
+
+    kwargs :
+        See pyplot.savefig().
+
+    &#34;&#34;&#34;
+    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]  # plt.gca()
+    figsize = fig.get_size_inches()
+
+    set_figsize = figsize
+
+    if __STYLE == &#39;minimal&#39;:
+        # reduce number of ticks by factor 1.5 if more than 4
+        for axes in plt.gcf().get_axes():
+            if len(axes.get_xticks()) &gt; 4:
+                axes.locator_params(tight=False, axis=&#39;x&#39;,
+                                    nbins=len(axes.get_xticks()) / 1.5)
+            if len(axes.get_yticks()) &gt; 4:
+                axes.locator_params(tight=False, axis=&#39;y&#39;,
+                                    nbins=len(axes.get_yticks()) / 1.5)
+
+    if __MODE == &#39;poster&#39;:
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+    elif __MODE == &#39;beamer&#39;:
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+
+    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
+
+    # convert figsize to canvas size
+    if use_canvas_size:
+        x0, y0, width, height = ax.get_position().bounds
+        figsize = (figsize[0] / width, figsize[1] / height)
+        fig.set_size_inches(figsize)
+
+    # save as pdf if not specified
+    if &#39;format&#39; not in kwargs:
+        fmt = os.path.splitext(fname)[1][1:]
+        if format == &#39;&#39;:
+            fmt = &#39;pdf&#39;
+        fname = &#39;{0}.{1}&#39;.format(fname, fmt)
+
+    # save fig
+    plt.savefig(fname, **kwargs)
+
+    # reset figsize, if user calls this function multiple times on same figure
+    fig.set_size_inches(set_figsize)
+
+
+def legend(*args, outside=False, **kwargs):
+    &#34;&#34;&#34;
+    Generate a nice legend.
+
+    This is a wrapper of pyplot.legend(). Take a look there for the default
+    arguments and options. The ticks and labels are moved to the opposite side.
+
+    Parameters
+    ----------
+    outside : str or bool
+        False, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39; or &#39;left&#39;. Remember
+        to set the number of columns with &#39;ncol=i&#39; to get a nice output.
+
+    &#34;&#34;&#34;
+    if outside not in [False, &#39;top&#39;, &#39;right&#39;, &#39;left&#39;, &#39;bottom&#39;]:
+        raise ValueError(&#39;Use for outside one of [False, &#34;top&#34;, &#34;right&#34;, &#39;
+                         &#39;&#34;left&#34;, &#34;bottom&#34;]&#39;)
+
+    # shift axis to opposite side.
+    if outside:
+        activate_axis(__opposite_side(outside))
+
+    # set anchor, mode and location
+    if outside == &#39;top&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (0., 1.0, 1., .01))
+        kwargs.setdefault(&#39;mode&#39;, &#39;expand&#39;)
+        kwargs.setdefault(&#39;loc&#39;, &#39;lower left&#39;)
+    elif outside == &#39;bottom&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (0., 0., 1., .01))
+        kwargs.setdefault(&#39;mode&#39;, &#39;expand&#39;)
+        kwargs.setdefault(&#39;loc&#39;, &#39;upper left&#39;)
+    elif outside == &#39;right&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (1.03, .5))
+        kwargs.setdefault(&#39;loc&#39;, &#39;center left&#39;)
+    elif outside == &#39;left&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (-.03, 0.5))
+        kwargs.setdefault(&#39;loc&#39;, &#39;center right&#39;)
+
+    # generate legend
+    leg = plt.legend(*args, **kwargs)
+    if __STYLE == &#39;minimal&#39;:
+        leg.get_frame().set_linewidth(0.)
+    elif __STYLE == &#39;default&#39;:
+        leg.get_frame().set_linewidth(__get_scale()[&#39;small_scale&#39;] * 0.8)
+
+    # shift title to the left if on top or bottom
+    # taken from: https://stackoverflow.com/a/53329898
+    if outside in [&#39;top&#39;, &#39;bottom&#39;]:
+        c = leg.get_children()[0]
+        title = c.get_children()[0]
+        hpack = c.get_children()[1]
+        c._children = [hpack]
+        hpack._children = [title] + hpack.get_children()
+
+    return leg
+
+
+def __opposite_side(pos):
+    &#34;&#34;&#34;Return opposite of &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39; or the input.&#34;&#34;&#34;
+    if pos == &#39;top&#39;:
+        return &#39;bottom&#39;
+    elif pos == &#39;bottom&#39;:
+        return &#39;top&#39;
+    elif pos == &#39;right&#39;:
+        return &#39;left&#39;
+    elif pos == &#39;left&#39;:
+        return &#39;right&#39;
+    return pos
+
+
+def activate_axis(pos, ax=None):
+    &#34;&#34;&#34;
+    Shift the specified axis to the opposite side.
+
+    Parameters
+    ----------
+    pos : str or list of str
+        Specify axis to flip, one of [&#39;left&#39;, &#39;right&#39;, &#39;top&#39;, &#39;bottom&#39;].
+
+    ax : matplotlib axes
+        Matplotlib axes to flip axis.
+
+    &#34;&#34;&#34;
+    # get axes
+    ax = tools._gca(ax)
+
+    # convert string to list of strings
+    if isinstance(pos, str):
+        pos = [pos]
+
+    # move axes ticks and labels to opposite side of position
+    for p in pos:
+        if p in [&#39;bottom&#39;, &#39;top&#39;]:
+            ax.xaxis.set_ticks_position(p)
+            ax.xaxis.set_label_position(p)
+        elif p in [&#39;left&#39;, &#39;right&#39;]:
+            ax.yaxis.set_ticks_position(p)
+            ax.yaxis.set_label_position(p)
+
+
+def __get_scale():
+    &#34;&#34;&#34;Get the scaling factors.&#34;&#34;&#34;
+    if __MODE == &#39;default&#39;:
+        return {&#39;large_scale&#39;: 1.,
+                &#39;medium_scale&#39;: 1.,
+                &#39;small_scale&#39;: 1.,
+                &#39;tick_scale&#39;: 1.,
+                &#39;fontsize&#39;: 10.}
+    elif __MODE == &#39;print&#39;:
+        return {&#39;large_scale&#39;: 1.5,
+                &#39;medium_scale&#39;: 1.7,
+                &#39;small_scale&#39;: 1.7,
+                &#39;tick_scale&#39;: 1.7,
+                &#39;fontsize&#39;: 12.}
+    elif __MODE == &#39;poster&#39;:
+        return {&#39;large_scale&#39;: 4.,
+                &#39;medium_scale&#39;: 4.,
+                &#39;small_scale&#39;: 4.,
+                &#39;tick_scale&#39;: 4.,
+                &#39;fontsize&#39;: 28.}
+    elif __MODE == &#39;beamer&#39;:
+        return {&#39;large_scale&#39;: 4.,
+                &#39;medium_scale&#39;: 4.,
+                &#39;small_scale&#39;: 4.,
+                &#39;tick_scale&#39;: 4.,
+                &#39;fontsize&#39;: 28.}
+
+
+def colorbar(imshow=None, width=&#39;5%&#39;, pad=&#39;3%&#39;, position=&#39;right&#39;, label=None):
+    &#34;&#34;&#34;
+    Generate colorbar of same height as image.
+
+    Wrapper around pyplot.colorbar which corrects the height.
+
+    Parameters
+    ----------
+    imshow : matplotlib.axes.AxesImage, optional
+        Specify the object the colorbar belongs to, e.g. the return value of
+        pyplot.imshow().
+
+    width : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with &#39;%&#39; or absolute value in inches.
+
+    pad : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with &#39;%&#39; or absolute value in inches.
+
+    position : str, optional
+        Specify the position relative to the image where the colorbar is
+        plotted, choose one of [&#39;left&#39;, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39;]
+
+    label : str, optional
+        Specify the colorbar label.
+
+    &#34;&#34;&#34;
+    orientation = &#39;vertical&#39;
+    if position in [&#39;top&#39;, &#39;bottom&#39;]:
+        orientation = &#39;horizontal&#39;
+
+    # generate divider
+    divider = mpl_toolkits.axes_grid1.make_axes_locatable(plt.gca())
+    cax = divider.append_axes(position, width, pad=pad)
+
+    # get imshow if not stated
+    if not imshow:
+        # TODO: find correct instance
+        imshow = plt.gca().get_images()
+
+    cbar = plt.colorbar(imshow, cax=cax, orientation=orientation)
+    if label:
+        cbar.set_label(label)
+
+    # set ticks on top if cb on top
+    if position in [&#39;top&#39;, &#39;bottom&#39;]:
+        cax.xaxis.set_ticks_position(position)
+        cax.xaxis.set_label_position(position)
+
+    # invert width and pad
+    pad_inv, width_inv = tools._invert_sign(pad), tools._invert_sign(width)
+    cax_reset = divider.append_axes(position, width_inv, pad=pad_inv)
+    cax_reset.set_visible(False)
+
+
+def grid(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Generate grid.
+
+    This function will add a major and minor grid in case of STYLE=&#39;default&#39;,
+    a major grid in case of &#39;none&#39; and otherwise nothing.
+
+    Parameters
+    ----------
+    ax : matplotlib axes
+        Axes to plot grid.
+
+    args :
+        See pyplot.grid()
+
+    kwargs :
+        See pyplot.grid()
+
+    &#34;&#34;&#34;
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
+
+    if __STYLE == &#39;default&#39;:
+        gr_maj = ax.grid(which=&#39;major&#39;, linestyle=&#39;--&#39;, **kwargs)
+        gr_min = ax.grid(which=&#39;minor&#39;, linestyle=&#39;dotted&#39;, **kwargs)
+        ax.set_axisbelow(True)
+        return (gr_maj, gr_min)
+    else:
+        return
+
+
+def __xminmax(ax):
+    &#34;&#34;&#34;Get xrange of plotted data.&#34;&#34;&#34;
+    return __minmax(lim=ax.get_xlim(), rcparam=&#39;axes.xmargin&#39;)
+
+
+def __yminmax(ax):
+    &#34;&#34;&#34;Get yrange of plotted data.&#34;&#34;&#34;
+    return __minmax(lim=ax.get_ylim(), rcparam=&#39;axes.ymargin&#39;)
+
+
+def __minmax(lim, rcparam):
+    &#34;&#34;&#34;Get range of plotted data.&#34;&#34;&#34;
+    width = lim[1] - lim[0]
+    margin = plt.rcParams[rcparam]
+    minmax = [lim[0] + (margin + i) / (1 + 2 * margin) * width for i in [0, 1]]
+    return minmax</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="prettypyplot.plot.activate_axis"><code class="name flex">
+<span>def <span class="ident">activate_axis</span></span>(<span>pos, ax=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Shift the specified axis to the opposite side.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>pos</code></strong> :&ensp;<code>str</code> or <code>list</code> of <code>str</code></dt>
+<dd>Specify axis to flip, one of ['left', 'right', 'top', 'bottom'].</dd>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dd>Matplotlib axes to flip axis.</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def activate_axis(pos, ax=None):
+    &#34;&#34;&#34;
+    Shift the specified axis to the opposite side.
+
+    Parameters
+    ----------
+    pos : str or list of str
+        Specify axis to flip, one of [&#39;left&#39;, &#39;right&#39;, &#39;top&#39;, &#39;bottom&#39;].
+
+    ax : matplotlib axes
+        Matplotlib axes to flip axis.
+
+    &#34;&#34;&#34;
+    # get axes
+    ax = tools._gca(ax)
+
+    # convert string to list of strings
+    if isinstance(pos, str):
+        pos = [pos]
+
+    # move axes ticks and labels to opposite side of position
+    for p in pos:
+        if p in [&#39;bottom&#39;, &#39;top&#39;]:
+            ax.xaxis.set_ticks_position(p)
+            ax.xaxis.set_label_position(p)
+        elif p in [&#39;left&#39;, &#39;right&#39;]:
+            ax.yaxis.set_ticks_position(p)
+            ax.yaxis.set_label_position(p)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.colorbar"><code class="name flex">
+<span>def <span class="ident">colorbar</span></span>(<span>imshow=None, width='5%', pad='3%', position='right', label=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Generate colorbar of same height as image.</p>
+<p>Wrapper around pyplot.colorbar which corrects the height.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><a title="prettypyplot.plot.imshow" href="#prettypyplot.plot.imshow"><code>imshow()</code></a></strong> :&ensp;<code>matplotlib.axes.AxesImage</code>, optional</dt>
+<dd>Specify the object the colorbar belongs to, e.g. the return value of
+pyplot.imshow().</dd>
+<dt><strong><code>width</code></strong> :&ensp;<code>str</code> or <code>float</code>, optional</dt>
+<dd>The width between figure and colorbar stated relative as string ending
+with '%' or absolute value in inches.</dd>
+<dt><strong><code>pad</code></strong> :&ensp;<code>str</code> or <code>float</code>, optional</dt>
+<dd>The width between figure and colorbar stated relative as string ending
+with '%' or absolute value in inches.</dd>
+<dt><strong><code>position</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Specify the position relative to the image where the colorbar is
+plotted, choose one of ['left', 'top', 'right', 'bottom']</dd>
+<dt><strong><code>label</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Specify the colorbar label.</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def colorbar(imshow=None, width=&#39;5%&#39;, pad=&#39;3%&#39;, position=&#39;right&#39;, label=None):
+    &#34;&#34;&#34;
+    Generate colorbar of same height as image.
+
+    Wrapper around pyplot.colorbar which corrects the height.
+
+    Parameters
+    ----------
+    imshow : matplotlib.axes.AxesImage, optional
+        Specify the object the colorbar belongs to, e.g. the return value of
+        pyplot.imshow().
+
+    width : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with &#39;%&#39; or absolute value in inches.
+
+    pad : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with &#39;%&#39; or absolute value in inches.
+
+    position : str, optional
+        Specify the position relative to the image where the colorbar is
+        plotted, choose one of [&#39;left&#39;, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39;]
+
+    label : str, optional
+        Specify the colorbar label.
+
+    &#34;&#34;&#34;
+    orientation = &#39;vertical&#39;
+    if position in [&#39;top&#39;, &#39;bottom&#39;]:
+        orientation = &#39;horizontal&#39;
+
+    # generate divider
+    divider = mpl_toolkits.axes_grid1.make_axes_locatable(plt.gca())
+    cax = divider.append_axes(position, width, pad=pad)
+
+    # get imshow if not stated
+    if not imshow:
+        # TODO: find correct instance
+        imshow = plt.gca().get_images()
+
+    cbar = plt.colorbar(imshow, cax=cax, orientation=orientation)
+    if label:
+        cbar.set_label(label)
+
+    # set ticks on top if cb on top
+    if position in [&#39;top&#39;, &#39;bottom&#39;]:
+        cax.xaxis.set_ticks_position(position)
+        cax.xaxis.set_label_position(position)
+
+    # invert width and pad
+    pad_inv, width_inv = tools._invert_sign(pad), tools._invert_sign(width)
+    cax_reset = divider.append_axes(position, width_inv, pad=pad_inv)
+    cax_reset.set_visible(False)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.grid"><code class="name flex">
+<span>def <span class="ident">grid</span></span>(<span>*args, ax=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Generate grid.</p>
+<p>This function will add a major and minor grid in case of STYLE='default',
+a major grid in case of 'none' and otherwise nothing.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dd>Axes to plot grid.</dd>
+</dl>
+<p>args :
+See pyplot.grid()</p>
+<p>kwargs :
+See pyplot.grid()</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def grid(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Generate grid.
+
+    This function will add a major and minor grid in case of STYLE=&#39;default&#39;,
+    a major grid in case of &#39;none&#39; and otherwise nothing.
+
+    Parameters
+    ----------
+    ax : matplotlib axes
+        Axes to plot grid.
+
+    args :
+        See pyplot.grid()
+
+    kwargs :
+        See pyplot.grid()
+
+    &#34;&#34;&#34;
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
+
+    if __STYLE == &#39;default&#39;:
+        gr_maj = ax.grid(which=&#39;major&#39;, linestyle=&#39;--&#39;, **kwargs)
+        gr_min = ax.grid(which=&#39;minor&#39;, linestyle=&#39;dotted&#39;, **kwargs)
+        ax.set_axisbelow(True)
+        return (gr_maj, gr_min)
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.imshow"><code class="name flex">
+<span>def <span class="ident">imshow</span></span>(<span>*args, ax=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Display an image, i.e. data on a 2D regular raster.</p>
+<p>This is a wrapper of pyplot.imshow().</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code>, optional</dt>
+<dd>Matplotlib axes to plot in.</dd>
+</dl>
+<p>args :
+See pyplot.imshow()</p>
+<p>kwargs :
+See pyplot.imshow()</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def imshow(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Display an image, i.e. data on a 2D regular raster.
+
+    This is a wrapper of pyplot.imshow().
+
+    Parameters
+    ----------
+    ax : matplotlib axes, optional
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
+
+    &#34;&#34;&#34;
+    args, ax = tools._parse_axes(*args, ax)
+
+    if &#39;zorder&#39; not in kwargs:
+        kwargs[&#39;zorder&#39;] = 1
+
+    # plot
+    im = ax.imshow(*args, **kwargs)
+
+    return im</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.legend"><code class="name flex">
+<span>def <span class="ident">legend</span></span>(<span>*args, outside=False, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Generate a nice legend.</p>
+<p>This is a wrapper of pyplot.legend(). Take a look there for the default
+arguments and options. The ticks and labels are moved to the opposite side.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>outside</code></strong> :&ensp;<code>str</code> or <code>bool</code></dt>
+<dd>False, 'top', 'right', 'bottom' or 'left'. Remember
+to set the number of columns with 'ncol=i' to get a nice output.</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def legend(*args, outside=False, **kwargs):
+    &#34;&#34;&#34;
+    Generate a nice legend.
+
+    This is a wrapper of pyplot.legend(). Take a look there for the default
+    arguments and options. The ticks and labels are moved to the opposite side.
+
+    Parameters
+    ----------
+    outside : str or bool
+        False, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39; or &#39;left&#39;. Remember
+        to set the number of columns with &#39;ncol=i&#39; to get a nice output.
+
+    &#34;&#34;&#34;
+    if outside not in [False, &#39;top&#39;, &#39;right&#39;, &#39;left&#39;, &#39;bottom&#39;]:
+        raise ValueError(&#39;Use for outside one of [False, &#34;top&#34;, &#34;right&#34;, &#39;
+                         &#39;&#34;left&#34;, &#34;bottom&#34;]&#39;)
+
+    # shift axis to opposite side.
+    if outside:
+        activate_axis(__opposite_side(outside))
+
+    # set anchor, mode and location
+    if outside == &#39;top&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (0., 1.0, 1., .01))
+        kwargs.setdefault(&#39;mode&#39;, &#39;expand&#39;)
+        kwargs.setdefault(&#39;loc&#39;, &#39;lower left&#39;)
+    elif outside == &#39;bottom&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (0., 0., 1., .01))
+        kwargs.setdefault(&#39;mode&#39;, &#39;expand&#39;)
+        kwargs.setdefault(&#39;loc&#39;, &#39;upper left&#39;)
+    elif outside == &#39;right&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (1.03, .5))
+        kwargs.setdefault(&#39;loc&#39;, &#39;center left&#39;)
+    elif outside == &#39;left&#39;:
+        kwargs.setdefault(&#39;bbox_to_anchor&#39;, (-.03, 0.5))
+        kwargs.setdefault(&#39;loc&#39;, &#39;center right&#39;)
+
+    # generate legend
+    leg = plt.legend(*args, **kwargs)
+    if __STYLE == &#39;minimal&#39;:
+        leg.get_frame().set_linewidth(0.)
+    elif __STYLE == &#39;default&#39;:
+        leg.get_frame().set_linewidth(__get_scale()[&#39;small_scale&#39;] * 0.8)
+
+    # shift title to the left if on top or bottom
+    # taken from: https://stackoverflow.com/a/53329898
+    if outside in [&#39;top&#39;, &#39;bottom&#39;]:
+        c = leg.get_children()[0]
+        title = c.get_children()[0]
+        hpack = c.get_children()[1]
+        c._children = [hpack]
+        hpack._children = [title] + hpack.get_children()
+
+    return leg</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.plot"><code class="name flex">
+<span>def <span class="ident">plot</span></span>(<span>*args, ax=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Plot simple lineplot.</p>
+<p>Wrapping pyplot.plot() to adjust to style. For more information on the
+arguments see in matplotlib documentation.
+If STYLE='minimal', spines will be limited to plotting range.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dd>Matplotlib axes to plot in.</dd>
+</dl>
+<p>args :
+See pyplot.imshow()</p>
+<p>kwargs :
+See pyplot.imshow()</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot(*args, ax=None, **kwargs):
+    &#34;&#34;&#34;
+    Plot simple lineplot.
+
+    Wrapping pyplot.plot() to adjust to style. For more information on the
+    arguments see in matplotlib documentation.
+    If STYLE=&#39;minimal&#39;, spines will be limited to plotting range.
+
+    Parameters
+    ----------
+    ax : matplotlib axes
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
+
+    &#34;&#34;&#34;
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
+
+    # plot
+    axes = ax.plot(*args, **kwargs)
+
+    if __STYLE == &#39;minimal&#39;:
+        # TODO: change this to function
+        xminmax = __xminmax(ax)
+        xticks = ax.get_xticks()
+        if xticks.size:
+            ax.spines[&#39;bottom&#39;].set_bounds(xminmax[0], xminmax[1])
+            ax.spines[&#39;top&#39;].set_bounds(xminmax[0], xminmax[1])
+            # firsttick = np.compress(xticks &gt;= min(ax.get_xlim()), xticks)[0]
+            # lasttick = np.compress(xticks &lt;= max(ax.get_xlim()), xticks)[-1]
+            # ax.spines[&#39;bottom&#39;].set_bounds(firsttick, lasttick)
+            # ax.spines[&#39;top&#39;].set_bounds(firsttick, lasttick)
+            # newticks = xticks.compress(xticks &lt;= lasttick)
+            # newticks = newticks.compress(newticks &gt;= firsttick)
+            # ax.set_xticks(newticks)
+
+        yminmax = __yminmax(ax)
+        yticks = ax.get_yticks()
+        if yticks.size:
+            ax.spines[&#39;left&#39;].set_bounds(yminmax[0], yminmax[1])
+            ax.spines[&#39;right&#39;].set_bounds(yminmax[0], yminmax[1])
+            # firsttick = np.compress(yticks &gt;= min(ax.get_ylim()), yticks)[0]
+            # lasttick = np.compress(yticks &lt;= max(ax.get_ylim()), yticks)[-1]
+            # ax_i.spines[&#39;left&#39;].set_bounds(firsttick, lasttick)
+            # ax_i.spines[&#39;right&#39;].set_bounds(firsttick, lasttick)
+            # newticks = yticks.compress(yticks &lt;= lasttick)
+            # newticks = newticks.compress(newticks &gt;= firsttick)
+            # ax.set_yticks(newticks)
+
+    return axes</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.savefig"><code class="name flex">
+<span>def <span class="ident">savefig</span></span>(<span>fname, use_canvas_size=True, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Save figure as png and pdf.</p>
+<p>This methods corrects figsize for poster/beamer mode.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>fname</code></strong> :&ensp;<code>str</code></dt>
+<dd>Output filename. If no file ending, pdf will be used.</dd>
+<dt><strong><code>use_canvas_size</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True the specified figsize will be used as canvas size.</dd>
+</dl>
+<p>kwargs :
+See pyplot.savefig().</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def savefig(fname, use_canvas_size=True, **kwargs):
+    &#34;&#34;&#34;
+    Save figure as png and pdf.
+
+    This methods corrects figsize for poster/beamer mode.
+
+    Parameters
+    ----------
+    fname : str
+        Output filename. If no file ending, pdf will be used.
+
+    use_canvas_size : bool, optional
+        If True the specified figsize will be used as canvas size.
+
+    kwargs :
+        See pyplot.savefig().
+
+    &#34;&#34;&#34;
+    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]  # plt.gca()
+    figsize = fig.get_size_inches()
+
+    set_figsize = figsize
+
+    if __STYLE == &#39;minimal&#39;:
+        # reduce number of ticks by factor 1.5 if more than 4
+        for axes in plt.gcf().get_axes():
+            if len(axes.get_xticks()) &gt; 4:
+                axes.locator_params(tight=False, axis=&#39;x&#39;,
+                                    nbins=len(axes.get_xticks()) / 1.5)
+            if len(axes.get_yticks()) &gt; 4:
+                axes.locator_params(tight=False, axis=&#39;y&#39;,
+                                    nbins=len(axes.get_yticks()) / 1.5)
+
+    if __MODE == &#39;poster&#39;:
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+    elif __MODE == &#39;beamer&#39;:
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+
+    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
+
+    # convert figsize to canvas size
+    if use_canvas_size:
+        x0, y0, width, height = ax.get_position().bounds
+        figsize = (figsize[0] / width, figsize[1] / height)
+        fig.set_size_inches(figsize)
+
+    # save as pdf if not specified
+    if &#39;format&#39; not in kwargs:
+        fmt = os.path.splitext(fname)[1][1:]
+        if format == &#39;&#39;:
+            fmt = &#39;pdf&#39;
+        fname = &#39;{0}.{1}&#39;.format(fname, fmt)
+
+    # save fig
+    plt.savefig(fname, **kwargs)
+
+    # reset figsize, if user calls this function multiple times on same figure
+    fig.set_size_inches(set_figsize)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.setup_pyplot"><code class="name flex">
+<span>def <span class="ident">setup_pyplot</span></span>(<span>ssh=False, colors='pastel5', cmap='viridis', ncs=10, figsize=(3,), figratio='golden', mode='default', style='default', ipython=False)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Define default matplotlib style.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ssh</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Disables interactive display for ssh usage</dd>
+<dt><strong><code>colors</code></strong> :&ensp;<code>matplotlib</code> <code>colormap</code>, optional</dt>
+<dd>Set the default color cycler from continuous or discrete maps. Use any
+of matplotlibs defaults or specified in the colors submodule.</dd>
+<dt><strong><code>cmap</code></strong> :&ensp;<code>matplotlib</code> <code>colormap</code>, optional</dt>
+<dd>Set the default colormap.</dd>
+<dt><strong><code>ncs</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of colors if continuous cmap is selected.</dd>
+<dt><strong><code>figsize</code></strong> :&ensp;<code>int</code> or <code>int</code> <code>tuple</code>, optional</dt>
+<dd>Give size of default figure in inches, either as tuple (x, y) or a
+single float for the x-axis. The y-axis will be determined by figratio.</dd>
+<dt><strong><code>figratio</code></strong> :&ensp;<code>str</code> or <code>float</code>, optional</dt>
+<dd>Set ratio of figsize x:y to 1:1/'option', where 'option' is one
+of ['sqrt(2)', 'golden', 'sqrt(3)'] or any number. Golden stands for
+the golden ratio (1.618). This option is ignored if figsize is used
+with tuple.</dd>
+<dt><strong><code>mode</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>One of the following modes.
+default: use matplotlib defaults
+beamer: extra large fontsize
+print: default sizes
+poster: for Din A0 posters</dd>
+<dt><strong><code>style</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>One of the following styles.
+default: enables grid and upper and right spines
+minimal: removes all unneeded lines
+none: no changes to style</dd>
+<dt><strong><code>ipython</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
+jupyter notebook/lab.</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_pyplot(ssh=False, colors=&#39;pastel5&#39;, cmap=&#39;viridis&#39;, ncs=10,
+                 figsize=(3,), figratio=&#39;golden&#39;, mode=__MODE, style=__STYLE,
+                 ipython=False):
+    &#34;&#34;&#34;
+    Define default matplotlib style.
+
+    Parameters
+    ----------
+    ssh : bool, optional
+        Disables interactive display for ssh usage
+
+    colors : matplotlib colormap, optional
+        Set the default color cycler from continuous or discrete maps. Use any
+        of matplotlibs defaults or specified in the colors submodule.
+
+    cmap : matplotlib colormap, optional
+        Set the default colormap.
+
+    ncs : int, optional
+        Number of colors if continuous cmap is selected.
+
+    figsize : int or int tuple, optional
+        Give size of default figure in inches, either as tuple (x, y) or a
+        single float for the x-axis. The y-axis will be determined by figratio.
+
+    figratio : str or float, optional
+        Set ratio of figsize x:y to 1:1/&#39;option&#39;, where &#39;option&#39; is one
+        of [&#39;sqrt(2)&#39;, &#39;golden&#39;, &#39;sqrt(3)&#39;] or any number. Golden stands for
+        the golden ratio (1.618). This option is ignored if figsize is used
+        with tuple.
+
+    mode : str, optional
+        One of the following modes.
+        default: use matplotlib defaults
+        beamer: extra large fontsize
+        print: default sizes
+        poster: for Din A0 posters
+
+    style : str, optional
+        One of the following styles.
+        default: enables grid and upper and right spines
+        minimal: removes all unneeded lines
+        none: no changes to style
+
+    ipython : bool, optional
+        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
+        jupyter notebook/lab.
+
+    &#34;&#34;&#34;
+    # set selected mode and style
+    global __MODE
+    __MODE = mode
+    global __STYLE
+    __STYLE = style
+
+    if ssh:
+        mpl.use(&#39;Agg&#39;)
+        plt.ioff()
+
+    # setup LaTeX font
+    plt.rc(&#39;text&#39;, usetex=True)  # use latex with raw string: r&#39;string...&#39;
+    plt.rc(&#39;font&#39;, family=&#39;serif&#39;)
+    plt.rc(&#39;pdf&#39;, fonttype=42)  # embbed font in pdf
+
+    # include advanced math functions and modern encoding
+    plt.rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{amsmath}&#39;,
+                                           r&#39;\usepackage{lmodern}&#39;]
+
+    # register own continuous and discrete cmaps
+    prettypyplot.colors.load_colors()
+
+    # convert figratio to value
+    figratio = tools._parse_figratio(figratio)
+
+    # setup figsize
+    figsize = tools._parse_figsize(figsize, figratio)
+
+    # setup figure
+    plt.rcParams[&#39;savefig.transparent&#39;] = True
+    plt.rcParams[&#39;savefig.facecolor&#39;] = &#39;#ffffff&#39;
+    plt.rcParams[&#39;savefig.edgecolor&#39;] = &#39;#ffffff&#39;
+    plt.rcParams[&#39;savefig.format&#39;] = &#39;pdf&#39;
+    # set manually in savefig for consistent padding
+    plt.rcParams[&#39;savefig.bbox&#39;] = &#39;tight&#39;  # &#39;standard&#39;
+    # pad_inches is only used for bbox=&#39;tight&#39;
+    plt.rcParams[&#39;savefig.pad_inches&#39;] = 0.1  # 0.1
+    plt.rcParams[&#39;path.simplify_threshold&#39;] = 0.02  # 0.1
+    plt.rcParams[&#39;pdf.compression&#39;] = 9
+
+    # set color cycle and cmap
+    # try if discrete cmap was selected
+    if style != &#39;none&#39;:
+        try:
+            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
+        except AttributeError:
+            color_cycler = plt.cycler(
+                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
+
+        plt.rcParams[&#39;axes.prop_cycle&#39;] = color_cycler
+        plt.rcParams[&#39;image.cmap&#39;] = cmap
+
+        # change default colors
+        if colors == &#39;ufcd&#39; or cmap == &#39;ufcd&#39;:
+            gray_dark = prettypyplot.colors.ufcd_grays[&#39;dark&#39;]
+            gray_light = prettypyplot.colors.ufcd_grays[&#39;light&#39;]
+        else:
+            gray_dark = prettypyplot.colors.default_grays[&#39;dark&#39;]
+            gray_light = prettypyplot.colors.default_grays[&#39;light&#39;]
+        plt.rcParams[&#39;axes.edgecolor&#39;] = gray_dark
+        plt.rcParams[&#39;axes.labelcolor&#39;] = gray_dark
+        plt.rcParams[&#39;text.color&#39;] = gray_dark
+        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
+        plt.rcParams[&#39;xtick.color&#39;] = gray_dark
+        plt.rcParams[&#39;ytick.color&#39;] = gray_dark
+        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
+        # grid color
+        plt.rcParams[&#39;grid.color&#39;] = gray_light
+
+        # grid
+        plt.rcParams[&#39;grid.linestyle&#39;] = &#39;--&#39;
+        plt.rcParams[&#39;axes.axisbelow&#39;] = True
+        plt.rcParams[&#39;image.origin&#39;] = &#39;lower&#39;
+        plt.rcParams[&#39;hist.bins&#39;] = 50
+        plt.rcParams[&#39;agg.path.chunksize&#39;] = 20000
+
+        # set legend
+        plt.rcParams[&#39;legend.fontsize&#39;] = &#39;small&#39;
+        plt.rcParams[&#39;legend.title_fontsize&#39;] = &#39;small&#39;
+        plt.rcParams[&#39;legend.edgecolor&#39;] = &#39;inherit&#39;  # from axes.edgecolor
+        plt.rcParams[&#39;legend.framealpha&#39;] = 1
+        plt.rcParams[&#39;legend.fancybox&#39;] = False
+        # border whitespace
+        plt.rcParams[&#39;legend.borderpad&#39;] = 0.5
+        # the vertical space between the legend entries
+        plt.rcParams[&#39;legend.labelspacing&#39;] = 0.4
+        # the length of the legend lines
+        plt.rcParams[&#39;legend.handlelength&#39;] = 1.4
+        # the height of the legend lines
+        plt.rcParams[&#39;legend.handleheight&#39;] = 0.7
+        # the space between the legend line and legend text
+        plt.rcParams[&#39;legend.handletextpad&#39;] = 0.5
+        # the border between the axes and legend edge
+        if style == &#39;minimal&#39;:
+            plt.rcParams[&#39;legend.borderaxespad&#39;] = 0.2
+        else:
+            plt.rcParams[&#39;legend.borderaxespad&#39;] = 0.
+        # column separation
+        plt.rcParams[&#39;legend.columnspacing&#39;] = 1.0
+
+        # set figure
+        plt.rcParams[&#39;figure.figsize&#39;] = figsize  # (8./2.54, 5./2.54)
+        plt.rcParams[&#39;figure.subplot.left&#39;] = 0.125
+        plt.rcParams[&#39;figure.subplot.right&#39;] = 0.9
+        plt.rcParams[&#39;figure.subplot.bottom&#39;] = 0.2  # 0.11
+        plt.rcParams[&#39;figure.subplot.top&#39;] = 0.9  # 0.8
+
+        # change widths depending on MODE
+        plt.rcParams[&#39;lines.linewidth&#39;] = __get_scale()[&#39;large_scale&#39;] * 1.5
+        plt.rcParams[&#39;patch.linewidth&#39;] = __get_scale()[&#39;medium_scale&#39;] * 1.0
+        plt.rcParams[&#39;hatch.linewidth&#39;] = __get_scale()[&#39;medium_scale&#39;] * 1.0
+        plt.rcParams[&#39;axes.linewidth&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;grid.linewidth&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        # ticks
+        plt.rcParams[&#39;xtick.major.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;ytick.major.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;xtick.minor.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 2.0
+        plt.rcParams[&#39;ytick.minor.size&#39;] = __get_scale()[&#39;tick_scale&#39;] * 2.0
+        plt.rcParams[&#39;xtick.major.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;ytick.major.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.8
+        plt.rcParams[&#39;xtick.minor.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.6
+        plt.rcParams[&#39;ytick.minor.width&#39;] = __get_scale()[&#39;small_scale&#39;] * 0.6
+        plt.rcParams[&#39;xtick.major.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;ytick.major.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.5
+        plt.rcParams[&#39;xtick.minor.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.4
+        plt.rcParams[&#39;ytick.minor.pad&#39;] = __get_scale()[&#39;tick_scale&#39;] * 3.4
+        plt.rcParams[&#39;xtick.labelsize&#39;] = &#39;small&#39;  # &#39;normal&#39;
+        plt.rcParams[&#39;ytick.labelsize&#39;] = &#39;small&#39;  # &#39;normal&#39;
+
+        plt.rcParams[&#39;font.size&#39;] = __get_scale()[&#39;fontsize&#39;]
+        if not ipython:
+            plt.rcParams[&#39;figure.dpi&#39;] = 384
+
+    if style == &#39;minimal&#39;:
+        plt.rcParams[&#39;axes.grid&#39;] = False
+        plt.rcParams[&#39;axes.spines.top&#39;] = False
+        plt.rcParams[&#39;axes.spines.right&#39;] = False
+        plt.rcParams[&#39;axes.autolimit_mode&#39;] = &#39;data&#39;  # &#39;round_numbers&#39;
+        plt.rcParams[&#39;axes.xmargin&#39;] = 0.1  # 0.05
+        plt.rcParams[&#39;axes.ymargin&#39;] = 0.1  # 0.05
+    elif style == &#39;default&#39;:
+        plt.rcParams[&#39;axes.grid&#39;] = True
+        plt.rcParams[&#39;axes.spines.top&#39;] = True
+        plt.rcParams[&#39;axes.spines.right&#39;] = True
+        plt.rcParams[&#39;axes.autolimit_mode&#39;] = &#39;data&#39;  # &#39;round_numbers&#39;
+        plt.rcParams[&#39;axes.xmargin&#39;] = 0.05  # 0.05
+        plt.rcParams[&#39;axes.ymargin&#39;] = 0.05  # 0.05</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="prettypyplot" href="index.html">prettypyplot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="prettypyplot.plot.activate_axis" href="#prettypyplot.plot.activate_axis">activate_axis</a></code></li>
+<li><code><a title="prettypyplot.plot.colorbar" href="#prettypyplot.plot.colorbar">colorbar</a></code></li>
+<li><code><a title="prettypyplot.plot.grid" href="#prettypyplot.plot.grid">grid</a></code></li>
+<li><code><a title="prettypyplot.plot.imshow" href="#prettypyplot.plot.imshow">imshow</a></code></li>
+<li><code><a title="prettypyplot.plot.legend" href="#prettypyplot.plot.legend">legend</a></code></li>
+<li><code><a title="prettypyplot.plot.plot" href="#prettypyplot.plot.plot">plot</a></code></li>
+<li><code><a title="prettypyplot.plot.savefig" href="#prettypyplot.plot.savefig">savefig</a></code></li>
+<li><code><a title="prettypyplot.plot.setup_pyplot" href="#prettypyplot.plot.setup_pyplot">setup_pyplot</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+pandas <a href='#'> test </a>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.2</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

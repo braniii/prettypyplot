@@ -2,18 +2,22 @@
 Set-up matplotlib environment.
 
 BSD 3-Clause License
-Copyright (c) 2019, Daniel Nagel
+Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
 Author: Daniel Nagel
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import numpy as np  # np = dm.tryImport('numpy')
+import os.path
+
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
+import numpy as np  # np = dm.tryImport('numpy')
+
 import prettypyplot.colors
+from prettypyplot import tools
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __MODE = 'default'  # default mode
@@ -21,42 +25,52 @@ __STYLE = 'default'  # default style
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def setup_pyplot(ssh=False,
-                 colors='pastel5',
-                 cmap='parula',
-                 ncs=10,
-                 figsize=(3,),
-                 figratio='golden',
-                 mode=__MODE,
-                 style=__STYLE,
+def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
+                 figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
                  ipython=False):
     """
     Define default matplotlib style.
 
     Parameters
     ----------
-    ssh: disables interactive display for ssh usage
-    colors: set the default color cycler from continuous or discrete maps
-        Use any of matplotlibs default or
-    cmap: sets default cmap
-    ncs: Number of colors if continuous cmap is selected
-    figsize: give size of default figure in inches, either as tuple (x,y) or
-        a single float for the x-axis. The y-axis will be determined by
-        figratio.
-    figratio: set ratio of figsize x:y to 1:1/'option', where 'option' is one
-        of ['1', 'sqrt(2)', 'golden', 'sqrt(3)', '2'] and golden stands for the
-        golden ratio (1.618). This option is ignored if figsize is used with
-        tuple.
-    mode:
-        - default: use matplotlib defaults
-        - beamer: extra large fontsize
-        - print: default sizes
-        - poster: for Din A0 posters
-    style:
-        - default: enables grid and upper and right spines
-        - minimal: removes all unneeded lines
-        - none: no changes to style
-    ipython: deactivate high-res in jpg for compatibility with IPyhton, e.g.
+    ssh : bool, optional
+        Disables interactive display for ssh usage
+
+    colors : matplotlib colormap, optional
+        Set the default color cycler from continuous or discrete maps. Use any
+        of matplotlibs defaults or specified in the colors submodule.
+
+    cmap : matplotlib colormap, optional
+        Set the default colormap.
+
+    ncs : int, optional
+        Number of colors if continuous cmap is selected.
+
+    figsize : int or int tuple, optional
+        Give size of default figure in inches, either as tuple (x, y) or a
+        single float for the x-axis. The y-axis will be determined by figratio.
+
+    figratio : str or float, optional
+        Set ratio of figsize x:y to 1:1/'option', where 'option' is one
+        of ['sqrt(2)', 'golden', 'sqrt(3)'] or any number. Golden stands for
+        the golden ratio (1.618). This option is ignored if figsize is used
+        with tuple.
+
+    mode : str, optional
+        One of the following modes.
+        default: use matplotlib defaults
+        beamer: extra large fontsize
+        print: default sizes
+        poster: for Din A0 posters
+
+    style : str, optional
+        One of the following styles.
+        default: enables grid and upper and right spines
+        minimal: removes all unneeded lines
+        none: no changes to style
+
+    ipython : bool, optional
+        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
         jupyter notebook/lab.
 
     """
@@ -83,30 +97,15 @@ def setup_pyplot(ssh=False,
     prettypyplot.colors.load_colors()
 
     # convert figratio to value
-    if figratio == '1':
-        figratio = 1.
-    elif figratio == 'sqrt(2)':
-        figratio = 1.414213562
-    elif figratio == 'golden':
-        figratio = 1.618033989
-    elif figratio == 'sqrt(3)':
-        figratio = 1.732050808
-    elif figratio == '2':
-        figratio = 2.
+    figratio = tools._parse_figratio(figratio)
 
     # setup figsize
-    if isinstance(figsize, (list, tuple, np.ndarray)):
-        if len(figsize) == 1:
-            figsize = (float(figsize[0]), float(figsize[0])/figratio)
-        elif len(figsize) == 2:
-            pass
-    else:
-        figsize = (float(figsize), float(figsize)/figratio)
+    figsize = tools._parse_figsize(figsize, figratio)
 
     # setup figure
     plt.rcParams['savefig.transparent'] = True
-    plt.rcParams["savefig.facecolor"] = '#ffffff'
-    plt.rcParams["savefig.edgecolor"] = '#ffffff'
+    plt.rcParams['savefig.facecolor'] = '#ffffff'
+    plt.rcParams['savefig.edgecolor'] = '#ffffff'
     plt.rcParams['savefig.format'] = 'pdf'
     # set manually in savefig for consistent padding
     plt.rcParams['savefig.bbox'] = 'tight'  # 'standard'
@@ -183,24 +182,24 @@ def setup_pyplot(ssh=False,
         plt.rcParams['figure.subplot.top'] = 0.9  # 0.8
 
         # change widths depending on MODE
-        plt.rcParams['lines.linewidth'] = __get_scale()['large_scale']*1.5
-        plt.rcParams['patch.linewidth'] = __get_scale()['medium_scale']*1.0
-        plt.rcParams['hatch.linewidth'] = __get_scale()['medium_scale']*1.0
-        plt.rcParams['axes.linewidth'] = __get_scale()['small_scale']*0.8
-        plt.rcParams['grid.linewidth'] = __get_scale()['small_scale']*0.8
+        plt.rcParams['lines.linewidth'] = __get_scale()['large_scale'] * 1.5
+        plt.rcParams['patch.linewidth'] = __get_scale()['medium_scale'] * 1.0
+        plt.rcParams['hatch.linewidth'] = __get_scale()['medium_scale'] * 1.0
+        plt.rcParams['axes.linewidth'] = __get_scale()['small_scale'] * 0.8
+        plt.rcParams['grid.linewidth'] = __get_scale()['small_scale'] * 0.8
         # ticks
-        plt.rcParams['xtick.major.size'] = __get_scale()['tick_scale']*3.5
-        plt.rcParams['ytick.major.size'] = __get_scale()['tick_scale']*3.5
-        plt.rcParams['xtick.minor.size'] = __get_scale()['tick_scale']*2.0
-        plt.rcParams['ytick.minor.size'] = __get_scale()['tick_scale']*2.0
-        plt.rcParams['xtick.major.width'] = __get_scale()['small_scale']*0.8
-        plt.rcParams['ytick.major.width'] = __get_scale()['small_scale']*0.8
-        plt.rcParams['xtick.minor.width'] = __get_scale()['small_scale']*0.6
-        plt.rcParams['ytick.minor.width'] = __get_scale()['small_scale']*0.6
-        plt.rcParams['xtick.major.pad'] = __get_scale()['tick_scale']*3.5
-        plt.rcParams['ytick.major.pad'] = __get_scale()['tick_scale']*3.5
-        plt.rcParams['xtick.minor.pad'] = __get_scale()['tick_scale']*3.4
-        plt.rcParams['ytick.minor.pad'] = __get_scale()['tick_scale']*3.4
+        plt.rcParams['xtick.major.size'] = __get_scale()['tick_scale'] * 3.5
+        plt.rcParams['ytick.major.size'] = __get_scale()['tick_scale'] * 3.5
+        plt.rcParams['xtick.minor.size'] = __get_scale()['tick_scale'] * 2.0
+        plt.rcParams['ytick.minor.size'] = __get_scale()['tick_scale'] * 2.0
+        plt.rcParams['xtick.major.width'] = __get_scale()['small_scale'] * 0.8
+        plt.rcParams['ytick.major.width'] = __get_scale()['small_scale'] * 0.8
+        plt.rcParams['xtick.minor.width'] = __get_scale()['small_scale'] * 0.6
+        plt.rcParams['ytick.minor.width'] = __get_scale()['small_scale'] * 0.6
+        plt.rcParams['xtick.major.pad'] = __get_scale()['tick_scale'] * 3.5
+        plt.rcParams['ytick.major.pad'] = __get_scale()['tick_scale'] * 3.5
+        plt.rcParams['xtick.minor.pad'] = __get_scale()['tick_scale'] * 3.4
+        plt.rcParams['ytick.minor.pad'] = __get_scale()['tick_scale'] * 3.4
         plt.rcParams['xtick.labelsize'] = 'small'  # 'normal'
         plt.rcParams['ytick.labelsize'] = 'small'  # 'normal'
 
@@ -224,32 +223,36 @@ def setup_pyplot(ssh=False,
         plt.rcParams['axes.ymargin'] = 0.05  # 0.05
 
 
-def imshow(X, ax=None, cmap=None, norm=None, aspect=None,
-           interpolation=None, alpha=None, vmin=None, vmax=None,
-           origin=None, extent=None, shape=None, filternorm=1,
-           filterrad=4.0, imlim=None, resample=None, url=None, **kwargs):
+def imshow(*args, ax=None, **kwargs):
     """
     Display an image, i.e. data on a 2D regular raster.
 
     This is a wrapper of pyplot.imshow().
 
+    Parameters
+    ----------
+    ax : matplotlib axes, optional
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
+
     """
-    if isinstance(ax, mpl.axes.Axes):
-        pass
-    else:
-        ax = plt.gca()
+    args, ax = tools._parse_axes(*args, ax)
 
     if 'zorder' not in kwargs:
         kwargs['zorder'] = 1
 
     # plot
-    im = ax.imshow(X, cmap, norm, aspect, interpolation, alpha, vmin, vmax,
-                   origin, extent, shape, filternorm, filterrad, imlim,
-                   resample, url, **kwargs)
+    im = ax.imshow(*args, **kwargs)
+
     return im
 
 
-def plot(*args, ax=None, scalex=True, scaley=True, data=None, **kwargs):
+def plot(*args, ax=None, **kwargs):
     """
     Plot simple lineplot.
 
@@ -257,29 +260,20 @@ def plot(*args, ax=None, scalex=True, scaley=True, data=None, **kwargs):
     arguments see in matplotlib documentation.
     If STYLE='minimal', spines will be limited to plotting range.
 
-    TODO:
-        - should ticks be limited to spines width?
+    Parameters
+    ----------
+    ax : matplotlib axes
+        Matplotlib axes to plot in.
+
+    args :
+        See pyplot.imshow()
+
+    kwargs :
+        See pyplot.imshow()
 
     """
-    if isinstance(ax, mpl.axes.Axes):
-        # print("ax is instance")
-        pass
-    elif len(args) == 0:
-        # print("len(args) == 0")
-        # fig = plt.gcf()
-        ax = plt.gca()
-    elif any([isinstance(arg, mpl.axes.Axes) for arg in args]):
-        # print("in args is axes")
-        ax = [arg for arg in args if isinstance(arg, mpl.axes.Axes)]
-        if len(ax):  # use first stated axes
-            ax = ax[0]
-        else:  # no axes found
-            ax = plt.gca()
-        args = tuple(arg for arg in args if not isinstance(arg, mpl.axes.Axes))
-    else:
-        # print("fallback")
-        ax = plt.gca()
-    # ax, args, dict(kwargs)
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
 
     # plot
     axes = ax.plot(*args, **kwargs)
@@ -320,7 +314,18 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     Save figure as png and pdf.
 
     This methods corrects figsize for poster/beamer mode.
-    - use_canvas_size: This option uses the figsize as canvas size.
+
+    Parameters
+    ----------
+    fname : str
+        Output filename. If no file ending, pdf will be used.
+
+    use_canvas_size : bool, optional
+        If True the specified figsize will be used as canvas size.
+
+    kwargs :
+        See pyplot.savefig().
+
     """
     fig, ax = plt.gcf(), plt.gcf().get_axes()[0]  # plt.gca()
     figsize = fig.get_size_inches()
@@ -332,31 +337,33 @@ def savefig(fname, use_canvas_size=True, **kwargs):
         for axes in plt.gcf().get_axes():
             if len(axes.get_xticks()) > 4:
                 axes.locator_params(tight=False, axis='x',
-                                    nbins=len(axes.get_xticks())/1.5)
+                                    nbins=len(axes.get_xticks()) / 1.5)
             if len(axes.get_yticks()) > 4:
                 axes.locator_params(tight=False, axis='y',
-                                    nbins=len(axes.get_yticks())/1.5)
+                                    nbins=len(axes.get_yticks()) / 1.5)
 
     if __MODE == 'poster':
-        fig.set_size_inches((3*figsize[0], 3*figsize[1]))
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
     elif __MODE == 'beamer':
-        fig.set_size_inches((3*figsize[0], 3*figsize[1]))
+        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+
+    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
 
     # convert figsize to canvas size
     if use_canvas_size:
-        fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
         x0, y0, width, height = ax.get_position().bounds
-        # print((width*figsize[0], height*figsize[1]))
-        figsize = (figsize[0]/width, figsize[1]/height)
+        figsize = (figsize[0] / width, figsize[1] / height)
         fig.set_size_inches(figsize)
 
-        # fig.subplots_adjust(hspace=0)
-        # debug message
-        x0, y0, width, height = ax.get_position().bounds
-        # print((width*figsize[0], height*figsize[1]))
+    # save as pdf if not specified
+    if 'format' not in kwargs:
+        fmt = os.path.splitext(fname)[1][1:]
+        if format == '':
+            fmt = 'pdf'
+        fname = '{0}.{1}'.format(fname, fmt)
 
-    plt.savefig('{}.pdf'.format(fname), format='pdf', **kwargs)
-    plt.savefig('{}.png'.format(fname), format='png', **kwargs)
+    # save fig
+    plt.savefig(fname, **kwargs)
 
     # reset figsize, if user calls this function multiple times on same figure
     fig.set_size_inches(set_figsize)
@@ -367,42 +374,49 @@ def legend(*args, outside=False, **kwargs):
     Generate a nice legend.
 
     This is a wrapper of pyplot.legend(). Take a look there for the default
-    arguments and options.
+    arguments and options. The ticks and labels are moved to the opposite side.
+
     Parameters
     ----------
-    outside : False, 'top', 'right'. Remember to set the number of columns with
-        ncol= to get a nice output.
+    outside : str or bool
+        False, 'top', 'right', 'bottom' or 'left'. Remember
+        to set the number of columns with 'ncol=i' to get a nice output.
 
     """
-    if outside in ['False', 'false']:
-        outside = False
-    if outside not in [False, 'top', 'right']:
-        # TODO: print error message
-        print('Use for outside one of [False, "top", "right"].')
-        outside = False
-    if outside in ['top']:
-        if 'bbox_to_anchor' not in kwargs:
-            kwargs['bbox_to_anchor'] = (0., 1.0, 1., .01)
-        if 'mode' not in kwargs:
-            kwargs['mode'] = 'expand'
-        if 'loc' not in kwargs:
-            kwargs['loc'] = 'lower left'
-    elif outside in ['right']:
-        if 'bbox_to_anchor' not in kwargs:
-            kwargs['bbox_to_anchor'] = (1.03, .5)
-        if 'loc' not in kwargs:
-            kwargs['loc'] = 'center left'
+    if outside not in [False, 'top', 'right', 'left', 'bottom']:
+        raise ValueError('Use for outside one of [False, "top", "right", '
+                         '"left", "bottom"]')
+
+    # shift axis to opposite side.
+    if outside:
+        activate_axis(__opposite_side(outside))
+
+    # set anchor, mode and location
+    if outside == 'top':
+        kwargs.setdefault('bbox_to_anchor', (0., 1.0, 1., .01))
+        kwargs.setdefault('mode', 'expand')
+        kwargs.setdefault('loc', 'lower left')
+    elif outside == 'bottom':
+        kwargs.setdefault('bbox_to_anchor', (0., 0., 1., .01))
+        kwargs.setdefault('mode', 'expand')
+        kwargs.setdefault('loc', 'upper left')
+    elif outside == 'right':
+        kwargs.setdefault('bbox_to_anchor', (1.03, .5))
+        kwargs.setdefault('loc', 'center left')
+    elif outside == 'left':
+        kwargs.setdefault('bbox_to_anchor', (-.03, 0.5))
+        kwargs.setdefault('loc', 'center right')
 
     # generate legend
     leg = plt.legend(*args, **kwargs)
     if __STYLE == 'minimal':
         leg.get_frame().set_linewidth(0.)
     elif __STYLE == 'default':
-        leg.get_frame().set_linewidth(__get_scale()['small_scale']*0.8)
+        leg.get_frame().set_linewidth(__get_scale()['small_scale'] * 0.8)
 
-    if outside in ['top']:
-        # shift title to the left
-        # https://stackoverflow.com/a/53329898
+    # shift title to the left if on top or bottom
+    # taken from: https://stackoverflow.com/a/53329898
+    if outside in ['top', 'bottom']:
         c = leg.get_children()[0]
         title = c.get_children()[0]
         hpack = c.get_children()[1]
@@ -410,6 +424,49 @@ def legend(*args, outside=False, **kwargs):
         hpack._children = [title] + hpack.get_children()
 
     return leg
+
+
+def __opposite_side(pos):
+    """Return opposite of 'top', 'bottom', 'left', 'right' or the input."""
+    if pos == 'top':
+        return 'bottom'
+    elif pos == 'bottom':
+        return 'top'
+    elif pos == 'right':
+        return 'left'
+    elif pos == 'left':
+        return 'right'
+    return pos
+
+
+def activate_axis(pos, ax=None):
+    """
+    Shift the specified axis to the opposite side.
+
+    Parameters
+    ----------
+    pos : str or list of str
+        Specify axis to flip, one of ['left', 'right', 'top', 'bottom'].
+
+    ax : matplotlib axes
+        Matplotlib axes to flip axis.
+
+    """
+    # get axes
+    ax = tools._gca(ax)
+
+    # convert string to list of strings
+    if isinstance(pos, str):
+        pos = [pos]
+
+    # move axes ticks and labels to opposite side of position
+    for p in pos:
+        if p in ['bottom', 'top']:
+            ax.xaxis.set_ticks_position(p)
+            ax.xaxis.set_label_position(p)
+        elif p in ['left', 'right']:
+            ax.yaxis.set_ticks_position(p)
+            ax.yaxis.set_label_position(p)
 
 
 def __get_scale():
@@ -440,12 +497,33 @@ def __get_scale():
                 'fontsize': 28.}
 
 
-def colorbar(imshow=None, width='5%', pad='3%', position='right'):
+def colorbar(imshow=None, width='5%', pad='3%', position='right', label=None):
     """
-    Generate colorbar.
+    Generate colorbar of same height as image.
 
-    width: can be stated relative as string or absolute in inches
-    pad: can be stated relative as string or absolute in inches
+    Wrapper around pyplot.colorbar which corrects the height.
+
+    Parameters
+    ----------
+    imshow : matplotlib.axes.AxesImage, optional
+        Specify the object the colorbar belongs to, e.g. the return value of
+        pyplot.imshow().
+
+    width : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with '%' or absolute value in inches.
+
+    pad : str or float, optional
+        The width between figure and colorbar stated relative as string ending
+        with '%' or absolute value in inches.
+
+    position : str, optional
+        Specify the position relative to the image where the colorbar is
+        plotted, choose one of ['left', 'top', 'right', 'bottom']
+
+    label : str, optional
+        Specify the colorbar label.
+
     """
     orientation = 'vertical'
     if position in ['top', 'bottom']:
@@ -461,7 +539,8 @@ def colorbar(imshow=None, width='5%', pad='3%', position='right'):
         imshow = plt.gca().get_images()
 
     cbar = plt.colorbar(imshow, cax=cax, orientation=orientation)
-    cbar.set_label(r'$\Delta G$ [$k_\textsc{b}T$]')
+    if label:
+        cbar.set_label(label)
 
     # set ticks on top if cb on top
     if position in ['top', 'bottom']:
@@ -469,7 +548,7 @@ def colorbar(imshow=None, width='5%', pad='3%', position='right'):
         cax.xaxis.set_label_position(position)
 
     # invert width and pad
-    pad_inv, width_inv = __invert_number(pad), __invert_number(width)
+    pad_inv, width_inv = tools._invert_sign(pad), tools._invert_sign(width)
     cax_reset = divider.append_axes(position, width_inv, pad=pad_inv)
     cax_reset.set_visible(False)
 
@@ -478,61 +557,46 @@ def grid(*args, ax=None, **kwargs):
     """
     Generate grid.
 
-    This function will add a grid in case of STYLE='default' and otherwise do
-    nothing.
+    This function will add a major and minor grid in case of STYLE='default',
+    a major grid in case of 'none' and otherwise nothing.
 
     Parameters
     ----------
-    ax: axes to plot grid
+    ax : matplotlib axes
+        Axes to plot grid.
+
+    args :
+        See pyplot.grid()
+
+    kwargs :
+        See pyplot.grid()
 
     """
-    if isinstance(ax, mpl.axes.Axes):
-        # print("ax is instance")
-        pass
-    elif len(args) == 0:
-        # print("len(args) == 0")
-        # fig = plt.gcf()
-        ax = plt.gca()
-    elif any([isinstance(arg, mpl.axes.Axes) for arg in args]):
-        # print("in args is axes")
-        ax = [arg for arg in args if isinstance(arg, mpl.axes.Axes)][0]
-        args = tuple(arg for arg in args if not isinstance(arg, mpl.axes.Axes))
-    else:
-        # print("fallback")
-        ax = plt.gca()
+    # parse axes
+    args, ax = tools._parse_axes(*args, ax=ax)
 
     if __STYLE == 'default':
         gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
         gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
         ax.set_axisbelow(True)
-
         return (gr_maj, gr_min)
     else:
         return
 
 
-def __invert_number(num):
-    try:  # check if Number
-        float(num)
-        return -1*num
-    except ValueError:  # it is a string
-        if num[0] == '-':
-            return num[1:]
-        else:
-            return '-' + num
-
-
 def __xminmax(ax):
+    """Get xrange of plotted data."""
     return __minmax(lim=ax.get_xlim(), rcparam='axes.xmargin')
 
 
 def __yminmax(ax):
+    """Get yrange of plotted data."""
     return __minmax(lim=ax.get_ylim(), rcparam='axes.ymargin')
 
 
 def __minmax(lim, rcparam):
     """Get range of plotted data."""
-    range = lim[1] - lim[0]
+    width = lim[1] - lim[0]
     margin = plt.rcParams[rcparam]
-    minmax = [lim[0] + (margin+i)/(1+2*margin)*range for i in [0, 1]]
+    minmax = [lim[0] + (margin + i) / (1 + 2 * margin) * width for i in [0, 1]]
     return minmax
