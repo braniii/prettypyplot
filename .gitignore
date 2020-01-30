@@ -123,3 +123,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# own and matplotlib
+*tex.cache
+test_figure/
+*.colors.py.swp
+*fontlist*.json
