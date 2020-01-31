@@ -1,0 +1,7 @@
+# activate latex font and embed font
+text.usetex: True  # use latex with raw string: r'...'
+font.family: serif
+pdf.fonttype: 42  # embed font in pdf
+
+# include advanced math functions
+text.latex.preamble: \usepackage{amsmath}\usepackage{lmodern}

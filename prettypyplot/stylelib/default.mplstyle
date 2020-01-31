@@ -1,0 +1,50 @@
+# set defaults
+savefig.transparent: True
+savefig.facecolor: white
+savefig.edgecolor: white
+savefig.format: pdf
+
+# set manually in savefig for consistent padding
+savefig.bbox: tight
+savefig.pad_inches: 0.1
+path.simplify_threshold: 0.02
+pdf.compression: 9
+
+# set grid
+grid.linestyle: --
+axes.axisbelow: True
+image.origin: lower
+hist.bins: 50
+agg.path.chunksize: 20000
+
+# set legend
+legend.fontsize: small
+legend.title_fontsize: small
+legend.edgecolor: inherit
+legend.framealpha: 1
+legend.fancybox: False
+legend.borderpad: 0.5
+legend.labelspacing: 0.4
+legend.handlelength: 1.4
+legend.handleheight: 0.7
+legend.handletextpad: 0.5
+legend.columnspacing: 1.0
+legend.borderaxespad: 0.
+
+# set figure
+figure.subplot.left: 0.125
+figure.subplot.right: 0.9
+figure.subplot.bottom: 0.2
+figure.subplot.top: 0.9
+
+# set axes
+axes.grid: True
+axes.spines.top: True
+axes.spines.right: True
+axes.autolimit_mode: data
+axes.xmargin: 0.05
+axes.ymargin: 0.05
+
+# set ticks
+xtick.labelsize: small
+ytick.labelsize: small

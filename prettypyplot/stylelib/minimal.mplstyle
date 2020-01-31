@@ -1,0 +1,9 @@
+# set legend
+legend.borderaxespad: 0.2
+
+# set axes
+axes.grid: False
+axes.spines.top: False
+axes.spines.right: False
+axes.xmargin: 0.1
+axes.ymargin: 0.1
