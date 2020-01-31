@@ -3,9 +3,9 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-  - echo 'Nothing to do yet...'
+  - mv docs public
   artifacts:
     paths:
-    - docs
+    - public
   only:
   - master
