@@ -54,6 +54,9 @@ in every minor release (see <a href="#changelog">changelog</a>).</p>
 <p>This package uses an syntax very close to matplotlib. Hence, it should be
 straight forward to use it. Instead of calling a function on the axes itself,
 one needs to pass here the axes as an argument (args or kwargs).</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="python">python3 -m pip install prettypyplot
+</code></pre>
 <h3 id="usage_1">Usage</h3>
 <pre><code class="python">import matplotlib.pyplot as plt
 import prettypyplot as pplt
@@ -84,41 +87,41 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 <tr width="700" valign="top">
 <td>
 <code>matplotlib.pyplot.plot</code><br>
-<img src="gallery/mpl_plot.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot.png" width="350">
 </td>
 <td>
 <code>prettypyplot.plot</code><br>
-<img src="gallery/default_plot.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot.png" width="350">
 </td>
 </tr>
 <tr width="700" valign="top">
 <td>
 <code>matplotlib.pyplot.legend</code><br>
-<img src="gallery/mpl_plot_legend.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot_legend.png" width="350">
 </td>
 <td>
 <code>prettypyplot.legend</code><br>
-<img src="gallery/default_plot_legend.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot_legend.png" width="350">
 </td>
 </tr>
 <tr width="700" valign="top">
 <td>
 <code>matplotlib.pyplot.imshow</code><br>
-<img src="gallery/mpl_imshow.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow.png" width="350">
 </td>
 <td>
 <code>prettypyplot.imshow</code><br>
-<img src="gallery/default_imshow.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow.png" width="350">
 </td>
 </tr>
 <tr width="700" valign="top">
 <td>
 <code>matplotlib.pyplot.colorbar</code><br>
-<img src="gallery/mpl_imshow_cbar.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow_cbar.png" width="350">
 </td>
 <td>
 <code>prettypyplot.colorbar</code><br>
-<img src="gallery/default_imshow_cbar.png" width="350">
+<img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow_cbar.png" width="350">
 </td>
 </tr>
 </table>
@@ -180,7 +183,7 @@ simply running <code>bash create_doc.sh</code> from the docs folder.</p>
 from .colors import *
 from .plot import *
 
-__version__ = &#39;0.2.1&#39;</code></pre>
+__version__ = &#39;0.2.2&#39;</code></pre>
 </details>
 </section>
 <section>
@@ -223,6 +226,7 @@ __version__ = &#39;0.2.1&#39;</code></pre>
 <li><a href="#prettypyplot">prettypyplot</a><ul>
 <li><a href="#features">Features</a></li>
 <li><a href="#usage">Usage</a><ul>
+<li><a href="#installation">Installation</a></li>
 <li><a href="#usage_1">Usage</a></li>
 <li><a href="#known-bugs">Known Bugs</a></li>
 <li><a href="#known-workarounds">Known Workarounds</a></li>
