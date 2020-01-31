@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.2" />
+<meta name="generator" content="pdoc 0.7.4" />
 <title>prettypyplot API documentation</title>
 <meta name="description" content="prettypyplot …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:0.01em .5em;margin:0em 3em 1em 3em}.admonition-title{font-weight:bold;margin-bottom:-1em}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#cfa}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
 <script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+<style>.homelink{display:block;font-size:2em;font-weight:bold;color:#555;padding-bottom:.5em;border-bottom:1px solid silver}.homelink:hover{color:inherit}.homelink img{max-width:20%;max-height:7em;margin:auto;margin-bottom:.3em}</style>
+<link rel="canonical" href="#">
+<link rel="icon" href="../gallery/logo.png">
 </head>
 <body>
 <main>
@@ -23,53 +26,160 @@
 <section id="section-intro">
 <h1 id="prettypyplot">prettypyplot</h1>
 <p>This is a wrapper package for matplotlib to achieve more easily pretty figures.
-It is in an alpha stage, hence it is neither stable nor ready for production.</p>
-<h1 id="usage">Usage</h1>
+If you are looking for something complete, this project is nothing for you
+but maybe <a href="https://seaborn.pydata.org/">seaborn</a>. The main aspect of this
+project is to help me syncing my rcParams files and to stop copy-pasting so
+much code.</p>
+<p>The aim of this project is to simplify the generation of some simple
+pre-defined figures. Almost all code is inspired or taken from the
+<a href="https://matplotlib.org/gallery/index.html">matplotlib gallery</a>. If you are a
+power user or interested in generating complex figures, this packages is not
+ment for you and you should better take a look in the matplotlib gallery
+directly.</p>
+<p>This project is in an alpha stage, hence it is neither stable nor ready for
+production.</p>
+<blockquote>
+<p><strong>CAUTION</strong>:
+Starting from version 1.0.0 (which is far in the future) API-breaking
+changes will be made only in major releases. Until then, it can be changed
+in every minor release (see <a href="#changelog">changelog</a>).</p>
+</blockquote>
+<h2 id="features">Features</h2>
+<p>The most notable features are:</p>
+<ul>
+<li>figsize specifies size of canvas. So labels, ticks or colorbars are not counted.</li>
+<li>Nice top-aligned outter legends</li>
+<li>New colors</li>
+</ul>
+<h2 id="usage">Usage</h2>
 <p>This package uses an syntax very close to matplotlib. Hence, it should be
-streight forward to use it. Instead of calling a function on the axes itself,
+straight forward to use it. Instead of calling a function on the axes itself,
 one needs to pass here the axes as an argument (args or kwargs).</p>
-<h2 id="usage_1">Usage</h2>
-<pre><code class="python">import prettypyplot.plot as pplt
-pplt.setup_pyplot(mode=MODE, style=STYLE, ...)
-fig, ax = plt.subplots(1,1,...)
+<h3 id="usage_1">Usage</h3>
+<pre><code class="python">import matplotlib.pyplot as plt
+import prettypyplot as pplt
+
+pplt.setup_pyplot()
+fig, ax = plt.subplots()
 ...
 pplt.plot(ax=ax, x, y)
 pplt.savefig(output)
 </code></pre>
-<h2 id="known-bugs">Known Bugs</h2>
-<h2 id="known-workarounds">Known Workarounds</h2>
-<p>The method <code>subplots_adjust</code> is not compatible with the option <code>use_canvas_size</code>,
+<h3 id="known-bugs">Known Bugs</h3>
+<ul>
+<li><code>plt.subplots_adjust()</code> does not work with <code>pplt.savefig(use_canvas_size=True)</code>
+If you find one, please open an issue.</li>
+<li><code>pplt.savefig(use_canvas_size=True)</code> is not compatible with a grid of subplots</li>
+</ul>
+<h3 id="known-workarounds">Known Workarounds</h3>
+<p>The method <code>pyplot.subplots_adjust()</code> is not compatible with the option
+<code>use_canvas_size</code> in <a title="prettypyplot.plot.savefig" href="plot.html#prettypyplot.plot.savefig"><code>savefig()</code></a>,
 use instead:</p>
-<pre><code class="python">fig.subplots_adjust(hspace=0)  # this doesn't work, use instead gridspec
+<pre><code class="python"># this doesn't work, use instead gridspec
+fig.subplots_adjust(hspace=0)
+# use this instead
 fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 </code></pre>
-<h1 id="changelog">Changelog:</h1>
+<h2 id="comparison-to-matplotlib">Comparison to <code>matplotlib</code></h2>
+<table>
+<tr width="700" valign="top">
+<td>
+<code>matplotlib.pyplot.plot</code><br>
+<img src="../gallery/mpl_plot.png" width="350">
+</td>
+<td>
+<code>prettypyplot.plot</code><br>
+<img src="../gallery/default_plot.png" width="350">
+</td>
+</tr>
+<tr width="700" valign="top">
+<td>
+<code>matplotlib.pyplot.legend</code><br>
+<img src="../gallery/mpl_plot_legend.png" width="350">
+</td>
+<td>
+<code>prettypyplot.legend</code><br>
+<img src="../gallery/default_plot_legend.png" width="350">
+</td>
+</tr>
+<tr width="700" valign="top">
+<td>
+<code>matplotlib.pyplot.imshow</code><br>
+<img src="../gallery/mpl_imshow.png" width="350">
+</td>
+<td>
+<code>prettypyplot.imshow</code><br>
+<img src="../gallery/default_imshow.png" width="350">
+</td>
+</tr>
+<tr width="700" valign="top">
+<td>
+<code>matplotlib.pyplot.colorbar</code><br>
+<img src="../gallery/mpl_imshow_cbar.png" width="350">
+</td>
+<td>
+<code>prettypyplot.colorbar</code><br>
+<img src="../gallery/default_imshow_cbar.png" width="350">
+</td>
+</tr>
+</table>
+<h2 id="changelog-and-roadmap">Changelog and Roadmap:</h2>
+<h3 id="changelog">Changelog</h3>
 <ul>
-<li>tba:</li>
-<li>refactored in two submodules (one for colors one for plotting)</li>
-<li>v0.1:</li>
+<li>tba:<ul>
+<li>added gallery</li>
+<li>refactored all submodules</li>
+<li>added docs</li>
+<li>many small bugfixes</li>
+</ul>
+</li>
+<li>v0.1:<ul>
 <li>intial release</li>
 </ul>
-<h1 id="roadmap">Roadmap:</h1>
-<ul>
-<li>use palettable (<a href="https://jiffyclub.github.io/palettable/#">https://jiffyclub.github.io/palettable/#</a>)</li>
-<li>setup widths and scaling factors for beamer and poster mode</li>
-<li>implement tufte style</li>
-<li>add <a href="https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html">https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html</a> examples</li>
+</li>
 </ul>
-<h1 id="credits">Credits:</h1>
+<h3 id="roadmap">Roadmap:</h3>
+<p>The following list is sorted from <em>near future</em> to <em>hopefully ever</em>.</p>
 <ul>
+<li>enforce simplicity by refactoring</li>
+<li>add countour line plot</li>
+<li>add <a href="https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html">axes_grid</a> examples</li>
+<li>add more gallery entries</li>
+<li>improve <code>plt.suplots()</code> behaviour together with <code>pplt.savefig()</code></li>
+<li>setup widths and scaling factors for beamer and poster mode</li>
+<li>tweak all function to enable <code>STYLE='minimal'</code></li>
+<li>create own logo</li>
+<li>add pytest</li>
+<li>add search functionality in doc</li>
+<li>implement tufte style</li>
+</ul>
+<h2 id="building-documentation">Building Documentation:</h2>
+<p>The doc is based on <a href="https://pdoc3.github.io/pdoc/">pdoc</a> and can be created by
+simply running <code>bash create_doc.sh</code> from the docs folder.</p>
+<h2 id="similar-projects">Similar Projects</h2>
+<ul>
+<li><a href="https://seaborn.pydata.org/">seaborn</a></li>
+</ul>
+<h2 id="credits">Credits:</h2>
+<p>In alphabetical order:</p>
+<ul>
+<li><a href="https://colorcyclepicker.mpetroff.net/">colorcyclepicker</a></li>
 <li><a href="https://matplotlib.org/">matplotlib</a></li>
+<li><a href="https://github.com/olgabot/prettyplotlib">prettyplotlib</a></li>
 <li><a href="https://realpython.com/">realpython</a></li>
+<li><a href="https://github.com/matplotlib/viscm">viscm</a></li>
 </ul>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;.. include:: ../README.md&#34;&#34;&#34;
+<pre><code class="python">&#34;&#34;&#34;
+.. include:: ../README.md
 
-import prettypyplot.colors
-import prettypyplot.plot
+&#34;&#34;&#34;
+
+from .colors import *
+from .plot import *
 
 __version__ = &#39;0.1.0&#39;</code></pre>
 </details>
@@ -77,17 +187,21 @@ __version__ = &#39;0.1.0&#39;</code></pre>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
+<dt><code class="name"><a title="prettypyplot.cmaps" href="cmaps/index.html">prettypyplot.cmaps</a></code></dt>
+<dd>
+<section class="desc"><p>Colormaps …</p></section>
+</dd>
 <dt><code class="name"><a title="prettypyplot.colors" href="colors.html">prettypyplot.colors</a></code></dt>
 <dd>
 <section class="desc"><p>Set-up matplotlib environment …</p></section>
 </dd>
+<dt><code class="name"><a title="prettypyplot.gallery" href="gallery.html">prettypyplot.gallery</a></code></dt>
+<dd>
+<section class="desc"><p>Gallery …</p></section>
+</dd>
 <dt><code class="name"><a title="prettypyplot.plot" href="plot.html">prettypyplot.plot</a></code></dt>
 <dd>
 <section class="desc"><p>Set-up matplotlib environment …</p></section>
-</dd>
-<dt><code class="name"><a title="prettypyplot.tools" href="tools.html">prettypyplot.tools</a></code></dt>
-<dd>
-<section class="desc"><p>Helper functions …</p></section>
 </dd>
 </dl>
 </section>
@@ -99,35 +213,49 @@ __version__ = &#39;0.1.0&#39;</code></pre>
 </section>
 </article>
 <nav id="sidebar">
+<header>
+<a class="homelink" rel="home" title="prettypyplot home" href="#">
+<img src="../gallery/logo.png" alt=""> prettypyplot
+</a>
+</header>
 <h1>Index</h1>
 <div class="toc">
 <ul>
-<li><a href="#prettypyplot">prettypyplot</a></li>
+<li><a href="#prettypyplot">prettypyplot</a><ul>
+<li><a href="#features">Features</a></li>
 <li><a href="#usage">Usage</a><ul>
 <li><a href="#usage_1">Usage</a></li>
 <li><a href="#known-bugs">Known Bugs</a></li>
 <li><a href="#known-workarounds">Known Workarounds</a></li>
 </ul>
 </li>
-<li><a href="#changelog">Changelog:</a></li>
+<li><a href="#comparison-to-matplotlib">Comparison to matplotlib</a></li>
+<li><a href="#changelog-and-roadmap">Changelog and Roadmap:</a><ul>
+<li><a href="#changelog">Changelog</a></li>
 <li><a href="#roadmap">Roadmap:</a></li>
+</ul>
+</li>
+<li><a href="#building-documentation">Building Documentation:</a></li>
+<li><a href="#similar-projects">Similar Projects</a></li>
 <li><a href="#credits">Credits:</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <ul id="index">
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
+<li><code><a title="prettypyplot.cmaps" href="cmaps/index.html">prettypyplot.cmaps</a></code></li>
 <li><code><a title="prettypyplot.colors" href="colors.html">prettypyplot.colors</a></code></li>
+<li><code><a title="prettypyplot.gallery" href="gallery.html">prettypyplot.gallery</a></code></li>
 <li><code><a title="prettypyplot.plot" href="plot.html">prettypyplot.plot</a></code></li>
-<li><code><a title="prettypyplot.tools" href="tools.html">prettypyplot.tools</a></code></li>
 </ul>
 </li>
 </ul>
 </nav>
 </main>
 <footer id="footer">
-pandas <a href='#'> test </a>
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.4</a>.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad()</script>
