@@ -12,22 +12,32 @@ Author: Daniel Nagel
 import os.path
 
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
+import matplotlib.legend as mlegend
 import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
 import numpy as np  # np = dm.tryImport('numpy')
 
 import prettypyplot.colors
-from prettypyplot import tools
+from prettypyplot import _tools
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __MODE = 'default'  # default mode
 __STYLE = 'default'  # default style
 
 
+def _apply_style(path):
+    """Load mplstyle file at given relative path to this file."""
+    module_dir = os.path.dirname(__file__)
+    path = os.path.join(module_dir, path)
+
+    # load and apply style
+    plt.style.use(path)
+
+
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
+def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
                  figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-                 ipython=False):
+                 ipython=False, true_black=False):
     """
     Define default matplotlib style.
 
@@ -73,6 +83,9 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
         Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
         jupyter notebook/lab.
 
+    true_black : bool, optional
+        If true black will be used for labels and co., else a dark grey.
+
     """
     # set selected mode and style
     global __MODE
@@ -85,39 +98,27 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
         plt.ioff()
 
     # setup LaTeX font
-    plt.rc('text', usetex=True)  # use latex with raw string: r'string...'
-    plt.rc('font', family='serif')
-    plt.rc('pdf', fonttype=42)  # embbed font in pdf
-
-    # include advanced math functions and modern encoding
-    plt.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}',
-                                           r'\usepackage{lmodern}']
+    # plt.style.use can not be used.
+    _apply_style('stylelib/latex.mplstyle')
 
     # register own continuous and discrete cmaps
-    prettypyplot.colors.load_colors()
+    prettypyplot.colors.load_cmaps()
 
     # convert figratio to value
-    figratio = tools._parse_figratio(figratio)
+    figratio = _tools._parse_figratio(figratio)
 
     # setup figsize
-    figsize = tools._parse_figsize(figsize, figratio)
+    figsize = _tools._parse_figsize(figsize, figratio)
 
-    # setup figure
-    plt.rcParams['savefig.transparent'] = True
-    plt.rcParams['savefig.facecolor'] = '#ffffff'
-    plt.rcParams['savefig.edgecolor'] = '#ffffff'
-    plt.rcParams['savefig.format'] = 'pdf'
-    # set manually in savefig for consistent padding
-    plt.rcParams['savefig.bbox'] = 'tight'  # 'standard'
-    # pad_inches is only used for bbox='tight'
-    plt.rcParams['savefig.pad_inches'] = 0.1  # 0.1
-    plt.rcParams['path.simplify_threshold'] = 0.02  # 0.1
-    plt.rcParams['pdf.compression'] = 9
-
-    # set color cycle and cmap
-    # try if discrete cmap was selected
     if style != 'none':
+        # load static rcParams
+        _apply_style('stylelib/default.mplstyle')
+        if style == 'minimal':
+            _apply_style('stylelib/minimal.mplstyle')
+
+        # set color cycle and cmap
         try:
+            # try if discrete cmap was selected
             color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
         except AttributeError:
             color_cycler = plt.cycler(
@@ -127,12 +128,13 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
         plt.rcParams['image.cmap'] = cmap
 
         # change default colors
-        if colors == 'ufcd' or cmap == 'ufcd':
-            gray_dark = prettypyplot.colors.ufcd_grays['dark']
-            gray_light = prettypyplot.colors.ufcd_grays['light']
+        if true_black:
+            gray_dark = prettypyplot.colors.black_grays['dark']
+            gray_light = prettypyplot.colors.black_grays['light']
         else:
             gray_dark = prettypyplot.colors.default_grays['dark']
             gray_light = prettypyplot.colors.default_grays['light']
+
         plt.rcParams['axes.edgecolor'] = gray_dark
         plt.rcParams['axes.labelcolor'] = gray_dark
         plt.rcParams['text.color'] = gray_dark
@@ -140,108 +142,53 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='viridis', ncs=10,
         plt.rcParams['xtick.color'] = gray_dark
         plt.rcParams['ytick.color'] = gray_dark
         plt.rcParams['patch.edgecolor'] = gray_dark
-        # grid color
         plt.rcParams['grid.color'] = gray_light
 
-        # grid
-        plt.rcParams['grid.linestyle'] = '--'
-        plt.rcParams['axes.axisbelow'] = True
-        plt.rcParams['image.origin'] = 'lower'
-        plt.rcParams['hist.bins'] = 50
-        plt.rcParams['agg.path.chunksize'] = 20000
-
-        # set legend
-        plt.rcParams['legend.fontsize'] = 'small'
-        plt.rcParams['legend.title_fontsize'] = 'small'
-        plt.rcParams['legend.edgecolor'] = 'inherit'  # from axes.edgecolor
-        plt.rcParams['legend.framealpha'] = 1
-        plt.rcParams['legend.fancybox'] = False
-        # border whitespace
-        plt.rcParams['legend.borderpad'] = 0.5
-        # the vertical space between the legend entries
-        plt.rcParams['legend.labelspacing'] = 0.4
-        # the length of the legend lines
-        plt.rcParams['legend.handlelength'] = 1.4
-        # the height of the legend lines
-        plt.rcParams['legend.handleheight'] = 0.7
-        # the space between the legend line and legend text
-        plt.rcParams['legend.handletextpad'] = 0.5
-        # the border between the axes and legend edge
-        if style == 'minimal':
-            plt.rcParams['legend.borderaxespad'] = 0.2
-        else:
-            plt.rcParams['legend.borderaxespad'] = 0.
-        # column separation
-        plt.rcParams['legend.columnspacing'] = 1.0
-
         # set figure
-        plt.rcParams['figure.figsize'] = figsize  # (8./2.54, 5./2.54)
-        plt.rcParams['figure.subplot.left'] = 0.125
-        plt.rcParams['figure.subplot.right'] = 0.9
-        plt.rcParams['figure.subplot.bottom'] = 0.2  # 0.11
-        plt.rcParams['figure.subplot.top'] = 0.9  # 0.8
+        plt.rcParams['figure.figsize'] = figsize
 
         # change widths depending on MODE
-        plt.rcParams['lines.linewidth'] = __get_scale()['large_scale'] * 1.5
-        plt.rcParams['patch.linewidth'] = __get_scale()['medium_scale'] * 1.0
-        plt.rcParams['hatch.linewidth'] = __get_scale()['medium_scale'] * 1.0
-        plt.rcParams['axes.linewidth'] = __get_scale()['small_scale'] * 0.8
-        plt.rcParams['grid.linewidth'] = __get_scale()['small_scale'] * 0.8
-        # ticks
-        plt.rcParams['xtick.major.size'] = __get_scale()['tick_scale'] * 3.5
-        plt.rcParams['ytick.major.size'] = __get_scale()['tick_scale'] * 3.5
-        plt.rcParams['xtick.minor.size'] = __get_scale()['tick_scale'] * 2.0
-        plt.rcParams['ytick.minor.size'] = __get_scale()['tick_scale'] * 2.0
-        plt.rcParams['xtick.major.width'] = __get_scale()['small_scale'] * 0.8
-        plt.rcParams['ytick.major.width'] = __get_scale()['small_scale'] * 0.8
-        plt.rcParams['xtick.minor.width'] = __get_scale()['small_scale'] * 0.6
-        plt.rcParams['ytick.minor.width'] = __get_scale()['small_scale'] * 0.6
-        plt.rcParams['xtick.major.pad'] = __get_scale()['tick_scale'] * 3.5
-        plt.rcParams['ytick.major.pad'] = __get_scale()['tick_scale'] * 3.5
-        plt.rcParams['xtick.minor.pad'] = __get_scale()['tick_scale'] * 3.4
-        plt.rcParams['ytick.minor.pad'] = __get_scale()['tick_scale'] * 3.4
-        plt.rcParams['xtick.labelsize'] = 'small'  # 'normal'
-        plt.rcParams['ytick.labelsize'] = 'small'  # 'normal'
+        for scale, rcParamsVal in [
+                ['small_scale', [['axes.linewidth', 0.8],
+                                 ['grid.linewidth', 0.8],
+                                 ['xtick.major.width', 0.8],
+                                 ['xtick.minor.width', 0.6]]],
+                ['tick_scale', [['xtick.major.size', 3.5],
+                                ['xtick.minor.size', 2.0],
+                                ['xtick.major.pad', 3.5],
+                                ['xtick.minor.pad', 3.4]]],
+                ['medium_scale', [['patch.linewidth', 1.0],
+                                  ['hatch.linewidth', 1.0]]],
+                ['large_scale', [['lines.linewidth', 1.5]]],
+                ['fontsize', [['font.size', 1]]]]:
+            scale = __get_scale()[scale]
+            for rcParam, val in rcParamsVal:
+                plt.rcParams[rcParam] = scale * val
+                # apply all changes to yticks as well
+                if rcParam.startswith('xtick'):
+                    plt.rcParams['y' + rcParam[1:]] = plt.rcParams[rcParam]
 
-        plt.rcParams['font.size'] = __get_scale()['fontsize']
         if not ipython:
             plt.rcParams['figure.dpi'] = 384
-
-    if style == 'minimal':
-        plt.rcParams['axes.grid'] = False
-        plt.rcParams['axes.spines.top'] = False
-        plt.rcParams['axes.spines.right'] = False
-        plt.rcParams['axes.autolimit_mode'] = 'data'  # 'round_numbers'
-        plt.rcParams['axes.xmargin'] = 0.1  # 0.05
-        plt.rcParams['axes.ymargin'] = 0.1  # 0.05
-    elif style == 'default':
-        plt.rcParams['axes.grid'] = True
-        plt.rcParams['axes.spines.top'] = True
-        plt.rcParams['axes.spines.right'] = True
-        plt.rcParams['axes.autolimit_mode'] = 'data'  # 'round_numbers'
-        plt.rcParams['axes.xmargin'] = 0.05  # 0.05
-        plt.rcParams['axes.ymargin'] = 0.05  # 0.05
 
 
 def imshow(*args, ax=None, **kwargs):
     """
     Display an image, i.e. data on a 2D regular raster.
 
-    This is a wrapper of pyplot.imshow().
+    This is a wrapper of pyplot.imshow(). In contrast to the original function
+    the default value of `zorder` is increased to `1`.
 
     Parameters
     ----------
     ax : matplotlib axes, optional
         Matplotlib axes to plot in.
 
-    args :
-        See pyplot.imshow()
-
-    kwargs :
-        See pyplot.imshow()
+    args, kwargs
+        See [pyplot.imshow()](MPL_DOC.pyplot.imshow.html)
 
     """
-    args, ax = tools._parse_axes(*args, ax)
+    args, ax = _tools._parse_axes(*args, ax=ax)
 
     if 'zorder' not in kwargs:
         kwargs['zorder'] = 1
@@ -265,15 +212,12 @@ def plot(*args, ax=None, **kwargs):
     ax : matplotlib axes
         Matplotlib axes to plot in.
 
-    args :
-        See pyplot.imshow()
-
-    kwargs :
-        See pyplot.imshow()
+    args, kwargs
+        See [pyplot.plot()](MPL_DOC.pyplot.plot.html)
 
     """
     # parse axes
-    args, ax = tools._parse_axes(*args, ax=ax)
+    args, ax = _tools._parse_axes(*args, ax=ax)
 
     # plot
     axes = ax.plot(*args, **kwargs)
@@ -323,11 +267,11 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     use_canvas_size : bool, optional
         If True the specified figsize will be used as canvas size.
 
-    kwargs :
-        See pyplot.savefig().
+    kwargs
+        See [pyplot.savefig()](MPL_DOC.pyplot.savefig.html)
 
     """
-    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]  # plt.gca()
+    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]
     figsize = fig.get_size_inches()
 
     set_figsize = figsize
@@ -360,7 +304,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
         fmt = os.path.splitext(fname)[1][1:]
         if format == '':
             fmt = 'pdf'
-        fname = '{0}.{1}'.format(fname, fmt)
+            fname = '{0}.{1}'.format(fname, fmt)
 
     # save fig
     plt.savefig(fname, **kwargs)
@@ -369,23 +313,49 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     fig.set_size_inches(set_figsize)
 
 
-def legend(*args, outside=False, **kwargs):
+def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     """
     Generate a nice legend.
 
     This is a wrapper of pyplot.legend(). Take a look there for the default
     arguments and options. The ticks and labels are moved to the opposite side.
+    For `top` and `bottom` the default value of columns is set to the number of
+    labels, for all other options to 1. In case of many labels this parameter
+    needs to be adjusted.
+
+    .. todo::
+        Use handles and labels from *args if provided
 
     Parameters
     ----------
     outside : str or bool
-        False, 'top', 'right', 'bottom' or 'left'. Remember
-        to set the number of columns with 'ncol=i' to get a nice output.
+        False, 'top', 'right', 'bottom' or 'left'.
+
+    args, kwargs
+        See [pyplot.legend()](MPL_DOC.pyplot.legend.html)
+
+    Returns
+    -------
+    leg
+        Matplotlib legend handle.
+
+    Examples
+    --------
+    .. include:: ../gallery/legend/README.md
 
     """
     if outside not in [False, 'top', 'right', 'left', 'bottom']:
         raise ValueError('Use for outside one of [False, "top", "right", '
                          '"left", "bottom"]')
+
+    # parse axes
+    args, ax = _tools._parse_axes(*args, ax=ax)
+
+    # parse axs
+    if axs is None:
+        axs = [ax]
+    elif not all((isinstance(arg, mpl.axes.Axes) for arg in axs)):
+        raise TypeError('axs needs to be of type matplotlib.axes.Axes.')
 
     # shift axis to opposite side.
     if outside:
@@ -407,8 +377,15 @@ def legend(*args, outside=False, **kwargs):
         kwargs.setdefault('bbox_to_anchor', (-.03, 0.5))
         kwargs.setdefault('loc', 'center right')
 
+    # get handles and labels of selected axes
+    handles, labels = mlegend._get_legend_handles_labels(axs)
+
+    # set number of ncol to the number of items
+    if outside in ['top', 'bottom']:
+        kwargs.setdefault('ncol', len(labels))
+
     # generate legend
-    leg = plt.legend(*args, **kwargs)
+    leg = ax.legend(handles, labels, *args, **kwargs)
     if __STYLE == 'minimal':
         leg.get_frame().set_linewidth(0.)
     elif __STYLE == 'default':
@@ -427,7 +404,7 @@ def legend(*args, outside=False, **kwargs):
 
 
 def __opposite_side(pos):
-    """Return opposite of 'top', 'bottom', 'left', 'right' or the input."""
+    """Return opposite of 'top', 'bottom', 'left', 'right'."""
     if pos == 'top':
         return 'bottom'
     elif pos == 'bottom':
@@ -436,7 +413,7 @@ def __opposite_side(pos):
         return 'left'
     elif pos == 'left':
         return 'right'
-    return pos
+    raise ValueError('Only "top", "bottom", "left", "right" are accepted.')
 
 
 def activate_axis(pos, ax=None):
@@ -453,7 +430,7 @@ def activate_axis(pos, ax=None):
 
     """
     # get axes
-    ax = tools._gca(ax)
+    ax = _tools._gca(ax)
 
     # convert string to list of strings
     if isinstance(pos, str):
@@ -497,7 +474,7 @@ def __get_scale():
                 'fontsize': 28.}
 
 
-def colorbar(imshow=None, width='5%', pad='3%', position='right', label=None):
+def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     """
     Generate colorbar of same height as image.
 
@@ -505,7 +482,7 @@ def colorbar(imshow=None, width='5%', pad='3%', position='right', label=None):
 
     Parameters
     ----------
-    imshow : matplotlib.axes.AxesImage, optional
+    im : matplotlib.axes.AxesImage
         Specify the object the colorbar belongs to, e.g. the return value of
         pyplot.imshow().
 
@@ -524,33 +501,37 @@ def colorbar(imshow=None, width='5%', pad='3%', position='right', label=None):
     label : str, optional
         Specify the colorbar label.
 
+    kwargs
+        Colorbar properties of
+        [pyplot.colorbar()](MPL_DOC.pyplot.colorbar.html)
+
     """
     orientation = 'vertical'
     if position in ['top', 'bottom']:
         orientation = 'horizontal'
 
+    # get axes
+    ax = im.axes
+
     # generate divider
-    divider = mpl_toolkits.axes_grid1.make_axes_locatable(plt.gca())
+    divider = mpl_toolkits.axes_grid1.make_axes_locatable(ax)
     cax = divider.append_axes(position, width, pad=pad)
 
-    # get imshow if not stated
-    if not imshow:
-        # TODO: find correct instance
-        imshow = plt.gca().get_images()
-
-    cbar = plt.colorbar(imshow, cax=cax, orientation=orientation)
+    cbar = plt.colorbar(im, cax=cax, orientation=orientation)
     if label:
         cbar.set_label(label)
 
-    # set ticks on top if cb on top
-    if position in ['top', 'bottom']:
-        cax.xaxis.set_ticks_position(position)
-        cax.xaxis.set_label_position(position)
+    # set ticks and label of ticks to the outside
+    activate_axis(position, ax=cax)
+    # set the axis opposite to the colorbar to active
+    activate_axis(__opposite_side(position), ax=ax)
 
     # invert width and pad
-    pad_inv, width_inv = tools._invert_sign(pad), tools._invert_sign(width)
+    pad_inv, width_inv = _tools._invert_sign(pad), _tools._invert_sign(width)
     cax_reset = divider.append_axes(position, width_inv, pad=pad_inv)
     cax_reset.set_visible(False)
+
+    return cbar
 
 
 def grid(*args, ax=None, **kwargs):
@@ -565,15 +546,12 @@ def grid(*args, ax=None, **kwargs):
     ax : matplotlib axes
         Axes to plot grid.
 
-    args :
-        See pyplot.grid()
-
-    kwargs :
-        See pyplot.grid()
+    args, kwargs
+        See [pyplot.grid()](MPL_DOC.pyplot.grid.html)
 
     """
     # parse axes
-    args, ax = tools._parse_axes(*args, ax=ax)
+    args, ax = _tools._parse_axes(*args, ax=ax)
 
     if __STYLE == 'default':
         gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
