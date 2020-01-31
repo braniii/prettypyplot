@@ -1,6 +1,9 @@
-""".. include:: ../README.md"""
+"""
+.. include:: ../README.md
 
-import prettypyplot.colors
-import prettypyplot.plot
+"""
+
+from .colors import *
+from .plot import *
 
 __version__ = '0.1.0'
