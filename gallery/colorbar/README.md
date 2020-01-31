@@ -34,5 +34,5 @@ for style in ['default', 'minimal']:
         plt.close()
 ```
 
-![default](../gallery/colorbar/default_plot_colorbar_right.png)
-![top](../gallery/colorbar/default_plot_colorbar_top.png)
+![default](gallery/colorbar/default_plot_colorbar_right.png)
+![top](gallery/colorbar/default_plot_colorbar_top.png)

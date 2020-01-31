@@ -34,6 +34,6 @@ for style in ['default', 'minimal']:
         plt.close()
 ```
 
-![default](../gallery/legend/default_plot_legend_False.png)
-![right](../gallery/legend/default_plot_legend_right.png)
-![top](../gallery/legend/default_plot_legend_top.png)
+![default](gallery/legend/default_plot_legend_False.png)
+![right](gallery/legend/default_plot_legend_right.png)
+![top](gallery/legend/default_plot_legend_top.png)

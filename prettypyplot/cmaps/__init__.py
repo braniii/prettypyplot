@@ -1,1 +1,1 @@
-""".. include:: README.md"""
+""".. include:: ../../gallery/cmaps/README.md"""
