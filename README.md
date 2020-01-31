@@ -77,41 +77,41 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.plot</code><br>
-            <img src="gallery/mpl_plot.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot.png" width="350">
         </td>
         <td>
             <code>prettypyplot.plot</code><br>
-            <img src="gallery/default_plot.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.legend</code><br>
-            <img src="gallery/mpl_plot_legend.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot_legend.png" width="350">
         </td>
         <td>
             <code>prettypyplot.legend</code><br>
-            <img src="gallery/default_plot_legend.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot_legend.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.imshow</code><br>
-            <img src="gallery/mpl_imshow.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow.png" width="350">
         </td>
         <td>
             <code>prettypyplot.imshow</code><br>
-            <img src="gallery/default_imshow.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.colorbar</code><br>
-            <img src="gallery/mpl_imshow_cbar.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow_cbar.png" width="350">
         </td>
         <td>
             <code>prettypyplot.colorbar</code><br>
-            <img src="gallery/default_imshow_cbar.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow_cbar.png" width="350">
         </td>
     </tr>
 </table>
