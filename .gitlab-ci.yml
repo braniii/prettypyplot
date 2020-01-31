@@ -4,6 +4,7 @@ pages:
   stage: deploy
   script:
   - mv docs public
+  - mv gallery public/
   artifacts:
     paths:
     - public
