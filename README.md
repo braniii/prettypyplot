@@ -34,6 +34,12 @@ This package uses an syntax very close to matplotlib. Hence, it should be
 straight forward to use it. Instead of calling a function on the axes itself,
 one needs to pass here the axes as an argument (args or kwargs).
 
+### Installation
+
+```python
+python3 -m pip install prettypyplot
+```
+
 ### Usage
 
 ```python
