@@ -16,7 +16,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     keywords='matplotlib pyplot',
     author='braniii',
-    url='https://gitlab.com/braniii/prettyplot',
+    url='https://gitlab.com/braniii/prettypyplot',
     license='BSD 3-Clause License',
     classifiers=[
         'License :: OSI Approved :: BSD License',
