@@ -21,5 +21,4 @@
     }
 </%def>
 <style>${homelink()}</style>
-<link rel="canonical" href="#">
-<link rel="icon" href="../gallery/logo.png">
+<link rel="icon" href="gallery/logo.png">
