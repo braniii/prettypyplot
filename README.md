@@ -1,4 +1,22 @@
+<p align="center">
+    <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
+        <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
+    <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
+        <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
+    <a href="https://libraries.io/pypi/prettypyplot" alt="PyPI - Downloads" >
+        <img src="https://img.shields.io/pypi/dm/prettypyplot" /></a>
+    <a href="https://pypi.org/project/prettypyplot" alt="PyPI - Python Version">
+        <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
+    <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
+        <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
+    <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
+        <img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
+</p>
+
+
 # prettypyplot
+
+The documentation including an gallery can be found here  <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >https://braniii.gitlab.io/prettypyplot</a>
 
 This is a wrapper package for matplotlib to achieve more easily pretty figures.
 If you are looking for something complete, this project is nothing for you
