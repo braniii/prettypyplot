@@ -4,8 +4,8 @@
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
     <a href="https://libraries.io/pypi/prettypyplot" alt="PyPI - Downloads" >
-        <img src="https://pypistats.org/packages/prettypyplot" /></a>
-    <a href="https://pypi.org/project/prettypyplot" alt="PyPI - Python Version">
+        <img src="https://img.shields.io/pypi/dm/prettypyplot" /></a>
+    <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
