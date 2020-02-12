@@ -137,13 +137,18 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 ## Changelog and Roadmap:
 
 ### Changelog
-
 - tba:
+    - Increase simplification threshold to reduce figure size
+- v0.2.3:
+    - Include mplstyle
+- v0.2.2:
+    - Fix PyPi setup
+- v0.2.1: 
     - added gallery
     - refactored all submodules
     - added docs
     - many small bugfixes
-- v0.1:
+- v0.1.0:
     - intial release
 
 ### Roadmap:
