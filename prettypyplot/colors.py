@@ -53,6 +53,31 @@ def load_cmaps():
             plt.register_cmap(cmap=colormap.reversed())
 
 
+def load_colors():
+    """
+    Load and include custom colors to matplotlib.
+
+    Add colors of 'pastel5' which can be accessed via 'pplt:blue', 'pplt:red',
+    'pplt:green', 'pplt:orange', 'pplt:lightblue'. Further, the current colors
+    will be added 'pplt:axes', 'pplt:text', 'pplt:grid'.
+
+    .. see:: `prettypyplot.cmaps`
+
+    """
+    # register own colors
+    pplt_colors = {
+        'pplt:blue': __pastel5().colors[0],
+        'pplt:red': __pastel5().colors[1],
+        'pplt:green': __pastel5().colors[2],
+        'pplt:orange': __pastel5().colors[3],
+        'pplt:lightblue': __pastel5().colors[4],
+        'pplt:axes': plt.rcParams['axes.edgecolor'],
+        'pplt:text': plt.rcParams['text.color'],
+        'pplt:grid': plt.rcParams['grid.color'],
+    }
+    clr._colors_full_map.update(pplt_colors)
+
+
 def categorical_cmap(nc,
                      nsc,
                      cmap=None,

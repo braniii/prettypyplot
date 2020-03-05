@@ -124,6 +124,7 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
             color_cycler = plt.cycler(
                 color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
 
+        # TODO: refactor following code in private function
         plt.rcParams['axes.prop_cycle'] = color_cycler
         plt.rcParams['image.cmap'] = cmap
 
@@ -170,6 +171,9 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
 
         if not ipython:
             plt.rcParams['figure.dpi'] = 384
+
+    # register own continuous and discrete cmaps
+    prettypyplot.colors.load_colors()
 
 
 def imshow(*args, ax=None, **kwargs):
