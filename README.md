@@ -3,7 +3,7 @@
         <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
-    <a href="https://libraries.io/pypi/prettypyplot" alt="PyPI - Downloads" >
+    <a href="https://pypistats.org/packages/prettypyplot" alt="PyPI - Downloads" >
         <img src="https://img.shields.io/pypi/dm/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
