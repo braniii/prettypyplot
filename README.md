@@ -16,7 +16,7 @@
 
 # prettypyplot
 
-The documentation including an gallery can be found here  <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >https://braniii.gitlab.io/prettypyplot</a>
+The documentation including an gallery can be found [here](https://braniii.gitlab.io/prettypyplot).
 
 This is a wrapper package for matplotlib to achieve more easily pretty figures.
 If you are looking for something complete, this project is nothing for you
@@ -138,7 +138,10 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 ### Changelog
 - tba:
+- v0.3.0:
+    - Colors of `pastel5`, axes, grid and text are now accessible directly
     - Increase simplification threshold to reduce figure size
+    - Minor changes
 - v0.2.3:
     - Include mplstyle
 - v0.2.2:

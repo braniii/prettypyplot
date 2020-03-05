@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.4" />
 <title>prettypyplot API documentation</title>
-<meta name="description" content="prettypyplot …" />
+<meta name="description" content="&lt;p align=&#34;center&#34;&gt;
+&lt;a href=&#34;https://gitlab.com/braniii/prettypyplot/pipelines&#34; alt=&#34;Gitlab pipeline status&#34; &gt;
+&lt;img …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -23,7 +25,22 @@
 <h1 class="title">Module <code>prettypyplot</code></h1>
 </header>
 <section id="section-intro">
+<p align="center">
+<a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
+<img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
+<a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
+<img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
+<a href="https://pypistats.org/packages/prettypyplot" alt="PyPI - Downloads" >
+<img src="https://img.shields.io/pypi/dm/prettypyplot" /></a>
+<a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
+<img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
+<a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
+<img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
+<a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
+<img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
+</p>
 <h1 id="prettypyplot">prettypyplot</h1>
+<p>The documentation including an gallery can be found <a href="https://braniii.gitlab.io/prettypyplot">here</a>.</p>
 <p>This is a wrapper package for matplotlib to achieve more easily pretty figures.
 If you are looking for something complete, this project is nothing for you
 but maybe <a href="https://seaborn.pydata.org/">seaborn</a>. The main aspect of this
@@ -128,14 +145,29 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 <h2 id="changelog-and-roadmap">Changelog and Roadmap:</h2>
 <h3 id="changelog">Changelog</h3>
 <ul>
-<li>tba:<ul>
+<li>tba:</li>
+<li>v0.3.0:<ul>
+<li>Colors of <code>pastel5</code>, axes, grid and text are now accessible directly</li>
+<li>Increase simplification threshold to reduce figure size</li>
+<li>Minor changes</li>
+</ul>
+</li>
+<li>v0.2.3:<ul>
+<li>Include mplstyle</li>
+</ul>
+</li>
+<li>v0.2.2:<ul>
+<li>Fix PyPi setup</li>
+</ul>
+</li>
+<li>v0.2.1: <ul>
 <li>added gallery</li>
 <li>refactored all submodules</li>
 <li>added docs</li>
 <li>many small bugfixes</li>
 </ul>
 </li>
-<li>v0.1:<ul>
+<li>v0.1.0:<ul>
 <li>intial release</li>
 </ul>
 </li>
@@ -183,7 +215,7 @@ simply running <code>bash create_doc.sh</code> from the docs folder.</p>
 from .colors import *
 from .plot import *
 
-__version__ = &#39;0.2.2&#39;</code></pre>
+__version__ = &#39;0.2.3&#39;</code></pre>
 </details>
 </section>
 <section>

@@ -87,6 +87,31 @@ def load_cmaps():
             plt.register_cmap(cmap=colormap.reversed())
 
 
+def load_colors():
+    &#34;&#34;&#34;
+    Load and include custom colors to matplotlib.
+
+    Add colors of &#39;pastel5&#39; which can be accessed via &#39;pplt:blue&#39;, &#39;pplt:red&#39;,
+    &#39;pplt:green&#39;, &#39;pplt:orange&#39;, &#39;pplt:lightblue&#39;. Further, the current colors
+    will be added &#39;pplt:axes&#39;, &#39;pplt:text&#39;, &#39;pplt:grid&#39;.
+
+    .. see:: `prettypyplot.cmaps`
+
+    &#34;&#34;&#34;
+    # register own colors
+    pplt_colors = {
+        &#39;pplt:blue&#39;: __pastel5().colors[0],
+        &#39;pplt:red&#39;: __pastel5().colors[1],
+        &#39;pplt:green&#39;: __pastel5().colors[2],
+        &#39;pplt:orange&#39;: __pastel5().colors[3],
+        &#39;pplt:lightblue&#39;: __pastel5().colors[4],
+        &#39;pplt:axes&#39;: plt.rcParams[&#39;axes.edgecolor&#39;],
+        &#39;pplt:text&#39;: plt.rcParams[&#39;text.color&#39;],
+        &#39;pplt:grid&#39;: plt.rcParams[&#39;grid.color&#39;],
+    }
+    clr._colors_full_map.update(pplt_colors)
+
+
 def categorical_cmap(nc,
                      nsc,
                      cmap=None,
@@ -480,6 +505,46 @@ those are given on top of the data.</p>
             plt.register_cmap(cmap=colormap.reversed())</code></pre>
 </details>
 </dd>
+<dt id="prettypyplot.colors.load_colors"><code class="name flex">
+<span>def <span class="ident">load_colors</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Load and include custom colors to matplotlib.</p>
+<p>Add colors of 'pastel5' which can be accessed via 'pplt:blue', 'pplt:red',
+'pplt:green', 'pplt:orange', 'pplt:lightblue'. Further, the current colors
+will be added 'pplt:axes', 'pplt:text', 'pplt:grid'.</p>
+<div class="admonition see">
+<p class="admonition-title">See:&ensp;<a title="prettypyplot.cmaps" href="cmaps/index.html"><code>prettypyplot.cmaps</code></a></p>
+</div></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_colors():
+    &#34;&#34;&#34;
+    Load and include custom colors to matplotlib.
+
+    Add colors of &#39;pastel5&#39; which can be accessed via &#39;pplt:blue&#39;, &#39;pplt:red&#39;,
+    &#39;pplt:green&#39;, &#39;pplt:orange&#39;, &#39;pplt:lightblue&#39;. Further, the current colors
+    will be added &#39;pplt:axes&#39;, &#39;pplt:text&#39;, &#39;pplt:grid&#39;.
+
+    .. see:: `prettypyplot.cmaps`
+
+    &#34;&#34;&#34;
+    # register own colors
+    pplt_colors = {
+        &#39;pplt:blue&#39;: __pastel5().colors[0],
+        &#39;pplt:red&#39;: __pastel5().colors[1],
+        &#39;pplt:green&#39;: __pastel5().colors[2],
+        &#39;pplt:orange&#39;: __pastel5().colors[3],
+        &#39;pplt:lightblue&#39;: __pastel5().colors[4],
+        &#39;pplt:axes&#39;: plt.rcParams[&#39;axes.edgecolor&#39;],
+        &#39;pplt:text&#39;: plt.rcParams[&#39;text.color&#39;],
+        &#39;pplt:grid&#39;: plt.rcParams[&#39;grid.color&#39;],
+    }
+    clr._colors_full_map.update(pplt_colors)</code></pre>
+</details>
+</dd>
 <dt id="prettypyplot.colors.text_color"><code class="name flex">
 <span>def <span class="ident">text_color</span></span>(<span>bgcolor, colors=('#000000', '#ffffff'))</span>
 </code></dt>
@@ -587,6 +652,7 @@ The formulas are taken from W3C <a href="https://www.w3.org/TR/WCAG21">WCAG 2.1<
 <li><code><a title="prettypyplot.colors.categorical_cmap" href="#prettypyplot.colors.categorical_cmap">categorical_cmap</a></code></li>
 <li><code><a title="prettypyplot.colors.categorical_color" href="#prettypyplot.colors.categorical_color">categorical_color</a></code></li>
 <li><code><a title="prettypyplot.colors.load_cmaps" href="#prettypyplot.colors.load_cmaps">load_cmaps</a></code></li>
+<li><code><a title="prettypyplot.colors.load_colors" href="#prettypyplot.colors.load_colors">load_colors</a></code></li>
 <li><code><a title="prettypyplot.colors.text_color" href="#prettypyplot.colors.text_color">text_color</a></code></li>
 </ul>
 </li>
