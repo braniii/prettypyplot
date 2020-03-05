@@ -7,7 +7,7 @@ savefig.format: pdf
 # set manually in savefig for consistent padding
 savefig.bbox: tight
 savefig.pad_inches: 0.1
-path.simplify_threshold: 0.02
+path.simplify_threshold: 0.2
 pdf.compression: 9
 
 # set grid
