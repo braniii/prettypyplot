@@ -335,6 +335,12 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     outside : str or bool
         False, 'top', 'right', 'bottom' or 'left'.
 
+    axs : list of mpl.axes.Axes
+        List of axes which are used for extracting all labels.
+
+    ax : mpl.axes.Axes
+        Axes which is used for placing legend.
+
     args, kwargs
         See [pyplot.legend()](MPL_DOC.pyplot.legend.html)
 
