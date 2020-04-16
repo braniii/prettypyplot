@@ -75,6 +75,8 @@ def _invert_sign(num):
 def _parse_axes(*args, ax):
     """Extract axes from ax, args or returns args and current axes."""
     if any((isinstance(arg, mpl.axes.Axes) for arg in args)):
+        if isinstance(ax, mpl.axes.Axes):
+            raise ValueError('Multiple axes provided')
         ax = [arg for arg in args if isinstance(arg, mpl.axes.Axes)][0]
         args = tuple(arg for arg in args if not isinstance(arg, mpl.axes.Axes))
     else:
