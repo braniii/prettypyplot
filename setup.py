@@ -10,7 +10,7 @@ README = (HERE / 'README.md').read_text()
 # This call to setup() does all the work
 setuptools.setup(
     name='prettypyplot',
-    version='0.3.0',
+    version='0.4.0',
     description='Wrapper for matplotlib to generate pretty plots.',
     long_description=README,
     long_description_content_type='text/markdown',
