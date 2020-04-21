@@ -100,7 +100,6 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
     # setup LaTeX font
     # plt.style.use can not be used.
     _apply_style('stylelib/latex.mplstyle')
-    _latex.load_latex_preamble()
 
     # register own continuous and discrete cmaps
     prettypyplot.colors.load_cmaps()
