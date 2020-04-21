@@ -18,6 +18,7 @@ import mpl_toolkits.axes_grid1
 import numpy as np  # np = dm.tryImport('numpy')
 
 import prettypyplot.colors
+from prettypyplot import _latex
 from prettypyplot import _tools
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,6 +101,7 @@ def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
     # setup LaTeX font
     # plt.style.use can not be used.
     _apply_style('stylelib/latex.mplstyle')
+    _latex.load_latex_preamble()
 
     # register own continuous and discrete cmaps
     prettypyplot.colors.load_cmaps()
