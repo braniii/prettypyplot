@@ -18,7 +18,6 @@ import mpl_toolkits.axes_grid1
 import numpy as np  # np = dm.tryImport('numpy')
 
 import prettypyplot.colors
-from prettypyplot import _latex
 from prettypyplot import _tools
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
