@@ -59,4 +59,4 @@ def _latex_contour():
         r'  \fillstroke{black}{white}{#1}{#2}'
         r'}'
     )
-    plt.rcParams['text.latex.pramble'] += contour_str
+    plt.rcParams['text.latex.preamble'] += contour_str
