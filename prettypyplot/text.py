@@ -51,14 +51,14 @@ def text(x, y, s, contourwidth=None, contourcolor=None, ax=None, **kwargs):
     # parse axes
     ax = _tools._gca(ax)
 
-    # plot text
-    txt = ax.text(x=x, y=y, s=s, **kwargs)
-
     # change default alignment
     if 'va' not in kwargs and 'verticalalignment' not in kwargs:
         kwargs['va'] = 'center'
     if 'ha' not in kwargs and 'horizontalalignment' not in kwargs:
         kwargs['ha'] = 'center'
+
+    # plot text
+    txt = ax.text(x=x, y=y, s=s, **kwargs)
 
     # generate contour
     if contourwidth:
@@ -98,14 +98,14 @@ def figtext(x, y, s, contourwidth=None, contourcolor=None, **kwargs):
         [pyplot.figtext()](MPL_DOC.pyplot.figtext.html)
 
     """
-    # plot text
-    txt = plt.figtext(x=x, y=y, s=s, **kwargs)
-
     # change default alignment
     if 'va' not in kwargs and 'verticalalignment' not in kwargs:
         kwargs['va'] = 'center'
     if 'ha' not in kwargs and 'horizontalalignment' not in kwargs:
         kwargs['ha'] = 'center'
+
+    # plot text
+    txt = plt.figtext(x=x, y=y, s=s, **kwargs)
 
     # generate contour
     if contourwidth:
