@@ -138,6 +138,9 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 ### Changelog
 - tba:
+    - Add text module with `pplt.text`, `pplt.figtext` and `pplt.add_contour`. With centered text and contour parameter
+    - Updated pydoc
+    - Minor bug fixes
 - v0.3.0:
     - Colors of `pastel5`, axes, grid and text are now accessible directly
     - Increase simplification threshold to reduce figure size
@@ -158,6 +161,8 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 The following list is sorted from *near future* to *hopefully ever*.
 
+- move changelog to file
+- add more colorpalettes
 - enforce simplicity by refactoring
 - add countour line plot
 - add [axes_grid](https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html) examples
