@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.4" />
+<meta name="generator" content="pdoc 0.8.1" />
 <title>prettypyplot.plot API documentation</title>
 <meta name="description" content="Set-up matplotlib environment …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
@@ -369,6 +369,12 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     outside : str or bool
         False, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39; or &#39;left&#39;.
 
+    axs : list of mpl.axes.Axes
+        List of axes which are used for extracting all labels.
+
+    ax : mpl.axes.Axes
+        Axes which is used for placing legend.
+
     args, kwargs
         See [pyplot.legend()](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
 
@@ -629,14 +635,14 @@ def __minmax(lim, rcparam):
 <span>def <span class="ident">activate_axis</span></span>(<span>pos, ax=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Shift the specified axis to the opposite side.</p>
+<div class="desc"><p>Shift the specified axis to the opposite side.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>pos</code></strong> :&ensp;<code>str</code> or <code>list</code> of <code>str</code></dt>
 <dd>Specify axis to flip, one of ['left', 'right', 'top', 'bottom'].</dd>
-<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib axes</code></dt>
 <dd>Matplotlib axes to flip axis.</dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -675,7 +681,7 @@ def __minmax(lim, rcparam):
 <span>def <span class="ident">colorbar</span></span>(<span>im, width='7%', pad='0%', position='right', label=None, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Generate colorbar of same height as image.</p>
+<div class="desc"><p>Generate colorbar of same height as image.</p>
 <p>Wrapper around pyplot.colorbar which corrects the height.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
@@ -696,7 +702,7 @@ plotted, choose one of ['left', 'top', 'right', 'bottom']</dd>
 <dt><strong><code>kwargs</code></strong></dt>
 <dd>Colorbar properties of
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.colorbar.html">pyplot.colorbar()</a></dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -765,16 +771,16 @@ plotted, choose one of ['left', 'top', 'right', 'bottom']</dd>
 <span>def <span class="ident">grid</span></span>(<span>*args, ax=None, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Generate grid.</p>
+<div class="desc"><p>Generate grid.</p>
 <p>This function will add a major and minor grid in case of STYLE='default',
 a major grid in case of 'none' and otherwise nothing.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib axes</code></dt>
 <dd>Axes to plot grid.</dd>
 <dt><strong><code>args</code></strong>, <strong><code>kwargs</code></strong></dt>
 <dd>See <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.grid.html">pyplot.grid()</a></dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -811,16 +817,16 @@ a major grid in case of 'none' and otherwise nothing.</p>
 <span>def <span class="ident">imshow</span></span>(<span>*args, ax=None, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Display an image, i.e. data on a 2D regular raster.</p>
+<div class="desc"><p>Display an image, i.e. data on a 2D regular raster.</p>
 <p>This is a wrapper of pyplot.imshow(). In contrast to the original function
 the default value of <code>zorder</code> is increased to <code>1</code>.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code>, optional</dt>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib axes</code>, optional</dt>
 <dd>Matplotlib axes to plot in.</dd>
 <dt><strong><code>args</code></strong>, <strong><code>kwargs</code></strong></dt>
 <dd>See <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html">pyplot.imshow()</a></dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -856,7 +862,7 @@ the default value of <code>zorder</code> is increased to <code>1</code>.</p>
 <span>def <span class="ident">legend</span></span>(<span>*args, outside=False, ax=None, axs=None, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Generate a nice legend.</p>
+<div class="desc"><p>Generate a nice legend.</p>
 <p>This is a wrapper of pyplot.legend(). Take a look there for the default
 arguments and options. The ticks and labels are moved to the opposite side.
 For <code>top</code> and <code>bottom</code> the default value of columns is set to the number of
@@ -870,6 +876,10 @@ needs to be adjusted.</p>
 <dl>
 <dt><strong><code>outside</code></strong> :&ensp;<code>str</code> or <code>bool</code></dt>
 <dd>False, 'top', 'right', 'bottom' or 'left'.</dd>
+<dt><strong><code>axs</code></strong> :&ensp;<code>list</code> of <code>mpl.axes.Axes</code></dt>
+<dd>List of axes which are used for extracting all labels.</dd>
+<dt><strong><code>ax</code></strong> :&ensp;<code>mpl.axes.Axes</code></dt>
+<dd>Axes which is used for placing legend.</dd>
 <dt><strong><code>args</code></strong>, <strong><code>kwargs</code></strong></dt>
 <dd>See <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html">pyplot.legend()</a></dd>
 </dl>
@@ -880,7 +890,7 @@ needs to be adjusted.</p>
 </dl>
 <h2 id="examples">Examples</h2>
 <h2 id="legend">Legend</h2>
-<p>This is an example of using <a title="prettypyplot.plot.legend" href="#prettypyplot.plot.legend"><code>legend()</code></a>.</p>
+<p>This is an example of using <code><a title="prettypyplot.plot.legend" href="#prettypyplot.plot.legend">legend()</a></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This is not yet correctly implemented for <code>STYLE='minimal'</code>.</p>
@@ -914,7 +924,7 @@ for style in ['default', 'minimal']:
 </code></pre>
 <p><img alt="default" src="gallery/legend/default_plot_legend_False.png">
 <img alt="right" src="gallery/legend/default_plot_legend_right.png">
-<img alt="top" src="gallery/legend/default_plot_legend_top.png"></p></section>
+<img alt="top" src="gallery/legend/default_plot_legend_top.png"></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -936,6 +946,12 @@ for style in ['default', 'minimal']:
     ----------
     outside : str or bool
         False, &#39;top&#39;, &#39;right&#39;, &#39;bottom&#39; or &#39;left&#39;.
+
+    axs : list of mpl.axes.Axes
+        List of axes which are used for extracting all labels.
+
+    ax : mpl.axes.Axes
+        Axes which is used for placing legend.
 
     args, kwargs
         See [pyplot.legend()](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
@@ -1013,17 +1029,17 @@ for style in ['default', 'minimal']:
 <span>def <span class="ident">plot</span></span>(<span>*args, ax=None, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Plot simple lineplot.</p>
+<div class="desc"><p>Plot simple lineplot.</p>
 <p>Wrapping pyplot.plot() to adjust to style. For more information on the
 arguments see in matplotlib documentation.
 If STYLE='minimal', spines will be limited to plotting range.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib</code> <code>axes</code></dt>
+<dt><strong><code>ax</code></strong> :&ensp;<code>matplotlib axes</code></dt>
 <dd>Matplotlib axes to plot in.</dd>
 <dt><strong><code>args</code></strong>, <strong><code>kwargs</code></strong></dt>
 <dd>See <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html">pyplot.plot()</a></dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1086,7 +1102,7 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 <span>def <span class="ident">savefig</span></span>(<span>fname, use_canvas_size=True, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Save figure as png and pdf.</p>
+<div class="desc"><p>Save figure as png and pdf.</p>
 <p>This methods corrects figsize for poster/beamer mode.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
@@ -1096,7 +1112,7 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 <dd>If True the specified figsize will be used as canvas size.</dd>
 <dt><strong><code>kwargs</code></strong></dt>
 <dd>See <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.savefig.html">pyplot.savefig()</a></dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1165,19 +1181,19 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 <span>def <span class="ident">setup_pyplot</span></span>(<span>ssh=False, colors='pastel5', cmap='macaw', ncs=10, figsize=(3,), figratio='golden', mode='default', style='default', ipython=False, true_black=False)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Define default matplotlib style.</p>
+<div class="desc"><p>Define default matplotlib style.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>ssh</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Disables interactive display for ssh usage</dd>
-<dt><strong><code>colors</code></strong> :&ensp;<code>matplotlib</code> <code>colormap</code>, optional</dt>
+<dt><strong><code>colors</code></strong> :&ensp;<code>matplotlib colormap</code>, optional</dt>
 <dd>Set the default color cycler from continuous or discrete maps. Use any
 of matplotlibs defaults or specified in the colors submodule.</dd>
-<dt><strong><code>cmap</code></strong> :&ensp;<code>matplotlib</code> <code>colormap</code>, optional</dt>
+<dt><strong><code>cmap</code></strong> :&ensp;<code>matplotlib colormap</code>, optional</dt>
 <dd>Set the default colormap.</dd>
 <dt><strong><code>ncs</code></strong> :&ensp;<code>int</code>, optional</dt>
 <dd>Number of colors if continuous cmap is selected.</dd>
-<dt><strong><code>figsize</code></strong> :&ensp;<code>int</code> or <code>int</code> <code>tuple</code>, optional</dt>
+<dt><strong><code>figsize</code></strong> :&ensp;<code>int</code> or <code>int tuple</code>, optional</dt>
 <dd>Give size of default figure in inches, either as tuple (x, y) or a
 single float for the x-axis. The y-axis will be determined by figratio.</dd>
 <dt><strong><code>figratio</code></strong> :&ensp;<code>str</code> or <code>float</code>, optional</dt>
@@ -1201,7 +1217,7 @@ none: no changes to style</dd>
 jupyter notebook/lab.</dd>
 <dt><strong><code>true_black</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>If true black will be used for labels and co., else a dark grey.</dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1392,7 +1408,7 @@ jupyter notebook/lab.</dd>
 </svg>
 </a>
 <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.4</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad()</script>

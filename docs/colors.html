@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.4" />
+<meta name="generator" content="pdoc 0.8.1" />
 <title>prettypyplot.colors API documentation</title>
 <meta name="description" content="Set-up matplotlib environment …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
@@ -297,7 +297,7 @@ default_grays = {&#39;dark&#39;: &#39;#4d4f53&#39;, &#39;light&#39;: &#39;#dddfe
 <span>def <span class="ident">categorical_cmap</span></span>(<span>nc, nsc, cmap=None, return_colors=False)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Generate categorical colors of given cmap.</p>
+<div class="desc"><p>Generate categorical colors of given cmap.</p>
 <p>Exract from a predefined colormap colors and generate for each the desired
 number of shades.</p>
 <h2 id="parameters">Parameters</h2>
@@ -306,7 +306,7 @@ number of shades.</p>
 <dd>Number of colors</dd>
 <dt><strong><code>nsc</code></strong> :&ensp;<code>int</code></dt>
 <dd>Number of shades per colors</dd>
-<dt><strong><code>cmap</code></strong> :&ensp;<code>mpl</code> <code>colormap</code>, optional</dt>
+<dt><strong><code>cmap</code></strong> :&ensp;<code>mpl colormap</code>, optional</dt>
 <dd>Matplotlib colormap to take colors from. The default is the active
 color cycle.</dd>
 <dt><strong><code>return_colors</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -315,10 +315,10 @@ in an own row.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><strong><code>scolors</code></strong> :&ensp;<code>mpl</code> <code>colormap</code></dt>
+<dt><strong><code>scolors</code></strong> :&ensp;<code>mpl colormap</code></dt>
 <dd>Return discrete colormap. If return_colors, a 2d representation will
 be returned instead.</dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -392,7 +392,7 @@ be returned instead.</dd>
 <span>def <span class="ident">categorical_color</span></span>(<span>nsc, color, return_hex=False)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Generate categorical shades of given colors.</p>
+<div class="desc"><p>Generate categorical shades of given colors.</p>
 <p>Generate for each provided color the number of specified shades. The shaded
 colors are interpolated linearly in HSV colorspace. This function is based
 on following post: <a href="https://stackoverflow.com/a/47232942">https://stackoverflow.com/a/47232942</a></p>
@@ -400,18 +400,18 @@ on following post: <a href="https://stackoverflow.com/a/47232942">https://stacko
 <dl>
 <dt><strong><code>nsc</code></strong> :&ensp;<code>int</code></dt>
 <dd>Number of shades per color.</dd>
-<dt><strong><code>color</code></strong> :&ensp;<code>RGB</code> <code>color</code> or <code>matplotlib</code> <code>predefined</code> <code>color</code></dt>
+<dt><strong><code>color</code></strong> :&ensp;<code>RGB color</code> or <code>matplotlib predefined color</code></dt>
 <dd>Color used for generating shades.</dd>
 <dt><strong><code>return_hex</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Return colors in hex format instead of rgb.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><strong><code>colors_rgb</code></strong> :&ensp;<code>list</code> of <code>RGB</code> <code>colors</code></dt>
+<dt><strong><code>colors_rgb</code></strong> :&ensp;<code>list</code> of <code>RGB colors</code></dt>
 <dd>A list containing shaded colors. Where the list is sorted from the
 original color at the beginning to the most shaded one at the end.
 The default color encoding is rgb and hex if specified.</dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -467,15 +467,15 @@ The default color encoding is rgb and hex if specified.</dd>
 <span>def <span class="ident">load_cmaps</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Load and include custom colormaps to matplotlib.</p>
+<div class="desc"><p>Load and include custom colormaps to matplotlib.</p>
 <p>Add sequential colormaps 'pastel5', 'pastel6', 'cbf4', 'cbf5', 'cbf8',
 and 'ufcd' as an corporate design. Except of 'ufcd' all palettes should be
 'color-blind-friendly'.</p>
 <p>Add continuous colormaps macaw, Turbo. The Copyright of
 those are given on top of the data.</p>
 <div class="admonition see">
-<p class="admonition-title">See:&ensp;<a title="prettypyplot.cmaps" href="cmaps/index.html"><code>prettypyplot.cmaps</code></a></p>
-</div></section>
+<p class="admonition-title">See:&ensp;<code><a title="prettypyplot.cmaps" href="cmaps/index.html">prettypyplot.cmaps</a></code></p>
+</div></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -509,13 +509,13 @@ those are given on top of the data.</p>
 <span>def <span class="ident">load_colors</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Load and include custom colors to matplotlib.</p>
+<div class="desc"><p>Load and include custom colors to matplotlib.</p>
 <p>Add colors of 'pastel5' which can be accessed via 'pplt:blue', 'pplt:red',
 'pplt:green', 'pplt:orange', 'pplt:lightblue'. Further, the current colors
 will be added 'pplt:axes', 'pplt:text', 'pplt:grid'.</p>
 <div class="admonition see">
-<p class="admonition-title">See:&ensp;<a title="prettypyplot.cmaps" href="cmaps/index.html"><code>prettypyplot.cmaps</code></a></p>
-</div></section>
+<p class="admonition-title">See:&ensp;<code><a title="prettypyplot.cmaps" href="cmaps/index.html">prettypyplot.cmaps</a></code></p>
+</div></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -549,23 +549,23 @@ will be added 'pplt:axes', 'pplt:text', 'pplt:grid'.</p>
 <span>def <span class="ident">text_color</span></span>(<span>bgcolor, colors=('#000000', '#ffffff'))</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Select textcolor with maximal contrast on background.</p>
+<div class="desc"><p>Select textcolor with maximal contrast on background.</p>
 <p>All parameters needs to be colors accepted by matplotlib, see
 <a href="https://matplotlib.org/api/colors_api.html">matplotlib.colors</a>.
 The formulas are taken from W3C <a href="https://www.w3.org/TR/WCAG21">WCAG 2.1</a>
 (Web Content Accessibility Guidelines).</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>bgcolor</code></strong> :&ensp;<code>matplotlib</code> <code>color</code></dt>
+<dt><strong><code>bgcolor</code></strong> :&ensp;<code>matplotlib color</code></dt>
 <dd>Background color to which the contrast is maximized.</dd>
-<dt><strong><code>colors</code></strong> :&ensp;<code>list</code> of <code>matplotlib</code> <code>colors</code>, optional</dt>
+<dt><strong><code>colors</code></strong> :&ensp;<code>list</code> of <code>matplotlib colors</code>, optional</dt>
 <dd>Selection of textcolors to choose from.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><strong><code>color</code></strong> :&ensp;<code>matplotlib</code> <code>color</code></dt>
+<dt><strong><code>color</code></strong> :&ensp;<code>matplotlib color</code></dt>
 <dd>Color of colors which has the highest contrast on the given bgcolor.</dd>
-</dl></section>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -668,7 +668,7 @@ The formulas are taken from W3C <a href="https://www.w3.org/TR/WCAG21">WCAG 2.1<
 </svg>
 </a>
 <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.4</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad()</script>
