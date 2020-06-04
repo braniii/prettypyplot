@@ -34,8 +34,10 @@ def _parse_figsize(figsize, figratio):
             figsize = (float(figsize[0]), float(figsize[0]) / figratio)
         elif len(figsize) == 2:
             pass
-    else:
+    elif _is_number(figsize) and _is_number(figratio):
         figsize = (float(figsize), float(figsize) / figratio)
+    else:
+        figsize = None
     return figsize
 
 
@@ -57,7 +59,7 @@ def _is_number(val):
     try:
         float(val)
         return True
-    except ValueError:
+    except (ValueError, TypeError):
         return False
 
 
