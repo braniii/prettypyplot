@@ -1,5 +1,6 @@
 ### Changelog
 - tba:
+- v0.4.0:
     - Added Decorators
     - Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
     - Refactor style settings. Added `pplt.update_style` and renamed `pplt.setup_pyplot` to `pplt.use_style`
