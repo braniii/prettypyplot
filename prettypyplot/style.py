@@ -122,7 +122,7 @@ def update_style(interactive=None, colors=None, cmap=None, ncs=None,
 
 
 @copy_doc_params(update_style)
-def use_style(interactive=False, colors='pastel5', cmap='macaw', ncs=10,
+def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
               figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
               ipython=False, true_black=False, latex=True):
     """Define alternative matplotlib style.
@@ -254,9 +254,9 @@ def __set_ineractive_mode(interactive):
     """Set interative mode."""
     if interactive is not None:
         if interactive:
-            plt.ioff()
-        else:
             plt.ion()
+        else:
+            plt.ioff()
 
 
 def __get_scale(mode):
