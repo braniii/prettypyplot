@@ -21,6 +21,9 @@ from .cmaps._discrete import (
     __cbf8,
     __pastel5,
     __pastel6,
+    __pastel_autunm,
+    __pastel_rainbow,
+    __pastel_spring,
     __ufcd,
 )
 from .cmaps._macaw import __macaw
@@ -44,6 +47,7 @@ def load_cmaps():
     """
     # register own continuous and discrete cmaps
     for colormap in [__pastel5(), __pastel6(), __cbf4(), __cbf5(), __cbf8(),
+                     __pastel_autunm(), __pastel_rainbow(), __pastel_spring(),
                      __ufcd(), __turbo(), __macaw(), __bownair()]:
         # add cmap
         if colormap.name not in plt.cm.cmap_d:

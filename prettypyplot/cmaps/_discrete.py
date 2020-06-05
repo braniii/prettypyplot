@@ -23,6 +23,15 @@ pastel5_array = ['#3362b0', '#cc3164', '#1ea69c', '#f78746', '#9dd2e7']
 pastel6_array = ['#2452c7', '#c42f22', '#2aa069', '#67b2cf', '#f8a7ae',
                  '#a6f89c']
 
+# Coolors Exported Palette
+# https://coolors.co/f94144-f3722c-f8961e-f9c74f-90be6d-43aa8b-577590
+rainbow_array = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d',
+                 '#43aa8b', '#577590']
+# https://coolors.co/ef476f-ffd166-06d6a0-118ab2-073b4c
+spring_array = ['#ef476f', '#ffd166', '#06d6a0', '#118ab2', '#073b4c']
+# https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51
+autunm_array = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']
+
 # Uni Corporate Design
 # copyright by Albert-Ludwigs-Universität Freiburg
 ufcd_array = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
@@ -46,6 +55,18 @@ def __cbf5():
 
 def __cbf8():
     return clr.ListedColormap(cbf8_array, 'cbf8')
+
+
+def __pastel_rainbow():
+    return clr.ListedColormap(rainbow_array, 'pastel_rainbow')
+
+
+def __pastel_spring():
+    return clr.ListedColormap(spring_array, 'pastel_spring')
+
+
+def __pastel_autunm():
+    return clr.ListedColormap(autunm_array, 'pastel_autunm')
 
 
 def __ufcd():
