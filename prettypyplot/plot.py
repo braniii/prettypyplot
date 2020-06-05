@@ -1,5 +1,5 @@
 """
-Set-up matplotlib environment.
+Wrapper for matplotlib plotting functions.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
@@ -15,167 +15,12 @@ import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import matplotlib.legend as mlegend
 import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
-import numpy as np  # np = dm.tryImport('numpy')
 
-import prettypyplot.colors
 from prettypyplot import _tools
-
-# ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-__MODE = 'default'  # default mode
-__STYLE = 'default'  # default style
-
-
-def _apply_style(path):
-    """Load mplstyle file at given relative path to this file."""
-    module_dir = os.path.dirname(__file__)
-    path = os.path.join(module_dir, path)
-
-    # load and apply style
-    plt.style.use(path)
+from prettypyplot.style import __MODE, __STYLE
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def setup_pyplot(ssh=False, colors='pastel5', cmap='macaw', ncs=10,
-                 figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-                 ipython=False, true_black=False):
-    """
-    Define default matplotlib style.
-
-    Parameters
-    ----------
-    ssh : bool, optional
-        Disables interactive display for ssh usage
-
-    colors : matplotlib colormap, optional
-        Set the default color cycler from continuous or discrete maps. Use any
-        of matplotlibs defaults or specified in the colors submodule.
-
-    cmap : matplotlib colormap, optional
-        Set the default colormap.
-
-    ncs : int, optional
-        Number of colors if continuous cmap is selected.
-
-    figsize : int or int tuple, optional
-        Give size of default figure in inches, either as tuple (x, y) or a
-        single float for the x-axis. The y-axis will be determined by figratio.
-
-    figratio : str or float, optional
-        Set ratio of figsize x:y to 1:1/'option', where 'option' is one
-        of ['sqrt(2)', 'golden', 'sqrt(3)'] or any number. Golden stands for
-        the golden ratio (1.618). This option is ignored if figsize is used
-        with tuple.
-
-    mode : str, optional
-        One of the following modes.
-        default: use matplotlib defaults
-        beamer: extra large fontsize
-        print: default sizes
-        poster: for Din A0 posters
-
-    style : str, optional
-        One of the following styles.
-        default: enables grid and upper and right spines
-        minimal: removes all unneeded lines
-        none: no changes to style
-
-    ipython : bool, optional
-        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
-        jupyter notebook/lab.
-
-    true_black : bool, optional
-        If true black will be used for labels and co., else a dark grey.
-
-    """
-    # set selected mode and style
-    global __MODE
-    __MODE = mode
-    global __STYLE
-    __STYLE = style
-
-    if ssh:
-        mpl.use('Agg')
-        plt.ioff()
-
-    # setup LaTeX font
-    # plt.style.use can not be used.
-    _apply_style('stylelib/latex.mplstyle')
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_cmaps()
-
-    # convert figratio to value
-    figratio = _tools._parse_figratio(figratio)
-
-    # setup figsize
-    figsize = _tools._parse_figsize(figsize, figratio)
-
-    if style != 'none':
-        # load static rcParams
-        _apply_style('stylelib/default.mplstyle')
-        if style == 'minimal':
-            _apply_style('stylelib/minimal.mplstyle')
-
-        # set color cycle and cmap
-        try:
-            # try if discrete cmap was selected
-            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
-        except AttributeError:
-            color_cycler = plt.cycler(
-                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
-
-        # TODO: refactor following code in private function
-        plt.rcParams['axes.prop_cycle'] = color_cycler
-        plt.rcParams['image.cmap'] = cmap
-
-        # change default colors
-        if true_black:
-            gray_dark = prettypyplot.colors.black_grays['dark']
-            gray_light = prettypyplot.colors.black_grays['light']
-        else:
-            gray_dark = prettypyplot.colors.default_grays['dark']
-            gray_light = prettypyplot.colors.default_grays['light']
-
-        plt.rcParams['axes.edgecolor'] = gray_dark
-        plt.rcParams['axes.labelcolor'] = gray_dark
-        plt.rcParams['text.color'] = gray_dark
-        plt.rcParams['patch.edgecolor'] = gray_dark
-        plt.rcParams['xtick.color'] = gray_dark
-        plt.rcParams['ytick.color'] = gray_dark
-        plt.rcParams['patch.edgecolor'] = gray_dark
-        plt.rcParams['grid.color'] = gray_light
-
-        # set figure
-        plt.rcParams['figure.figsize'] = figsize
-
-        # change widths depending on MODE
-        for scale, rcParamsVal in [
-                ['small_scale', [['axes.linewidth', 0.8],
-                                 ['grid.linewidth', 0.8],
-                                 ['xtick.major.width', 0.8],
-                                 ['xtick.minor.width', 0.6]]],
-                ['tick_scale', [['xtick.major.size', 3.5],
-                                ['xtick.minor.size', 2.0],
-                                ['xtick.major.pad', 3.5],
-                                ['xtick.minor.pad', 3.4]]],
-                ['medium_scale', [['patch.linewidth', 1.0],
-                                  ['hatch.linewidth', 1.0]]],
-                ['large_scale', [['lines.linewidth', 1.5]]],
-                ['fontsize', [['font.size', 1]]]]:
-            scale = __get_scale()[scale]
-            for rcParam, val in rcParamsVal:
-                plt.rcParams[rcParam] = scale * val
-                # apply all changes to yticks as well
-                if rcParam.startswith('xtick'):
-                    plt.rcParams['y' + rcParam[1:]] = plt.rcParams[rcParam]
-
-        if not ipython:
-            plt.rcParams['figure.dpi'] = 384
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_colors()
-
-
 def imshow(*args, ax=None, **kwargs):
     """
     Display an image, i.e. data on a 2D regular raster.
