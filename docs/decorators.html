@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
-<title>prettypyplot.cmaps API documentation</title>
-<meta name="description" content="Colormaps …" />
+<title>prettypyplot.decorators API documentation</title>
+<meta name="description" content="Decorators for prettypyplot …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,35 +20,84 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>prettypyplot.cmaps</code></h1>
+<h1 class="title">Module <code>prettypyplot.decorators</code></h1>
 </header>
 <section id="section-intro">
-<h1 id="colormaps">Colormaps</h1>
-<p>This module defines some perceptually uniform sequential and several
-qualitative colormaps. All of them can be loaded into matplotlib by
-<code><a title="prettypyplot.colors.load_cmaps" href="../colors.html#prettypyplot.colors.load_cmaps">load_cmaps()</a></code> or simply using the setup function
-<code><a title="prettypyplot.style.use_style" href="../style.html#prettypyplot.style.use_style">use_style()</a></code>. With <code><a title="prettypyplot.colors.load_colors" href="../colors.html#prettypyplot.colors.load_colors">load_colors()</a></code>
-the colors of <code>pastel5</code> (<code>'pplt:blue'</code>, <code>'pplt:red'</code>, <code>'pplt:green'</code>,
-<code>'pplt:orange'</code>, <code>'pplt:lightblue'</code>), axes <code>'pplt:axes'</code>, grid
-<code>'pplt:grid'</code> and textcolor <code>'pplt:text'</code> can be accessed easily.</p>
-<p>The qualitative colors <code>'pastel_autumn'</code>, <code>'pastel_spring'</code>,
-<code>'pastel_rainbow'</code> are neither cbf friendly nor suited for black-white.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><code>macaw</code>, <code>pastel5</code>, <code>pastel6</code>, <code>ufcd</code> and <code>turbo</code> will be only modified
-slightly in future relases. All others will probably change dramatically.</p>
-</div>
-<p><code>viridis</code> and <code>jet</code> are only included here for comparsion. Both, <code>macaw</code>
-and <code>bownair</code> are modified versions of <code>viridis</code>. While <code>turbo</code> tries to be
-a better <code>jet</code> (see <a href="https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html">here</a>).</p>
-<p><img alt="Perceptually Uniform Sequential" src="../gallery/cmaps/Perceptually Uniform Sequential.png">
-<img alt="Qualitative" src="../gallery/cmaps/Qualitative.png"></p>
-<p>For more colormaps see <a href="https://matplotlib.org/tutorials/colors/colormaps.html">matplolib colormaps</a>.</p>
+<p>Decorators for prettypyplot.</p>
+<p>BSD 3-Clause License
+Copyright (c) 2020, Daniel Nagel
+All rights reserved.</p>
+<p>Author: Daniel Nagel</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;.. include:: ../../gallery/cmaps/README.md&#34;&#34;&#34;</code></pre>
+<pre><code class="python">&#34;&#34;&#34;
+Decorators for prettypyplot.
+
+BSD 3-Clause License
+Copyright (c) 2020, Daniel Nagel
+All rights reserved.
+
+Author: Daniel Nagel
+
+&#34;&#34;&#34;
+# ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import functools
+import warnings
+
+
+# ~~~ DECORATROS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def copy_doc(source):
+    &#34;&#34;&#34;Copy docstring from source.&#34;&#34;&#34;
+    def wrapper_copy_doc(func):
+        if source.__doc__:
+            func.__doc__ = source.__doc__
+        return func
+    return wrapper_copy_doc
+
+
+def copy_doc_params(source):
+    &#34;&#34;&#34;Copy parameters from docstring source.
+
+    The docstring needs to be formatted according to numpy styleguide.
+
+    .. todo:: Catch if after parameters is further docstring
+
+    &#34;&#34;&#34;
+    def wrapper_copy_doc(func):
+        PARAMS_STRING = &#39;\n\n    Parameters&#39;
+        doc_source = source.__doc__
+        doc_func = func.__doc__
+        if doc_source and doc_func and doc_source.find(PARAMS_STRING) != -1:
+            doc_params = doc_source[doc_source.find(PARAMS_STRING):]
+            func.__doc__ = doc_func + doc_params
+        return func
+    return wrapper_copy_doc
+
+
+def deprecated(msg=None, since=None, remove=None):
+    &#34;&#34;&#34;Add deprecated warning.&#34;&#34;&#34;
+    def deprecated_msg(func, msg, since, remove):
+        warn_msg = &#39;Calling deprecated function {0}.&#39;.format(func.__name__)
+        if msg:
+            warn_msg += &#39; {0}&#39;.format(msg)
+        if since:
+            warn_msg += &#39; -- Deprecated since version {v}.&#39;.format(v=since)
+        if remove:
+            warn_msg += (&#39; -- Function will be removed starting from {v}.&#39;
+                         .format(v=remove))
+        return warn_msg
+
+    def decorator_deprecated(func):
+        @functools.wraps(func)
+        def wrapper_deprecated(*args, **kwargs):
+            warnings.warn(deprecated_msg(func, msg, since, remove),
+                          category=DeprecationWarning,
+                          stacklevel=2)
+            return func(*args, **kwargs)
+        return wrapper_deprecated
+    return decorator_deprecated</code></pre>
 </details>
 </section>
 <section>
@@ -56,6 +105,93 @@ a better <code>jet</code> (see <a href="https://ai.googleblog.com/2019/08/turbo-
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="prettypyplot.decorators.copy_doc"><code class="name flex">
+<span>def <span class="ident">copy_doc</span></span>(<span>source)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Copy docstring from source.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def copy_doc(source):
+    &#34;&#34;&#34;Copy docstring from source.&#34;&#34;&#34;
+    def wrapper_copy_doc(func):
+        if source.__doc__:
+            func.__doc__ = source.__doc__
+        return func
+    return wrapper_copy_doc</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.decorators.copy_doc_params"><code class="name flex">
+<span>def <span class="ident">copy_doc_params</span></span>(<span>source)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Copy parameters from docstring source.</p>
+<p>The docstring needs to be formatted according to numpy styleguide.</p>
+<div class="admonition todo">
+<p class="admonition-title">TODO</p>
+<p>Catch if after parameters is further docstring</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def copy_doc_params(source):
+    &#34;&#34;&#34;Copy parameters from docstring source.
+
+    The docstring needs to be formatted according to numpy styleguide.
+
+    .. todo:: Catch if after parameters is further docstring
+
+    &#34;&#34;&#34;
+    def wrapper_copy_doc(func):
+        PARAMS_STRING = &#39;\n\n    Parameters&#39;
+        doc_source = source.__doc__
+        doc_func = func.__doc__
+        if doc_source and doc_func and doc_source.find(PARAMS_STRING) != -1:
+            doc_params = doc_source[doc_source.find(PARAMS_STRING):]
+            func.__doc__ = doc_func + doc_params
+        return func
+    return wrapper_copy_doc</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.decorators.deprecated"><code class="name flex">
+<span>def <span class="ident">deprecated</span></span>(<span>msg=None, since=None, remove=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add deprecated warning.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deprecated(msg=None, since=None, remove=None):
+    &#34;&#34;&#34;Add deprecated warning.&#34;&#34;&#34;
+    def deprecated_msg(func, msg, since, remove):
+        warn_msg = &#39;Calling deprecated function {0}.&#39;.format(func.__name__)
+        if msg:
+            warn_msg += &#39; {0}&#39;.format(msg)
+        if since:
+            warn_msg += &#39; -- Deprecated since version {v}.&#39;.format(v=since)
+        if remove:
+            warn_msg += (&#39; -- Function will be removed starting from {v}.&#39;
+                         .format(v=remove))
+        return warn_msg
+
+    def decorator_deprecated(func):
+        @functools.wraps(func)
+        def wrapper_deprecated(*args, **kwargs):
+            warnings.warn(deprecated_msg(func, msg, since, remove),
+                          category=DeprecationWarning,
+                          stacklevel=2)
+            return func(*args, **kwargs)
+        return wrapper_deprecated
+    return decorator_deprecated</code></pre>
+</details>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -68,14 +204,19 @@ a better <code>jet</code> (see <a href="https://ai.googleblog.com/2019/08/turbo-
 </header>
 <h1>Index</h1>
 <div class="toc">
-<ul>
-<li><a href="#colormaps">Colormaps</a></li>
-</ul>
+<ul></ul>
 </div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="prettypyplot" href="../index.html">prettypyplot</a></code></li>
+<li><code><a title="prettypyplot" href="index.html">prettypyplot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="prettypyplot.decorators.copy_doc" href="#prettypyplot.decorators.copy_doc">copy_doc</a></code></li>
+<li><code><a title="prettypyplot.decorators.copy_doc_params" href="#prettypyplot.decorators.copy_doc_params">copy_doc_params</a></code></li>
+<li><code><a title="prettypyplot.decorators.deprecated" href="#prettypyplot.decorators.deprecated">deprecated</a></code></li>
 </ul>
 </li>
 </ul>

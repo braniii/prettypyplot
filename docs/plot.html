@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>prettypyplot.plot API documentation</title>
-<meta name="description" content="Set-up matplotlib environment …" />
+<meta name="description" content="Wrapper for matplotlib plotting functions …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 <h1 class="title">Module <code>prettypyplot.plot</code></h1>
 </header>
 <section id="section-intro">
-<p>Set-up matplotlib environment.</p>
+<p>Wrapper for matplotlib plotting functions.</p>
 <p>BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.</p>
@@ -33,7 +33,7 @@ All rights reserved.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">&#34;&#34;&#34;
-Set-up matplotlib environment.
+Wrapper for matplotlib plotting functions.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
@@ -49,167 +49,12 @@ import matplotlib as mpl  # mpl = dm.tryImport(&#39;matplotlib&#39;)
 import matplotlib.legend as mlegend
 import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
-import numpy as np  # np = dm.tryImport(&#39;numpy&#39;)
 
-import prettypyplot.colors
 from prettypyplot import _tools
-
-# ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-__MODE = &#39;default&#39;  # default mode
-__STYLE = &#39;default&#39;  # default style
-
-
-def _apply_style(path):
-    &#34;&#34;&#34;Load mplstyle file at given relative path to this file.&#34;&#34;&#34;
-    module_dir = os.path.dirname(__file__)
-    path = os.path.join(module_dir, path)
-
-    # load and apply style
-    plt.style.use(path)
+from prettypyplot.style import __MODE, __STYLE
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def setup_pyplot(ssh=False, colors=&#39;pastel5&#39;, cmap=&#39;macaw&#39;, ncs=10,
-                 figsize=(3,), figratio=&#39;golden&#39;, mode=__MODE, style=__STYLE,
-                 ipython=False, true_black=False):
-    &#34;&#34;&#34;
-    Define default matplotlib style.
-
-    Parameters
-    ----------
-    ssh : bool, optional
-        Disables interactive display for ssh usage
-
-    colors : matplotlib colormap, optional
-        Set the default color cycler from continuous or discrete maps. Use any
-        of matplotlibs defaults or specified in the colors submodule.
-
-    cmap : matplotlib colormap, optional
-        Set the default colormap.
-
-    ncs : int, optional
-        Number of colors if continuous cmap is selected.
-
-    figsize : int or int tuple, optional
-        Give size of default figure in inches, either as tuple (x, y) or a
-        single float for the x-axis. The y-axis will be determined by figratio.
-
-    figratio : str or float, optional
-        Set ratio of figsize x:y to 1:1/&#39;option&#39;, where &#39;option&#39; is one
-        of [&#39;sqrt(2)&#39;, &#39;golden&#39;, &#39;sqrt(3)&#39;] or any number. Golden stands for
-        the golden ratio (1.618). This option is ignored if figsize is used
-        with tuple.
-
-    mode : str, optional
-        One of the following modes.
-        default: use matplotlib defaults
-        beamer: extra large fontsize
-        print: default sizes
-        poster: for Din A0 posters
-
-    style : str, optional
-        One of the following styles.
-        default: enables grid and upper and right spines
-        minimal: removes all unneeded lines
-        none: no changes to style
-
-    ipython : bool, optional
-        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
-        jupyter notebook/lab.
-
-    true_black : bool, optional
-        If true black will be used for labels and co., else a dark grey.
-
-    &#34;&#34;&#34;
-    # set selected mode and style
-    global __MODE
-    __MODE = mode
-    global __STYLE
-    __STYLE = style
-
-    if ssh:
-        mpl.use(&#39;Agg&#39;)
-        plt.ioff()
-
-    # setup LaTeX font
-    # plt.style.use can not be used.
-    _apply_style(&#39;stylelib/latex.mplstyle&#39;)
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_cmaps()
-
-    # convert figratio to value
-    figratio = _tools._parse_figratio(figratio)
-
-    # setup figsize
-    figsize = _tools._parse_figsize(figsize, figratio)
-
-    if style != &#39;none&#39;:
-        # load static rcParams
-        _apply_style(&#39;stylelib/default.mplstyle&#39;)
-        if style == &#39;minimal&#39;:
-            _apply_style(&#39;stylelib/minimal.mplstyle&#39;)
-
-        # set color cycle and cmap
-        try:
-            # try if discrete cmap was selected
-            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
-        except AttributeError:
-            color_cycler = plt.cycler(
-                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
-
-        # TODO: refactor following code in private function
-        plt.rcParams[&#39;axes.prop_cycle&#39;] = color_cycler
-        plt.rcParams[&#39;image.cmap&#39;] = cmap
-
-        # change default colors
-        if true_black:
-            gray_dark = prettypyplot.colors.black_grays[&#39;dark&#39;]
-            gray_light = prettypyplot.colors.black_grays[&#39;light&#39;]
-        else:
-            gray_dark = prettypyplot.colors.default_grays[&#39;dark&#39;]
-            gray_light = prettypyplot.colors.default_grays[&#39;light&#39;]
-
-        plt.rcParams[&#39;axes.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;axes.labelcolor&#39;] = gray_dark
-        plt.rcParams[&#39;text.color&#39;] = gray_dark
-        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;xtick.color&#39;] = gray_dark
-        plt.rcParams[&#39;ytick.color&#39;] = gray_dark
-        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;grid.color&#39;] = gray_light
-
-        # set figure
-        plt.rcParams[&#39;figure.figsize&#39;] = figsize
-
-        # change widths depending on MODE
-        for scale, rcParamsVal in [
-                [&#39;small_scale&#39;, [[&#39;axes.linewidth&#39;, 0.8],
-                                 [&#39;grid.linewidth&#39;, 0.8],
-                                 [&#39;xtick.major.width&#39;, 0.8],
-                                 [&#39;xtick.minor.width&#39;, 0.6]]],
-                [&#39;tick_scale&#39;, [[&#39;xtick.major.size&#39;, 3.5],
-                                [&#39;xtick.minor.size&#39;, 2.0],
-                                [&#39;xtick.major.pad&#39;, 3.5],
-                                [&#39;xtick.minor.pad&#39;, 3.4]]],
-                [&#39;medium_scale&#39;, [[&#39;patch.linewidth&#39;, 1.0],
-                                  [&#39;hatch.linewidth&#39;, 1.0]]],
-                [&#39;large_scale&#39;, [[&#39;lines.linewidth&#39;, 1.5]]],
-                [&#39;fontsize&#39;, [[&#39;font.size&#39;, 1]]]]:
-            scale = __get_scale()[scale]
-            for rcParam, val in rcParamsVal:
-                plt.rcParams[rcParam] = scale * val
-                # apply all changes to yticks as well
-                if rcParam.startswith(&#39;xtick&#39;):
-                    plt.rcParams[&#39;y&#39; + rcParam[1:]] = plt.rcParams[rcParam]
-
-        if not ipython:
-            plt.rcParams[&#39;figure.dpi&#39;] = 384
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_colors()
-
-
 def imshow(*args, ax=None, **kwargs):
     &#34;&#34;&#34;
     Display an image, i.e. data on a 2D regular raster.
@@ -1177,192 +1022,6 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
     fig.set_size_inches(set_figsize)</code></pre>
 </details>
 </dd>
-<dt id="prettypyplot.plot.setup_pyplot"><code class="name flex">
-<span>def <span class="ident">setup_pyplot</span></span>(<span>ssh=False, colors='pastel5', cmap='macaw', ncs=10, figsize=(3,), figratio='golden', mode='default', style='default', ipython=False, true_black=False)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Define default matplotlib style.</p>
-<h2 id="parameters">Parameters</h2>
-<dl>
-<dt><strong><code>ssh</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>Disables interactive display for ssh usage</dd>
-<dt><strong><code>colors</code></strong> :&ensp;<code>matplotlib colormap</code>, optional</dt>
-<dd>Set the default color cycler from continuous or discrete maps. Use any
-of matplotlibs defaults or specified in the colors submodule.</dd>
-<dt><strong><code>cmap</code></strong> :&ensp;<code>matplotlib colormap</code>, optional</dt>
-<dd>Set the default colormap.</dd>
-<dt><strong><code>ncs</code></strong> :&ensp;<code>int</code>, optional</dt>
-<dd>Number of colors if continuous cmap is selected.</dd>
-<dt><strong><code>figsize</code></strong> :&ensp;<code>int</code> or <code>int tuple</code>, optional</dt>
-<dd>Give size of default figure in inches, either as tuple (x, y) or a
-single float for the x-axis. The y-axis will be determined by figratio.</dd>
-<dt><strong><code>figratio</code></strong> :&ensp;<code>str</code> or <code>float</code>, optional</dt>
-<dd>Set ratio of figsize x:y to 1:1/'option', where 'option' is one
-of ['sqrt(2)', 'golden', 'sqrt(3)'] or any number. Golden stands for
-the golden ratio (1.618). This option is ignored if figsize is used
-with tuple.</dd>
-<dt><strong><code>mode</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>One of the following modes.
-default: use matplotlib defaults
-beamer: extra large fontsize
-print: default sizes
-poster: for Din A0 posters</dd>
-<dt><strong><code>style</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>One of the following styles.
-default: enables grid and upper and right spines
-minimal: removes all unneeded lines
-none: no changes to style</dd>
-<dt><strong><code>ipython</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
-jupyter notebook/lab.</dd>
-<dt><strong><code>true_black</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>If true black will be used for labels and co., else a dark grey.</dd>
-</dl></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def setup_pyplot(ssh=False, colors=&#39;pastel5&#39;, cmap=&#39;macaw&#39;, ncs=10,
-                 figsize=(3,), figratio=&#39;golden&#39;, mode=__MODE, style=__STYLE,
-                 ipython=False, true_black=False):
-    &#34;&#34;&#34;
-    Define default matplotlib style.
-
-    Parameters
-    ----------
-    ssh : bool, optional
-        Disables interactive display for ssh usage
-
-    colors : matplotlib colormap, optional
-        Set the default color cycler from continuous or discrete maps. Use any
-        of matplotlibs defaults or specified in the colors submodule.
-
-    cmap : matplotlib colormap, optional
-        Set the default colormap.
-
-    ncs : int, optional
-        Number of colors if continuous cmap is selected.
-
-    figsize : int or int tuple, optional
-        Give size of default figure in inches, either as tuple (x, y) or a
-        single float for the x-axis. The y-axis will be determined by figratio.
-
-    figratio : str or float, optional
-        Set ratio of figsize x:y to 1:1/&#39;option&#39;, where &#39;option&#39; is one
-        of [&#39;sqrt(2)&#39;, &#39;golden&#39;, &#39;sqrt(3)&#39;] or any number. Golden stands for
-        the golden ratio (1.618). This option is ignored if figsize is used
-        with tuple.
-
-    mode : str, optional
-        One of the following modes.
-        default: use matplotlib defaults
-        beamer: extra large fontsize
-        print: default sizes
-        poster: for Din A0 posters
-
-    style : str, optional
-        One of the following styles.
-        default: enables grid and upper and right spines
-        minimal: removes all unneeded lines
-        none: no changes to style
-
-    ipython : bool, optional
-        Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
-        jupyter notebook/lab.
-
-    true_black : bool, optional
-        If true black will be used for labels and co., else a dark grey.
-
-    &#34;&#34;&#34;
-    # set selected mode and style
-    global __MODE
-    __MODE = mode
-    global __STYLE
-    __STYLE = style
-
-    if ssh:
-        mpl.use(&#39;Agg&#39;)
-        plt.ioff()
-
-    # setup LaTeX font
-    # plt.style.use can not be used.
-    _apply_style(&#39;stylelib/latex.mplstyle&#39;)
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_cmaps()
-
-    # convert figratio to value
-    figratio = _tools._parse_figratio(figratio)
-
-    # setup figsize
-    figsize = _tools._parse_figsize(figsize, figratio)
-
-    if style != &#39;none&#39;:
-        # load static rcParams
-        _apply_style(&#39;stylelib/default.mplstyle&#39;)
-        if style == &#39;minimal&#39;:
-            _apply_style(&#39;stylelib/minimal.mplstyle&#39;)
-
-        # set color cycle and cmap
-        try:
-            # try if discrete cmap was selected
-            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
-        except AttributeError:
-            color_cycler = plt.cycler(
-                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
-
-        # TODO: refactor following code in private function
-        plt.rcParams[&#39;axes.prop_cycle&#39;] = color_cycler
-        plt.rcParams[&#39;image.cmap&#39;] = cmap
-
-        # change default colors
-        if true_black:
-            gray_dark = prettypyplot.colors.black_grays[&#39;dark&#39;]
-            gray_light = prettypyplot.colors.black_grays[&#39;light&#39;]
-        else:
-            gray_dark = prettypyplot.colors.default_grays[&#39;dark&#39;]
-            gray_light = prettypyplot.colors.default_grays[&#39;light&#39;]
-
-        plt.rcParams[&#39;axes.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;axes.labelcolor&#39;] = gray_dark
-        plt.rcParams[&#39;text.color&#39;] = gray_dark
-        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;xtick.color&#39;] = gray_dark
-        plt.rcParams[&#39;ytick.color&#39;] = gray_dark
-        plt.rcParams[&#39;patch.edgecolor&#39;] = gray_dark
-        plt.rcParams[&#39;grid.color&#39;] = gray_light
-
-        # set figure
-        plt.rcParams[&#39;figure.figsize&#39;] = figsize
-
-        # change widths depending on MODE
-        for scale, rcParamsVal in [
-                [&#39;small_scale&#39;, [[&#39;axes.linewidth&#39;, 0.8],
-                                 [&#39;grid.linewidth&#39;, 0.8],
-                                 [&#39;xtick.major.width&#39;, 0.8],
-                                 [&#39;xtick.minor.width&#39;, 0.6]]],
-                [&#39;tick_scale&#39;, [[&#39;xtick.major.size&#39;, 3.5],
-                                [&#39;xtick.minor.size&#39;, 2.0],
-                                [&#39;xtick.major.pad&#39;, 3.5],
-                                [&#39;xtick.minor.pad&#39;, 3.4]]],
-                [&#39;medium_scale&#39;, [[&#39;patch.linewidth&#39;, 1.0],
-                                  [&#39;hatch.linewidth&#39;, 1.0]]],
-                [&#39;large_scale&#39;, [[&#39;lines.linewidth&#39;, 1.5]]],
-                [&#39;fontsize&#39;, [[&#39;font.size&#39;, 1]]]]:
-            scale = __get_scale()[scale]
-            for rcParam, val in rcParamsVal:
-                plt.rcParams[rcParam] = scale * val
-                # apply all changes to yticks as well
-                if rcParam.startswith(&#39;xtick&#39;):
-                    plt.rcParams[&#39;y&#39; + rcParam[1:]] = plt.rcParams[rcParam]
-
-        if not ipython:
-            plt.rcParams[&#39;figure.dpi&#39;] = 384
-
-    # register own continuous and discrete cmaps
-    prettypyplot.colors.load_colors()</code></pre>
-</details>
-</dd>
 </dl>
 </section>
 <section>
@@ -1393,7 +1052,6 @@ jupyter notebook/lab.</dd>
 <li><code><a title="prettypyplot.plot.legend" href="#prettypyplot.plot.legend">legend</a></code></li>
 <li><code><a title="prettypyplot.plot.plot" href="#prettypyplot.plot.plot">plot</a></code></li>
 <li><code><a title="prettypyplot.plot.savefig" href="#prettypyplot.plot.savefig">savefig</a></code></li>
-<li><code><a title="prettypyplot.plot.setup_pyplot" href="#prettypyplot.plot.setup_pyplot">setup_pyplot</a></code></li>
 </ul>
 </li>
 </ul>
