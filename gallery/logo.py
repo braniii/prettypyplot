@@ -70,7 +70,7 @@ def make_logo(height_px):
     return fig, ax
 
 
-pplt.setup_pyplot()
+pplt.use_style()
 
 fig, ax = make_logo(height_px=120)
 

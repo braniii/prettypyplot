@@ -10,7 +10,7 @@ import numpy as np
 import prettypyplot as pplt
 
 # run setuo
-pplt.setup_pyplot()
+pplt.use_style()
 plt.rcParams['figure.dpi'] = 600
 
 cmaps = {}

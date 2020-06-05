@@ -24,7 +24,7 @@ hist, xedges, yedges = np.histogram2d(x, y, bins=100, density=True)
 hist[hist == 0] = None
 
 for style in ['default', 'minimal']:
-    pplt.setup_pyplot(style=style)
+    pplt.use_style(style=style)
 
     # legend
     for position in ['top', 'bottom', 'left', 'right']:

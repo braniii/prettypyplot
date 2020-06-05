@@ -26,7 +26,7 @@ hist[hist == 0] = None
 t = np.linspace(0, 3 * np.pi, 1000)
 
 for style in ['default', 'minimal']:
-    pplt.setup_pyplot(style=style)
+    pplt.use_style(style=style)
 
     # ~~~ PLOT LINEAR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     fig, ax = plt.subplots()

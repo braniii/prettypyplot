@@ -22,7 +22,7 @@ x1, x2, x3 = [np.sin(t + np.pi * np.random.rand()) + 0.1 * np.random.rand(N)
               for _ in range(3)]
 
 for style in ['default', 'minimal']:
-    pplt.setup_pyplot(style=style)
+    pplt.use_style(style=style)
 
     # legend
     for outside in ['top', 'bottom', 'left', 'right', False]:
