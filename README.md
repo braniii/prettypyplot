@@ -64,7 +64,7 @@ python3 -m pip install prettypyplot
 import matplotlib.pyplot as plt
 import prettypyplot as pplt
 
-pplt.setup_pyplot()
+pplt.use_style()
 fig, ax = plt.subplots()
 ...
 pplt.plot(ax=ax, x, y)
@@ -138,8 +138,12 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 ### Changelog
 - tba:
+    - Added Decorators
+    - Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
+    - Refactor style settings. Added `pplt.update_style` and renamed `pplt.setup_pyplot` to `pplt.use_style`
     - Add text module with `pplt.text`, `pplt.figtext` and `pplt.add_contour`. With centered text and contour parameter
-    - Updated pydoc
+    - Updated pydoc to 0.8.1
+    - Updated documentation
     - Minor bug fixes
 - v0.3.0:
     - Colors of `pastel5`, axes, grid and text are now accessible directly
