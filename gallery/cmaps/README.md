@@ -3,10 +3,13 @@
 This module defines some perceptually uniform sequential and several
 qualitative colormaps. All of them can be loaded into matplotlib by
 `prettypyplot.colors.load_cmaps` or simply using the setup function
-`prettypyplot.plot.setup_pyplot`. With `prettypyplot.colors.load_colors`
-the colors of `pastel5` (`['pplt:blue', 'pplt:red', 'pplt:green',
-'pplt:orange', 'pplt:lightblue']`) , axes `'pplt:axes'`, grid
+`prettypyplot.style.use_style`. With `prettypyplot.colors.load_colors`
+the colors of `pastel5` (`'pplt:blue'`, `'pplt:red'`, `'pplt:green'`,
+`'pplt:orange'`, `'pplt:lightblue'`), axes `'pplt:axes'`, grid
 `'pplt:grid'` and textcolor `'pplt:text'` can be accessed easily.
+
+The qualitative colors `'pastel_autumn'`, `'pastel_spring'`, 
+`'pastel_rainbow'` are neither cbf friendly nor suited for black-white.
 
 .. warning::
     `macaw`, `pastel5`, `pastel6`, `ufcd` and `turbo` will be only modified

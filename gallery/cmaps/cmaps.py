@@ -14,9 +14,10 @@ pplt.setup_pyplot()
 plt.rcParams['figure.dpi'] = 600
 
 cmaps = {}
-cmaps['Perceptually Uniform Sequential'] = [
-    'macaw', 'viridis', 'bownair', 'turbo', 'jet']
-cmaps['Qualitative'] = ['pastel5', 'pastel6', 'cbf4', 'cbf5', 'cbf8', 'ufcd']
+cmaps['Perceptually Uniform Sequential'] = ['macaw', 'viridis', 'bownair',
+                                            'turbo', 'jet']
+cmaps['Qualitative'] = ['pastel5', 'pastel6', 'pastel_autunm', 'pastel_spring',
+                        'pastel_rainbow', 'cbf4', 'cbf5', 'cbf8', 'ufcd']
 
 gradient = np.linspace(0, 1, 256)
 gradient = np.vstack((gradient, gradient))
@@ -35,6 +36,7 @@ def plot_color_gradients(cmap_category, cmap_list):
         pos = list(ax.get_position().bounds)
         x_text = pos[0] - 0.01
         y_text = pos[1] + pos[3] / 2
+        name = name.replace('_', r'\textunderscore{}')
         fig.text(x_text, y_text, name, va='center', ha='right')
 
     # Turn off *all* ticks & spines, not just the ones with colormaps.
