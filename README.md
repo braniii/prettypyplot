@@ -143,6 +143,7 @@ The following list is sorted from *near future* to *hopefully ever*.
 - add countour line plot
 - add [axes_grid](https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html) examples
 - add more gallery entries
+- add package to conda_forge
 - improve `plt.suplots()` behaviour together with `pplt.savefig()`
 - setup widths and scaling factors for beamer and poster mode
 - tweak all function to enable `STYLE='minimal'`
