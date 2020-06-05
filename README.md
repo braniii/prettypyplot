@@ -134,38 +134,10 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
     </tr>
 </table>
 
-## Changelog and Roadmap:
-
-### Changelog
-- tba:
-    - Added Decorators
-    - Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
-    - Refactor style settings. Added `pplt.update_style` and renamed `pplt.setup_pyplot` to `pplt.use_style`
-    - Add text module with `pplt.text`, `pplt.figtext` and `pplt.add_contour`. With centered text and contour parameter
-    - Updated pydoc to 0.8.1
-    - Updated documentation
-    - Minor bug fixes
-- v0.3.0:
-    - Colors of `pastel5`, axes, grid and text are now accessible directly
-    - Increase simplification threshold to reduce figure size
-    - Minor changes
-- v0.2.3:
-    - Include mplstyle
-- v0.2.2:
-    - Fix PyPi setup
-- v0.2.1: 
-    - added gallery
-    - refactored all submodules
-    - added docs
-    - many small bugfixes
-- v0.1.0:
-    - intial release
-
-### Roadmap:
+## Roadmap:
 
 The following list is sorted from *near future* to *hopefully ever*.
 
-- move changelog to file
 - add more colorpalettes
 - enforce simplicity by refactoring
 - add countour line plot
@@ -174,7 +146,6 @@ The following list is sorted from *near future* to *hopefully ever*.
 - improve `plt.suplots()` behaviour together with `pplt.savefig()`
 - setup widths and scaling factors for beamer and poster mode
 - tweak all function to enable `STYLE='minimal'`
-- create own logo
 - add pytest
 - add search functionality in doc
 - implement tufte style
@@ -193,6 +164,7 @@ simply running `bash create_doc.sh` from the docs folder.
 In alphabetical order:
 
 - [colorcyclepicker](https://colorcyclepicker.mpetroff.net/)
+- [coolors](https://coolors.co/)
 - [matplotlib](https://matplotlib.org/)
 - [prettyplotlib](https://github.com/olgabot/prettyplotlib)
 - [realpython](https://realpython.com/)
