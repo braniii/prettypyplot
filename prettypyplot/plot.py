@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
 
 from prettypyplot import _tools
-from prettypyplot.style import __MODE, __STYLE
+from prettypyplot.style import __MODE, __STYLE, __get_scale
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -293,34 +293,6 @@ def activate_axis(pos, ax=None):
         elif p in ['left', 'right']:
             ax.yaxis.set_ticks_position(p)
             ax.yaxis.set_label_position(p)
-
-
-def __get_scale():
-    """Get the scaling factors."""
-    if __MODE == 'default':
-        return {'large_scale': 1.,
-                'medium_scale': 1.,
-                'small_scale': 1.,
-                'tick_scale': 1.,
-                'fontsize': 10.}
-    elif __MODE == 'print':
-        return {'large_scale': 1.5,
-                'medium_scale': 1.7,
-                'small_scale': 1.7,
-                'tick_scale': 1.7,
-                'fontsize': 12.}
-    elif __MODE == 'poster':
-        return {'large_scale': 4.,
-                'medium_scale': 4.,
-                'small_scale': 4.,
-                'tick_scale': 4.,
-                'fontsize': 28.}
-    elif __MODE == 'beamer':
-        return {'large_scale': 4.,
-                'medium_scale': 4.,
-                'small_scale': 4.,
-                'tick_scale': 4.,
-                'fontsize': 28.}
 
 
 def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
