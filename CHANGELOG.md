@@ -1,9 +1,10 @@
 ### Changelog
 - tba:
-- v0.4.1:
+- v0.4.2:
     - Add option `sf` to activate sans-serif font with `pplt.use_style`
     - simplify usage of contour option
-    - some coe clean up
+    - some code clean up
+    - skipped version due to error
 - v0.4.0:
     - Added Decorators
     - Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
