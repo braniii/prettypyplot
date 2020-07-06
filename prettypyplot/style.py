@@ -258,7 +258,7 @@ def __set_rc_dpi(ipython, dpi=384):
 def __set_rc_sansserif():
     """Set sans serif font."""
     plt.rcParams.update({'font.family': 'sans-serif',
-                         'font.sans-serif': 'helvetica'})
+                         'font.sans-serif': 'Helvetica'})
     plt.rcParams['text.latex.preamble'] += r'\usepackage[helvet]{sfmath}'
 
 
