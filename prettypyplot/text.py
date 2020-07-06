@@ -9,6 +9,8 @@ Author: Daniel Nagel
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections.abc import Iterable
+
 import matplotlib as mpl
 import matplotlib.colors as clr
 import matplotlib.patheffects as path_effects
@@ -18,9 +20,8 @@ from prettypyplot import _tools
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def text(x, y, s, contourwidth=None, contourcolor=None, ax=None, **kwargs):
-    """
-    Generate text object at (x,y).
+def text(x, y, s, contour=False, ax=None, **kwargs):
+    """Generate text object at (x,y).
 
     Wrapper around pyplot.text. The default alignment is changed to centered.
 
@@ -34,11 +35,9 @@ def text(x, y, s, contourwidth=None, contourcolor=None, ax=None, **kwargs):
     s : str
         The text.
 
-    contourwidth : scalar
-        The width of the text contour.
-
-    contourcolor : RGB color or matplotlib predefined color
-        Color of the contour.
+    contour : bool or tuple(scalar, color)
+        Add a contour to the text. Either use a boolean for default values,
+        or give a tuple with linewidth and linecolor.
 
     ax : matplotlib axes
         Matplotlib axes to plot in.
@@ -61,15 +60,15 @@ def text(x, y, s, contourwidth=None, contourcolor=None, ax=None, **kwargs):
     txt = ax.text(x=x, y=y, s=s, **kwargs)
 
     # generate contour
-    if contourwidth:
-        add_contour(txt, contourwidth, contourcolor)
+    contour_kwargs = __parse_contour(contour)
+    if contour_kwargs is not None:
+        add_contour(txt, **contour_kwargs)
 
     return txt
 
 
-def figtext(x, y, s, contourwidth=None, contourcolor=None, **kwargs):
-    """
-    Generate text object at figure position (x,y).
+def figtext(x, y, s, contour=False, **kwargs):
+    """Generate text object at figure position (x,y).
 
     Wrapper around pyplot.figtext. The default alignment is changed to
     centered.
@@ -84,11 +83,9 @@ def figtext(x, y, s, contourwidth=None, contourcolor=None, **kwargs):
     s : str
         The text.
 
-    contourwidth : scalar
-        The width of the text contour.
-
-    contourcolor : RGB color or matplotlib predefined color
-        Color of the contour.
+    contour : bool or tuple(scalar, color)
+        Add a contour to the text. Either use a boolean for default values,
+        or give a tuple with linewidth and linecolor.
 
     ax : matplotlib axes
         Matplotlib axes to plot in.
@@ -108,8 +105,9 @@ def figtext(x, y, s, contourwidth=None, contourcolor=None, **kwargs):
     txt = plt.figtext(x=x, y=y, s=s, **kwargs)
 
     # generate contour
-    if contourwidth:
-        add_contour(txt, contourwidth, contourcolor)
+    contour_kwargs = __parse_contour(contour)
+    if contour_kwargs is not None:
+        add_contour(txt, **contour_kwargs)
 
     return txt
 
@@ -147,3 +145,19 @@ def add_contour(txt, contourwidth, contourcolor='w'):
     path_args = [path_effects.withStroke(linewidth=contourwidth,
                                          foreground=contourcolor)]
     txt.set_path_effects(path_args)
+
+
+def __parse_contour(contour):
+    """Parse contour tuple argument to kwargs."""
+    if isinstance(contour, bool):
+        if contour:
+            return {'contourwidth': plt.rcParams['lines.linewidth'],
+                    'contourcolor': 'w'}
+        else:
+            return None
+    elif isinstance(contour, Iterable) and len(contour) == 2:
+        lw, lc = contour
+        return {'contourwidth': lw,
+                'contourcolor': lc}
+    else:
+        return None
