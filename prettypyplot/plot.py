@@ -366,7 +366,12 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         orientation = 'horizontal'
 
     # get axes
-    ax = im.axes
+    if hasattr(im, 'axes'):
+        ax = im.axes
+    elif hasattr(im, 'ax'):
+        ax = im.ax
+    else:
+        ax = plt.gca()
 
     # generate divider
     divider = mpl_toolkits.axes_grid1.make_axes_locatable(ax)
