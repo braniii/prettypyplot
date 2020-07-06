@@ -3,8 +3,8 @@
         <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
-    <a href="https://pypistats.org/packages/prettypyplot" alt="PyPI - Downloads" >
-        <img src="https://img.shields.io/pypi/dm/prettypyplot" /></a>
+    <a href="https://pepy.tech/project/prettypyplot" alt="Downloads" >
+        <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
