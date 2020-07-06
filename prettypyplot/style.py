@@ -129,7 +129,7 @@ def update_style(interactive=None, colors=None, cmap=None, ncs=None,
 @copy_doc_params(update_style)
 def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
               figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-              ipython=False, true_black=False, latex=True, sf=True):
+              ipython=False, true_black=False, latex=True, sf=False):
     """Define alternative matplotlib style.
 
     This function restores first the matplolib default values and finally
