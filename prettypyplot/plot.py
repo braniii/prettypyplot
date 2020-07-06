@@ -1,5 +1,4 @@
-"""
-Wrapper for matplotlib plotting functions.
+"""Wrapper for matplotlib plotting functions.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
@@ -22,8 +21,7 @@ from prettypyplot.style import __MODE, __STYLE
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def imshow(*args, ax=None, **kwargs):
-    """
-    Display an image, i.e. data on a 2D regular raster.
+    """Display an image, i.e. data on a 2D regular raster.
 
     This is a wrapper of pyplot.imshow(). In contrast to the original function
     the default value of `zorder` is increased to `1`.
@@ -49,8 +47,7 @@ def imshow(*args, ax=None, **kwargs):
 
 
 def plot(*args, ax=None, **kwargs):
-    """
-    Plot simple lineplot.
+    """Plot simple lineplot.
 
     Wrapping pyplot.plot() to adjust to style. For more information on the
     arguments see in matplotlib documentation.
@@ -103,8 +100,7 @@ def plot(*args, ax=None, **kwargs):
 
 
 def savefig(fname, use_canvas_size=True, **kwargs):
-    """
-    Save figure as png and pdf.
+    """Save figure as png and pdf.
 
     This methods corrects figsize for poster/beamer mode.
 
@@ -163,8 +159,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
 
 def legend(*args, outside=False, ax=None, axs=None, **kwargs):
-    """
-    Generate a nice legend.
+    """Generate a nice legend.
 
     This is a wrapper of pyplot.legend(). Take a look there for the default
     arguments and options. The ticks and labels are moved to the opposite side.
@@ -272,8 +267,7 @@ def __opposite_side(pos):
 
 
 def activate_axis(pos, ax=None):
-    """
-    Shift the specified axis to the opposite side.
+    """Shift the specified axis to the opposite side.
 
     Parameters
     ----------
@@ -330,8 +324,7 @@ def __get_scale():
 
 
 def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
-    """
-    Generate colorbar of same height as image.
+    """Generate colorbar of same height as image.
 
     Wrapper around pyplot.colorbar which corrects the height.
 
@@ -395,8 +388,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
 
 
 def grid(*args, ax=None, **kwargs):
-    """
-    Generate grid.
+    """Generate grid.
 
     This function will add a major and minor grid in case of STYLE='default',
     a major grid in case of 'none' and otherwise nothing.
