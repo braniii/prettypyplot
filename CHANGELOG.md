@@ -1,5 +1,9 @@
 ### Changelog
 - tba:
+- v0.4.1:
+    - Add option `sf` to activate sans-serif font with `pplt.use_style`
+    - simplify usage of contour option
+    - some coe clean up
 - v0.4.0:
     - Added Decorators
     - Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
@@ -16,7 +20,7 @@
     - Include mplstyle
 - v0.2.2:
     - Fix PyPi setup
-- v0.2.1: 
+- v0.2.1:
     - added gallery
     - refactored all submodules
     - added docs
