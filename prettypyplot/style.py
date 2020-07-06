@@ -1,5 +1,4 @@
-"""
-Set-up matplotlib environment.
+"""Set-up matplotlib environment.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
@@ -26,7 +25,7 @@ __STYLE = 'default'  # default style
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def update_style(interactive=None, colors=None, cmap=None, ncs=None,
                  figsize=None, figratio=None, mode=None, style=None,
-                 ipython=None, true_black=None, latex=None):
+                 ipython=None, true_black=None, latex=None, sf=None):
     """Update alternative matplotlib style.
 
     This function updates specified parameters of `use_style` without changing
@@ -80,6 +79,9 @@ def update_style(interactive=None, colors=None, cmap=None, ncs=None,
     latex : bool, optional
         If true LaTeX font will be used.
 
+    sf : bool, optional
+        Use sans-serif font for text and latex math environment.
+
     """
     # set selected mode and style
     if mode is not None:
@@ -120,11 +122,14 @@ def update_style(interactive=None, colors=None, cmap=None, ncs=None,
     if latex is not None and latex:
         __apply_style('stylelib/latex.mplstyle')
 
+    if sf:
+        __set_rc_sansserif()
+
 
 @copy_doc_params(update_style)
 def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
               figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-              ipython=False, true_black=False, latex=True):
+              ipython=False, true_black=False, latex=True, sf=True):
     """Define alternative matplotlib style.
 
     This function restores first the matplolib default values and finally
@@ -141,7 +146,7 @@ def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
     # update style
     update_style(interactive=interactive, colors=colors, cmap=cmap, ncs=ncs,
                  figsize=figsize, figratio=figratio, mode=mode, style=style,
-                 ipython=ipython, true_black=true_black, latex=latex)
+                 ipython=ipython, true_black=true_black, latex=latex, sf=sf)
 
     # register used colors
     prettypyplot.colors.load_colors()
@@ -168,7 +173,7 @@ def setup_pyplot(ssh=None, colors='pastel5', cmap='macaw', ncs=10,
 
     use_style(interactive=interactive, colors=colors, cmap=cmap, ncs=ncs,
               figsize=figsize, figratio=figratio, mode=mode, style=style,
-              ipython=ipython, true_black=true_black, latex=latex)
+              ipython=ipython, true_black=true_black, latex=latex, sf=False)
 
 
 def __set_rc_colors(colors, cmap, ncs, true_black):
@@ -197,14 +202,14 @@ def __set_rc_colors(colors, cmap, ncs, true_black):
             gray_dark = prettypyplot.colors.default_grays['dark']
             gray_light = prettypyplot.colors.default_grays['light']
 
-        plt.rcParams['axes.edgecolor'] = gray_dark
-        plt.rcParams['axes.labelcolor'] = gray_dark
-        plt.rcParams['text.color'] = gray_dark
-        plt.rcParams['patch.edgecolor'] = gray_dark
-        plt.rcParams['xtick.color'] = gray_dark
-        plt.rcParams['ytick.color'] = gray_dark
-        plt.rcParams['patch.edgecolor'] = gray_dark
-        plt.rcParams['grid.color'] = gray_light
+        plt.rcParams.update({'axes.edgecolor': gray_dark,
+                             'axes.labelcolor': gray_dark,
+                             'text.color': gray_dark,
+                             'patch.edgecolor': gray_dark,
+                             'xtick.color': gray_dark,
+                             'ytick.color': gray_dark,
+                             'patch.edgecolor': gray_dark,
+                             'grid.color': gray_light})
 
 
 def __set_rc_figsize(figratio, figsize):
@@ -248,6 +253,13 @@ def __set_rc_dpi(ipython, dpi=384):
     """Set rcParams dpi."""
     if ipython is not None and not ipython:
         plt.rcParams['figure.dpi'] = dpi
+
+
+def __set_rc_sansserif():
+    """Set sans serif font."""
+    plt.rcParams.update({'font.family': 'sans-serif',
+                         'font.sans-serif': 'helvetica'})
+    plt.rcParams['text.latex.preamble'] += r'\usepackage[helvet]{sfmath}'
 
 
 def __set_ineractive_mode(interactive):
