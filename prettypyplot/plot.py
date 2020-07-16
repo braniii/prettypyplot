@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1
 
 from prettypyplot import _tools
-from prettypyplot.style import __MODE, __STYLE, __get_scale
+from prettypyplot.style import __MODE, __STYLE
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -239,7 +239,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     if __STYLE == 'minimal':
         leg.get_frame().set_linewidth(0.)
     elif __STYLE == 'default':
-        leg.get_frame().set_linewidth(__get_scale(__MODE)['small_scale'] * 0.8)
+        leg.get_frame().set_linewidth(plt.rcParams['axes.linewidth'])
 
     # shift title to the left if on top or bottom
     # taken from: https://stackoverflow.com/a/53329898
