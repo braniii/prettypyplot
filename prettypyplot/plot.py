@@ -147,7 +147,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     # save as pdf if not specified
     if 'format' not in kwargs:
         fmt = os.path.splitext(fname)[1][1:]
-        if format == '':
+        if fmt == '':
             fmt = 'pdf'
             fname = '{0}.{1}'.format(fname, fmt)
 
