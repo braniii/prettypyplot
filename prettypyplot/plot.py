@@ -136,7 +136,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     elif __MODE == 'beamer':
         fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
 
-    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
+    fig.tight_layout()
 
     # convert figsize to canvas size
     if use_canvas_size:
