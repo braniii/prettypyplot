@@ -122,6 +122,8 @@
     padding: 6px 9px 5px 9px;
     border: 1px solid silver;
     margin-top: 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
     border-radius: 6px;
   }
   % endif
@@ -276,6 +278,10 @@
   .admonition {
     padding: .1em .5em;
     margin-bottom: 1em;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
   }
     .admonition-title {
       font-weight: bold;
