@@ -18,7 +18,7 @@ echo 'recreate gallery figures:'
 for file in $(find ./gallery/ -name '*.py')
 do
     echo '   exec: '$file
-    python $file
+    python3 $file
 done
 
 cd docs
