@@ -1,9 +1,11 @@
-image: "python:3.7"  #alpine:latest
+image: "python:3.8"  #alpine:latest
 
 before_script:
+  - apt-get install texlive-full 
   - python --version
   - pip install matplotlib
-  - pip install -q -e .
+  - pip install pdoc3
+  - pip install -e .
 
 pages:
   stage: deploy
