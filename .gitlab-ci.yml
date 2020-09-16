@@ -1,4 +1,9 @@
-image: alpine:latest
+image: "python:3.7"  #alpine:latest
+
+before_script:
+  - python --version
+  - pip install matplotlib
+  - pip install -q -e .
 
 pages:
   stage: deploy
