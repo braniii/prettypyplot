@@ -1,6 +1,8 @@
-image: "python:3.8"  #alpine:latest
+image: ubuntu:latest
 
 before_script:
+  - apt-get update && apt-get install -y python python-dev python-pip \
+    libxft-dev libfreetype6 libfreetype6-dev
   - apt-get install texlive-full 
   - python --version
   - pip install matplotlib
