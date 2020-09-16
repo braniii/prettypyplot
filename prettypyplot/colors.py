@@ -9,6 +9,7 @@ Author: Daniel Nagel
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import matplotlib as mpl
 import matplotlib.colors as clr
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,12 +50,12 @@ def load_cmaps():
     for colormap in [__pastel5(), __pastel6(), __cbf4(), __cbf5(), __cbf8(),
                      __pastel_autunm(), __pastel_rainbow(), __pastel_spring(),
                      __ufcd(), __turbo(), __macaw(), __bownair()]:
-        # add cmap
-        if colormap.name not in plt.cm.cmap_d:
-            plt.register_cmap(cmap=colormap)
-        # add reversed cmap
-        if colormap.reversed().name not in plt.cm.cmap_d:
-            plt.register_cmap(cmap=colormap.reversed())
+        # add cmap and reverse cmap
+        for cmap in [colormap, colormap.reversed()]:
+            try:
+                mpl.cm.get_cmap(cmap.name)
+            except ValueError:
+                mpl.cm.register_cmap(cmap=cmap)
 
 
 def load_colors():
