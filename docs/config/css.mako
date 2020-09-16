@@ -3,6 +3,9 @@
 %>
 
 <%def name="mobile()" filter="minify_css">
+  :root {
+    --highlight-color: #fe9;
+  }
   .flex {
     display: flex !important;
   }
@@ -19,6 +22,9 @@
     padding: 30px;
     overflow: hidden;
   }
+    #sidebar > *:last-child {
+      margin-bottom: 2cm;
+    }
 
   .http-server-breadcrumbs {
     font-size: 130%;
@@ -58,6 +64,15 @@
     margin: 0;
     font-size: 105%;
   }
+  h1:target,
+  h2:target,
+  h3:target,
+  h4:target,
+  h5:target,
+  h6:target {
+    background: var(--highlight-color);
+    padding: .2em 0;
+  }
 
   a {
     color: #058;
@@ -91,13 +106,25 @@
   h1 code { background: transparent }
 
   pre {
-    background: #f8f8f8;
-    border: 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    background: #282c34;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
     margin: 1em 0;
     padding: 1ex;
   }
+
+
+  % if lunr_search is not None:
+  #lunr-search {
+    width: 100%;
+    font-size: 1em;
+    padding: 6px 9px 5px 9px;
+    border: 1px solid silver;
+    margin-top: 10px;
+    border-radius: 6px;
+  }
+  % endif
 
   #http-server-module-list {
     display: flex;
@@ -129,10 +156,8 @@
       padding: 0;
     }
     #index h4 {
+      margin-top: .6em;
       font-weight: bold;
-    }
-    #index h4 + ul {
-      margin-bottom:.6em;
     }
     /* Make TOC lists have 2+ columns when viewport is wide enough.
        Assuming ~20-character identifiers and ~30% wide sidebar. */
@@ -167,6 +192,9 @@
     }
       .name:hover {
         background: #e0e0e0;
+      }
+      dt:target .name {
+        background: var(--highlight-color);
       }
       .name > span:first-child {
         white-space: nowrap;
@@ -241,14 +269,16 @@
   img {
     max-width: 100%;
   }
+  td {
+    padding: 0 .5em;
+  }
 
   .admonition {
-    padding: 0.01em .5em;
-    margin: 0em 3em 1em 3em;
+    padding: .1em .5em;
+    margin-bottom: 1em;
   }
     .admonition-title {
       font-weight: bold;
-      margin-bottom: -1em;
     }
     .admonition.note,
     .admonition.info,
@@ -259,7 +289,7 @@
     .admonition.versionadded,
     .admonition.tip,
     .admonition.hint {
-      background: #cfa;
+      background: #dfd;
     }
     .admonition.warning,
     .admonition.versionchanged,
@@ -277,6 +307,10 @@
   @media screen and (min-width: 700px) {
     #sidebar {
       width: 30%;
+      height: 100vh;
+      overflow: auto;
+      position: sticky;
+      top: 0;
     }
     #content {
       width: 70%;
