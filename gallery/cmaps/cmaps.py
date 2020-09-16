@@ -14,10 +14,13 @@ pplt.use_style()
 plt.rcParams['figure.dpi'] = 600
 
 cmaps = {}
-cmaps['Perceptually Uniform Sequential'] = ['macaw', 'viridis', 'bownair',
-                                            'turbo', 'jet']
-cmaps['Qualitative'] = ['pastel5', 'pastel6', 'pastel_autunm', 'pastel_spring',
-                        'pastel_rainbow', 'cbf4', 'cbf5', 'cbf8', 'ufcd']
+cmaps['Perceptually Uniform Sequential'] = [
+    'macaw', 'viridis', 'bownair', 'turbo', 'jet',
+]
+cmaps['Qualitative'] = [
+    'pastel5', 'pastel6', 'pastel_autunm', 'pastel_spring', 'pastel_rainbow',
+    'cbf4', 'cbf5', 'cbf8', 'ufcd', 'paula',
+]
 
 gradient = np.linspace(0, 1, 256)
 gradient = np.vstack((gradient, gradient))

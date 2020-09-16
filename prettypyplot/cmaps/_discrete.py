@@ -36,6 +36,9 @@ autunm_array = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']
 # copyright by Albert-Ludwigs-Universität Freiburg
 ufcd_array = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
 
+# own creation
+paula_array = ['#fec21f', '#ed6a0c', '#df0712', '#df017b', '#4a287d']
+
 
 def __pastel5():
     return clr.ListedColormap(pastel5_array, 'pastel5')
@@ -71,3 +74,7 @@ def __pastel_autunm():
 
 def __ufcd():
     return clr.ListedColormap(ufcd_array, 'ufcd')
+
+
+def __paula():
+    return clr.ListedColormap(paula_array, 'paula')
