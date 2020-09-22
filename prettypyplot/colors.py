@@ -1,11 +1,8 @@
-"""
-Set-up matplotlib environment.
+"""Set-up matplotlib environment.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
-
-Author: Daniel Nagel
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,8 +31,7 @@ from .cmaps._turbo import __turbo
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def load_cmaps():
-    """
-    Load and include custom colormaps to matplotlib.
+    """Load and include custom colormaps to matplotlib.
 
     Add sequential colormaps 'pastel5', 'pastel6', 'cbf4', 'cbf5', 'cbf8',
     and 'ufcd' as an corporate design. Except of 'ufcd' all palettes should be
@@ -60,8 +56,7 @@ def load_cmaps():
 
 
 def load_colors():
-    """
-    Load and include custom colors to matplotlib.
+    """Load and include custom colors to matplotlib.
 
     Add colors of 'pastel5' which can be accessed via 'pplt:blue', 'pplt:red',
     'pplt:green', 'pplt:orange', 'pplt:lightblue'. Further, the current colors
@@ -84,12 +79,8 @@ def load_colors():
     clr._colors_full_map.update(pplt_colors)
 
 
-def categorical_cmap(nc,
-                     nsc,
-                     cmap=None,
-                     return_colors=False):
-    """
-    Generate categorical colors of given cmap.
+def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
+    """Generate categorical colors of given cmap.
 
     Exract from a predefined colormap colors and generate for each the desired
     number of shades.
@@ -126,8 +117,9 @@ def categorical_cmap(nc,
     if cmap is not None:
         cmap = plt.get_cmap(cmap)
     else:
-        cmap = clr.ListedColormap(plt.rcParams['axes.prop_cycle']
-                                  .by_key()['color'])
+        cmap = clr.ListedColormap(
+            plt.rcParams['axes.prop_cycle'].by_key()['color'],
+        )
     if nc > cmap.N:
         raise ValueError('Too many categories for colormap.')
 
@@ -142,7 +134,6 @@ def categorical_cmap(nc,
     for i, c in enumerate(colors):
         scolors[i] = categorical_color(nsc, c)
 
-    # return colors
     if return_colors:
         return scolors
     else:
@@ -150,8 +141,7 @@ def categorical_cmap(nc,
 
 
 def categorical_color(nsc, color, return_hex=False):
-    """
-    Generate categorical shades of given colors.
+    """Generate categorical shades of given colors.
 
     Generate for each provided color the number of specified shades. The shaded
     colors are interpolated linearly in HSV colorspace. This function is based
