@@ -7,26 +7,26 @@ All rights reserved.
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl
-import matplotlib.colors as clr
-import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import colors as clr
+from matplotlib import pyplot as plt
 
 # import colormaps
-from .cmaps._bownair import __bownair
-from .cmaps._discrete import (
-    __cbf4,
-    __cbf5,
-    __cbf8,
-    __pastel5,
-    __pastel6,
-    __pastel_autunm,
-    __pastel_rainbow,
-    __pastel_spring,
-    __paula,
-    __ufcd,
+from prettypyplot.cmaps._bownair import _bownair
+from prettypyplot.cmaps._discrete import (
+    _cbf4,
+    _cbf5,
+    _cbf8,
+    _pastel5,
+    _pastel6,
+    _pastel_autunm,
+    _pastel_rainbow,
+    _pastel_spring,
+    _paula,
+    _ufcd,
 )
-from .cmaps._macaw import __macaw
-from .cmaps._turbo import __turbo
+from prettypyplot.cmaps._macaw import _macaw
+from prettypyplot.cmaps._turbo import _turbo
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,12 +43,25 @@ def load_cmaps():
     .. see:: `prettypyplot.cmaps`
 
     """
+    colormaps = (
+        _pastel5(),
+        _pastel6(),
+        _cbf4(),
+        _cbf5(),
+        _cbf8(),
+        _pastel_autunm(),
+        _pastel_rainbow(),
+        _pastel_spring(),
+        _ufcd(),
+        _paula(),
+        _turbo(),
+        _macaw(),
+        _bownair(),
+    )
     # register own continuous and discrete cmaps
-    for colormap in [__pastel5(), __pastel6(), __cbf4(), __cbf5(), __cbf8(),
-                     __pastel_autunm(), __pastel_rainbow(), __pastel_spring(),
-                     __ufcd(), __paula(), __turbo(), __macaw(), __bownair()]:
+    for colormap in colormaps:
         # add cmap and reverse cmap
-        for cmap in [colormap, colormap.reversed()]:
+        for cmap in (colormap, colormap.reversed()):
             try:
                 mpl.cm.get_cmap(cmap.name)
             except ValueError:
@@ -124,20 +137,19 @@ def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
         raise ValueError('Too many categories for colormap.')
 
     # extract colors from cmap
-    if type(cmap) == clr.LinearSegmentedColormap:
+    if isinstance(cmap, clr.LinearSegmentedColormap):
         colors = cmap(np.linspace(0, 1, nc))
-    elif type(cmap) == clr.ListedColormap:
+    elif isinstance(cmap, clr.ListedColormap):
         colors = cmap(np.arange(nc, dtype=int))
 
     # get shades of colors
     scolors = np.empty((nc, nsc, 3))
-    for i, c in enumerate(colors):
-        scolors[i] = categorical_color(nsc, c)
+    for idx, color in enumerate(colors):
+        scolors[idx] = categorical_color(nsc, color)
 
     if return_colors:
         return scolors
-    else:
-        return clr.ListedColormap(np.concatenate(scolors))
+    return clr.ListedColormap(np.concatenate(scolors))
 
 
 def categorical_color(nsc, color, return_hex=False):
@@ -176,14 +188,13 @@ def categorical_color(nsc, color, return_hex=False):
     # genrate shades of colors
     color_hsv = clr.rgb_to_hsv(clr.to_rgb(color))
     colors_hsv = np.tile(color_hsv, nsc).reshape(nsc, 3)
-    colors_hsv[:, 1] = np.linspace(color_hsv[1], 0.25, nsc)
+    colors_hsv[:, 1] = np.linspace(color_hsv[1], 1 / 4, nsc)
     colors_hsv[:, 2] = np.linspace(color_hsv[2], 1, nsc)
     colors_rgb = clr.hsv_to_rgb(colors_hsv)
 
     if return_hex:
-        return [clr.to_hex(c) for c in colors_rgb]
-    else:
-        return colors_rgb
+        return [clr.to_hex(color) for color in colors_rgb]
+    return colors_rgb
 
 
 def text_color(bgcolor, colors=('#000000', '#ffffff')):
@@ -208,38 +219,42 @@ def text_color(bgcolor, colors=('#000000', '#ffffff')):
         Color of colors which has the highest contrast on the given bgcolor.
 
     """
-    def channel_transf(channel):
-        """Transform channel for luminance calculation."""
-        if channel < 0.03928:
-            return channel / 12.92
-        else:
-            return ((channel + 0.055) / 1.055)**2.4
-
-    def relative_luminance(color):
-        """Calculate luminance from rgb color, each channel [0, 1]."""
-        r, g, b = [channel_transf(c) for c in color]
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b
-
-    def contrast(L1, L2):
-        """L1 and L2 should be luminances [0, 1]."""
-        if L1 < L2:
-            L1, L2 = L2, L1
-        return (L1 + 0.05) / (L2 + 0.05)
-
     # check input by casting to matplotlib colors
     bgcolor = clr.to_rgb(bgcolor)
-    colors_rgb = [clr.to_rgb(c) for c in colors]
+    colors_rgb = [clr.to_rgb(color) for color in colors]
 
     # calculate the (luminances)
-    bgL = relative_luminance(bgcolor)
-    Ls = [relative_luminance(c) for c in colors_rgb]
+    bgL = _relative_luminance(bgcolor)
+    Ls = [_relative_luminance(color) for color in colors_rgb]
 
     # calculate contrast between bgcolor and all colors
-    C = [contrast(bgL, L) for L in Ls]
+    contrast = [_contrast(bgL, Luminance) for Luminance in Ls]
 
     # return color corresponding to greatest contrast
-    idx = C.index(max(C))
+    idx = contrast.index(max(contrast))
     return colors[idx]
+
+
+def _channel_transf(channel):
+    """Transform channel for luminance calculation."""
+    if channel < 0.03928:
+        return channel / 12.92
+    return ((channel + 0.055) / 1.055)**2.4
+
+
+def _relative_luminance(color):
+    """Calculate luminance from rgb color, each channel [0, 1]."""
+    rgb = np.array([_channel_transf(channel) for channel in color])
+    rgb_weights = np.array([0.2126, 0.7152, 0.0722])
+    return np.sum(rgb_weights * rgb)
+
+
+def _contrast(L1, L2):
+    """L1 and L2 should be luminances [0, 1]."""
+    L_offset = 0.05
+    if L1 < L2:
+        L1, L2 = L2, L1
+    return (L1 + L_offset) / (L2 + L_offset)
 
 
 # ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
