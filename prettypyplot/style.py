@@ -4,17 +4,15 @@ BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
-Author: Daniel Nagel
-
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import os.path
+from os import path as ospath
 
-import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import pyplot as plt
 
-import prettypyplot.colors
 from prettypyplot import _tools
+from prettypyplot import colors as pclr
 from prettypyplot.decorators import copy_doc_params, deprecated
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,9 +21,20 @@ __STYLE = 'default'  # default style
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def update_style(interactive=None, colors=None, cmap=None, ncs=None,
-                 figsize=None, figratio=None, mode=None, style=None,
-                 ipython=None, true_black=None, latex=None, sf=None):
+def update_style(
+    interactive=None,
+    colors=None,
+    cmap=None,
+    ncs=None,
+    figsize=None,
+    figratio=None,
+    mode=None,
+    style=None,
+    ipython=None,
+    true_black=None,
+    latex=None,
+    sf=None,
+):
     """Update alternative matplotlib style.
 
     This function updates specified parameters of `use_style` without changing
@@ -92,44 +101,54 @@ def update_style(interactive=None, colors=None, cmap=None, ncs=None,
         __STYLE = style
 
     if style == 'none':
-        __reset_style()
+        _reset_style()
     else:
         # load static rcParams
-        __apply_style('stylelib/default.mplstyle')
+        _apply_style('stylelib/default.mplstyle')
         if style == 'minimal':
-            __apply_style('stylelib/minimal.mplstyle')
+            _apply_style('stylelib/minimal.mplstyle')
 
         # set color cycle and cmap
-        __set_rc_colors(colors=colors,
-                        cmap=cmap,
-                        ncs=ncs,
-                        true_black=true_black)
+        _set_rc_colors(
+            colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
+        )
 
         # set figsize
-        __set_rc_figsize(figratio=figratio, figsize=figsize)
+        _set_rc_figsize(figratio=figratio, figsize=figsize)
 
         # change widths and fontsize depending on MODE
-        __set_rc_widths(mode)
+        _set_rc_widths(mode)
 
         # increase dpi if not in iypthon
-        __set_rc_dpi(ipython)
+        _set_rc_dpi(ipython)
 
     # set interactive mode
-    __set_ineractive_mode(interactive=interactive)
+    _set_ineractive_mode(interactive=interactive)
 
     # setup LaTeX font
     # plt.style.use can not be used.
     if latex is not None and latex:
-        __apply_style('stylelib/latex.mplstyle')
+        _apply_style('stylelib/latex.mplstyle')
 
     if sf:
-        __set_rc_sansserif()
+        _set_rc_sansserif()
 
 
 @copy_doc_params(update_style)
-def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
-              figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-              ipython=False, true_black=False, latex=True, sf=False):
+def use_style(
+    interactive=None,
+    colors='pastel5',
+    cmap='macaw',
+    ncs=10,
+    figsize=(3,),
+    figratio='golden',
+    mode=__MODE,
+    style=__STYLE,
+    ipython=False,
+    true_black=False,
+    latex=True,
+    sf=False,
+):
     """Define alternative matplotlib style.
 
     This function restores first the matplolib default values and finally
@@ -141,23 +160,45 @@ def use_style(interactive=None, colors='pastel5', cmap='macaw', ncs=10,
     __reset_style()
 
     # register own continuous and discrete cmaps
-    prettypyplot.colors.load_cmaps()
+    pclr.load_cmaps()
 
     # update style
-    update_style(interactive=interactive, colors=colors, cmap=cmap, ncs=ncs,
-                 figsize=figsize, figratio=figratio, mode=mode, style=style,
-                 ipython=ipython, true_black=true_black, latex=latex, sf=sf)
+    update_style(
+        interactive=interactive,
+        colors=colors,
+        cmap=cmap,
+        ncs=ncs,
+        figsize=figsize,
+        figratio=figratio,
+        mode=mode,
+        style=style,
+        ipython=ipython,
+        true_black=true_black,
+        latex=latex,
+        sf=sf,
+    )
 
     # register used colors
-    prettypyplot.colors.load_colors()
+    pclr.load_colors()
 
 
 @copy_doc_params(update_style)
-@deprecated(msg=r'Use prettypyplot.use_style instead.',
-            since='0.4', remove='1.0')
-def setup_pyplot(ssh=None, colors='pastel5', cmap='macaw', ncs=10,
-                 figsize=(3,), figratio='golden', mode=__MODE, style=__STYLE,
-                 ipython=False, true_black=False, latex=True):
+@deprecated(
+    msg=r'Use prettypyplot.use_style instead.', since='0.4', remove='1.0',
+)
+def setup_pyplot(
+    ssh=None,
+    colors='pastel5',
+    cmap='macaw',
+    ncs=10,
+    figsize=(3,),
+    figratio='golden',
+    mode=__MODE,
+    style=__STYLE,
+    ipython=False,
+    true_black=False,
+    latex=True,
+):
     """Define alternative matplotlib style.
 
     This function restores first the matplolib default values and finally
@@ -171,12 +212,23 @@ def setup_pyplot(ssh=None, colors='pastel5', cmap='macaw', ncs=10,
     if interactive is not None:
         interactive = not interactive
 
-    use_style(interactive=interactive, colors=colors, cmap=cmap, ncs=ncs,
-              figsize=figsize, figratio=figratio, mode=mode, style=style,
-              ipython=ipython, true_black=true_black, latex=latex, sf=False)
+    use_style(
+        interactive=interactive,
+        colors=colors,
+        cmap=cmap,
+        ncs=ncs,
+        igsize=figsize,
+        figratio=figratio,
+        mode=mode,
+        style=style,
+        ipython=ipython,
+        true_black=true_black,
+        latex=latex,
+        sf=False,
+    )
 
 
-def __set_rc_colors(colors, cmap, ncs, true_black):
+def _set_rc_colors(colors, cmap, ncs, true_black):
     """Set rcParams colors."""
     # set color cycle and cmap
     if colors is not None:
@@ -196,11 +248,11 @@ def __set_rc_colors(colors, cmap, ncs, true_black):
     if true_black is not None:
         # change default colors
         if true_black:
-            gray_dark = prettypyplot.colors.black_grays['dark']
-            gray_light = prettypyplot.colors.black_grays['light']
+            gray_dark = pclr.black_grays['dark']
+            gray_light = pclr.black_grays['light']
         else:
-            gray_dark = prettypyplot.colors.default_grays['dark']
-            gray_light = prettypyplot.colors.default_grays['light']
+            gray_dark = pclr.default_grays['dark']
+            gray_light = pclr.default_grays['light']
 
         plt.rcParams.update({'axes.edgecolor': gray_dark,
                              'axes.labelcolor': gray_dark,
@@ -212,7 +264,7 @@ def __set_rc_colors(colors, cmap, ncs, true_black):
                              'grid.color': gray_light})
 
 
-def __set_rc_figsize(figratio, figsize):
+def _set_rc_figsize(figratio, figsize):
     """Set rcParams figsize."""
     # convert figratio to value
     figratio = _tools._parse_figratio(figratio)
@@ -224,9 +276,9 @@ def __set_rc_figsize(figratio, figsize):
         plt.rcParams['figure.figsize'] = figsize
 
 
-def __set_rc_widths(mode):
+def _set_rc_widths(mode):
     """Set rcParams widths and fontsizes according to mode."""
-    scales = __get_scale(mode)
+    scales = _get_scale(mode)
     if scales is not None:
         for scale, rcParamsVal in [
                 ['small_scale', [['axes.linewidth', 0.8],
@@ -249,20 +301,20 @@ def __set_rc_widths(mode):
                     plt.rcParams['y' + rcParam[1:]] = plt.rcParams[rcParam]
 
 
-def __set_rc_dpi(ipython, dpi=384):
+def _set_rc_dpi(ipython, dpi=384):
     """Set rcParams dpi."""
     if ipython is not None and not ipython:
         plt.rcParams['figure.dpi'] = dpi
 
 
-def __set_rc_sansserif():
+def _set_rc_sansserif():
     """Set sans serif font."""
     plt.rcParams.update({'font.family': 'sans-serif',
                          'font.sans-serif': 'Helvetica'})
     plt.rcParams['text.latex.preamble'] += r'\usepackage[helvet]{sfmath}'
 
 
-def __set_ineractive_mode(interactive):
+def _set_ineractive_mode(interactive):
     """Set interative mode."""
     if interactive is not None:
         if interactive:
@@ -271,45 +323,50 @@ def __set_ineractive_mode(interactive):
             plt.ioff()
 
 
-def __get_scale(mode):
+def _get_scale(mode):
     """Get the scaling factors."""
-    if mode == 'default':
-        return {'large_scale': 1.,
-                'medium_scale': 1.,
-                'small_scale': 1.,
-                'tick_scale': 1.,
-                'fontsize': 10.}
-    elif mode == 'print':
-        return {'large_scale': 1.5,
-                'medium_scale': 1.7,
-                'small_scale': 1.7,
-                'tick_scale': 1.7,
-                'fontsize': 12.}
-    elif mode == 'poster':
-        return {'large_scale': 4.,
-                'medium_scale': 4.,
-                'small_scale': 4.,
-                'tick_scale': 4.,
-                'fontsize': 28.}
-    elif mode == 'beamer':
-        return {'large_scale': 4.,
-                'medium_scale': 4.,
-                'small_scale': 4.,
-                'tick_scale': 4.,
-                'fontsize': 28.}
-    else:
-        return None
+    scale_dict = {
+        'default': {
+            'large_scale': 1.,
+            'medium_scale': 1.,
+            'small_scale': 1.,
+            'tick_scale': 1.,
+            'fontsize': 10.,
+        },
+        'print': {
+            'large_scale': 1.5,
+            'medium_scale': 1.7,
+            'small_scale': 1.7,
+            'tick_scale': 1.7,
+            'fontsize': 12.,
+        },
+        'poster': {
+            'large_scale': 4.,
+            'medium_scale': 4.,
+            'small_scale': 4.,
+            'tick_scale': 4.,
+            'fontsize': 28.,
+        },
+        'beamer': {
+            'large_scale': 4.,
+            'medium_scale': 4.,
+            'small_scale': 4.,
+            'tick_scale': 4.,
+            'fontsize': 28.
+        }
+    }
+    return scale_dict.get(mode, default='default')
 
 
-def __reset_style():
+def _reset_style():
     """Restore default matplotlib style."""
     plt.rcdefaults()
 
 
-def __apply_style(path):
+def _apply_style(path):
     """Load mplstyle file at given relative path to this file."""
-    module_dir = os.path.dirname(__file__)
-    path = os.path.join(module_dir, path)
+    module_dir = ospath.dirname(__file__)
+    path = ospath.join(module_dir, path)
 
     # load and apply style
     plt.style.use(path)
