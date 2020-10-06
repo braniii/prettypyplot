@@ -80,11 +80,11 @@ def load_colors():
     """
     # register own colors
     pplt_colors = {
-        'pplt:blue': __pastel5().colors[0],
-        'pplt:red': __pastel5().colors[1],
-        'pplt:green': __pastel5().colors[2],
-        'pplt:orange': __pastel5().colors[3],
-        'pplt:lightblue': __pastel5().colors[4],
+        'pplt:blue': _pastel5().colors[0],
+        'pplt:red': _pastel5().colors[1],
+        'pplt:green': _pastel5().colors[2],
+        'pplt:orange': _pastel5().colors[3],
+        'pplt:lightblue': _pastel5().colors[4],
         'pplt:axes': plt.rcParams['axes.edgecolor'],
         'pplt:text': plt.rcParams['text.color'],
         'pplt:grid': plt.rcParams['grid.color'],
