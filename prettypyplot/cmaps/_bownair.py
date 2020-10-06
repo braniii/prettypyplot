@@ -6,11 +6,9 @@ BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
-Author: Daniel Nagel
-
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import matplotlib.colors as clr
+from matplotlib import colors as clr
 
 # ~~~ CMAP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cm_bownair_data = [
@@ -269,9 +267,9 @@ cm_bownair_data = [
     [0.98831361, 0.93712240, 0.22071250],
     [0.99393602, 0.94166378, 0.19545245],
     [0.99960697, 0.94620448, 0.16604763],
-    [1.00000000, 0.95120448, 0.13604763]]
+    [1.00000000, 0.95120448, 0.13604763],
+]
 
 
-def __bownair():
-    cmap = clr.LinearSegmentedColormap.from_list('bownair', cm_bownair_data)
-    return cmap
+def _bownair():
+    return clr.LinearSegmentedColormap.from_list('bownair', cm_bownair_data)

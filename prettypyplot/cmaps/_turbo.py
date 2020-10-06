@@ -5,7 +5,7 @@ from [FedeMiorelli](https://gist.github.com/FedeMiorelli/640bbc66b2038a14802729e
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import matplotlib.colors as clr
+from matplotlib import colors as clr
 
 # ~~~ CMAP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cm_turbo_data = [
@@ -264,9 +264,9 @@ cm_turbo_data = [
     [0.51989, 0.02756, 0.00780],
     [0.50664, 0.02354, 0.00863],
     [0.49321, 0.01963, 0.00955],
-    [0.47960, 0.01583, 0.01055]]
+    [0.47960, 0.01583, 0.01055],
+]
 
 
-def __turbo():
-    cmap = clr.LinearSegmentedColormap.from_list('turbo', cm_turbo_data)
-    return cmap
+def _turbo():
+    return clr.LinearSegmentedColormap.from_list('turbo', cm_turbo_data)

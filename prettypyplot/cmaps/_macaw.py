@@ -6,11 +6,9 @@ BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
-Author: Daniel Nagel
-
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import matplotlib.colors as clr
+from matplotlib import colors as clr
 
 # ~~~ CMAP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cm_macaw_data = [
@@ -269,9 +267,9 @@ cm_macaw_data = [
     [0.99619108, 0.93790735, 0.12024698],
     [0.99632933, 0.94360034, 0.10686924],
     [0.99641293, 0.94932183, 0.09131728],
-    [0.99632399, 0.95512747, 0.07162400]]
+    [0.99632399, 0.95512747, 0.07162400],
+]
 
 
-def __macaw():
-    cmap = clr.LinearSegmentedColormap.from_list('macaw', cm_macaw_data)
-    return cmap
+def _macaw():
+    return clr.LinearSegmentedColormap.from_list('macaw', cm_macaw_data)
