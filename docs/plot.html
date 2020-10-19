@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.8.3" />
+<meta name="generator" content="pdoc 0.9.1" />
 <title>prettypyplot.plot API documentation</title>
 <meta name="description" content="Wrapper for matplotlib plotting functions …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
-<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:0.01em .5em;margin:0em 3em 1em 3em}.admonition-title{font-weight:bold;margin-bottom:-1em}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#cfa}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/atom-one-dark.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#282c34;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;margin:1em 0;padding:1ex}#lunr-search{width:100%;font-size:1em;padding:6px 9px 5px 9px;border:1px solid silver;margin-top:10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
 <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
 <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 <style>.homelink{display:block;font-size:2em;font-weight:bold;color:#555;padding-bottom:.5em;border-bottom:1px solid silver}.homelink:hover{color:inherit}.homelink img{max-width:20%;max-height:7em;margin:auto;margin-bottom:.3em}</style>
 <link rel="icon" href="gallery/logo.png">
@@ -29,7 +29,6 @@
 <p>BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.</p>
-<p>Author: Daniel Nagel</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -40,19 +39,19 @@ BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
-Author: Daniel Nagel
-
 &#34;&#34;&#34;
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import os.path
+from os import path
+import warnings
 
 import matplotlib as mpl  # mpl = dm.tryImport(&#39;matplotlib&#39;)
-import matplotlib.legend as mlegend
-import matplotlib.pyplot as plt
-import mpl_toolkits.axes_grid1
+import numpy as np
+from matplotlib import legend as mlegend
+from matplotlib import pyplot as plt
+from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
 from prettypyplot import _tools
-from prettypyplot.style import __MODE, __STYLE, __get_scale
+from prettypyplot.style import __MODE, __STYLE
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,9 +76,7 @@ def imshow(*args, ax=None, **kwargs):
         kwargs[&#39;zorder&#39;] = 1
 
     # plot
-    im = ax.imshow(*args, **kwargs)
-
-    return im
+    return ax.imshow(*args, **kwargs)
 
 
 def plot(*args, ax=None, **kwargs):
@@ -152,27 +149,41 @@ def savefig(fname, use_canvas_size=True, **kwargs):
         See [pyplot.savefig()](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.savefig.html)
 
     &#34;&#34;&#34;
-    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]
+    fig = plt.gcf()
+    ax = plt.gcf().get_axes()[0]
     figsize = fig.get_size_inches()
 
     set_figsize = figsize
 
     if __STYLE == &#39;minimal&#39;:
         # reduce number of ticks by factor 1.5 if more than 4
+        tick_reduc = 1.5
         for axes in plt.gcf().get_axes():
             if len(axes.get_xticks()) &gt; 4:
-                axes.locator_params(tight=False, axis=&#39;x&#39;,
-                                    nbins=len(axes.get_xticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis=&#39;x&#39;,
+                    nbins=len(axes.get_xticks()) / tick_reduc,
+                )
             if len(axes.get_yticks()) &gt; 4:
-                axes.locator_params(tight=False, axis=&#39;y&#39;,
-                                    nbins=len(axes.get_yticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis=&#39;y&#39;,
+                    nbins=len(axes.get_yticks()) / tick_reduc,
+                )
 
     if __MODE == &#39;poster&#39;:
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
     elif __MODE == &#39;beamer&#39;:
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
 
-    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
+    with warnings.catch_warnings():
+        warnings.filterwarnings(&#39;ignore&#39;)
+        fig.tight_layout()
 
     # convert figsize to canvas size
     if use_canvas_size:
@@ -182,10 +193,8 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
     # save as pdf if not specified
     if &#39;format&#39; not in kwargs:
-        fmt = os.path.splitext(fname)[1][1:]
-        if format == &#39;&#39;:
-            fmt = &#39;pdf&#39;
-            fname = &#39;{0}.{1}&#39;.format(fname, fmt)
+        if path.splitext(fname)[1][1:] == &#39;&#39;:
+            fname = &#39;{0}.pdf&#39;.format(fname)
 
     # save fig
     plt.savefig(fname, **kwargs)
@@ -275,7 +284,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     if __STYLE == &#39;minimal&#39;:
         leg.get_frame().set_linewidth(0.)
     elif __STYLE == &#39;default&#39;:
-        leg.get_frame().set_linewidth(__get_scale(__MODE)[&#39;small_scale&#39;] * 0.8)
+        leg.get_frame().set_linewidth(plt.rcParams[&#39;axes.linewidth&#39;])
 
     # shift title to the left if on top or bottom
     # taken from: https://stackoverflow.com/a/53329898
@@ -375,7 +384,7 @@ def colorbar(im, width=&#39;7%&#39;, pad=&#39;0%&#39;, position=&#39;right&#39;,
         ax = plt.gca()
 
     # generate divider
-    divider = mpl_toolkits.axes_grid1.make_axes_locatable(ax)
+    divider = mpl_axes_grid1.make_axes_locatable(ax)
     cax = divider.append_axes(position, width, pad=pad)
 
     cbar = plt.colorbar(im, cax=cax, orientation=orientation)
@@ -437,7 +446,138 @@ def __minmax(lim, rcparam):
     width = lim[1] - lim[0]
     margin = plt.rcParams[rcparam]
     minmax = [lim[0] + (margin + i) / (1 + 2 * margin) * width for i in [0, 1]]
-    return minmax</code></pre>
+    return minmax
+
+
+def hide_empty_axes(axs=None):
+    &#34;&#34;&#34;Hide empty axes.
+
+    Loop over all axes and hide empty ones.
+
+    Parameters
+    ----------
+    axs : mpl.axes.Axes or list of
+        Specify axes to check for empty state. Default use all of current
+        figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        if isinstance(axs, mpl.axes.Axes):
+            axs = [axs]
+        elif all((
+            isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs)
+        )):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError(&#39;axs needs to be of type matplotlib.axes.Axes.&#39;)
+    else:
+        axs = plt.gcf().get_axes()
+
+    # loop over all axes and hide empty ones
+    for ax in axs:
+        if _is_empty_axes(ax):
+            ax.axis(&#39;off&#39;)
+
+
+def label_outer(axs=None):
+    &#34;&#34;&#34;Only show outer labels and tick labels.
+
+    This checks for outest visible axes only. Works only with single Gridspec.
+
+    Parameters
+    ----------
+    axs : list of mpl.axes.AxesSubplot
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        if _is_subplot_axes(axs):
+            axs = [axs]
+        elif all((_is_subplot_axes(arg) for arg in np.ravel(axs))):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError(
+                &#39;axs needs to be of type matplotlib.axes.AxesSuplot.&#39;,
+            )
+    else:
+        axs = [ax for ax in plt.gcf().get_axes() if _is_subplot_axes(ax)]
+
+    for ax in axs:
+        ss = ax.get_subplotspec()
+        if hasattr(ss, &#39;is_last_row&#39;):  # noqa: WPS421
+            # for mpl &gt;= 3.4
+            lastrow = ss.is_last_row()
+            firstcol = ss.is_first_col()
+        else:
+            lastrow = ax.is_last_row()
+            firstcol = ax.is_first_col()
+
+        # check if axes below, left is hidden
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)
+
+
+def _is_subplot_axes(ax):
+    &#34;&#34;&#34;Check is is subplot axes.&#34;&#34;&#34;
+    return (
+        isinstance(ax, mpl.axes.Axes) and
+        hasattr(ax, &#39;get_subplotspec&#39;)  # noqa: WPS421
+    )
+
+
+def _is_outer_empty(axs, ax):
+    &#34;&#34;&#34;Check if lefter/lower axes is empty.&#34;&#34;&#34;
+    left_empty, bottom_empty = False, False
+    for axes in axs:
+        if _is_left_neighbor(axes, ax):
+            left_empty = left_empty or not axes.axison
+
+        if _is_bottom_neighbor(axes, ax):
+            bottom_empty = bottom_empty or not axes.axison
+    return left_empty, bottom_empty
+
+
+def _is_left_neighbor(ax1, ax2):
+    &#34;&#34;&#34;Check if ax1 is left ax2.&#34;&#34;&#34;
+    return _has_neighbor_distance(ax1, ax2, col_offset=1)
+
+
+def _is_bottom_neighbor(ax1, ax2):
+    &#34;&#34;&#34;Check if ax1 is below ax2.&#34;&#34;&#34;
+    return _has_neighbor_distance(ax1, ax2, row_offset=-1)
+
+
+def _has_neighbor_distance(ax1, ax2, row_offset=0, col_offset=0):
+    &#34;&#34;&#34;Check if two SubpotAxes have the given offset distance.&#34;&#34;&#34;
+    ss1, ss2 = ax1.get_subplotspec(), ax2.get_subplotspec()
+    return (
+        any((
+            row + row_offset in list(ss2.rowspan) for row in list(ss1.rowspan)
+        )) and any((
+            col + col_offset in list(ss2.colspan) for col in list(ss1.colspan)
+        ))
+    )
+
+
+def _label_outer(ax, lastrow, firstcol):
+    &#34;&#34;&#34;See mpl.axes.Axes.label_outer().&#34;&#34;&#34;
+    if not lastrow:
+        for xlabel in ax.get_xticklabels(which=&#39;both&#39;):
+            xlabel.set_visible(False)
+        ax.xaxis.get_offset_text().set_visible(False)
+        ax.set_xlabel(&#39;&#39;)
+    if not firstcol:
+        for ylabel in ax.get_yticklabels(which=&#39;both&#39;):
+            ylabel.set_visible(False)
+        ax.yaxis.get_offset_text().set_visible(False)
+        ax.set_ylabel(&#39;&#39;)
+
+
+def _is_empty_axes(ax):
+    &#34;&#34;&#34;Return if axes is empty.&#34;&#34;&#34;
+    return (
+        not ax.lines and not ax.collections and not ax.patches and not ax.texts
+    )</code></pre>
 </details>
 </section>
 <section>
@@ -566,7 +706,7 @@ plotted, choose one of ['left', 'top', 'right', 'bottom']</dd>
         ax = plt.gca()
 
     # generate divider
-    divider = mpl_toolkits.axes_grid1.make_axes_locatable(ax)
+    divider = mpl_axes_grid1.make_axes_locatable(ax)
     cax = divider.append_axes(position, width, pad=pad)
 
     cbar = plt.colorbar(im, cax=cax, orientation=orientation)
@@ -631,6 +771,53 @@ a major grid in case of 'none' and otherwise nothing.</p>
         return</code></pre>
 </details>
 </dd>
+<dt id="prettypyplot.plot.hide_empty_axes"><code class="name flex">
+<span>def <span class="ident">hide_empty_axes</span></span>(<span>axs=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Hide empty axes.</p>
+<p>Loop over all axes and hide empty ones.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>axs</code></strong> :&ensp;<code>mpl.axes.Axes</code> or <code>list of</code></dt>
+<dd>Specify axes to check for empty state. Default use all of current
+figure.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hide_empty_axes(axs=None):
+    &#34;&#34;&#34;Hide empty axes.
+
+    Loop over all axes and hide empty ones.
+
+    Parameters
+    ----------
+    axs : mpl.axes.Axes or list of
+        Specify axes to check for empty state. Default use all of current
+        figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        if isinstance(axs, mpl.axes.Axes):
+            axs = [axs]
+        elif all((
+            isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs)
+        )):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError(&#39;axs needs to be of type matplotlib.axes.Axes.&#39;)
+    else:
+        axs = plt.gcf().get_axes()
+
+    # loop over all axes and hide empty ones
+    for ax in axs:
+        if _is_empty_axes(ax):
+            ax.axis(&#39;off&#39;)</code></pre>
+</details>
+</dd>
 <dt id="prettypyplot.plot.imshow"><code class="name flex">
 <span>def <span class="ident">imshow</span></span>(<span>*args, ax=None, **kwargs)</span>
 </code></dt>
@@ -670,9 +857,59 @@ the default value of <code>zorder</code> is increased to <code>1</code>.</p>
         kwargs[&#39;zorder&#39;] = 1
 
     # plot
-    im = ax.imshow(*args, **kwargs)
+    return ax.imshow(*args, **kwargs)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.plot.label_outer"><code class="name flex">
+<span>def <span class="ident">label_outer</span></span>(<span>axs=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Only show outer labels and tick labels.</p>
+<p>This checks for outest visible axes only. Works only with single Gridspec.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>axs</code></strong> :&ensp;<code>list</code> of <code>mpl.axes.AxesSubplot</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def label_outer(axs=None):
+    &#34;&#34;&#34;Only show outer labels and tick labels.
 
-    return im</code></pre>
+    This checks for outest visible axes only. Works only with single Gridspec.
+
+    Parameters
+    ----------
+    axs : list of mpl.axes.AxesSubplot
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        if _is_subplot_axes(axs):
+            axs = [axs]
+        elif all((_is_subplot_axes(arg) for arg in np.ravel(axs))):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError(
+                &#39;axs needs to be of type matplotlib.axes.AxesSuplot.&#39;,
+            )
+    else:
+        axs = [ax for ax in plt.gcf().get_axes() if _is_subplot_axes(ax)]
+
+    for ax in axs:
+        ss = ax.get_subplotspec()
+        if hasattr(ss, &#39;is_last_row&#39;):  # noqa: WPS421
+            # for mpl &gt;= 3.4
+            lastrow = ss.is_last_row()
+            firstcol = ss.is_first_col()
+        else:
+            lastrow = ax.is_last_row()
+            firstcol = ax.is_first_col()
+
+        # check if axes below, left is hidden
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)</code></pre>
 </details>
 </dd>
 <dt id="prettypyplot.plot.legend"><code class="name flex">
@@ -827,7 +1064,7 @@ for style in ['default', 'minimal']:
     if __STYLE == &#39;minimal&#39;:
         leg.get_frame().set_linewidth(0.)
     elif __STYLE == &#39;default&#39;:
-        leg.get_frame().set_linewidth(__get_scale(__MODE)[&#39;small_scale&#39;] * 0.8)
+        leg.get_frame().set_linewidth(plt.rcParams[&#39;axes.linewidth&#39;])
 
     # shift title to the left if on top or bottom
     # taken from: https://stackoverflow.com/a/53329898
@@ -949,27 +1186,41 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
         See [pyplot.savefig()](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.savefig.html)
 
     &#34;&#34;&#34;
-    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]
+    fig = plt.gcf()
+    ax = plt.gcf().get_axes()[0]
     figsize = fig.get_size_inches()
 
     set_figsize = figsize
 
     if __STYLE == &#39;minimal&#39;:
         # reduce number of ticks by factor 1.5 if more than 4
+        tick_reduc = 1.5
         for axes in plt.gcf().get_axes():
             if len(axes.get_xticks()) &gt; 4:
-                axes.locator_params(tight=False, axis=&#39;x&#39;,
-                                    nbins=len(axes.get_xticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis=&#39;x&#39;,
+                    nbins=len(axes.get_xticks()) / tick_reduc,
+                )
             if len(axes.get_yticks()) &gt; 4:
-                axes.locator_params(tight=False, axis=&#39;y&#39;,
-                                    nbins=len(axes.get_yticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis=&#39;y&#39;,
+                    nbins=len(axes.get_yticks()) / tick_reduc,
+                )
 
     if __MODE == &#39;poster&#39;:
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
     elif __MODE == &#39;beamer&#39;:
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
 
-    fig.tight_layout(pad=0.20, h_pad=0.00, w_pad=0.00)
+    with warnings.catch_warnings():
+        warnings.filterwarnings(&#39;ignore&#39;)
+        fig.tight_layout()
 
     # convert figsize to canvas size
     if use_canvas_size:
@@ -979,10 +1230,8 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 
     # save as pdf if not specified
     if &#39;format&#39; not in kwargs:
-        fmt = os.path.splitext(fname)[1][1:]
-        if format == &#39;&#39;:
-            fmt = &#39;pdf&#39;
-            fname = &#39;{0}.{1}&#39;.format(fname, fmt)
+        if path.splitext(fname)[1][1:] == &#39;&#39;:
+            fname = &#39;{0}.pdf&#39;.format(fname)
 
     # save fig
     plt.savefig(fname, **kwargs)
@@ -999,9 +1248,55 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 <nav id="sidebar">
 <header>
 <a class="homelink" rel="home" title="prettypyplot home" href="https://braniii.gitlab.io/prettypyplot">
-<img src="gallery/logo.png" alt=""> prettypyplot
+<img src="/prettypyplot/gallery/logo.png" alt=""> prettypyplot
 </a>
 </header>
+<form>
+<input id="lunr-search" name="q" placeholder="🔎 Search ..." aria-label="Search"
+disabled minlength="2">
+</form>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.css" integrity="sha512-j1u8eUJ4f23xPPxwOrLUPQaCD2dwzNqqmDDcWS4deWsMv2ohLqmXXuP3hU7g8TyzbMSakP/mMqoNBYWj8AEIFg==" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.js" integrity="sha512-plGUER9JkeEWPPqQBE4sdLqBoQug5Ap+BCGMc7bJ8BXkm+VVj6QzkpBz5Yv2yPkkq+cqg9IpkBaGCas6uDbW8g==" crossorigin></script>
+<style>
+.modal-dialog iframe {
+width: 100vw;
+height: calc(100vh - 80px);
+}
+@media screen and (min-width: 700px) {
+.modal-dialog iframe {
+width: 70vw;
+height: 80vh;
+}
+}
+.modal-dialog .tingle-modal-box {width: auto;}
+.modal-dialog .tingle-modal-box__content {padding: 0;}
+</style>
+<script>
+const input = document.getElementById('lunr-search');
+input.disabled = false;
+input.form.addEventListener('submit', (ev) => {
+ev.preventDefault();
+const url = new URL(window.location);
+url.searchParams.set('q', input.value);
+history.replaceState({}, null, url.toString());
+search(input.value);
+});
+const query = new URL(window.location).searchParams.get('q');
+if (query)
+search(query);
+function search(query) {
+const url = 'search.html#' + encodeURIComponent(query);
+new tingle.modal({
+cssClass: ['modal-dialog'],
+onClose: () => {
+const url = new URL(window.location);
+url.searchParams.delete('q');
+history.replaceState({}, null, url.toString());
+setTimeout(() => input.focus(), 100);
+}
+}).setContent('<iframe src="' + url + '"></iframe>').open();
+}
+</script>
 <h1>Index</h1>
 <div class="toc">
 <ul></ul>
@@ -1017,7 +1312,9 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 <li><code><a title="prettypyplot.plot.activate_axis" href="#prettypyplot.plot.activate_axis">activate_axis</a></code></li>
 <li><code><a title="prettypyplot.plot.colorbar" href="#prettypyplot.plot.colorbar">colorbar</a></code></li>
 <li><code><a title="prettypyplot.plot.grid" href="#prettypyplot.plot.grid">grid</a></code></li>
+<li><code><a title="prettypyplot.plot.hide_empty_axes" href="#prettypyplot.plot.hide_empty_axes">hide_empty_axes</a></code></li>
 <li><code><a title="prettypyplot.plot.imshow" href="#prettypyplot.plot.imshow">imshow</a></code></li>
+<li><code><a title="prettypyplot.plot.label_outer" href="#prettypyplot.plot.label_outer">label_outer</a></code></li>
 <li><code><a title="prettypyplot.plot.legend" href="#prettypyplot.plot.legend">legend</a></code></li>
 <li><code><a title="prettypyplot.plot.plot" href="#prettypyplot.plot.plot">plot</a></code></li>
 <li><code><a title="prettypyplot.plot.savefig" href="#prettypyplot.plot.savefig">savefig</a></code></li>
@@ -1035,7 +1332,7 @@ If STYLE='minimal', spines will be limited to plotting range.</p>
 </svg>
 </a>
 <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
 </footer>
 </body>
 </html>

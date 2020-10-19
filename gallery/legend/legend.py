@@ -22,15 +22,23 @@ x1, x2, x3 = [np.sin(t + np.pi * np.random.rand()) + 0.1 * np.random.rand(N)
               for _ in range(3)]
 
 for style in ['default', 'minimal']:
-    pplt.use_style(style=style)
+    for mode in ['default', 'print', 'beamer']:
+        pplt.use_style(style=style, mode=mode, figsize=2)
 
-    # legend
-    for outside in ['top', 'bottom', 'left', 'right', False]:
-        fig, ax = plt.subplots()
-        pplt.plot(t, x1, label='$x_1$')
-        pplt.plot(t, x2, label='$x_2$')
-        pplt.plot(t, x3, label='$x_3$')
+        fig, axs = plt.subplots(2, 3,
+                                gridspec_kw={'hspace': 0.4, 'wspace': 0.6})
 
-        pplt.legend(title='function:', outside=outside)
-        pplt.savefig(f'gallery/legend/{style}_plot_legend_{outside}.png')
+        # legend
+        for i, outside in enumerate(['top', 'bottom', 'left', 'right', False]):
+            ax = axs.flatten()[i]
+            pplt.plot(t, x1, ax=ax, label='$x_1$')
+            pplt.plot(t, x2, ax=ax, label='$x_2$')
+            pplt.plot(t, x3, ax=ax, label='$x_3$')
+
+            pplt.legend(title='function:', ax=ax, outside=outside)
+
+        # disable unused axis
+        axs[-1, -1].axis('off')
+
+        pplt.savefig(f'gallery/legend/{style}_{mode}_plot_legend.png')
         plt.close()
