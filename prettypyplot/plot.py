@@ -7,6 +7,7 @@ All rights reserved.
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from os import path
+import warnings
 
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import numpy as np
@@ -113,27 +114,41 @@ def savefig(fname, use_canvas_size=True, **kwargs):
         See [pyplot.savefig()](MPL_DOC.pyplot.savefig.html)
 
     """
-    fig, ax = plt.gcf(), plt.gcf().get_axes()[0]
+    fig = plt.gcf()
+    ax = plt.gcf().get_axes()[0]
     figsize = fig.get_size_inches()
 
     set_figsize = figsize
 
     if __STYLE == 'minimal':
         # reduce number of ticks by factor 1.5 if more than 4
+        tick_reduc = 1.5
         for axes in plt.gcf().get_axes():
             if len(axes.get_xticks()) > 4:
-                axes.locator_params(tight=False, axis='x',
-                                    nbins=len(axes.get_xticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis='x',
+                    nbins=len(axes.get_xticks()) / tick_reduc,
+                )
             if len(axes.get_yticks()) > 4:
-                axes.locator_params(tight=False, axis='y',
-                                    nbins=len(axes.get_yticks()) / 1.5)
+                axes.locator_params(
+                    tight=False,
+                    axis='y',
+                    nbins=len(axes.get_yticks()) / tick_reduc,
+                )
 
     if __MODE == 'poster':
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
     elif __MODE == 'beamer':
-        fig.set_size_inches((3 * figsize[0], 3 * figsize[1]))
+        fig.set_size_inches(
+            (3 * figsize[0], 3 * figsize[1]),
+        )
 
-    fig.tight_layout()
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore')
+        fig.tight_layout()
 
     # convert figsize to canvas size
     if use_canvas_size:
