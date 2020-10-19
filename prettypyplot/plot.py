@@ -9,6 +9,7 @@ All rights reserved.
 from os import path
 
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
+import numpy as np
 from matplotlib import legend as mlegend
 from matplotlib import pyplot as plt
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
@@ -396,3 +397,134 @@ def __minmax(lim, rcparam):
     margin = plt.rcParams[rcparam]
     minmax = [lim[0] + (margin + i) / (1 + 2 * margin) * width for i in [0, 1]]
     return minmax
+
+
+def hide_empty_axes(axs=None):
+    """Hide empty axes.
+
+    Loop over all axes and hide empty ones.
+
+    Parameters
+    ----------
+    axs : mpl.axes.Axes or list of
+        Specify axes to check for empty state. Default use all of current
+        figure.
+
+    """
+    # check for single axes
+    if axs is not None:
+        if isinstance(axs, mpl.axes.Axes):
+            axs = [axs]
+        elif all((
+            isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs)
+        )):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError('axs needs to be of type matplotlib.axes.Axes.')
+    else:
+        axs = plt.gcf().get_axes()
+
+    # loop over all axes and hide empty ones
+    for ax in axs:
+        if _is_empty_axes(ax):
+            ax.axis('off')
+
+
+def label_outer(axs=None):
+    """Only show outer labels and tick labels.
+
+    This checks for outest visible axes only. Works only with single Gridspec.
+
+    Parameters
+    ----------
+    axs : list of mpl.axes.AxesSubplot
+    """
+    # check for single axes
+    if axs is not None:
+        if _is_subplot_axes(axs):
+            axs = [axs]
+        elif all((_is_subplot_axes(arg) for arg in np.ravel(axs))):
+            axs = np.ravel(axs)
+        else:
+            raise TypeError(
+                'axs needs to be of type matplotlib.axes.AxesSuplot.',
+            )
+    else:
+        axs = [ax for ax in plt.gcf().get_axes() if _is_subplot_axes(ax)]
+
+    for ax in axs:
+        ss = ax.get_subplotspec()
+        if hasattr(ss, 'is_last_row'):  # noqa: WPS421
+            # for mpl >= 3.4
+            lastrow = ss.is_last_row()
+            firstcol = ss.is_first_col()
+        else:
+            lastrow = ax.is_last_row()
+            firstcol = ax.is_first_col()
+
+        # check if axes below, left is hidden
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)
+
+
+def _is_subplot_axes(ax):
+    """Check is is subplot axes."""
+    return (
+        isinstance(ax, mpl.axes.Axes) and
+        hasattr(ax, 'get_subplotspec')  # noqa: WPS421
+    )
+
+
+def _is_outer_empty(axs, ax):
+    """Check if lefter/lower axes is empty."""
+    left_empty, bottom_empty = False, False
+    for axes in axs:
+        if _is_left_neighbor(axes, ax):
+            left_empty = left_empty or not axes.axison
+
+        if _is_bottom_neighbor(axes, ax):
+            bottom_empty = bottom_empty or not axes.axison
+    return left_empty, bottom_empty
+
+
+def _is_left_neighbor(ax1, ax2):
+    """Check if ax1 is left ax2."""
+    return _has_neighbor_distance(ax1, ax2, col_offset=1)
+
+
+def _is_bottom_neighbor(ax1, ax2):
+    """Check if ax1 is below ax2."""
+    return _has_neighbor_distance(ax1, ax2, row_offset=-1)
+
+
+def _has_neighbor_distance(ax1, ax2, row_offset=0, col_offset=0):
+    """Check if two SubpotAxes have the given offset distance."""
+    ss1, ss2 = ax1.get_subplotspec(), ax2.get_subplotspec()
+    return (
+        any((
+            row + row_offset in list(ss2.rowspan) for row in list(ss1.rowspan)
+        )) and any((
+            col + col_offset in list(ss2.colspan) for col in list(ss1.colspan)
+        ))
+    )
+
+
+def _label_outer(ax, lastrow, firstcol):
+    """See mpl.axes.Axes.label_outer()."""
+    if not lastrow:
+        for xlabel in ax.get_xticklabels(which='both'):
+            xlabel.set_visible(False)
+        ax.xaxis.get_offset_text().set_visible(False)
+        ax.set_xlabel('')
+    if not firstcol:
+        for ylabel in ax.get_yticklabels(which='both'):
+            ylabel.set_visible(False)
+        ax.yaxis.get_offset_text().set_visible(False)
+        ax.set_ylabel('')
+
+
+def _is_empty_axes(ax):
+    """Return if axes is empty."""
+    return (
+        not ax.lines and not ax.collections and not ax.patches and not ax.texts
+    )
