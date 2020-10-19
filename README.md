@@ -1,4 +1,6 @@
 <p align="center">
+    <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
+        <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
         <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
