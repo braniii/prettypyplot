@@ -157,7 +157,7 @@ def use_style(
 
     """
     # restore matplotlib defaults
-    __reset_style()
+    _reset_style()
 
     # register own continuous and discrete cmaps
     pclr.load_cmaps()
@@ -355,7 +355,7 @@ def _get_scale(mode):
             'fontsize': 28.
         }
     }
-    return scale_dict.get(mode, default='default')
+    return scale_dict.get(mode, scale_dict['default'])
 
 
 def _reset_style():
