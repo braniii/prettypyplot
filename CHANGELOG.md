@@ -1,5 +1,12 @@
 ### Changelog
 - tba:
+- v0.5.0:
+    - Add `pplt.label_outer` which respects empty axes
+    - Add `pplt.hide_empty_axes` for hiding empty axes
+    - Enforce wemake-python-styleguide (WIP)
+    - new refreshing colormap `paula`
+    - Upgrade doc to `pdoc 0.9` and automatize it
+    - Make cmaps compatible with `maptlitlib 3.5+`
 - v0.4.2:
     - Add option `sf` to activate sans-serif font with `pplt.use_style`
     - simplify usage of contour option
