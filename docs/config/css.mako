@@ -281,7 +281,6 @@
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-
   }
     .admonition-title {
       font-weight: bold;
