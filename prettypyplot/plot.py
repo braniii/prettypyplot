@@ -4,16 +4,14 @@ BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
-Author: Daniel Nagel
-
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-import os.path
+from os import path
 
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
-import matplotlib.legend as mlegend
-import matplotlib.pyplot as plt
-import mpl_toolkits.axes_grid1
+from matplotlib import legend as mlegend
+from matplotlib import pyplot as plt
+from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
 from prettypyplot import _tools
 from prettypyplot.style import __MODE, __STYLE
@@ -41,9 +39,7 @@ def imshow(*args, ax=None, **kwargs):
         kwargs['zorder'] = 1
 
     # plot
-    im = ax.imshow(*args, **kwargs)
-
-    return im
+    return ax.imshow(*args, **kwargs)
 
 
 def plot(*args, ax=None, **kwargs):
@@ -146,7 +142,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
     # save as pdf if not specified
     if 'format' not in kwargs:
-        if os.path.splitext(fname)[1][1:] == '':
+        if path.splitext(fname)[1][1:] == '':
             fname = '{0}.pdf'.format(fname)
 
     # save fig
@@ -337,7 +333,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         ax = plt.gca()
 
     # generate divider
-    divider = mpl_toolkits.axes_grid1.make_axes_locatable(ax)
+    divider = mpl_axes_grid1.make_axes_locatable(ax)
     cax = divider.append_axes(position, width, pad=pad)
 
     cbar = plt.colorbar(im, cax=cax, orientation=orientation)
