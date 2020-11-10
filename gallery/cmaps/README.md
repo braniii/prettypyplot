@@ -5,10 +5,11 @@ qualitative colormaps. All of them can be loaded into matplotlib by
 `prettypyplot.colors.load_cmaps` or simply using the setup function
 `prettypyplot.style.use_style`. With `prettypyplot.colors.load_colors`
 the colors of `pastel5` (`'pplt:blue'`, `'pplt:red'`, `'pplt:green'`,
-`'pplt:orange'`, `'pplt:lightblue'`), axes `'pplt:axes'`, grid
-`'pplt:grid'` and textcolor `'pplt:text'` can be accessed easily.
+`'pplt:orange'`, `'pplt:lightblue'`), of two gray shades `'pplt:gray'` and
+`'pplt:lightgray'`, axes `'pplt:axes'`, grid `'pplt:grid'` and textcolor
+`'pplt:text'` can be accessed easily.
 
-The qualitative colors `'pastel_autumn'`, `'pastel_spring'`, 
+The qualitative colors `'pastel_autumn'`, `'pastel_spring'`,
 `'pastel_rainbow'` are neither cbf friendly nor suited for black-white.
 
 .. warning::
