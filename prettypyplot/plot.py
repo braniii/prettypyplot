@@ -542,3 +542,64 @@ def _is_empty_axes(ax):
     return (
         not ax.lines and not ax.collections and not ax.patches and not ax.texts
     )
+
+
+def subplot_labels(*, fig=None, xlabel=None, ylabel=None):
+    """Add global labels of subplots.
+
+    This method adds shared x- and y-labels for a grid of subplots. These can
+    be created by, e.g. `fig, axs = plt.subplots(...)`.
+
+    Parameters
+    ----------
+    fig : matplotlib figure, optional
+        If `None` the current figure will be used instead.
+
+    xlabel : str, optional
+        String of x label.
+
+    ylabel : str, optional
+        String of y label.
+
+    """
+    # if no label passed, nothing to do
+    if xlabel is None and ylabel is None:
+        return
+
+    # get active axes to restore it later on
+    ca = plt.gca()
+
+    if fig is None:
+        fig = plt.gcf()
+
+    # add subplot spanning the complete figure
+    ax = fig.add_subplot(111, frameon=False)  # noqa: WPS432
+
+    # hide axes
+    ax.tick_params(
+        labelcolor='none',
+        color='none',
+        grid_alpha=0,
+        which='both',
+        top=False,
+        bottom=False,
+        left=False,
+        right=False,
+    )
+    # remove ticks to get no artificial padding
+    ax.set_yticks([])
+    # TODO: align_labels seems not to work for xlabels, hence it can not be
+    # removed
+    ax.set_xticks([0])
+    # remove ticks
+    ax.xaxis.set_ticks_position('none')
+
+    ax.grid(False)
+    if xlabel is not None:
+        ax.set_xlabel(xlabel)
+    if ylabel is not None:
+        ax.set_ylabel(ylabel)
+    fig.align_labels()
+
+    # reset current axes
+    plt.sca(ca)
