@@ -6,8 +6,8 @@ All rights reserved.
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-from os import path
 import warnings
+from os import path
 
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import numpy as np
@@ -68,7 +68,7 @@ def plot(*args, ax=None, **kwargs):
 
     if __STYLE == 'minimal':
         # TODO: change this to function
-        xminmax = __xminmax(ax)
+        xminmax = _xminmax(ax)
         xticks = ax.get_xticks()
         if xticks.size:
             ax.spines['bottom'].set_bounds(xminmax[0], xminmax[1])
@@ -81,7 +81,7 @@ def plot(*args, ax=None, **kwargs):
             # newticks = newticks.compress(newticks >= firsttick)
             # ax.set_xticks(newticks)
 
-        yminmax = __yminmax(ax)
+        yminmax = _yminmax(ax)
         yticks = ax.get_yticks()
         if yticks.size:
             ax.spines['left'].set_bounds(yminmax[0], yminmax[1])
@@ -204,9 +204,10 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     .. include:: ../gallery/legend/README.md
 
     """
-    if outside not in [False, 'top', 'right', 'left', 'bottom']:
-        raise ValueError('Use for outside one of [False, "top", "right", '
-                         '"left", "bottom"]')
+    if outside not in {False, 'top', 'right', 'left', 'bottom'}:
+        raise ValueError(
+            'Use for outside one of [False, "top", "right", "left", "bottom"]',
+        )
 
     # parse axes
     args, ax = _tools._parse_axes(*args, ax=ax)
@@ -219,51 +220,51 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
 
     # shift axis to opposite side.
     if outside:
-        activate_axis(__opposite_side(outside))
+        activate_axis(_opposite_side(outside))
 
     # set anchor, mode and location
     if outside == 'top':
-        kwargs.setdefault('bbox_to_anchor', (0., 1.0, 1., .01))
+        kwargs.setdefault('bbox_to_anchor', (0.0, 1.0, 1.0, 0.01))
         kwargs.setdefault('mode', 'expand')
         kwargs.setdefault('loc', 'lower left')
     elif outside == 'bottom':
-        kwargs.setdefault('bbox_to_anchor', (0., 0., 1., .01))
+        kwargs.setdefault('bbox_to_anchor', (0.0, 0.0, 1.0, 0.01))
         kwargs.setdefault('mode', 'expand')
         kwargs.setdefault('loc', 'upper left')
     elif outside == 'right':
-        kwargs.setdefault('bbox_to_anchor', (1.03, .5))
+        kwargs.setdefault('bbox_to_anchor', (1.03, 0.5))
         kwargs.setdefault('loc', 'center left')
     elif outside == 'left':
-        kwargs.setdefault('bbox_to_anchor', (-.03, 0.5))
+        kwargs.setdefault('bbox_to_anchor', (-0.03, 0.5))
         kwargs.setdefault('loc', 'center right')
 
     # get handles and labels of selected axes
     handles, labels = mlegend._get_legend_handles_labels(axs)
 
     # set number of ncol to the number of items
-    if outside in ['top', 'bottom']:
+    if outside in {'top', 'bottom'}:
         kwargs.setdefault('ncol', len(labels))
 
     # generate legend
     leg = ax.legend(handles, labels, *args, **kwargs)
     if __STYLE == 'minimal':
-        leg.get_frame().set_linewidth(0.)
+        leg.get_frame().set_linewidth(0.0)
     elif __STYLE == 'default':
         leg.get_frame().set_linewidth(plt.rcParams['axes.linewidth'])
 
     # shift title to the left if on top or bottom
     # taken from: https://stackoverflow.com/a/53329898
-    if outside in ['top', 'bottom']:
-        c = leg.get_children()[0]
-        title = c.get_children()[0]
-        hpack = c.get_children()[1]
-        c._children = [hpack]
+    if outside in {'top', 'bottom'}:
+        child = leg.get_children()[0]
+        title = child.get_children()[0]
+        hpack = child.get_children()[1]
+        child._children = [hpack]
         hpack._children = [title] + hpack.get_children()
 
     return leg
 
 
-def __opposite_side(pos):
+def _opposite_side(pos):
     """Return opposite of 'top', 'bottom', 'left', 'right'."""
     if pos == 'top':
         return 'bottom'
@@ -296,11 +297,11 @@ def activate_axis(pos, ax=None):
         pos = [pos]
 
     # move axes ticks and labels to opposite side of position
-    for p in pos:
-        if p in ['bottom', 'top']:
+    for position in pos:
+        if position in {'bottom', 'top'}:
             ax.xaxis.set_ticks_position(p)
             ax.xaxis.set_label_position(p)
-        elif p in ['left', 'right']:
+        elif position in {'left', 'right'}:
             ax.yaxis.set_ticks_position(p)
             ax.yaxis.set_label_position(p)
 
@@ -337,7 +338,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
 
     """
     orientation = 'vertical'
-    if position in ['top', 'bottom']:
+    if position in {'top', 'bottom'}:
         orientation = 'horizontal'
 
     # get axes
@@ -359,7 +360,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     # set ticks and label of ticks to the outside
     activate_axis(position, ax=cax)
     # set the axis opposite to the colorbar to active
-    activate_axis(__opposite_side(position), ax=ax)
+    activate_axis(_opposite_side(position), ax=ax)
 
     # invert width and pad
     pad_inv, width_inv = _tools._invert_sign(pad), _tools._invert_sign(width)
@@ -392,26 +393,26 @@ def grid(*args, ax=None, **kwargs):
         gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
         ax.set_axisbelow(True)
         return (gr_maj, gr_min)
-    else:
-        return
 
 
-def __xminmax(ax):
+def _xminmax(ax):
     """Get xrange of plotted data."""
-    return __minmax(lim=ax.get_xlim(), rcparam='axes.xmargin')
+    return _minmax(lim=ax.get_xlim(), rcparam='axes.xmargin')
 
 
-def __yminmax(ax):
+def _yminmax(ax):
     """Get yrange of plotted data."""
-    return __minmax(lim=ax.get_ylim(), rcparam='axes.ymargin')
+    return _minmax(lim=ax.get_ylim(), rcparam='axes.ymargin')
 
 
-def __minmax(lim, rcparam):
+def _minmax(lim, rcparam):
     """Get range of plotted data."""
     width = lim[1] - lim[0]
     margin = plt.rcParams[rcparam]
-    minmax = [lim[0] + (margin + i) / (1 + 2 * margin) * width for i in [0, 1]]
-    return minmax
+    return [  # min max
+        lim[0] + (margin + idx) / (1 + 2 * margin) * width
+        for idx in (0, 1)
+    ]
 
 
 def hide_empty_axes(axs=None):
@@ -430,9 +431,7 @@ def hide_empty_axes(axs=None):
     if axs is not None:
         if isinstance(axs, mpl.axes.Axes):
             axs = [axs]
-        elif all((
-            isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs)
-        )):
+        elif all((isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs))):
             axs = np.ravel(axs)
         else:
             raise TypeError('axs needs to be of type matplotlib.axes.Axes.')
