@@ -60,9 +60,14 @@ def parse_figsize(figsize, figratio):
 
     """
     if isinstance(figsize, (list, tuple, np.ndarray)):
+        if not all(is_number(size) for size in figsize):
+            sizetuple = None
+
         if len(figsize) == 1:
-            sizetuple = figsize[0]
-        elif len(figsize) >= 2:
+            figsize = figsize[0]
+        elif len(figsize) == 2:
+            sizetuple = figsize
+        else:
             sizetuple = None
 
     if is_number(figsize):
