@@ -276,12 +276,12 @@ def _opposite_side(pos):
     raise ValueError('Only "top", "bottom", "left", "right" are accepted.')
 
 
-def activate_axis(pos, ax=None):
+def activate_axis(position, ax=None):
     """Shift the specified axis to the opposite side.
 
     Parameters
     ----------
-    pos : str or list of str
+    position : str or list of str
         Specify axis to flip, one of ['left', 'right', 'top', 'bottom'].
 
     ax : matplotlib axes
@@ -292,17 +292,26 @@ def activate_axis(pos, ax=None):
     ax = _tools._gca(ax)
 
     # convert string to list of strings
-    if isinstance(pos, str):
-        pos = [pos]
+    if isinstance(position, str):
+        position = [position]
+
+    # allowed values
+    positions = {'bottom', 'top', 'left', 'right'}
 
     # move axes ticks and labels to opposite side of position
-    for position in pos:
-        if position in {'bottom', 'top'}:
-            ax.xaxis.set_ticks_position(p)
-            ax.xaxis.set_label_position(p)
-        elif position in {'left', 'right'}:
-            ax.yaxis.set_ticks_position(p)
-            ax.yaxis.set_label_position(p)
+    for pos in position:
+        if pos not in positions:
+            raise ValueError(
+                '{0:!r} is not a valid value for {1}; supported values are {2}'
+                .format(pos, 'position', ', '.join(positions))
+            )
+
+        if pos in {'bottom', 'top'}:
+            axis = ax.xaxis
+        elif pos in {'left', 'right'}:
+            axis = ax.yaxis
+        axis.set_ticks_position(pos)
+        axis.set_label_position(pos)
 
 
 def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
