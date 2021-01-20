@@ -240,7 +240,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         activate_axis(_opposite_side(outside))
 
     # set anchor, mode and location
-    kwargs = {**default_kwargs.get_default(outside, {}), **kwargs}
+    kwargs = {**default_kwargs.get(outside, {}), **kwargs}
 
     # get handles and labels of selected axes
     handles, labels = mlegend._get_legend_handles_labels(axs)  # noqa: WPS437
