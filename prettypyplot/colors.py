@@ -11,7 +11,7 @@ import numpy as np
 from matplotlib import colors as clr
 from matplotlib import pyplot as plt
 
-# import colormaps
+# importing colormaps
 from prettypyplot.cmaps._bownair import _bownair
 from prettypyplot.cmaps._discrete import (
     _cbf4,

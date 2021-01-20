@@ -16,7 +16,7 @@ import matplotlib.colors as clr
 import matplotlib.patheffects as path_effects
 import matplotlib.pyplot as plt
 
-from prettypyplot import _tools
+from prettypyplot import tools
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48,7 +48,7 @@ def text(x, y, s, contour=False, ax=None, **kwargs):
 
     """
     # parse axes
-    ax = _tools._gca(ax)
+    ax = tools.gca(ax)
 
     # change default alignment
     if 'va' not in kwargs and 'verticalalignment' not in kwargs:
@@ -133,7 +133,7 @@ def add_contour(txt, contourwidth, contourcolor='w'):
         raise TypeError('txt needs to be "matplotlib.text.Text", but'
                         ' is {t}'.format(t=type(txt)))
     # check if number
-    if not _tools._is_number(contourwidth):
+    if not tools.is_number(contourwidth):
         raise TypeError('contourwidth={w} needs to be a number.'
                         .format(w=contourwidth))
 

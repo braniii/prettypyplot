@@ -14,7 +14,7 @@ from matplotlib import legend as mlegend
 from matplotlib import pyplot as plt
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
-from prettypyplot import _tools
+from prettypyplot import tools
 from prettypyplot.style import __MODE, __STYLE
 
 
@@ -34,7 +34,7 @@ def imshow(*args, ax=None, **kwargs):
         See [pyplot.imshow()](MPL_DOC.pyplot.imshow.html)
 
     """
-    args, ax = _tools._parse_axes(*args, ax=ax)
+    args, ax = tools.parse_axes(*args, ax=ax)
 
     if 'zorder' not in kwargs:
         kwargs['zorder'] = 1
@@ -60,7 +60,7 @@ def plot(*args, ax=None, **kwargs):
 
     """
     # parse axes
-    args, ax = _tools._parse_axes(*args, ax=ax)
+    args, ax = tools.parse_axes(*args, ax=ax)
 
     # plot
     axes = ax.plot(*args, **kwargs)
@@ -209,7 +209,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         )
 
     # parse axes
-    args, ax = _tools._parse_axes(*args, ax=ax)
+    args, ax = tools.parse_axes(*args, ax=ax)
 
     # parse axs
     if axs is None:
@@ -289,7 +289,7 @@ def activate_axis(position, ax=None):
 
     """
     # get axes
-    ax = _tools._gca(ax)
+    ax = tools.gca(ax)
 
     # convert string to list of strings
     if isinstance(position, str):
@@ -371,7 +371,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     activate_axis(_opposite_side(position), ax=ax)
 
     # invert width and pad
-    pad_inv, width_inv = _tools._invert_sign(pad), _tools._invert_sign(width)
+    pad_inv, width_inv = tools.invert_sign(pad), tools.invert_sign(width)
     cax_reset = divider.append_axes(position, width_inv, pad=pad_inv)
     cax_reset.set_visible(False)
 
@@ -394,7 +394,7 @@ def grid(*args, ax=None, **kwargs):
 
     """
     # parse axes
-    args, ax = _tools._parse_axes(*args, ax=ax)
+    args, ax = tools.parse_axes(*args, ax=ax)
 
     if __STYLE == 'default':
         gr_maj = ax.grid(which='major', linestyle='--', **kwargs)

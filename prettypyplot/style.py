@@ -11,7 +11,7 @@ from os import path as ospath
 import numpy as np
 from matplotlib import pyplot as plt
 
-from prettypyplot import _tools
+from prettypyplot import tools
 from prettypyplot import colors as pclr
 from prettypyplot.decorators import copy_doc_params, deprecated
 
@@ -267,10 +267,10 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
 def _set_rc_figsize(figratio, figsize):
     """Set rcParams figsize."""
     # convert figratio to value
-    figratio = _tools._parse_figratio(figratio)
+    figratio = tools.parse_figratio(figratio)
 
     # setup figsize
-    figsize = _tools._parse_figsize(figsize, figratio)
+    figsize = tools.parse_figsize(figsize, figratio)
 
     if figsize is not None:
         plt.rcParams['figure.figsize'] = figsize
