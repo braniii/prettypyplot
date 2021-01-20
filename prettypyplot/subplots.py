@@ -7,8 +7,9 @@ All rights reserved.
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
-import numpy as np
 from matplotlib import pyplot as plt
+
+from prettypyplot import tools
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -25,15 +26,7 @@ def hide_empty_axes(axs=None):
 
     """
     # check for single axes
-    if axs is not None:
-        if isinstance(axs, mpl.axes.Axes):
-            axs = [axs]
-        elif all((isinstance(arg, mpl.axes.Axes) for arg in np.ravel(axs))):
-            axs = np.ravel(axs)
-        else:
-            raise TypeError('axs needs to be of type matplotlib.axes.Axes.')
-    else:
-        axs = plt.gcf().get_axes()
+    axs = tools.get_axes(axs)
 
     # loop over all axes and hide empty ones
     for ax in axs:
@@ -68,11 +61,8 @@ def label_outer(axs=None):
     """
     # check for single axes
     if axs is not None:
-        if _is_subplot_axes(axs):
-            axs = [axs]
-        elif all((_is_subplot_axes(arg) for arg in np.ravel(axs))):
-            axs = np.ravel(axs)
-        else:
+        axs = tools.get_axes(axs)
+        if not all((_is_subplot_axes(arg) for arg in axs)):
             raise TypeError(
                 'axs needs to be of type matplotlib.axes.AxesSuplot.',
             )

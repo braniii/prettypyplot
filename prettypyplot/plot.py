@@ -9,7 +9,6 @@ All rights reserved.
 import warnings
 from os import path
 
-import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 from matplotlib import legend as mlegend
 from matplotlib import pyplot as plt
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
@@ -32,6 +31,11 @@ def imshow(*args, ax=None, **kwargs):
 
     args, kwargs
         See [pyplot.imshow()](MPL_DOC.pyplot.imshow.html)
+
+    Returns
+    -------
+    im : matplolib.image.AxesImage
+        Reference to plotted image.
 
     """
     args, ax = tools.parse_axes(*args, ax=ax)
@@ -58,12 +62,17 @@ def plot(*args, ax=None, **kwargs):
     args, kwargs
         See [pyplot.plot()](MPL_DOC.pyplot.plot.html)
 
+    Returns
+    -------
+    lines : list of matplolib.lines.Line2D
+        A list of lines representing the plotted data.
+
     """
     # parse axes
     args, ax = tools.parse_axes(*args, ax=ax)
 
     # plot
-    axes = ax.plot(*args, **kwargs)
+    lines = ax.plot(*args, **kwargs)
 
     if __STYLE == 'minimal':
         # TODO: change this to function
@@ -72,28 +81,14 @@ def plot(*args, ax=None, **kwargs):
         if xticks.size:
             ax.spines['bottom'].set_bounds(xminmax[0], xminmax[1])
             ax.spines['top'].set_bounds(xminmax[0], xminmax[1])
-            # firsttick = np.compress(xticks >= min(ax.get_xlim()), xticks)[0]
-            # lasttick = np.compress(xticks <= max(ax.get_xlim()), xticks)[-1]
-            # ax.spines['bottom'].set_bounds(firsttick, lasttick)
-            # ax.spines['top'].set_bounds(firsttick, lasttick)
-            # newticks = xticks.compress(xticks <= lasttick)
-            # newticks = newticks.compress(newticks >= firsttick)
-            # ax.set_xticks(newticks)
 
         yminmax = _yminmax(ax)
         yticks = ax.get_yticks()
         if yticks.size:
             ax.spines['left'].set_bounds(yminmax[0], yminmax[1])
             ax.spines['right'].set_bounds(yminmax[0], yminmax[1])
-            # firsttick = np.compress(yticks >= min(ax.get_ylim()), yticks)[0]
-            # lasttick = np.compress(yticks <= max(ax.get_ylim()), yticks)[-1]
-            # ax_i.spines['left'].set_bounds(firsttick, lasttick)
-            # ax_i.spines['right'].set_bounds(firsttick, lasttick)
-            # newticks = yticks.compress(yticks <= lasttick)
-            # newticks = newticks.compress(newticks >= firsttick)
-            # ax.set_yticks(newticks)
 
-    return axes
+    return lines
 
 
 def savefig(fname, use_canvas_size=True, **kwargs):
@@ -117,30 +112,13 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     ax = fig.get_axes()[0]
     figsize = fig.get_size_inches()
 
+    # store figsize to reset it later
     set_figsize = figsize
 
     if __STYLE == 'minimal':
-        # reduce number of ticks by factor 1.5 if more than 4
-        tick_reduc = 1.5
-        for axes in plt.gcf().get_axes():
-            if len(axes.get_xticks()) > 4:
-                axes.locator_params(
-                    tight=False,
-                    axis='x',
-                    nbins=len(axes.get_xticks()) / tick_reduc,
-                )
-            if len(axes.get_yticks()) > 4:
-                axes.locator_params(
-                    tight=False,
-                    axis='y',
-                    nbins=len(axes.get_yticks()) / tick_reduc,
-                )
+        _reduce_ticks(fig)
 
-    if __MODE == 'poster':
-        fig.set_size_inches(
-            (3 * figsize[0], 3 * figsize[1]),
-        )
-    elif __MODE == 'beamer':
+    if __MODE in {'poster', 'beamer'}:
         fig.set_size_inches(
             (3 * figsize[0], 3 * figsize[1]),
         )
@@ -165,6 +143,24 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
     # reset figsize, if user calls this function multiple times on same figure
     fig.set_size_inches(set_figsize)
+
+
+def _reduce_ticks(fig):
+    """Reduce number of ticks by factor 1.5 if more than 4."""
+    tick_reduc = 1.5
+    for axes in fig.get_axes():
+        if len(axes.get_xticks()) > 4:
+            axes.locator_params(
+                tight=False,
+                axis='x',
+                nbins=len(axes.get_xticks()) / tick_reduc,
+            )
+        if len(axes.get_yticks()) > 4:
+            axes.locator_params(
+                tight=False,
+                axis='y',
+                nbins=len(axes.get_yticks()) / tick_reduc,
+            )
 
 
 def legend(*args, outside=False, ax=None, axs=None, **kwargs):
@@ -195,7 +191,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
 
     Returns
     -------
-    leg
+    leg : matplotlib.legend.Legend
         Matplotlib legend handle.
 
     Examples
@@ -203,9 +199,31 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     .. include:: ../gallery/legend/README.md
 
     """
-    if outside not in {False, 'top', 'right', 'left', 'bottom'}:
+    default_kwargs = {
+        'top': {
+            'bbox_to_anchor': (0.0, 1.0, 1.0, 0.01),
+            'mode': 'expand',
+            'loc': 'lower left',
+        },
+        'bottom': {
+            'bbox_to_anchor': (0.0, 0.0, 1.0, 0.01),
+            'mode': 'expand',
+            'loc': 'upper left',
+        },
+        'right': {
+            'bbox_to_anchor': (1.03, 0.5),
+            'loc': 'center left',
+        },
+        'left': {
+            'bbox_to_anchor': (-0.03, 0.5),
+            'loc': 'center right',
+        },
+    }
+    if outside not in {False, *default_kwargs}:
         raise ValueError(
-            'Use for outside one of [False, "top", "right", "left", "bottom"]',
+            'Use for outside one of [False, {0}]'.format(
+                ', '.join(['"{0}"'.format(dr) for dr in default_kwargs]),
+            ),
         )
 
     # parse axes
@@ -214,31 +232,18 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     # parse axs
     if axs is None:
         axs = [ax]
-    elif not all((isinstance(arg, mpl.axes.Axes) for arg in axs)):
-        raise TypeError('axs needs to be of type matplotlib.axes.Axes.')
+    else:
+        axs = tools.get_axes(axs)
 
     # shift axis to opposite side.
     if outside:
         activate_axis(_opposite_side(outside))
 
     # set anchor, mode and location
-    if outside == 'top':
-        kwargs.setdefault('bbox_to_anchor', (0.0, 1.0, 1.0, 0.01))
-        kwargs.setdefault('mode', 'expand')
-        kwargs.setdefault('loc', 'lower left')
-    elif outside == 'bottom':
-        kwargs.setdefault('bbox_to_anchor', (0.0, 0.0, 1.0, 0.01))
-        kwargs.setdefault('mode', 'expand')
-        kwargs.setdefault('loc', 'upper left')
-    elif outside == 'right':
-        kwargs.setdefault('bbox_to_anchor', (1.03, 0.5))
-        kwargs.setdefault('loc', 'center left')
-    elif outside == 'left':
-        kwargs.setdefault('bbox_to_anchor', (-0.03, 0.5))
-        kwargs.setdefault('loc', 'center right')
+    kwargs = {**default_kwargs.get_default(outside, {}), **kwargs}
 
     # get handles and labels of selected axes
-    handles, labels = mlegend._get_legend_handles_labels(axs)
+    handles, labels = mlegend._get_legend_handles_labels(axs)  # noqa: WPS437
 
     # set number of ncol to the number of items
     if outside in {'top', 'bottom'}:
@@ -252,28 +257,38 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         leg.get_frame().set_linewidth(plt.rcParams['axes.linewidth'])
 
     # shift title to the left if on top or bottom
-    # taken from: https://stackoverflow.com/a/53329898
     if outside in {'top', 'bottom'}:
-        child = leg.get_children()[0]
-        title = child.get_children()[0]
-        hpack = child.get_children()[1]
-        child._children = [hpack]
-        hpack._children = [title] + hpack.get_children()
+        _shift_legend_title(leg)
 
     return leg
 
 
+def _shift_legend_title(leg):
+    """Shift title to the left of the labels."""
+    # taken from: https://stackoverflow.com/a/53329898
+    child = leg.get_children()[0]
+    title = child.get_children()[0]
+    hpack = child.get_children()[1]
+    child._children = [hpack]  # noqa: WPS437
+    hpack._children = [title] + hpack.get_children()  # noqa: WPS437
+
+
 def _opposite_side(pos):
     """Return opposite of 'top', 'bottom', 'left', 'right'."""
-    if pos == 'top':
-        return 'bottom'
-    elif pos == 'bottom':
-        return 'top'
-    elif pos == 'right':
-        return 'left'
-    elif pos == 'left':
-        return 'right'
-    raise ValueError('Only "top", "bottom", "left", "right" are accepted.')
+    opposite = {
+        'top': 'bottom',
+        'bottom': 'top',
+        'right': 'left',
+        'left': 'right',
+    }
+    if pos not in opposite:
+        raise ValueError(
+            'Pos needs to be one of [{0}].'.format(
+                ', '.join('"{0}"'.format(position) for position in opposite),
+            ),
+        )
+
+    return opposite[pos]
 
 
 def activate_axis(position, ax=None):
@@ -344,15 +359,20 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         Colorbar properties of
         [pyplot.colorbar()](MPL_DOC.pyplot.colorbar.html)
 
+    Returns
+    -------
+    colorbar : matplotlib.colorbar.Colorbar
+        Colorbar instance.
+
     """
     orientation = 'vertical'
     if position in {'top', 'bottom'}:
         orientation = 'horizontal'
 
     # get axes
-    if hasattr(im, 'axes'):
+    if hasattr(im, 'axes'):  # noqa: WPS421
         ax = im.axes
-    elif hasattr(im, 'ax'):
+    elif hasattr(im, 'ax'):  # noqa: WPS421
         ax = im.ax
     else:
         ax = plt.gca()

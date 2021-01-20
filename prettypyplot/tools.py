@@ -131,3 +131,17 @@ def gca(ax):
     if isinstance(ax, mpl.axes.Axes):
         return ax
     return plt.gca()
+
+
+def get_axes(axs):
+    """Return asx if it is all axes instances, else the all current axes."""
+    if axs is None:
+        return plt.gcf().get_axes()
+
+    axs = np.ravel(axs)
+    if not all((isinstance(arg, mpl.axes.Axes) for arg in axs)):
+        raise TypeError(
+            'If `axs` is given, it needs to be of type matplotlib.axes.Axes.' +
+            ' or list of',
+        )
+    return axs
