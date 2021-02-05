@@ -36,7 +36,7 @@ def parse_figratio(figratio):
         if figratio not in figratios:
             raise ValueError(
                 'figratio needs to be an numeric value or one of [' +
-                '{0}].'.format(', '.join(figratios.keys)),
+                '{0}].'.format(', '.join(figratios.keys())),
             )
         figratio = figratios.get(figratio, None)
     return figratio
@@ -59,21 +59,16 @@ def parse_figsize(figsize, figratio):
         Tuple of figsize in inches (x, y).
 
     """
-    if isinstance(figsize, (list, tuple, np.ndarray)):
-        if not all(is_number(size) for size in figsize):
-            sizetuple = None
+    figsize = tuple(np.atleast_1d(figsize))
+    if not all(is_number(size) for size in figsize):
+        sizetuple = None
 
-        if len(figsize) == 1:
-            figsize = figsize[0]
-        elif len(figsize) == 2:
-            sizetuple = figsize
-        else:
-            sizetuple = None
-
-    if is_number(figsize):
-        # check figratio
+    if len(figsize) == 1:
         figratio = parse_figratio(figratio)
-        sizetuple = (float(figsize), float(figsize) / figratio)
+        figsize = float(figsize[0])
+        sizetuple = (figsize, figsize / figratio)
+    elif len(figsize) == 2:
+        sizetuple = figsize
     else:
         sizetuple = None
 
