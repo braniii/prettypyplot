@@ -62,8 +62,7 @@ def parse_figsize(figsize, figratio):
     figsize = tuple(np.atleast_1d(figsize))
     if not all(is_number(size) for size in figsize):
         sizetuple = None
-
-    if len(figsize) == 1:
+    elif len(figsize) == 1:
         figratio = parse_figratio(figratio)
         figsize = float(figsize[0])
         sizetuple = (figsize, figsize / figratio)
@@ -103,12 +102,16 @@ def is_number(number):
 
 def invert_sign(num):
     """Change sign of number or add/remove leading sign of str."""
-    if is_number(num):
+    if isinstance(num, (float, int)):
         return -1 * num
     elif isinstance(num, str):
         if num.startswith('-'):
             return num[1:]
         return '-{0}'.format(num)
+    raise ValueError(
+        'Num needs to be numeric value or string, not ' +
+        '{0}.'.format(num),
+    )
 
 
 def parse_axes(*args, ax):
