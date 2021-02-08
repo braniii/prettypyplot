@@ -1,11 +1,8 @@
-"""
-Plot text.
+"""Helper functions for plotting text.
 
 BSD 3-Clause License
 Copyright (c) 2020, Daniel Nagel
 All rights reserved.
-
-Author: Daniel Nagel
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,7 +17,7 @@ from prettypyplot import tools
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def text(x, y, s, contour=False, ax=None, **kwargs):
+def text(x, y, s, *, contour=None, ax=None, **kwargs):
     """Generate text object at (x,y).
 
     Wrapper around pyplot.text. The default alignment is changed to centered.
@@ -60,14 +57,15 @@ def text(x, y, s, contour=False, ax=None, **kwargs):
     txt = ax.text(x=x, y=y, s=s, **kwargs)
 
     # generate contour
-    contour_kwargs = __parse_contour(contour)
-    if contour_kwargs is not None:
-        add_contour(txt, **contour_kwargs)
+    if contour is not None:
+        contour_kwargs = _parse_contour(contour)
+        if contour_kwargs is not None:
+            add_contour(txt, **contour_kwargs)
 
     return txt
 
 
-def figtext(x, y, s, contour=False, **kwargs):
+def figtext(x, y, s, *, contour=None, **kwargs):
     """Generate text object at figure position (x,y).
 
     Wrapper around pyplot.figtext. The default alignment is changed to
@@ -105,9 +103,10 @@ def figtext(x, y, s, contour=False, **kwargs):
     txt = plt.figtext(x=x, y=y, s=s, **kwargs)
 
     # generate contour
-    contour_kwargs = __parse_contour(contour)
-    if contour_kwargs is not None:
-        add_contour(txt, **contour_kwargs)
+    if contour is not None:
+        contour_kwargs = _parse_contour(contour)
+        if contour_kwargs is not None:
+            add_contour(txt, **contour_kwargs)
 
     return txt
 
@@ -130,34 +129,42 @@ def add_contour(txt, contourwidth, contourcolor='w'):
     """
     # check if is text object
     if not isinstance(txt, mpl.text.Text):
-        raise TypeError('txt needs to be "matplotlib.text.Text", but'
-                        ' is {t}'.format(t=type(txt)))
+        raise TypeError(
+            'txt needs to be "matplotlib.text.Text", but ' +
+            'is {t}'.format(t=txt),
+        )
     # check if number
     if not tools.is_number(contourwidth):
-        raise TypeError('contourwidth={w} needs to be a number.'
-                        .format(w=contourwidth))
+        raise TypeError(
+            'contourwidth={w} needs to be a number.'.format(w=contourwidth),
+        )
 
     # check if color
     if not clr.is_color_like(contourcolor):
-        raise TypeError('contourcolor={c} can not be interpreted as color.'
-                        .format(c=contourcolor))
+        raise TypeError(
+            'contourcolor={c} can not be '.format(c=contourcolor) +
+            'interpreted as color.',
+        )
 
-    path_args = [path_effects.withStroke(linewidth=contourwidth,
-                                         foreground=contourcolor)]
+    path_args = [path_effects.withStroke(
+        linewidth=contourwidth, foreground=contourcolor,
+    )]
     txt.set_path_effects(path_args)
 
 
-def __parse_contour(contour):
+def _parse_contour(contour):
     """Parse contour tuple argument to kwargs."""
-    if isinstance(contour, bool):
+    if isinstance(contour, bool) and int(contour) in {0, 1}:
         if contour:
-            return {'contourwidth': plt.rcParams['lines.linewidth'],
-                    'contourcolor': 'w'}
-        else:
-            return None
-    elif isinstance(contour, Iterable) and len(contour) == 2:
-        lw, lc = contour
-        return {'contourwidth': lw,
-                'contourcolor': lc}
-    else:
+            return {
+                'contourwidth': plt.rcParams['lines.linewidth'],
+                'contourcolor': 'w',
+            }
         return None
+    elif isinstance(contour, (list, tuple)) and len(contour) == 2:
+        lw, lc = contour
+        return {'contourwidth': lw, 'contourcolor': lc}
+    raise TypeError(
+        'contour needs to be a boolean or a tuple/list, but given was: ' +
+        '{c}.'.format(c=contour),
+    )

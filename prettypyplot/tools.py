@@ -137,7 +137,7 @@ def gca(ax):
 
 
 def get_axes(axs):
-    """Return asx if it is all axes instances, else the all current axes."""
+    """Return axs if it is all axes instances, else the all current axes."""
     if axs is None:
         return plt.gcf().get_axes()
 
