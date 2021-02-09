@@ -163,6 +163,11 @@ def _parse_contour(contour):
         return None
     elif isinstance(contour, (list, tuple)) and len(contour) == 2:
         lw, lc = contour
+        if not clr.is_color_like(lc):
+            raise ValueError(
+                'contourcolor={c} can not be '.format(c=lc) +
+                'interpreted as color.',
+            )
         return {'contourwidth': lw, 'contourcolor': lc}
     raise TypeError(
         'contour needs to be a boolean or a tuple/list, but given was: ' +
