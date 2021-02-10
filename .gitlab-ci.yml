@@ -9,7 +9,7 @@ before_script:
 testing:
   stage: test
   script:
-    - pip3 install -q flake8 wemake-python-styleguide
+    - pip3 install -q flake8
     - flake8
     - pip3 install -q pytest pytest-cov pytest-rerunfailures pytest-benchmark coverage
     - pytest
