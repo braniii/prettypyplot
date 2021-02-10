@@ -27,6 +27,7 @@ from prettypyplot.cmaps._discrete import (
 )
 from prettypyplot.cmaps._macaw import _macaw
 from prettypyplot.cmaps._turbo import _turbo
+from prettypyplot.tools import is_number
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,7 +98,7 @@ def load_colors():
     clr._colors_full_map.update(pplt_colors)  # noqa: WPS437
 
 
-def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
+def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
     """Generate categorical colors of given cmap.
 
     Exract from a predefined colormap colors and generate for each the desired
@@ -111,7 +112,7 @@ def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
     nsc : int
         Number of shades per colors
 
-    cmap : mpl colormap, optional
+    cmap : `matplotlib.colors.Colormap` or str, optional
         Matplotlib colormap to take colors from. The default is the active
         color cycle.
 
@@ -121,14 +122,18 @@ def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
 
     Returns
     -------
-    scolors : mpl colormap
+    scolors : `matplotlib.colors.Colormap` or np.ndarray
         Return discrete colormap. If return_colors, a 2d representation will
         be returned instead.
 
     """
     # check correct data type
-    if int(nc) != nc or int(nsc) != nsc:
-        raise TypeError('nc and nsc need to be an integer.')
+    _is_number_in_range(
+        nc, name='nc', dtype=int, low=1, high=np.iinfo(int).max,
+    )
+    _is_number_in_range(
+        nsc, name='nsc', dtype=int, low=1, high=np.iinfo(int).max,
+    )
     nc, nsc = int(nc), int(nsc)
 
     # get cmap
@@ -157,7 +162,7 @@ def categorical_cmap(nc, nsc, cmap=None, return_colors=False):
     return clr.ListedColormap(np.concatenate(scolors))
 
 
-def categorical_color(nsc, color, return_hex=False):
+def categorical_color(nsc, color, *, return_hex=False):
     """Generate categorical shades of given colors.
 
     Generate for each provided color the number of specified shades. The shaded
@@ -184,18 +189,22 @@ def categorical_color(nsc, color, return_hex=False):
 
     """
     # check correct data type
-    if not clr.is_color_like(color):
-        raise TypeError('{c} can not be interpreted as color.'.format(c=color))
-    if int(nsc) != nsc:
-        raise TypeError('nsc need to be an integer.')
+    color = clr.to_rgb(color)
+    _is_number_in_range(
+        nsc, name='nsc', dtype=int, low=1, high=np.iinfo(int).max,
+    )
     nsc = int(nsc)
 
     # genrate shades of colors
-    color_hsv = clr.rgb_to_hsv(clr.to_rgb(color))
+    color_hsv = clr.rgb_to_hsv(color)
     colors_hsv = np.tile(color_hsv, nsc).reshape(nsc, 3)
     colors_hsv[:, 1] = np.linspace(color_hsv[1], 1 / 4, nsc)
     colors_hsv[:, 2] = np.linspace(color_hsv[2], 1, nsc)
     colors_rgb = clr.hsv_to_rgb(colors_hsv)
+
+    # check if color is greyscale value, need to fix arbitrary hue value of 0
+    if is_greyshade(color):
+        colors_rgb[:, 0] = colors_rgb[:, 1]
 
     if return_hex:
         return [clr.to_hex(color) for color in colors_rgb]
@@ -249,6 +258,8 @@ def _channel_transf(channel):
 
 def _relative_luminance(color):
     """Calculate luminance from rgb color, each channel [0, 1]."""
+    for rgbc in color:
+        _is_number_in_range(rgbc, name='RGB channel')
     rgb = np.array([_channel_transf(channel) for channel in color])
     rgb_weights = np.array([0.2126, 0.7152, 0.0722])
     return np.sum(rgb_weights * rgb)
@@ -256,10 +267,38 @@ def _relative_luminance(color):
 
 def _contrast(L1, L2):
     """L1 and L2 should be luminances [0, 1]."""
+    for lum in (L1, L2):
+        _is_number_in_range(lum, name='Luminace')
+    L1, L2 = float(L1), float(L2)
+
     L_offset = 0.05
     if L1 < L2:
         L1, L2 = L2, L1
     return (L1 + L_offset) / (L2 + L_offset)
+
+
+def _is_number_in_range(num, *, dtype=float, name='Variable', low=0, high=1):
+    """Check if number is in range [low, high]."""
+    if not is_number(num, dtype=dtype):
+        raise TypeError(
+            '{0} needs to be {1} but given '.format(name, dtype.__name__) +
+            '{num}'.format(num=num),
+        )
+    num = dtype(num)
+    if num < low or num > high:
+        raise ValueError(
+            '{name} needs to be within [{low}'.format(name=name, low=low) +
+            ', {high}] but given {num}'.format(high=high, num=num),
+        )
+
+
+def is_greyshade(color):
+    """Check if color is a greyscale value including bw."""
+    # check if color is greyscale value, need to fix arbitrary hue value
+    color = clr.to_rgb(color)
+    if np.min(color) == np.max(color):
+        return True
+    return False
 
 
 # ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
