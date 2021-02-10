@@ -2,7 +2,7 @@
 """Tests for the tools module.
 
 BSD 3-Clause License
-Copyright (c) 2019-2020, Daniel Nagel
+Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
 """
@@ -52,17 +52,19 @@ def test_parse_figsize(figsize, figratio, refsize, error):
             prettypyplot.tools.parse_figsize(figsize, figratio)
 
 
-@pytest.mark.parametrize('number, is_number', [
-    (1, True),
-    (1.0, True),
-    (True, True),
-    (False, True),
-    ('a', False),
-    ((1, 2), False),
+@pytest.mark.parametrize('number, kwargs, is_number', [
+    (1, {}, True),
+    (1.5, {}, True),
+    (1.5, {'dtype': int}, False),
+    (1.5, {'dtype': np.int32}, False),
+    (True, {}, True),
+    (False, {}, True),
+    ('a', {}, False),
+    ((1, 2), {}, False),
 ])
-def test_is_number(number, is_number):
+def test_is_number(number, kwargs, is_number):
     """Test is_number."""
-    assert is_number == prettypyplot.tools.is_number(number)
+    assert is_number == prettypyplot.tools.is_number(number, **kwargs)
 
 
 @pytest.mark.parametrize('number, refnumber, error', [

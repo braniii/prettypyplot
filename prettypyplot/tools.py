@@ -79,13 +79,16 @@ def parse_figsize(figsize, figratio):
     return sizetuple
 
 
-def is_number(number):
+def is_number(number, *, dtype=float):
     """Check if argument can be interpreated as number.
 
     Parameters
     ----------
     number : string, float, int
         Variable to be check if it can be casted to float.
+
+    dtype : dtype, optional
+        Check for different dtypes, so if is float or if it is int.
 
     Returns
     -------
@@ -97,7 +100,7 @@ def is_number(number):
         float(number)
     except (ValueError, TypeError):
         return False
-    return True
+    return float(number) == dtype(number)
 
 
 def invert_sign(num):
