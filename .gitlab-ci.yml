@@ -7,14 +7,30 @@ before_script:
   - pip3 install pdoc3
   - pip3 install -e .
 
+linter:
+  stage: test
+  script:
+    - pip install -q flake8 wemake-python-styleguide
+    - flake8
+
+coverage:
+  stage: test
+  script:
+    - pip install -q pytest pytest-cov pytest-rerunfailures pytest-benchmark coverage
+    - pytest
+    - coverage xml
+  artifacts:
+    reports:
+      cobertura: coverage.xml
+
 pages:
   stage: deploy
   script:
-  - cd docs; bash create_doc.sh; cd ..
-  - mv docs public
-  - mv gallery public/
+    - cd docs; bash create_doc.sh; cd ..
+    - mv docs public
+    - mv gallery public/
   artifacts:
     paths:
     - public
   only:
-  - master
+    - master
