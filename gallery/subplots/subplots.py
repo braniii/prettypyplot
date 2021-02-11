@@ -14,16 +14,15 @@ import prettypyplot as pplt
 # ~~~ DEFINE DATA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 np.random.seed(1337)
 N = 500
-t = np.linspace(0, 3 * np.pi, N)
+T = np.linspace(0, 3 * np.pi, N)
 
 pplt.use_style(figsize=.8)
 
 for nfigs in (8, 9):
     xs = [
-        np.sin(t + np.pi * np.random.rand()) + 0.1 * np.random.rand(N)
+        np.sin(T + np.pi * np.random.rand()) + 0.1 * np.random.rand(N)
         for _ in range(nfigs)
     ]
-
 
     fig, axs = plt.subplots(
         3,
@@ -34,7 +33,7 @@ for nfigs in (8, 9):
     )
 
     for idx, (ax, x) in enumerate(zip(axs.flatten(), xs)):
-        pplt.plot(t, xs[0], ax=ax)
+        pplt.plot(T, xs[0], ax=ax)
         ax.grid(False)
 
     pplt.hide_empty_axes()
