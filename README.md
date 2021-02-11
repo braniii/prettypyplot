@@ -3,6 +3,8 @@
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
         <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
+    <a href="https://gitlab.com/braniii/prettypyplot/-/commits/master">
+        <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/master/coverage.svg" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
     <a href="https://pepy.tech/project/prettypyplot" alt="Downloads" >
