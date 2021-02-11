@@ -142,23 +142,24 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
 
 The following list is sorted from *near future* to *hopefully ever*.
 
-- add more colorpalettes
-- enforce simplicity by refactoring
-- add countour line plot
-- add [axes_grid](https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html) examples
-- add more gallery entries
-- add package to conda_forge
-- improve `plt.suplots()` behaviour together with `pplt.savefig()`
-- setup widths and scaling factors for beamer and poster mode
-- tweak all function to enable `STYLE='minimal'`
-- add pytest
-- add search functionality in doc
-- implement tufte style
+- [x] add pytest
+- [x] add search functionality in doc
+- [x] refactoring code to improve readabilty
+- [ ] add more colorpalettes
+- [ ] add countour line plot
+- [ ] add [axes_grid](https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html) examples
+- [ ] add more gallery entries
+- [ ] add package to conda_forge
+- [ ] improve `plt.suplots()` behaviour together with `pplt.savefig()`
+- [ ] setup widths and scaling factors for beamer and poster mode
+- [ ] tweak all function to enable `STYLE='minimal'`
+- [ ] implement tufte style
 
 ## Building Documentation:
 
 The doc is based on [pdoc](https://pdoc3.github.io/pdoc/) and can be created by
-simply running `bash create_doc.sh` from the docs folder.
+simply running `bash create_doc.sh` from the docs folder. For dependencies see in the
+CI action.
 
 ## Similar Projects
 
