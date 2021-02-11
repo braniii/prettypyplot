@@ -1,6 +1,6 @@
 # generate doc
 echo 'create documentation'
-pdoc --html -o . --template-dir ./config --force ../prettypyplot
+python -m pdoc --html -o . --template-dir ./config --force ../prettypyplot
 
 mv prettypyplot/cmaps/* ./cmaps/
 rmdir prettypyplot/cmaps

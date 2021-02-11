@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>prettypyplot.subplots API documentation</title>
+<meta name="description" content="Wrapper for matplotlib functions for subplots …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/atom-one-dark.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#282c34;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;margin:1em 0;padding:1ex}#lunr-search{width:100%;font-size:1em;padding:6px 9px 5px 9px;border:1px solid silver;margin-top:10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<style>.homelink{display:block;font-size:2em;font-weight:bold;color:#555;padding-bottom:.5em;border-bottom:1px solid silver}.homelink:hover{color:inherit}.homelink img{max-width:20%;max-height:7em;margin:auto;margin-bottom:.3em}</style>
+<link rel="icon" href="gallery/logo.png">
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>prettypyplot.subplots</code></h1>
+</header>
+<section id="section-intro">
+<p>Wrapper for matplotlib functions for subplots.</p>
+<p>BSD 3-Clause License
+Copyright (c) 2020-2021, Daniel Nagel
+All rights reserved.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Wrapper for matplotlib functions for subplots.
+
+BSD 3-Clause License
+Copyright (c) 2020-2021, Daniel Nagel
+All rights reserved.
+
+&#34;&#34;&#34;
+# ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import matplotlib as mpl  # mpl = dm.tryImport(&#39;matplotlib&#39;)
+from matplotlib import pyplot as plt
+
+from prettypyplot import tools
+
+
+# ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def hide_empty_axes(axs=None):
+    &#34;&#34;&#34;Hide empty axes.
+
+    Loop over all axes and hide empty ones.
+
+    Parameters
+    ----------
+    axs : mpl.axes.Axes or list of
+        Specify axes to check for empty state. Default use all of current
+        figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    axs = tools.get_axes(axs)
+
+    # loop over all axes and hide empty ones
+    for ax in axs:
+        if _is_empty_axes(ax):
+            ax.axis(&#39;off&#39;)
+
+    # in case of shared axes, activate outer tick labels
+    _activate_outer_ticks(axs)
+
+
+def _activate_outer_ticks(axs):
+    &#34;&#34;&#34;Activate ticks of outer axes.&#34;&#34;&#34;
+    for ax in axs:
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        if left_empty:
+            ax.tick_params(axis=&#39;y&#39;, reset=True)
+        if bottom_empty:
+            ax.tick_params(axis=&#39;x&#39;, reset=True)
+
+
+def label_outer(axs=None):
+    &#34;&#34;&#34;Only show outer labels and tick labels.
+
+    This checks for outest visible axes only. Works only with single Gridspec.
+
+    Parameters
+    ----------
+    axs : mpl.axes.AxesSubplot or list of
+        Specify axes to check for labeling only outer. Default use all of
+        current figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        axs = tools.get_axes(axs)
+        if not all((_is_subplot_axes(arg) for arg in axs)):
+            raise TypeError(
+                &#39;axs needs to be of type matplotlib.axes.AxesSuplot.&#39;,
+            )
+    else:
+        axs = [ax for ax in plt.gcf().get_axes() if _is_subplot_axes(ax)]
+
+    for ax in axs:
+        ss = ax.get_subplotspec()
+        if hasattr(ss, &#39;is_last_row&#39;):  # noqa: WPS421
+            # for mpl &gt;= 3.4
+            lastrow = ss.is_last_row()
+            firstcol = ss.is_first_col()
+        else:
+            lastrow = ax.is_last_row()
+            firstcol = ax.is_first_col()
+
+        # check if axes below, left is hidden
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)
+
+
+def _is_subplot_axes(ax):
+    &#34;&#34;&#34;Check is is subplot axes.&#34;&#34;&#34;
+    return (
+        isinstance(ax, mpl.axes.Axes) and
+        hasattr(ax, &#39;get_subplotspec&#39;)  # noqa: WPS421
+    )
+
+
+def _is_outer_empty(axs, ax):
+    &#34;&#34;&#34;Check if lefter/lower axes is empty.&#34;&#34;&#34;
+    left_empty, bottom_empty = False, False
+    for axes in axs:
+        if _is_left_neighbor(axes, ax):
+            left_empty = left_empty or not axes.axison
+
+        if _is_bottom_neighbor(axes, ax):
+            bottom_empty = bottom_empty or not axes.axison
+    return left_empty, bottom_empty
+
+
+def _is_left_neighbor(ax1, ax2):
+    &#34;&#34;&#34;Check if ax1 is left ax2.&#34;&#34;&#34;
+    return _has_neighbor_distance(ax1, ax2, col_offset=1)
+
+
+def _is_bottom_neighbor(ax1, ax2):
+    &#34;&#34;&#34;Check if ax1 is below ax2.&#34;&#34;&#34;
+    return _has_neighbor_distance(ax1, ax2, row_offset=-1)
+
+
+def _has_neighbor_distance(ax1, ax2, row_offset=0, col_offset=0):
+    &#34;&#34;&#34;Check if two SubpotAxes have the given offset distance.&#34;&#34;&#34;
+    ss1, ss2 = ax1.get_subplotspec(), ax2.get_subplotspec()
+    return (
+        any((
+            row + row_offset in list(ss2.rowspan) for row in list(ss1.rowspan)
+        )) and any((
+            col + col_offset in list(ss2.colspan) for col in list(ss1.colspan)
+        ))
+    )
+
+
+def _label_outer(ax, lastrow, firstcol):
+    &#34;&#34;&#34;See mpl.axes.Axes.label_outer().&#34;&#34;&#34;
+    if not lastrow:
+        for xlabel in ax.get_xticklabels(which=&#39;both&#39;):
+            xlabel.set_visible(False)
+        ax.xaxis.get_offset_text().set_visible(False)
+        ax.set_xlabel(&#39;&#39;)
+    if not firstcol:
+        for ylabel in ax.get_yticklabels(which=&#39;both&#39;):
+            ylabel.set_visible(False)
+        ax.yaxis.get_offset_text().set_visible(False)
+        ax.set_ylabel(&#39;&#39;)
+
+
+def _is_empty_axes(ax):
+    &#34;&#34;&#34;Return if axes is empty.&#34;&#34;&#34;
+    return (
+        not ax.lines and not ax.collections and not ax.patches and not ax.texts
+    )
+
+
+def subplot_labels(*, fig=None, xlabel=None, ylabel=None):
+    &#34;&#34;&#34;Add global labels for subplots.
+
+    This method adds shared x- and y-labels for a grid of subplots. These can
+    be created by, e.g. `fig, axs = plt.subplots(...)`.
+
+    Parameters
+    ----------
+    fig : matplotlib figure, optional
+        If `None` the current figure will be used instead.
+
+    xlabel : str, optional
+        String of x label.
+
+    ylabel : str, optional
+        String of y label.
+
+    &#34;&#34;&#34;
+    # if no label passed, nothing to do
+    if xlabel is None and ylabel is None:
+        return
+
+    # get active axes to restore it later on
+    ca = plt.gca()
+
+    if fig is None:
+        fig = plt.gcf()
+
+    _subplot_labels(fig, xlabel, ylabel)
+
+    # reset current axes
+    plt.sca(ca)
+
+
+def _subplot_labels(fig, xlabel, ylabel):
+    &#34;&#34;&#34;Add global labels for subplots.&#34;&#34;&#34;
+    # add subplot spanning the complete figure
+    ax = fig.add_subplot(111, frameon=False)  # noqa: WPS432
+
+    # hide axes
+    ax.tick_params(
+        labelcolor=&#39;none&#39;,
+        color=&#39;none&#39;,
+        grid_alpha=0,
+        which=&#39;both&#39;,
+        top=False,
+        bottom=False,
+        left=False,
+        right=False,
+    )
+    # remove ticks to get no artificial padding
+    ax.set_yticks([])
+    # TODO: align_labels seems not to work for xlabels, hence it can not be
+    # removed
+    ax.set_xticks([0])
+    # remove ticks
+    ax.xaxis.set_ticks_position(&#39;none&#39;)
+
+    ax.grid(False)
+    if xlabel is not None:
+        ax.set_xlabel(xlabel)
+    if ylabel is not None:
+        ax.set_ylabel(ylabel)
+    fig.align_labels()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="prettypyplot.subplots.hide_empty_axes"><code class="name flex">
+<span>def <span class="ident">hide_empty_axes</span></span>(<span>axs=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Hide empty axes.</p>
+<p>Loop over all axes and hide empty ones.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>axs</code></strong> :&ensp;<code>mpl.axes.Axes</code> or <code>list of</code></dt>
+<dd>Specify axes to check for empty state. Default use all of current
+figure.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hide_empty_axes(axs=None):
+    &#34;&#34;&#34;Hide empty axes.
+
+    Loop over all axes and hide empty ones.
+
+    Parameters
+    ----------
+    axs : mpl.axes.Axes or list of
+        Specify axes to check for empty state. Default use all of current
+        figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    axs = tools.get_axes(axs)
+
+    # loop over all axes and hide empty ones
+    for ax in axs:
+        if _is_empty_axes(ax):
+            ax.axis(&#39;off&#39;)
+
+    # in case of shared axes, activate outer tick labels
+    _activate_outer_ticks(axs)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.subplots.label_outer"><code class="name flex">
+<span>def <span class="ident">label_outer</span></span>(<span>axs=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Only show outer labels and tick labels.</p>
+<p>This checks for outest visible axes only. Works only with single Gridspec.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>axs</code></strong> :&ensp;<code>mpl.axes.AxesSubplot</code> or <code>list of</code></dt>
+<dd>Specify axes to check for labeling only outer. Default use all of
+current figure.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def label_outer(axs=None):
+    &#34;&#34;&#34;Only show outer labels and tick labels.
+
+    This checks for outest visible axes only. Works only with single Gridspec.
+
+    Parameters
+    ----------
+    axs : mpl.axes.AxesSubplot or list of
+        Specify axes to check for labeling only outer. Default use all of
+        current figure.
+
+    &#34;&#34;&#34;
+    # check for single axes
+    if axs is not None:
+        axs = tools.get_axes(axs)
+        if not all((_is_subplot_axes(arg) for arg in axs)):
+            raise TypeError(
+                &#39;axs needs to be of type matplotlib.axes.AxesSuplot.&#39;,
+            )
+    else:
+        axs = [ax for ax in plt.gcf().get_axes() if _is_subplot_axes(ax)]
+
+    for ax in axs:
+        ss = ax.get_subplotspec()
+        if hasattr(ss, &#39;is_last_row&#39;):  # noqa: WPS421
+            # for mpl &gt;= 3.4
+            lastrow = ss.is_last_row()
+            firstcol = ss.is_first_col()
+        else:
+            lastrow = ax.is_last_row()
+            firstcol = ax.is_first_col()
+
+        # check if axes below, left is hidden
+        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)</code></pre>
+</details>
+</dd>
+<dt id="prettypyplot.subplots.subplot_labels"><code class="name flex">
+<span>def <span class="ident">subplot_labels</span></span>(<span>*, fig=None, xlabel=None, ylabel=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add global labels for subplots.</p>
+<p>This method adds shared x- and y-labels for a grid of subplots. These can
+be created by, e.g. <code>fig, axs = plt.subplots(...)</code>.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>fig</code></strong> :&ensp;<code>matplotlib figure</code>, optional</dt>
+<dd>If <code>None</code> the current figure will be used instead.</dd>
+<dt><strong><code>xlabel</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>String of x label.</dd>
+<dt><strong><code>ylabel</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>String of y label.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def subplot_labels(*, fig=None, xlabel=None, ylabel=None):
+    &#34;&#34;&#34;Add global labels for subplots.
+
+    This method adds shared x- and y-labels for a grid of subplots. These can
+    be created by, e.g. `fig, axs = plt.subplots(...)`.
+
+    Parameters
+    ----------
+    fig : matplotlib figure, optional
+        If `None` the current figure will be used instead.
+
+    xlabel : str, optional
+        String of x label.
+
+    ylabel : str, optional
+        String of y label.
+
+    &#34;&#34;&#34;
+    # if no label passed, nothing to do
+    if xlabel is None and ylabel is None:
+        return
+
+    # get active axes to restore it later on
+    ca = plt.gca()
+
+    if fig is None:
+        fig = plt.gcf()
+
+    _subplot_labels(fig, xlabel, ylabel)
+
+    # reset current axes
+    plt.sca(ca)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<header>
+<a class="homelink" rel="home" title="prettypyplot home" href="https://braniii.gitlab.io/prettypyplot">
+<img src="/prettypyplot/gallery/logo.png" alt=""> prettypyplot
+</a>
+</header>
+<form>
+<input id="lunr-search" name="q" placeholder="🔎 Search ..." aria-label="Search"
+disabled minlength="2">
+</form>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.css" integrity="sha512-j1u8eUJ4f23xPPxwOrLUPQaCD2dwzNqqmDDcWS4deWsMv2ohLqmXXuP3hU7g8TyzbMSakP/mMqoNBYWj8AEIFg==" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.js" integrity="sha512-plGUER9JkeEWPPqQBE4sdLqBoQug5Ap+BCGMc7bJ8BXkm+VVj6QzkpBz5Yv2yPkkq+cqg9IpkBaGCas6uDbW8g==" crossorigin></script>
+<style>
+.modal-dialog iframe {
+width: 100vw;
+height: calc(100vh - 80px);
+}
+@media screen and (min-width: 700px) {
+.modal-dialog iframe {
+width: 70vw;
+height: 80vh;
+}
+}
+.modal-dialog .tingle-modal-box {width: auto;}
+.modal-dialog .tingle-modal-box__content {padding: 0;}
+</style>
+<script>
+const input = document.getElementById('lunr-search');
+input.disabled = false;
+input.form.addEventListener('submit', (ev) => {
+ev.preventDefault();
+const url = new URL(window.location);
+url.searchParams.set('q', input.value);
+history.replaceState({}, null, url.toString());
+search(input.value);
+});
+const query = new URL(window.location).searchParams.get('q');
+if (query)
+search(query);
+function search(query) {
+const url = 'search.html#' + encodeURIComponent(query);
+new tingle.modal({
+cssClass: ['modal-dialog'],
+onClose: () => {
+const url = new URL(window.location);
+url.searchParams.delete('q');
+history.replaceState({}, null, url.toString());
+setTimeout(() => input.focus(), 100);
+}
+}).setContent('<iframe src="' + url + '"></iframe>').open();
+}
+</script>
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="prettypyplot" href="index.html">prettypyplot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="prettypyplot.subplots.hide_empty_axes" href="#prettypyplot.subplots.hide_empty_axes">hide_empty_axes</a></code></li>
+<li><code><a title="prettypyplot.subplots.label_outer" href="#prettypyplot.subplots.label_outer">label_outer</a></code></li>
+<li><code><a title="prettypyplot.subplots.subplot_labels" href="#prettypyplot.subplots.subplot_labels">subplot_labels</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<a href="https://gitlab.com/braniii/prettypyplot" class="github-corner" aria-label="View source on GitHub">
+<svg width="80" height="80" viewBox="0 0 250 250" style="fill:#4d4f53; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+</svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>
