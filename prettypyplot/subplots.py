@@ -7,6 +7,7 @@ All rights reserved.
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
+import numpy as np
 from matplotlib import pyplot as plt
 
 from prettypyplot import tools
@@ -40,7 +41,7 @@ def hide_empty_axes(axs=None):
 def _activate_outer_ticks(axs):
     """Activate ticks of outer axes."""
     for ax in axs:
-        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        left_empty, bottom_empty = _is_outer_hidden(axs, ax)
         if left_empty:
             ax.tick_params(axis='y', reset=True)
         if bottom_empty:
@@ -71,7 +72,7 @@ def label_outer(axs=None):
 
     for ax in axs:
         ss = ax.get_subplotspec()
-        if hasattr(ss, 'is_last_row'):  # noqa: WPS421
+        if hasattr(ss, 'is_last_row'):  # pragma: no cover # noqa: WPS421
             # for mpl >= 3.4
             lastrow = ss.is_last_row()
             firstcol = ss.is_first_col()
@@ -80,7 +81,7 @@ def label_outer(axs=None):
             firstcol = ax.is_first_col()
 
         # check if axes below, left is hidden
-        left_empty, bottom_empty = _is_outer_empty(axs, ax)
+        left_empty, bottom_empty = _is_outer_hidden(axs, ax)
         _label_outer(ax, lastrow or bottom_empty, firstcol or left_empty)
 
 
@@ -92,16 +93,15 @@ def _is_subplot_axes(ax):
     )
 
 
-def _is_outer_empty(axs, ax):
+def _is_outer_hidden(axs, ax):
     """Check if lefter/lower axes is empty."""
-    left_empty, bottom_empty = False, False
-    for axes in axs:
+    left_hidden, bottom_hidden = False, False
+    for axes in np.ravel(axs):
         if _is_left_neighbor(axes, ax):
-            left_empty = left_empty or not axes.axison
-
-        if _is_bottom_neighbor(axes, ax):
-            bottom_empty = bottom_empty or not axes.axison
-    return left_empty, bottom_empty
+            left_hidden = left_hidden or not axes.axison
+        elif _is_bottom_neighbor(axes, ax):
+            bottom_hidden = bottom_hidden or not axes.axison
+    return left_hidden, bottom_hidden
 
 
 def _is_left_neighbor(ax1, ax2):
