@@ -2,7 +2,7 @@
 Show options of colorbar.
 
 BSD 3-Clause License
-Copyright (c) 2020, Daniel Nagel
+Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 Author: Daniel Nagel

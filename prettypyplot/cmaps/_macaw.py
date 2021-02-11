@@ -3,7 +3,7 @@
 This is self-defined colormap similar to viridis generated with viscm.
 
 BSD 3-Clause License
-Copyright (c) 2020, Daniel Nagel
+Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """

@@ -2,7 +2,7 @@
 """Tests for the cmaps module.
 
 BSD 3-Clause License
-Copyright (c) 2019-2020, Daniel Nagel
+Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
