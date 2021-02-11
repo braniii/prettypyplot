@@ -13,6 +13,7 @@ testing:
     - flake8 --config flake8-CI.cfg
     - pip3 install -q pytest pytest-cov pytest-rerunfailures pytest-benchmark coverage
     - pytest
+    - coverage report
     - coverage xml
   artifacts:
     reports:
