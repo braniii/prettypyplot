@@ -6,8 +6,6 @@ All rights reserved.
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-from collections.abc import Iterable
-
 import matplotlib as mpl
 import matplotlib.colors as clr
 import matplotlib.patheffects as path_effects

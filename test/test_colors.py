@@ -9,7 +9,6 @@ All rights reserved.
 import numpy as np
 import pytest
 from matplotlib import colors as clr
-from matplotlib import pyplot as plt
 
 import prettypyplot
 

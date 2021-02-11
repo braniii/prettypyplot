@@ -6,7 +6,6 @@ Copyright (c) 2020, Daniel Nagel
 All rights reserved.
 
 """
-import numpy as np
 import pytest
 from matplotlib import pyplot as plt
 

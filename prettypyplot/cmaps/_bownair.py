@@ -11,7 +11,7 @@ All rights reserved.
 from matplotlib import colors as clr
 
 # ~~~ CMAP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cm_bownair_data = [
+CM_BOWNAIR_DATA = [
     [0.16847826, 0.00374452, 0.02178212],
     [0.17181190, 0.00639699, 0.02866575],
     [0.17513005, 0.00915857, 0.03622388],
@@ -272,4 +272,4 @@ cm_bownair_data = [
 
 
 def _bownair():
-    return clr.LinearSegmentedColormap.from_list('bownair', cm_bownair_data)
+    return clr.LinearSegmentedColormap.from_list('bownair', CM_BOWNAIR_DATA)

@@ -11,7 +11,7 @@ All rights reserved.
 from matplotlib import colors as clr
 
 # ~~~ CMAP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cm_macaw_data = [
+CM_MACAW_DATA = [
     [0.19058156, 0.05187944, 0.50289419],
     [0.18954119, 0.05806460, 0.50959124],
     [0.18847439, 0.06392324, 0.51625442],
@@ -272,4 +272,4 @@ cm_macaw_data = [
 
 
 def _macaw():
-    return clr.LinearSegmentedColormap.from_list('macaw', cm_macaw_data)
+    return clr.LinearSegmentedColormap.from_list('macaw', CM_MACAW_DATA)
