@@ -1,11 +1,12 @@
 ### Changelog
-- tba:
-    - Add `pplt.subplot_labels` for adding shared labels for grid subplots
+- v0.7.0:
     - Fix restoring labels of outer axes when applying `pplt.hide_empty_axes`
-    - Add pplt colors `pplt:lightgray` and `pplt:gray`
-    - Major code clean up and refactoring
-    - Added new gallery figure of subplots
     - Added tests for basic functions (no figure comparisons)
+    - Major code clean up and refactoring
+- v0.6.0:
+    - Add `pplt.subplot_labels` for adding shared labels for grid subplots
+    - Add pplt colors `pplt:lightgray` and `pplt:gray`
+    - Added new gallery figure of subplots
 - v0.5.0:
     - Add `pplt.label_outer` which respects empty axes
     - Add `pplt.hide_empty_axes` for hiding empty axes
