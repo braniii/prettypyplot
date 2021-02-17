@@ -217,7 +217,7 @@ def setup_pyplot(
         colors=colors,
         cmap=cmap,
         ncs=ncs,
-        igsize=figsize,
+        figsize=figsize,
         figratio=figratio,
         mode=mode,
         style=style,
