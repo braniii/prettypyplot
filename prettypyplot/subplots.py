@@ -116,6 +116,9 @@ def _is_bottom_neighbor(ax1, ax2):
 
 def _has_neighbor_distance(ax1, ax2, row_offset=0, col_offset=0):
     """Check if two SubpotAxes have the given offset distance."""
+    if not _is_subplot_axes(ax1) or not _is_subplot_axes(ax2):
+        return False
+
     ss1, ss2 = ax1.get_subplotspec(), ax2.get_subplotspec()
     return (
         any((
@@ -143,7 +146,9 @@ def _label_outer(ax, lastrow, firstcol):
 def _is_empty_axes(ax):
     """Return if axes is empty."""
     return (
-        not ax.lines and not ax.collections and not ax.patches and not ax.texts
+        not any([
+            ax.lines, ax.collections, ax.patches, ax.texts, ax.images,
+        ])
     )
 
 
