@@ -52,6 +52,15 @@ UFCD_ARRAY = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
 # own creation
 PAULA_ARRAY = ['#fec21f', '#ed6a0c', '#df0712', '#df017b', '#4a287d']
 
+SUMMER_ARRAY = [
+    '#002661',
+    '#38a1ae',
+    '#ffbc42',
+    '#e3170a',
+    '#38a75d',
+    '#a11963',
+]
+
 
 def _pastel5():
     return clr.ListedColormap(PASTEL5_ARRAY, 'pastel5')
@@ -91,3 +100,7 @@ def _ufcd():
 
 def _paula():
     return clr.ListedColormap(PAULA_ARRAY, 'paula')
+
+
+def _summertimes():
+    return clr.ListedColormap(SUMMER_ARRAY, 'summertimes')

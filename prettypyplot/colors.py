@@ -23,6 +23,7 @@ from prettypyplot.cmaps._discrete import (
     _pastel_rainbow,
     _pastel_spring,
     _paula,
+    _summertimes,
     _ufcd,
 )
 from prettypyplot.cmaps._macaw import _macaw
@@ -53,8 +54,9 @@ def load_cmaps():
         _pastel_autunm(),
         _pastel_rainbow(),
         _pastel_spring(),
-        _ufcd(),
         _paula(),
+        _summertimes(),
+        _ufcd(),
         _turbo(),
         _macaw(),
         _bownair(),
