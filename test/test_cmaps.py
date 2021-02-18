@@ -45,5 +45,6 @@ def test_discrete():
         cmaps._discrete._pastel_autunm(),
         cmaps._discrete._ufcd(),
         cmaps._discrete._paula(),
+        cmaps._discrete._summertimes(),
     ):
         assert isinstance(cmap, ListedColormap)
