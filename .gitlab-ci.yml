@@ -11,7 +11,7 @@ testing:
   script:
     - pip3 install -q flake8
     - flake8 --config flake8-CI.cfg
-    - pip3 install -q pytest pytest-cov pytest-rerunfailures pytest-benchmark coverage
+    - pip3 install -q pytest pytest-mpl pytest-cov pytest-rerunfailures pytest-benchmark coverage
     - pytest
     - coverage report
     - coverage xml

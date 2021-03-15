@@ -89,6 +89,7 @@ def test__is_empty_axes():
         assert not prettypyplot.subplots._is_empty_axes(axfull)
 
 
+@pytest.mark.mpl_image_compare
 def test__subplot_labels():
     """Test subplot labels."""
     num = 4
@@ -101,6 +102,12 @@ def test__subplot_labels():
     assert len(fig.get_axes()) == num**2
     prettypyplot.subplots.subplot_labels(ylabel='y', xlabel='x')
     assert len(fig.get_axes()) == num**2 + 1
+
+    for ax in axs.flatten():
+        ax.set_yticks([])
+        ax.set_xticks([])
+
+    return fig
 
 
 def test__is_outer_hidden():
@@ -145,6 +152,20 @@ def test_hide_empty_axes(plotmask):
         assert ax.axison == nothidden
 
 
+@pytest.mark.mpl_image_compare(remove_text=True)
+def test_hide_empty_axes_mpl():
+    """Test hide empty axes."""
+    plotmask = np.array([[False, True], [True, False]])
+    fig, axs = plt.subplots(*plotmask.shape, squeeze=False)
+
+    for ax, shouldplot in zip(np.ravel(axs), np.ravel(plotmask)):
+        if shouldplot:
+            ax.plot([0, 1], [0, 1])
+
+    prettypyplot.subplots.hide_empty_axes(axs=axs)
+    return fig
+
+
 @pytest.mark.parametrize('plotmask', [
     [True, False, True],
     [[True, True], [True, True]],
@@ -165,3 +186,18 @@ def test_label_outer(plotmask):
     grid = ImageGrid(fig, 111, (2, 2))
     with pytest.raises(TypeError):
         prettypyplot.subplots.label_outer(axs=grid)
+
+
+@pytest.mark.mpl_image_compare()
+def test_label_outer_mpl():
+    """Test hide empty axes."""
+    plotmask = np.array([[True, True], [True, False], [False, True]])
+    fig, axs = plt.subplots(*plotmask.shape, squeeze=False)
+
+    for ax, shouldplot in zip(np.ravel(axs), np.ravel(plotmask)):
+        if shouldplot:
+            ax.plot([0, 1], [0, 1])
+
+    prettypyplot.subplots.hide_empty_axes()
+    prettypyplot.subplots.label_outer()
+    return fig
