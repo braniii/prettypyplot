@@ -237,7 +237,8 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
             color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
         except AttributeError:
             color_cycler = plt.cycler(
-                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)))
+                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
+            )
 
         # TODO: refactor following code in private function
         plt.rcParams['axes.prop_cycle'] = color_cycler
@@ -254,14 +255,16 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
             gray_dark = pclr.default_grays['dark']
             gray_light = pclr.default_grays['light']
 
-        plt.rcParams.update({'axes.edgecolor': gray_dark,
-                             'axes.labelcolor': gray_dark,
-                             'text.color': gray_dark,
-                             'patch.edgecolor': gray_dark,
-                             'xtick.color': gray_dark,
-                             'ytick.color': gray_dark,
-                             'patch.edgecolor': gray_dark,
-                             'grid.color': gray_light})
+        plt.rcParams.update({
+            'axes.edgecolor': gray_dark,
+            'axes.labelcolor': gray_dark,
+            'text.color': gray_dark,
+            'patch.edgecolor': gray_dark,
+            'xtick.color': gray_dark,
+            'ytick.color': gray_dark,
+            'patch.edgecolor': gray_dark,
+            'grid.color': gray_light,
+        })
 
 
 def _set_rc_figsize(figratio, figsize):
@@ -281,18 +284,49 @@ def _set_rc_widths(mode):
     scales = _get_scale(mode)
     if scales is not None:
         for scale, rcParamsVal in [
-                ['small_scale', [['axes.linewidth', 0.8],
-                                 ['grid.linewidth', 0.8],
-                                 ['xtick.major.width', 0.8],
-                                 ['xtick.minor.width', 0.6]]],
-                ['tick_scale', [['xtick.major.size', 3.5],
-                                ['xtick.minor.size', 2.0],
-                                ['xtick.major.pad', 3.5],
-                                ['xtick.minor.pad', 3.4]]],
-                ['medium_scale', [['patch.linewidth', 1.0],
-                                  ['hatch.linewidth', 1.0]]],
-                ['large_scale', [['lines.linewidth', 1.5]]],
-                ['fontsize', [['font.size', 1]]]]:
+            [
+                'small_scale',
+                [
+                    ['axes.linewidth', 0.8],
+                    ['grid.linewidth', 0.8],
+                    ['xtick.major.width', 0.8],
+                    ['xtick.minor.width', 0.6],
+                ],
+            ],
+            [
+                'tick_scale',
+                [
+                    ['xtick.major.size', 3.5],
+                    ['xtick.minor.size', 2.0],
+                    ['xtick.major.pad', 3.5],
+                    ['xtick.minor.pad', 3.4],
+                ],
+            ],
+            [
+                'medium_scale',
+                [
+                    ['patch.linewidth', 1.0],
+                    ['hatch.linewidth', 1.0],
+                    ['boxplot.flierprops.markeredgewidth', 1.0],
+                    ['boxplot.flierprops.linewidth', 1.0],
+                    ['boxplot.boxprops.linewidth', 1.0],
+                    ['boxplot.whiskerprops.linewidth', 1.0],
+                    ['boxplot.capprops.linewidth', 1.0],
+                    ['boxplot.medianprops.linewidth', 1.0],
+                    ['boxplot.meanprops.linewidth', 1.0],
+                    ['lines.markeredgewidth', 1.0],
+                ],
+            ],
+            [
+                'large_scale',
+                [
+                    ['lines.linewidth', 1.5],
+                    ['boxplot.whiskers', 1.5],
+                    ['lines.markersize', 6],
+                ],
+            ],
+            ['fontsize', [['font.size', 1]]],
+        ]:
             scale = scales[scale]
             for rcParam, val in rcParamsVal:
                 plt.rcParams[rcParam] = scale * val
@@ -329,33 +363,33 @@ def _get_scale(mode):
     """Get the scaling factors."""
     scale_dict = {
         'default': {
-            'large_scale': 1.,
-            'medium_scale': 1.,
-            'small_scale': 1.,
-            'tick_scale': 1.,
-            'fontsize': 10.,
+            'large_scale': 1.0,
+            'medium_scale': 1.0,
+            'small_scale': 1.0,
+            'tick_scale': 1.0,
+            'fontsize': 10.0,
         },
         'print': {
             'large_scale': 1.5,
             'medium_scale': 1.7,
             'small_scale': 1.7,
             'tick_scale': 1.7,
-            'fontsize': 12.,
+            'fontsize': 12.0,
         },
         'poster': {
-            'large_scale': 4.,
-            'medium_scale': 4.,
-            'small_scale': 4.,
-            'tick_scale': 4.,
-            'fontsize': 28.,
+            'large_scale': 4.0,
+            'medium_scale': 4.0,
+            'small_scale': 4.0,
+            'tick_scale': 4.0,
+            'fontsize': 28.0,
         },
         'beamer': {
-            'large_scale': 4.,
-            'medium_scale': 4.,
-            'small_scale': 4.,
-            'tick_scale': 4.,
-            'fontsize': 28.
-        }
+            'large_scale': 4.0,
+            'medium_scale': 4.0,
+            'small_scale': 4.0,
+            'tick_scale': 4.0,
+            'fontsize': 28.0,
+        },
     }
     return scale_dict.get(mode, scale_dict['default'])
 
