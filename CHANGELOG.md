@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added Features and Improvements 🙌:
-- add cmap `summertimes`
+- Added cmap `summertimes`
+- Scales markers and boxplots according to mode
+- Added testing of plotting functionality pytest-mpl 
+
 ### Bugfix 🐛:
-- fix treating images (`imshow`) as none empty images
-- fix handling non subplot axes correctly by `pplt.hide_empty_axes`
+- Fix treating images (`imshow`) as none empty images
+- Fix handling non subplot axes correctly by `pplt.hide_empty_axes`
 
 
 ## [0.7.1] - 2021-02-18
