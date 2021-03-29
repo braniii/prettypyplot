@@ -16,7 +16,6 @@
         <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
-  </p><p>
     <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
     <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
