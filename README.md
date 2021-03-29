@@ -1,4 +1,9 @@
-<p align="center">
+<div align="center">
+  <img
+    src="https://gitlab.com/braniii/prettypyplot/-/raw/master/gallery/logo_large.png"
+  />
+
+  <p>
     <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
@@ -11,11 +16,21 @@
         <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
+  </p><p>
     <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
     <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
         <img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
-</p>
+  </p>
+
+  <p>
+    <a href="https://braniii.gitlab.io/prettypyplot">Docs</a> •
+    <a href="#features">Features</a> •
+    <a href="#Installation">Installation</a> •
+    <a href="#usage">Usage</a>
+  </p>
+</div>
+
 
 
 # prettypyplot
