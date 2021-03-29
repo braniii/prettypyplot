@@ -5,11 +5,9 @@ https://matplotlib.org/gallery/misc/logos2.html#sphx-glr-gallery-misc-logos2-py
 an heavily simplified to fit the spirit of prettypyplot.
 
 """
-import matplotlib.pyplot as plt
-import logo
-
 import prettypyplot as pplt
 
+import logo
 
 pplt.use_style(latex=False)
 
