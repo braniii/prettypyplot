@@ -70,8 +70,7 @@ def make_logo(height_px):
     return fig, ax
 
 
-pplt.use_style()
-
-fig, ax = make_logo(height_px=120)
-
-pplt.savefig('gallery/logo.png')
+if __name__ == '__main__':
+    pplt.use_style()
+    fig, ax = make_logo(height_px=120)
+    pplt.savefig('gallery/logo.png')
