@@ -28,6 +28,11 @@ setuptools.setup(
         'Programming Language :: Python :: 3.9',
     ],
     packages=setuptools.find_packages(exclude=('tests', 'docs')),
+    python_requires ='>=3.6',
     include_package_data=True,
-    install_requires=['matplotlib', 'numpy'],
+    install_requires=[
+        'matplotlib',
+        'numpy',
+        'decorit>=0.1.1',
+    ],
 )

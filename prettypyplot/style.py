@@ -10,10 +10,10 @@ from os import path as ospath
 
 import numpy as np
 from matplotlib import pyplot as plt
+from decorit import copy_doc_params, deprecated
 
 from prettypyplot import tools
 from prettypyplot import colors as pclr
-from prettypyplot.decorators import copy_doc_params, deprecated
 
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __MODE = 'default'  # default mode
