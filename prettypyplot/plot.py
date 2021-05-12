@@ -421,6 +421,17 @@ def grid(*args, ax=None, **kwargs):
     # parse axes
     args, ax = tools.parse_axes(*args, ax=ax)
 
+    if 'b' not in kwargs:
+        boolargs = [arg for arg in args if isinstance(arg, bool)]
+        if len(boolargs) > 1:
+            raise ValueError('Only a single bool parameter is allowed.')
+        elif len(boolargs) == 1:
+            show_grid = boolargs[0]
+        else:
+            show_grid = True
+
+        kwargs['b'] = show_grid
+
     if __STYLE == 'default':
         gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
         gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
