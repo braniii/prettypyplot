@@ -9,10 +9,7 @@ All rights reserved.
 import matplotlib as mpl
 import numpy as np
 import pytest
-from matplotlib import collections
-from matplotlib import patches
 from matplotlib import pyplot as plt
-from mpl_toolkits.axes_grid1 import ImageGrid
 
 import prettypyplot
 
