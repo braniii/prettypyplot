@@ -163,6 +163,30 @@ def _reduce_ticks(fig):
             )
 
 
+def _legend_default_kwargs():
+    """Return default values of given outside positions."""
+    return {
+        'top': {
+            'bbox_to_anchor': (0.0, 1.0, 1.0, 0.01),
+            'mode': 'expand',
+            'loc': 'lower left',
+        },
+        'bottom': {
+            'bbox_to_anchor': (0.0, 0.0, 1.0, 0.01),
+            'mode': 'expand',
+            'loc': 'upper left',
+        },
+        'right': {
+            'bbox_to_anchor': (1.03, 0.5),
+            'loc': 'center left',
+        },
+        'left': {
+            'bbox_to_anchor': (-0.03, 0.5),
+            'loc': 'center right',
+        },
+    }
+
+
 def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     """Generate a nice legend.
 
@@ -199,26 +223,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     .. include:: ../gallery/legend/README.md
 
     """
-    default_kwargs = {
-        'top': {
-            'bbox_to_anchor': (0.0, 1.0, 1.0, 0.01),
-            'mode': 'expand',
-            'loc': 'lower left',
-        },
-        'bottom': {
-            'bbox_to_anchor': (0.0, 0.0, 1.0, 0.01),
-            'mode': 'expand',
-            'loc': 'upper left',
-        },
-        'right': {
-            'bbox_to_anchor': (1.03, 0.5),
-            'loc': 'center left',
-        },
-        'left': {
-            'bbox_to_anchor': (-0.03, 0.5),
-            'loc': 'center right',
-        },
-    }
+    default_kwargs = _legend_default_kwargs()
     if outside not in {False, *default_kwargs}:
         raise ValueError(
             'Use for outside one of [False, {0}]'.format(
