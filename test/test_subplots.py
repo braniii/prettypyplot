@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tests for the color module.
+"""Tests for the subplots module.
 
 BSD 3-Clause License
 Copyright (c) 2020-2021, Daniel Nagel
