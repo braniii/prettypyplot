@@ -9,17 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added Features and Improvements 🙌:
 - Added cmap `summertimes`
 - Scales markers and boxplots according to mode
-- Added testing of plotting functionality pytest-mpl 
+- Added testing of plotting functionality pytest-mpl
 
 ### Bugfix 🐛:
 - Fix treating images (`imshow`) as none empty images
 - Fix handling non subplot axes correctly by `pplt.hide_empty_axes`
+- Fix to activate minor and major grid for `mpl >= 3.3` by calling `pplt.grid()`
 
 
 ## [0.7.1] - 2021-02-18
 - Fix uploading wrong package to PyPi
 
-    
+
 ## [0.7.0] - 2021-02-17
 ### Added Features and Improvements 🙌:
 - Added tests for basic functions (no figure comparisons)
@@ -73,7 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated pydoc to 0.8.1
 - Updated documentation and readme
 
-    
+
 ## [0.3.0] - 2020-10-30
 ### Added Features and Improvements 🙌:
 - Colors of `pastel5`, axes, grid and text are now accessible directly
