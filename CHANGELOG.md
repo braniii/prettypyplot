@@ -6,6 +6,9 @@ and [Element](https://github.com/vector-im/element-android)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- gray colors can not be accessed anymore via `default_grays['dark']` but instead via `default_grays.dark`
+
 ### Added Features and Improvements 🙌:
 - Added cmap `summertimes`
 - Scales markers and boxplots according to mode

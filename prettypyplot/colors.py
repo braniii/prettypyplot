@@ -6,6 +6,8 @@ All rights reserved.
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import namedtuple
+
 import matplotlib as mpl
 import numpy as np
 from matplotlib import colors as clr
@@ -29,6 +31,11 @@ from prettypyplot.cmaps._discrete import (
 from prettypyplot.cmaps._macaw import _macaw
 from prettypyplot.cmaps._turbo import _turbo
 from prettypyplot.tools import is_number
+
+# ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GrayTones = namedtuple('GrayTones', 'dark light')
+black_grays = GrayTones('#000000', '#dddfe5')
+default_grays = GrayTones('#4d4f53', '#dddfe5')
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,10 +96,10 @@ def load_colors():
         'pplt:green': _pastel5().colors[2],
         'pplt:orange': _pastel5().colors[3],
         'pplt:lightblue': _pastel5().colors[4],
-        'pplt:gray': default_grays['dark'],
-        'pplt:grey': default_grays['dark'],
-        'pplt:lightgray': default_grays['light'],
-        'pplt:lightgrey': default_grays['light'],
+        'pplt:gray': default_grays.dark,
+        'pplt:grey': default_grays.dark,
+        'pplt:lightgray': default_grays.light,
+        'pplt:lightgrey': default_grays.light,
         'pplt:axes': plt.rcParams['axes.edgecolor'],
         'pplt:text': plt.rcParams['text.color'],
         'pplt:grid': plt.rcParams['grid.color'],
@@ -301,9 +308,3 @@ def is_greyshade(color):
     if np.min(color) == np.max(color):
         return True
     return False
-
-
-# ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# gray tones
-black_grays = {'dark': '#000000', 'light': '#dddfe5'}
-default_grays = {'dark': '#4d4f53', 'light': '#dddfe5'}

@@ -249,21 +249,18 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
     if true_black is not None:
         # change default colors
         if true_black:
-            gray_dark = pclr.black_grays['dark']
-            gray_light = pclr.black_grays['light']
+            grays = pclr.black_grays
         else:
-            gray_dark = pclr.default_grays['dark']
-            gray_light = pclr.default_grays['light']
+            grays = pclr.default_grays
 
         plt.rcParams.update({
-            'axes.edgecolor': gray_dark,
-            'axes.labelcolor': gray_dark,
-            'text.color': gray_dark,
-            'patch.edgecolor': gray_dark,
-            'xtick.color': gray_dark,
-            'ytick.color': gray_dark,
-            'patch.edgecolor': gray_dark,
-            'grid.color': gray_light,
+            'axes.edgecolor': grays.dark,
+            'axes.labelcolor': grays.dark,
+            'text.color': grays.dark,
+            'patch.edgecolor': grays.dark,
+            'xtick.color': grays.dark,
+            'ytick.color': grays.dark,
+            'grid.color': grays.light,
         })
 
 
@@ -332,7 +329,9 @@ def _set_rc_widths(mode):
                 plt.rcParams[rcParam] = scale * val
                 # apply all changes to yticks as well
                 if rcParam.startswith('xtick'):
-                    plt.rcParams['y' + rcParam[1:]] = plt.rcParams[rcParam]
+                    plt.rcParams[
+                        'y{0}'.format(rcParam[1:])
+                    ] = plt.rcParams[rcParam]
 
 
 def _set_rc_dpi(ipython, dpi=384):
