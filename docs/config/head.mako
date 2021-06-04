@@ -14,11 +14,11 @@
         color: inherit;
     }
     .homelink img {
-        max-width:20%;
-        max-height: 7em;
+        max-width: 100%;
+        max-height: 5em;
         margin: auto;
         margin-bottom: .3em;
     }
 </%def>
 <style>${homelink()}</style>
-<link rel="icon" href="gallery/logo_large.png">
+<link rel="icon" href="gallery/logo.png">
