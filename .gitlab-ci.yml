@@ -3,7 +3,6 @@ image: ctornau/latex
 before_script:
   - apt-get update && apt-get install -y python3 python3-dev python3-pip
   - python3 --version
-  - pip3 install matplotlib
   - pip3 install -e .
 
 testing:
