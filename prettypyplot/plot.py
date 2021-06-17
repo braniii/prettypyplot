@@ -9,12 +9,14 @@ All rights reserved.
 import warnings
 from os import path
 
+import numpy as np
 from matplotlib import legend as mlegend
 from matplotlib import pyplot as plt
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
+import prettypyplot as _pplt
 from prettypyplot import tools
-from prettypyplot.style import __MODE, __STYLE
+from prettypyplot.style import Mode, Style
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -74,19 +76,8 @@ def plot(*args, ax=None, **kwargs):
     # plot
     lines = ax.plot(*args, **kwargs)
 
-    if __STYLE == 'minimal':
-        # TODO: change this to function
-        xminmax = _xminmax(ax)
-        xticks = ax.get_xticks()
-        if xticks.size:
-            ax.spines['bottom'].set_bounds(xminmax[0], xminmax[1])
-            ax.spines['top'].set_bounds(xminmax[0], xminmax[1])
-
-        yminmax = _yminmax(ax)
-        yticks = ax.get_yticks()
-        if yticks.size:
-            ax.spines['left'].set_bounds(yminmax[0], yminmax[1])
-            ax.spines['right'].set_bounds(yminmax[0], yminmax[1])
+    if _pplt.STYLE == Style.MINIMAL:
+        _set_spine_bounds(ax)
 
     return lines
 
@@ -115,10 +106,10 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     # store figsize to reset it later
     set_figsize = figsize
 
-    if __STYLE == 'minimal':
+    if _pplt.STYLE == Style.MINIMAL:
         _reduce_ticks(fig)
 
-    if __MODE in {'poster', 'beamer'}:
+    if _pplt.MODE in {Mode.POSTER, Mode.BEAMER}:
         fig.set_size_inches(
             (3 * figsize[0], 3 * figsize[1]),
         )
@@ -147,6 +138,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
 def _reduce_ticks(fig):
     """Reduce number of ticks by factor 1.5 if more than 4."""
+    # TODO: replace this by mpl built-in class
     tick_reduc = 1.5
     for axes in fig.get_axes():
         if len(axes.get_xticks()) > 4:
@@ -256,9 +248,9 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
 
     # generate legend
     leg = ax.legend(handles, labels, *args, **kwargs)
-    if __STYLE == 'minimal':
+    if _pplt.STYLE == Style.MINIMAL:
         leg.get_frame().set_linewidth(0.0)
-    elif __STYLE == 'default':
+    elif _pplt.STYLE == Style.DEFAULT:
         leg.get_frame().set_linewidth(plt.rcParams['axes.linewidth'])
 
     # shift title to the left if on top or bottom
@@ -432,7 +424,7 @@ def grid(*args, ax=None, **kwargs):
 
         kwargs['b'] = show_grid
 
-    if __STYLE == 'default':
+    if _pplt.STYLE == Style.DEFAULT:
         gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
         gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
         ax.set_axisbelow(True)
@@ -453,7 +445,18 @@ def _minmax(lim, rcparam):
     """Get range of plotted data."""
     width = lim[1] - lim[0]
     margin = plt.rcParams[rcparam]
-    return [  # min max
-        lim[0] + (margin + idx) / (1 + 2 * margin) * width
+    return lim[0] + np.array([  # min max
+        (margin + idx) / (1 + 2 * margin) * width
         for idx in (0, 1)
-    ]
+    ])
+
+
+def _set_spine_bounds(ax):
+    """Limit spines to data range, keeping ticks unchanged."""
+    for minmax, ticks, poss in (
+        (_xminmax(ax), ax.get_xticks(), ('bottom', 'top')),
+        (_yminmax(ax), ax.get_yticks(), ('left', 'right')),
+    ):
+        if ticks.size:
+            for pos in poss:
+                ax.spines[pos].set_bounds(*minmax)

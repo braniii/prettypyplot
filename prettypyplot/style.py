@@ -6,18 +6,57 @@ All rights reserved.
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import namedtuple
+from enum import Enum, auto
 from os import path as ospath
 
 import numpy as np
 from matplotlib import pyplot as plt
 from decorit import copy_doc_params, deprecated
 
+import prettypyplot as _pplt
 from prettypyplot import tools
 from prettypyplot import colors as pclr
 
+
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-__MODE = 'default'  # default mode
-__STYLE = 'default'  # default style
+class Style(Enum):
+    """Enum for all styles defined in pplt."""
+    DEFAULT = auto()
+    # default style, good for scientific usage
+    MINIMAL = auto()
+    # minimal style, good for slides, posters and co.
+    NONE = auto()
+    # do not change matplotlib style
+
+    @classmethod
+    def keys_list(cls):
+        """Return list of available Style names."""
+        return list(cls.__members__.keys())
+
+
+class Mode(Enum):
+    """Enum for all modes defined in pplt."""
+    DEFAULT = auto()
+    # default font size, good for monitor use
+    PRINT = auto()
+    # slightly larger fonts compared to default
+    BEAMER = auto()
+    # large fonts, good for slides
+    POSTER = auto()
+    # large fonts, good for A0 posters
+
+    @classmethod
+    def keys_list(cls):
+        """Return list of available Mode names."""
+        return list(cls.__members__.keys())
+
+
+# set default mode and style
+if _pplt.MODE is None:
+    _pplt.MODE = Mode.DEFAULT
+if _pplt.STYLE is None:
+    _pplt.STYLE = Style.DEFAULT
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,33 +133,55 @@ def update_style(
     """
     # set selected mode and style
     if mode is not None:
-        global __MODE
-        __MODE = mode
+        if isinstance(mode, Mode):
+            pass
+        elif isinstance(mode, str) and mode.upper() in Mode.keys_list():
+            mode = Mode[mode.upper()]
+        else:
+            assert ValueError(
+                'Mode "{mode}" is not supported, use one of {modes}.'.format(
+                    mode=mode,
+                    modes=Mode.keys_list(),
+                ),
+            )
+
+        _pplt.MODE = mode
+
     if style is not None:
-        global __STYLE
-        __STYLE = style
+        if isinstance(style, Style):
+            pass
+        elif isinstance(style, str) and style.upper() in Style.keys_list():
+            style = Style[style.upper()]
+        else:
+            assert ValueError(
+                'Style "{style}" is not supported, use one of {styles}.'.format(
+                    style=style,
+                    styles=Style.keys_list(),
+                ),
+            )
+        _pplt.STYLE = style
 
-    if style == 'none':
-        _reset_style()
-    else:
-        # load static rcParams
-        _apply_style('stylelib/default.mplstyle')
-        if style == 'minimal':
-            _apply_style('stylelib/minimal.mplstyle')
+        if _pplt.STYLE is Style.NONE:
+            _reset_style()
+        else:
+            # load static rcParams
+            _apply_style('stylelib/default.mplstyle')
+            if _pplt.STYLE is Style.MINIMAL:
+                _apply_style('stylelib/minimal.mplstyle')
 
-        # set color cycle and cmap
-        _set_rc_colors(
-            colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
-        )
+            # set color cycle and cmap
+            _set_rc_colors(
+                colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
+            )
 
-        # set figsize
-        _set_rc_figsize(figratio=figratio, figsize=figsize)
+            # set figsize
+            _set_rc_figsize(figratio=figratio, figsize=figsize)
 
-        # change widths and fontsize depending on MODE
-        _set_rc_widths(mode)
+            # change widths and fontsize depending on MODE
+            _set_rc_widths(mode)
 
-        # increase dpi if not in iypthon
-        _set_rc_dpi(ipython)
+            # increase dpi if not in iypthon
+            _set_rc_dpi(ipython)
 
     # set interactive mode
     _set_ineractive_mode(interactive=interactive)
@@ -142,8 +203,8 @@ def use_style(
     ncs=10,
     figsize=(3,),
     figratio='golden',
-    mode=__MODE,
-    style=__STYLE,
+    mode=_pplt.MODE,
+    style=_pplt.STYLE,
     ipython=False,
     true_black=False,
     latex=True,
@@ -193,8 +254,8 @@ def setup_pyplot(
     ncs=10,
     figsize=(3,),
     figratio='golden',
-    mode=__MODE,
-    style=__STYLE,
+    mode=_pplt.MODE,
+    style=_pplt.STYLE,
     ipython=False,
     true_black=False,
     latex=True,
@@ -358,31 +419,31 @@ def _set_ineractive_mode(interactive):
             plt.ioff()
 
 
-def _get_scale(mode):
+def _get_scale(mode: Mode):
     """Get the scaling factors."""
     scale_dict = {
-        'default': {
+        Mode.DEFAULT: {
             'large_scale': 1.0,
             'medium_scale': 1.0,
             'small_scale': 1.0,
             'tick_scale': 1.0,
             'fontsize': 10.0,
         },
-        'print': {
+        Mode.PRINT: {
             'large_scale': 1.5,
             'medium_scale': 1.7,
             'small_scale': 1.7,
             'tick_scale': 1.7,
             'fontsize': 12.0,
         },
-        'poster': {
+        Mode.POSTER: {
             'large_scale': 4.0,
             'medium_scale': 4.0,
             'small_scale': 4.0,
             'tick_scale': 4.0,
             'fontsize': 28.0,
         },
-        'beamer': {
+        Mode.BEAMER: {
             'large_scale': 4.0,
             'medium_scale': 4.0,
             'small_scale': 4.0,
@@ -390,7 +451,7 @@ def _get_scale(mode):
             'fontsize': 28.0,
         },
     }
-    return scale_dict.get(mode, scale_dict['default'])
+    return scale_dict.get(mode, scale_dict[Mode.DEFAULT])
 
 
 def _reset_style():

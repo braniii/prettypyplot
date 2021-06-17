@@ -13,11 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added cmap `summertimes`
 - Scales markers and boxplots according to mode
 - Added testing of plotting functionality pytest-mpl
+- `MODE` and `STYLE` are now of `Enum` class
+- Major code improvements, see commits
 
 ### Bugfix 🐛:
 - Fix treating images (`imshow`) as none empty images
 - Fix handling non subplot axes correctly by `pplt.hide_empty_axes`
 - Fix to activate minor and major grid for `mpl >= 3.3` by calling `pplt.grid()`
+- Fix CI building docs
+- Fix using wrong style/mode in `plot` submodule
 
 
 ## [0.7.1] - 2021-02-18

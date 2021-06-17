@@ -2,6 +2,9 @@
 .. include:: ../README.md
 
 """
+# both are set in style submodule to default value
+MODE = None
+STYLE = None
 
 from .colors import *
 from .plot import *
