@@ -6,7 +6,6 @@ All rights reserved.
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-from collections import namedtuple
 from enum import Enum, auto
 from os import path as ospath
 
@@ -154,9 +153,9 @@ def update_style(
             style = Style[style.upper()]
         else:
             assert ValueError(
-                'Style "{style}" is not supported, use one of {styles}.'.format(
-                    style=style,
-                    styles=Style.keys_list(),
+                'Style "{st}" is not supported, use one of {sts}.'.format(
+                    st=style,
+                    sts=Style.keys_list(),
                 ),
             )
         _pplt.STYLE = style
