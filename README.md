@@ -73,7 +73,11 @@ one needs to pass here the axes as an argument (args or kwargs).
 ### Installation
 
 ```python
-python3 -m pip install prettypyplot
+python3 -m pip install --upgrade prettypyplot
+```
+or for the latest dev version
+```python
+python3 -m pip install git+https://gitlab.com/braniii/prettypyplot.git
 ```
 
 ### Usage
