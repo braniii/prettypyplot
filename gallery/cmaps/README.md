@@ -12,6 +12,10 @@ the colors of `pastel5` (`'pplt:blue'`, `'pplt:red'`, `'pplt:green'`,
 The qualitative colors `'pastel_autumn'`, `'pastel_spring'`,
 `'pastel_rainbow'` are neither cbf friendly nor suited for black-white.
 
+All colormaps starting with `tol:` were designed by Paul Tol. All of them are
+cbf friendly and some are even prient friendly. For a detailed discussion check
+out his lovely [blog](https://personal.sron.nl/~pault/).
+
 .. warning::
     `macaw`, `pastel5`, `pastel6`, `ufcd` and `turbo` will be only modified
     slightly in future relases. All others will probably change dramatically.

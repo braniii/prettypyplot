@@ -29,6 +29,14 @@ from prettypyplot.cmaps._discrete import (
     _ufcd,
 )
 from prettypyplot.cmaps._macaw import _macaw
+from prettypyplot.cmaps._tol_discrete import (
+    _tol_bright,
+    _tol_high_contrast,
+    _tol_light,
+    _tol_medium_contrast,
+    _tol_muted,
+    _tol_vibrant,
+)
 from prettypyplot.cmaps._turbo import _turbo
 from prettypyplot.tools import is_number
 
@@ -63,6 +71,12 @@ def load_cmaps():
         _pastel_spring(),
         _paula(),
         _summertimes(),
+        _tol_bright(),
+        _tol_high_contrast(),
+        _tol_light(),
+        _tol_medium_contrast(),
+        _tol_muted(),
+        _tol_vibrant(),
         _ufcd(),
         _turbo(),
         _macaw(),

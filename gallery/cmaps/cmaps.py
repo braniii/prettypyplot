@@ -19,7 +19,8 @@ cmaps['Perceptually Uniform Sequential'] = [
 ]
 cmaps['Qualitative'] = [
     'pastel5', 'pastel6', 'pastel_autunm', 'pastel_spring', 'pastel_rainbow',
-    'summertimes', 'cbf4', 'cbf5', 'cbf8', 'ufcd', 'paula',
+    'summertimes', 'cbf4', 'cbf5', 'cbf8', 'ufcd', 'paula', 'tol:bright',
+    'tol:muted', 'tol:high_contrast', 'tol:medium_contrast', 'tol:vibrant',
 ]
 
 gradient = np.linspace(0, 1, 256)
