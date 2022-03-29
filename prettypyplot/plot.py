@@ -378,7 +378,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     divider = mpl_axes_grid1.make_axes_locatable(ax)
     cax = divider.append_axes(position, width, pad=pad)
 
-    cbar = plt.colorbar(im, cax=cax, orientation=orientation)
+    cbar = plt.colorbar(im, cax=cax, orientation=orientation, **kwargs)
     if label:
         cbar.set_label(label)
 
