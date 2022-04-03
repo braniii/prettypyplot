@@ -1,6 +1,33 @@
 import pathlib
+from collections import defaultdict
 
 import setuptools
+
+
+def get_extra_requirements(path, add_all=True):
+    """Parse extra-requirements file."""
+
+    with open(path) as depfile:
+        extra_deps = defaultdict(set)
+        for line in depfile:
+            if not line.startswith('#'):
+                if ':' not in line:
+                    raise ValueError(
+                        f'Dependency in {path} not correct formatted: {line}',
+                    )
+                dep, tags = line.split(':')
+                tags = {tag.strip() for tag in tags.split(',')}
+                for tag in tags:
+                    extra_deps[tag].add(dep)
+
+        # add tag `all` at the end
+        if add_all:
+            extra_deps['all'] = {
+                tag for tags in extra_deps.values() for tag in tags
+            }
+
+    return extra_deps
+
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -35,4 +62,5 @@ setuptools.setup(
         'numpy',
         'decorit>=0.1.1',
     ],
+    extras_require=get_extra_requirements('extra-requirements.txt')
 )

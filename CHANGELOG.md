@@ -6,6 +6,9 @@ and [Element](https://github.com/vector-im/element-android)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- define `pip install prettypyplot[testing/docs/all]` to bundle installation
+
 
 ## [0.8.0] - 2022-04-03
 ### API changes warning ⚠️:

@@ -1,0 +1,10 @@
+# Extra requirements
+# package[version_required]: tag1, tag2, ...
+flake8:                testing
+tox:                   testing
+pytest:                testing
+pytest-cov:            testing
+pytest-rerunfailures:  testing
+pytest-benchmark:      testing
+covarage:              testing
+pdoc3:                 docs
