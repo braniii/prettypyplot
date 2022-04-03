@@ -6,6 +6,8 @@ and [Element](https://github.com/vector-im/element-android)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.8.0] - 2022-04-03
 ### API changes warning ⚠️:
 - gray colors can not be accessed anymore via `default_grays['dark']` but instead via `default_grays.dark`
 
@@ -112,7 +114,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Other changes:
 - refactored all submodules
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.7.1...master
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.8.0...master
+[0.8.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.1...v0.8.0
 [0.7.1]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.0...v0.7.1
 [0.7.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.6.0...v0.7.0
 [0.6.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.5.0...v0.6.0
