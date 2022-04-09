@@ -1,1 +1,2 @@
+include extra-requirements.txt
 recursive-include prettypyplot *.mplstyle
