@@ -18,47 +18,52 @@ testing:
     reports:
       cobertura: coverage.xml
 
-testing:
-  stage: testtox
-  parallel:
-    matrix:
-      - PYTHON:
-    name: ${{ matrix.tox_env }}, ${{ mpl-version }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - python-version: '3.9'
-            tox_env: 'py39'
-            mpl-version: '==3.3.4'
-          - python-version: '3.9'
-            tox_env: 'py39'
-            mpl-version: '==3.4.2'
-          - python-version: '3.7'
-            tox_env: 'py37'
-            mpl-version: ''
-          - python-version: '3.8'
-            tox_env: 'py38'
-            mpl-version: ''
-          - python-version: '3.8'
-            mpl-version: ''
-          - python-version: '3.9'
-            mpl-version: ''
+#testing-tox:
+#  stage: test
+#  parallel:
+#    matrix:
+#      - PYTHON:
+#    name: ${{ matrix.tox_env }}, ${{ mpl-version }}
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        include:
+#          - python-version: '3.9'
+#            tox_env: 'py39'
+#            mpl-version: '==3.3.4'
+#          - python-version: '3.9'
+#            tox_env: 'py39'
+#            mpl-version: '==3.4.2'
+#          - python-version: '3.7'
+#            tox_env: 'py37'
+#            mpl-version: ''
+#          - python-version: '3.8'
+#            tox_env: 'py38'
+#            mpl-version: ''
+#          - python-version: '3.9'
+#            tox_env: 'py39'
+#            mpl-version: ''
+#          - python-version: '3.9'
+#            tox_env: 'coverage-report'
+#            mpl-version: ''
 
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Tox
-      run: python3 -m pip install .[testing]
-    - name: Install Specific MPL version
-      run: python3 -m pip install matplotlib$${{ matrix.mpl-version }}
-    - name: Run Tox
-      run: tox -e ${{ matrix.tox_env }} --
+#    steps:
+#    - uses: actions/checkout@v2
+#      with:
+#        fetch-depth: 0
+#    - name: Set up Python ${{ matrix.python-version }}
+#      uses: actions/setup-python@v2
+#      with:
+#        python-version: ${{ matrix.python-version }}
+#    - name: Install Tox
+#      run: python3 -m pip install .[testing]
+#    - name: Install Specific MPL version
+#      run: python3 -m pip install matplotlib$${{ matrix.mpl-version }}
+#    - name: Run Tox
+#      run: tox -e ${{ matrix.tox_env }} --
+#  artifacts:
+#    reports:
+#      cobertura: coverage.xml
 
 
 pages:
