@@ -3,8 +3,8 @@
 flake8:                testing
 tox:                   testing
 pytest:                testing
+pytest-mpl:            testing
 pytest-cov:            testing
 pytest-rerunfailures:  testing
-pytest-benchmark:      testing
 coverage:              testing
 pdoc3:                 docs
