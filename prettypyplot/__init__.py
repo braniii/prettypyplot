@@ -6,6 +6,9 @@
 MODE = None
 STYLE = None
 
+# style dictionary
+STYLE_DICT = {}
+
 from .colors import *
 from .plot import *
 from .style import *

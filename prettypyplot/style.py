@@ -131,13 +131,27 @@ def update_style(
 
     """
     # set selected mode and style
+    if style is not None:
+        if isinstance(style, Style):
+            pass
+        elif isinstance(style, str) and style.upper() in Style.keys_list():
+            style = Style[style.upper()]
+        else:
+            raise ValueError(
+                'Style "{st}" is not supported, use one of {sts}.'.format(
+                    st=style,
+                    sts=Style.keys_list(),
+                ),
+            )
+        _pplt.STYLE = style
+
     if mode is not None:
         if isinstance(mode, Mode):
             pass
         elif isinstance(mode, str) and mode.upper() in Mode.keys_list():
             mode = Mode[mode.upper()]
         else:
-            assert ValueError(
+            raise ValueError(
                 'Mode "{mode}" is not supported, use one of {modes}.'.format(
                     mode=mode,
                     modes=Mode.keys_list(),
@@ -146,52 +160,56 @@ def update_style(
 
         _pplt.MODE = mode
 
-    if style is not None:
-        if isinstance(style, Style):
-            pass
-        elif isinstance(style, str) and style.upper() in Style.keys_list():
-            style = Style[style.upper()]
-        else:
-            assert ValueError(
-                'Style "{st}" is not supported, use one of {sts}.'.format(
-                    st=style,
-                    sts=Style.keys_list(),
-                ),
-            )
-        _pplt.STYLE = style
+    # set style variables in dictionary
+    for key, val in (
+        ('interactive', interactive),
+        ('colors', colors),
+        ('cmap', cmap),
+        ('ncs', ncs),
+        ('figsize', figsize),
+        ('figratio', figratio),
+        ('ipython', ipython),
+        ('true_black', true_black),
+        ('latex', latex),
+        ('sf', sf),
+    ):
+        if val is not None:
+            _pplt.STYLE_DICT[key] = val
 
-        if _pplt.STYLE is Style.NONE:
-            _reset_style()
-        else:
-            # load static rcParams
-            _apply_style('stylelib/default.mplstyle')
-            if _pplt.STYLE is Style.MINIMAL:
-                _apply_style('stylelib/minimal.mplstyle')
+    if _pplt.STYLE is Style.NONE:
+        _reset_style()
+    else:
+        # load static rcParams
+        _apply_style('stylelib/default.mplstyle')
+        if _pplt.STYLE is Style.MINIMAL:
+            _apply_style('stylelib/minimal.mplstyle')
 
-            # set color cycle and cmap
-            _set_rc_colors(
-                colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
-            )
+        # set color cycle and cmap
+        _set_rc_colors(
+            colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
+        )
 
-            # set figsize
+        # set figsize
+        if figsize is not None:
             _set_rc_figsize(figratio=figratio, figsize=figsize)
 
-            # change widths and fontsize depending on MODE
-            _set_rc_widths(mode)
+        # increase dpi if not in iypthon
+        _set_rc_dpi(ipython)
 
-            # increase dpi if not in iypthon
-            _set_rc_dpi(ipython)
+        # set interactive mode
+        _set_ineractive_mode(interactive=interactive)
 
-    # set interactive mode
-    _set_ineractive_mode(interactive=interactive)
+        # setup LaTeX font
+        # plt.style.use can not be used.
+        if latex:
+            _apply_style('stylelib/latex.mplstyle')
 
-    # setup LaTeX font
-    # plt.style.use can not be used.
-    if latex is not None and latex:
-        _apply_style('stylelib/latex.mplstyle')
+        if sf:
+            _set_rc_sansserif()
 
-    if sf:
-        _set_rc_sansserif()
+    if mode is not None:
+        # change widths and fontsize depending on MODE
+        _set_rc_widths(mode)
 
 
 @copy_doc_params(update_style)
@@ -288,10 +306,14 @@ def setup_pyplot(
     )
 
 
-def _set_rc_colors(colors, cmap, ncs, true_black):
+def _set_rc_colors(colors, cmap, true_black, ncs):
     """Set rcParams colors."""
     # set color cycle and cmap
-    if colors is not None:
+    if colors is not None or ncs is not None:
+        # use values of previous call in case of None
+        colors = colors if colors is not None else _pplt.STYLE_DICT['colors']
+        ncs = ncs if ncs is not None else _pplt.STYLE_DICT['ncs']
+
         try:
             # try if discrete cmap was selected
             color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
@@ -299,8 +321,6 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
             color_cycler = plt.cycler(
                 color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
             )
-
-        # TODO: refactor following code in private function
         plt.rcParams['axes.prop_cycle'] = color_cycler
 
     if cmap is not None:
@@ -326,9 +346,6 @@ def _set_rc_colors(colors, cmap, ncs, true_black):
 
 def _set_rc_figsize(figratio, figsize):
     """Set rcParams figsize."""
-    # convert figratio to value
-    figratio = tools.parse_figratio(figratio)
-
     # setup figsize
     figsize = tools.parse_figsize(figsize, figratio)
 

@@ -25,7 +25,9 @@ def parse_figratio(figratio):
         Numeric figratio.
 
     """
-    if is_number(figratio):
+    if figratio is None:
+        figratio = _pplt.STYLE_DICT['figratio']
+    elif is_number(figratio):
         figratio = float(figratio)
     else:
         figratios = {
@@ -62,6 +64,11 @@ def parse_figsize(figsize, figratio):
     figsize = tuple(np.atleast_1d(figsize))
     if not all(is_number(size) for size in figsize):
         sizetuple = None
+    elif len(figsize) == 1 and figratio is None:
+        raise ValueError(
+            'using single value for `figsize` requires `figratio` but was not'
+            ' specified yet.',
+        )
     elif len(figsize) == 1:
         figratio = parse_figratio(figratio)
         figsize = float(figsize[0])
