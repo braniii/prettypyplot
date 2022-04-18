@@ -316,7 +316,12 @@ def _set_rc_colors(colors, cmap, true_black, ncs):
 
         try:
             # try if discrete cmap was selected
-            color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
+            if plt.get_cmap(colors).N == 256:
+                color_cycler = plt.cycler(
+                    color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
+                )
+            else:
+                color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
         except AttributeError:
             color_cycler = plt.cycler(
                 color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
