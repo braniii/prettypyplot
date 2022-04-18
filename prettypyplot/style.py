@@ -500,7 +500,7 @@ def _parse_figratio(figratio):
     """
     if figratio is None:
         figratio = _pplt.STYLE_DICT['figratio']
-    elif is_number(figratio):
+    elif tools.is_number(figratio):
         figratio = float(figratio)
     else:
         figratios = {
@@ -535,7 +535,7 @@ def _parse_figsize(figsize, figratio):
 
     """
     figsize = tuple(np.atleast_1d(figsize))
-    if not all(is_number(size) for size in figsize):
+    if not all(tools.is_number(size) for size in figsize):
         sizetuple = None
     elif len(figsize) == 1 and figratio is None:
         raise ValueError(
