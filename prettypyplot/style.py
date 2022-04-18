@@ -347,7 +347,7 @@ def _set_rc_colors(colors, cmap, true_black, ncs):
 def _set_rc_figsize(figratio, figsize):
     """Set rcParams figsize."""
     # setup figsize
-    figsize = tools.parse_figsize(figsize, figratio)
+    figsize = _parse_figsize(figsize, figratio)
 
     if figsize is not None:
         plt.rcParams['figure.figsize'] = figsize
@@ -482,3 +482,78 @@ def _apply_style(path):
 
     # load and apply style
     plt.style.use(path)
+
+
+def _parse_figratio(figratio):
+    """Parse the figratio value.
+
+    Parameters
+    ----------
+    figratio : float or one of ['sqrt(2)', 'sqrt(3)', 'golden']
+        Parse the figratio to an numeric value.
+
+    Returns
+    -------
+    figratio : float
+        Numeric figratio.
+
+    """
+    if figratio is None:
+        figratio = _pplt.STYLE_DICT['figratio']
+    elif is_number(figratio):
+        figratio = float(figratio)
+    else:
+        figratios = {
+            'sqrt(2)': np.sqrt(2),
+            'sqrt(3)': np.sqrt(3),
+            'golden': (1 + np.sqrt(5)) / 2,
+        }
+        if figratio not in figratios:
+            raise ValueError(
+                'figratio needs to be an numeric value or one of [' +
+                '{0}].'.format(', '.join(figratios.keys())),
+            )
+        figratio = figratios.get(figratio, None)
+    return figratio
+
+
+def _parse_figsize(figsize, figratio):
+    """Parse the figsize value.
+
+    Parameters
+    ----------
+    figsize : float or tuple of floats
+        Parse the figsize (in inches) to an numeric value. If only a single
+        value is given, the figratio will be used for the second dimension.
+    figratio : float or one of ['sqrt(2)', 'sqrt(3)', 'golden'], optional
+        Parse the figratio to an numeric value, see `parse_figsize`.
+
+    Returns
+    -------
+    figsize : tuple
+        Tuple of figsize in inches (x, y).
+
+    """
+    figsize = tuple(np.atleast_1d(figsize))
+    if not all(is_number(size) for size in figsize):
+        sizetuple = None
+    elif len(figsize) == 1 and figratio is None:
+        raise ValueError(
+            'using single value for `figsize` requires `figratio` but was not'
+            ' specified yet.',
+        )
+    elif len(figsize) == 1:
+        figratio = _parse_figratio(figratio)
+        figsize = float(figsize[0])
+        sizetuple = (figsize, figsize / figratio)
+    elif len(figsize) == 2:
+        sizetuple = figsize
+    else:
+        sizetuple = None
+
+    if sizetuple is None:
+        raise ValueError(
+            'figsize needs to be an numeric value or a tuple, not ' +
+            '{0}.'.format(figsize),
+        )
+    return sizetuple
