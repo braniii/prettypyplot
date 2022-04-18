@@ -6,10 +6,7 @@ Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
-import matplotlib as mpl
-import numpy as np
 import pytest
-from matplotlib import pyplot as plt
 
 import prettypyplot
 
@@ -32,4 +29,3 @@ def test_use_stlyle(kwargs, error):
     else:
         with pytest.raises(error):
             prettypyplot.use_style(**kwargs)
-
