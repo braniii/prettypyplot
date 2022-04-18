@@ -83,3 +83,8 @@ def get_axes(axs):
             ' or list of',
         )
     return axs
+
+
+def is_discrete_cmap(cmap: str) -> bool:
+    """Return if cmap is discrete or continuos."""
+    return plt.get_cmap(cmap).N < 256

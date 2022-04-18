@@ -314,19 +314,13 @@ def _set_rc_colors(colors, cmap, true_black, ncs):
         colors = colors if colors is not None else _pplt.STYLE_DICT['colors']
         ncs = ncs if ncs is not None else _pplt.STYLE_DICT['ncs']
 
-        try:
-            # try if discrete cmap was selected
-            if plt.get_cmap(colors).N == 256:
-                color_cycler = plt.cycler(
-                    color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
-                )
-            else:
-                color_cycler = plt.cycler(color=plt.get_cmap(colors).colors)
-        except AttributeError:
-            color_cycler = plt.cycler(
-                color=plt.get_cmap(colors)(np.linspace(0, 1, ncs)),
-            )
-        plt.rcParams['axes.prop_cycle'] = color_cycler
+        clrs = plt.get_cmap(colors)
+        plt.rcParams['axes.prop_cycle'] = plt.cycler(
+            color=(
+                clrs.colors if tools.is_discrete_cmap(colors) else
+                clrs(np.linspace(0, 1, ncs))
+            ),
+        )
 
     if cmap is not None:
         plt.rcParams['image.cmap'] = cmap

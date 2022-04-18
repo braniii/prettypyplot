@@ -93,3 +93,16 @@ def test_get_axes():
     )
     with pytest.raises(TypeError):
         prettypyplot.tools.get_axes(fig)
+
+
+@pytest.mark.parametrize('cmap, is_discrete', [
+    ('turbo', False),
+    ('inferno', False),
+    ('jet', False),
+    ('Greys', False),
+    ('tab10', True),
+    ('Set1', True),
+])
+def test_is_discrete_cmap(cmap, is_discrete):
+    """Test is_number."""
+    assert is_discrete == prettypyplot.tools.is_discrete_cmap(cmap)
