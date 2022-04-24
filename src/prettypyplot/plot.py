@@ -200,8 +200,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         List of axes which are used for extracting all labels.
 
     ax : mpl.axes.Axes
-        Axes which is used for placing legend. If none is specified `axs`
-        will be used if not `None` and otherwise the currently active axis
+        Axes which is used for placing legend.
 
     args, kwargs
         See [pyplot.legend()](MPL_DOC.pyplot.legend.html)
@@ -225,20 +224,6 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         )
 
     # parse axes
-    if ax is not None:
-        ax = tools.gca(ax)
-        if axs is not None:
-            axs = tools.get_axes(axs)
-        else:
-            axs = [ax]
-    else:
-        if axs is not None:
-            axs = tools.get_axes(axs)
-            ax = tools.get_axes(axs)
-        else:
-            ax = plt.gca()
-            axs = [ax]
-
     args, ax = tools.parse_axes(*args, ax=ax)
 
     # parse axs
