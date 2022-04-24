@@ -1,2 +1,2 @@
 include extra-requirements.txt
-recursive-include prettypyplot *.mplstyle
+recursive-include src/prettypyplot *.mplstyle
