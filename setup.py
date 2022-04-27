@@ -61,7 +61,7 @@ setuptools.setup(
     install_requires=[
         'matplotlib',
         'numpy',
-        'decorit>=0.1.1',
+        'decorit>=0.2.0',
     ],
     extras_require=get_extra_requirements('extra-requirements.txt')
 )
