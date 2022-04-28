@@ -7,6 +7,9 @@ Changelog](https://keepachangelog.com/en/1.0.0/), and
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+
+## [0.9.0] - 2022-04-28
 ### API changes warning ⚠️:
 - define `pip install prettypyplot[testing/docs/all]` to bundle installation
 - The methods `pplt.tools.parse_figsize` and `pplt.tools.parse_figaratio` are
@@ -16,13 +19,20 @@ respectively
 ### Added Features and Improvements 🙌:
 - Store all variables of `pplt.use_style`. This enables calling
   `pplt.update_style` without repeating all arguments remaining the same.
-
+- Moved from `flat` to recommended `src` layout and moved tests from `test` to
+  `tests`
 
 ### Bugfix 🐛:
+- Fix coverage CI
 - Fix identifying continuos cmaps in `pplt.use_style(colors=...)`, e.g.,
   `turbo`, `viridis`.
 - Fix calling `pplt.update_style` without specifying `figratio` and/or
   `figsize`
+- Fix including `LICENSE` file in pypi package and exclude tests, this allows
+  publishing to conda-forge
+
+### Other changes:
+- Increase `decorit>=0.2.0` to remove annoying PEP warnings
 
 
 ## [0.8.0] - 2022-04-03
@@ -137,7 +147,8 @@ respectively
 ### Other changes:
 - refactored all submodules
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.8.0...master
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.9.0...master
+[0.9.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.8.0...v0.9.0
 [0.8.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.1...v0.8.0
 [0.7.1]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.0...v0.7.1
 [0.7.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.6.0...v0.7.0
