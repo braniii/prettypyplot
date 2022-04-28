@@ -13,7 +13,7 @@ testing:
     - pytest
     - coverage report
     - coverage xml
-  coverage: '/*TOTAL.*\s+(\d+%)$/'
+  coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     reports:
       cobertura: coverage.xml
