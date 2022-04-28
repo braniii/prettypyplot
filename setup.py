@@ -46,6 +46,7 @@ setuptools.setup(
     author='braniii',
     url='https://gitlab.com/braniii/prettypyplot',
     license='BSD 3-Clause License',
+    license_files=('LICENSE', ),
     classifiers=[
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python :: 3',
