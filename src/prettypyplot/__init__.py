@@ -1,5 +1,5 @@
 """
-.. include:: ../README.md
+.. include:: ../src/README.md
 
 """
 # both are set in style submodule to default value
