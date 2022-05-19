@@ -6,7 +6,7 @@ This is an example of using `prettypyplot.plot.colorbar`.
     This is not yet correctly implemented for `STYLE='minimal'`.
 
 ```python
-.. include:: ../gallery/colorbar/colorbar.py
+.. include:: ../../gallery/colorbar/colorbar.py
     :start-line: 7
 ```
 

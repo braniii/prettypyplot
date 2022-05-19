@@ -3,7 +3,7 @@
 This is an example of using `prettypyplot.subplots` module.
 
 ```python
-.. include:: ../gallery/subplots/subplots.py
+.. include:: ../../gallery/subplots/subplots.py
     :start-line: 7
 ```
 
