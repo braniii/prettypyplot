@@ -212,7 +212,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
 
     Examples
     --------
-    .. include:: ../gallery/legend/README.md
+    .. include:: ../../gallery/legend/README.md
 
     """
     default_kwargs = _legend_default_kwargs()
