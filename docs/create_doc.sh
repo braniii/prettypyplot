@@ -2,7 +2,8 @@
 echo 'create documentation'
 python3 -m pdoc --html -o . --template-dir ./config --force ../src/prettypyplot
 
-mv prettypyplot/cmaps/* ./cmaps/
+mkdir cmaps
+mv prettypyplot/cmaps/* cmaps/
 rmdir prettypyplot/cmaps
 
 mv prettypyplot/* .
@@ -13,7 +14,7 @@ sed -i -e 's/MPL_DOC/https:\/\/matplotlib.org\/api\/_as_gen\/matplotlib/g' *.htm
 echo ''
 
 # check if index.html was created
-if [[ -e 'index.html' ]]; then
+if [[ ! -e 'index.html' ]]; then
 	echo 'index file is missing. probably an error occured.'
 	exit 1
 fi
