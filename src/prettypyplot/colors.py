@@ -41,11 +41,16 @@ from prettypyplot.cmaps._tol_discrete import (
 from prettypyplot.cmaps._turbo import _turbo
 from prettypyplot.tools import is_number
 
+
 # ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class GrayTones(namedtuple('GrayTones', 'dark light')):
     """Class for holding light and dark gray tone."""
+
+
 black_grays = GrayTones('#000000', '#dddfe5')
 default_grays = GrayTones('#4d4f53', '#dddfe5')
+black_grays_darkmode = GrayTones('#ffffff', '#22201a')
+default_grays_darkmode = GrayTones('#b2b0ac', '#22201a')
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
