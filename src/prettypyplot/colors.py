@@ -42,7 +42,8 @@ from prettypyplot.cmaps._turbo import _turbo
 from prettypyplot.tools import is_number
 
 # ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-GrayTones = namedtuple('GrayTones', 'dark light')
+class GrayTones(namedtuple('GrayTones', 'dark light')):
+    """Class for holding light and dark gray tone."""
 black_grays = GrayTones('#000000', '#dddfe5')
 default_grays = GrayTones('#4d4f53', '#dddfe5')
 
