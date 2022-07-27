@@ -51,6 +51,9 @@ UFCD_ARRAY = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
 
 # own creation
 PAULA_ARRAY = ['#fec21f', '#ed6a0c', '#df0712', '#df017b', '#4a287d']
+ARGON_ARRAY = [
+    '#252b3b', '#406558', '#628d79', '#cda901', '#e26b00', '#cb1a26',
+]
 
 SUMMER_ARRAY = [
     '#002661',
@@ -100,6 +103,10 @@ def _ufcd():
 
 def _paula():
     return clr.ListedColormap(PAULA_ARRAY, 'paula')
+
+
+def _argon():
+    return clr.ListedColormap(ARGON_ARRAY, 'argon')
 
 
 def _summertimes():

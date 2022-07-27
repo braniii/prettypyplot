@@ -16,6 +16,7 @@ from matplotlib import pyplot as plt
 # importing colormaps
 from prettypyplot.cmaps._bownair import _bownair
 from prettypyplot.cmaps._discrete import (
+    _argon,
     _cbf4,
     _cbf5,
     _cbf8,
@@ -61,6 +62,7 @@ def load_cmaps():
 
     """
     colormaps = (
+        _argon(),
         _pastel5(),
         _pastel6(),
         _cbf4(),
