@@ -48,8 +48,8 @@ class GrayTones(namedtuple('GrayTones', 'dark light')):
 
 
 black_grays = GrayTones('#000000', '#dddfe5')
-default_grays = GrayTones('#4d4f53', '#dddfe5')
 black_grays_darkmode = GrayTones('#ffffff', '#22201a')
+default_grays = GrayTones('#4d4f53', '#dddfe5')
 default_grays_darkmode = GrayTones('#b2b0ac', '#22201a')
 
 
