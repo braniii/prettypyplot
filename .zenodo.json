@@ -1,0 +1,12 @@
+{
+    "creators": [
+        {
+            "orcid": "0000-0002-2863-2646",
+            "affiliation": "Biomolecular Dynamics, Institute of Physics, Albert-Ludwigs-Universität",
+            "name": "Nagel, Daniel"
+        }
+    ],
+    "title": "Prettypyplot: publication ready matplotlib figures made simple",
+    "keywords": ["Python", "Matplotlib", "Visualization"]
+}
+
