@@ -4,6 +4,8 @@
   />
 
   <p>
+    <a href="https://zenodo.org/badge/latestdoi/350406950" alt="DOI">
+        <img src="https://zenodo.org/badge/350406950.svg" alt="DOI" /></a>
     <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
@@ -182,6 +184,13 @@ CI action.
 ## Similar Projects
 
 - [seaborn](https://seaborn.pydata.org/)
+
+## Citing Prettypyplot
+
+If you want to cite prettypyplot in scientific work please use:
+> **Prettypyplot: publication ready matplotlib figures made simple**  
+> D. Nagel, **2022**. Zenodo:
+> [10.5281/zenodo.7278312](https://doi.org/10.5281/zenodo.7278312)
 
 ## Credits:
 
