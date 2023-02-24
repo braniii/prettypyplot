@@ -1,10 +1,6 @@
-# Changelog All notable changes to this project will be documented in this
-file.
+# Changelog All notable changes to this project will be documented in this file.
 
-The format is inspired by [Keep a
-Changelog](https://keepachangelog.com/en/1.0.0/), and
-[Element](https://github.com/vector-im/element-android) and this project
-adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and [Element](https://github.com/vector-im/element-android) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
@@ -12,24 +8,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [0.9.0] - 2022-04-28
 ### API changes warning ⚠️:
 - define `pip install prettypyplot[testing/docs/all]` to bundle installation
-- The methods `pplt.tools.parse_figsize` and `pplt.tools.parse_figaratio` are
-  moved to `pplt.style._parse_figsize` and `pplt.style._parse_figratio`,
-respectively
+- The methods `pplt.tools.parse_figsize` and `pplt.tools.parse_figaratio` are moved to `pplt.style._parse_figsize` and `pplt.style._parse_figratio`, respectively
 
 ### Added Features and Improvements 🙌:
-- Store all variables of `pplt.use_style`. This enables calling
-  `pplt.update_style` without repeating all arguments remaining the same.
-- Moved from `flat` to recommended `src` layout and moved tests from `test` to
-  `tests`
+- Store all variables of `pplt.use_style`. This enables calling `pplt.update_style` without repeating all arguments remaining the same.
+- Moved from `flat` to recommended `src` layout and moved tests from `test` to `tests`
 
 ### Bugfix 🐛:
 - Fix coverage CI
-- Fix identifying continuos cmaps in `pplt.use_style(colors=...)`, e.g.,
-  `turbo`, `viridis`.
-- Fix calling `pplt.update_style` without specifying `figratio` and/or
-  `figsize`
-- Fix including `LICENSE` file in pypi package and exclude tests, this allows
-  publishing to conda-forge
+- Fix identifying continuos cmaps in `pplt.use_style(colors=...)`, e.g., `turbo`, `viridis`.
+- Fix calling `pplt.update_style` without specifying `figratio` and/or `figsize`
+- Fix including `LICENSE` file in pypi package and exclude tests, this allows publishing to conda-forge
 
 ### Other changes:
 - Increase `decorit>=0.2.0` to remove annoying PEP warnings
@@ -37,8 +26,7 @@ respectively
 
 ## [0.8.0] - 2022-04-03
 ### API changes warning ⚠️:
-- gray colors can not be accessed anymore via `default_grays['dark']` but
-  instead via `default_grays.dark`
+- gray colors can not be accessed anymore via `default_grays['dark']` but instead via `default_grays.dark`
 
 ### Added Features and Improvements 🙌:
 - Added cmap `summertimes`
@@ -50,8 +38,7 @@ respectively
 ### Bugfix 🐛:
 - Fix treating images (`imshow`) as none empty images
 - Fix handling non subplot axes correctly by `pplt.hide_empty_axes`
-- Fix to activate minor and major grid for `mpl >= 3.3` by calling
-  `pplt.grid()`
+- Fix to activate minor and major grid for `mpl >= 3.3` by calling `pplt.grid()`
 - Fix CI building docs
 - Fix using wrong style/mode in `plot` submodule
 
@@ -102,12 +89,9 @@ respectively
 ## [0.4.0] - 2020-04-21
 ### Added Features and Improvements 🙌:
 - Added Decorators
-- Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`,
-  `'pastel_autumn'`
-- Refactor style settings. Added `pplt.update_style` and renamed
-  `pplt.setup_pyplot` to `pplt.use_style`
-- Add text module with `pplt.text`, `pplt.figtext` and `pplt.add_contour`. With
-  centered text and contour parameter
+- Added 3 new discrete color options `'pastel_rainbow'`, `'pastel_spring'`, `'pastel_autumn'`
+- Refactor style settings. Added `pplt.update_style` and renamed `pplt.setup_pyplot` to `pplt.use_style`
+- Add text module with `pplt.text`, `pplt.figtext` and `pplt.add_contour`. With centered text and contour parameter
 
 ### Bugfix 🐛:
 - Minor bug fixes
