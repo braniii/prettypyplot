@@ -1,7 +1,4 @@
-"""
-.. include:: ../../README.md
-
-"""
+"""--8<-- "README.md" """
 # both are set in style submodule to default value
 MODE = None
 STYLE = None
