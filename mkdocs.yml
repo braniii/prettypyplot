@@ -99,6 +99,14 @@ plugins:
     handlers:
       python:
         paths: [src]
+        import:
+        - https://matplotlib.org/doc/stable/objects.inv
+        options:
+          members_order: "source"
+          docstring_style: "numpy"
+          docstring_section_style: "list"
+          merge_init_into_class: true
+          filters: ["!^_"]
 
 extra_css:
   - css/extra.css
