@@ -100,7 +100,7 @@ plugins:
       python:
         paths: [src]
         import:
-        - https://matplotlib.org/doc/stable/objects.inv
+        - https://matplotlib.org/stable/objects.inv
         options:
           members_order: "source"
           docstring_style: "numpy"
