@@ -7,7 +7,7 @@ STYLE = None
 STYLE_DICT = {}
 
 from .colors import *
-from .plot import *
+from .pyplot import *
 from .style import *
 from .texts import *
 from .subplots import *

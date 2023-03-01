@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- Renamed submodule `plot` to `pyplot` to avoid shadowing with function `pplt.plot`
+
 ### Added Features and Improvements 🙌:
 - Moved from pdoc to an all new `mkdocs` documentation 🎉
 
