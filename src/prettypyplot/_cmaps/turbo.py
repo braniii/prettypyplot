@@ -1,7 +1,8 @@
 """Turbo colormap.
 
 This replacement of jet will be implemented in matplotlib 3.3.0. It is taken
-from [FedeMiorelli](https://gist.github.com/FedeMiorelli/640bbc66b2038a14802729e609abfe89)
+from FedeMiorelli:
+https://gist.github.com/FedeMiorelli/640bbc66b2038a14802729e609abfe89
 
 """
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
