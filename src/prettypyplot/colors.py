@@ -52,6 +52,22 @@ default_grays_darkmode = GrayTones('#b2b0ac', '#22201a')
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def _get_cmap(cmap):
+    """Wrapper for get_cmap with mpl <=3.6 and >=3.7."""
+    if hasattr(mpl, 'colormaps') and hasattr(mpl.colormaps, 'get_cmap'):
+        mpl.colormaps.get_cmap(cmap)
+    else:
+        mpl.cm.get_cmap(cmap)
+
+
+def _register_cmap(cmap):
+    """Wrapper for register_cmap with mpl <=3.6 and >=3.7."""
+    if hasattr(mpl, 'colormaps') and hasattr(mpl.colormaps, 'register'):
+        mpl.colormaps.register(cmap)
+    else:
+        mpl.cm.register_cmap(cmap=cmap)
+
+
 def load_cmaps():
     """Load and include custom colormaps to matplotlib.
 
@@ -94,9 +110,9 @@ def load_cmaps():
         # add cmap and reverse cmap
         for cmap in (colormap, colormap.reversed()):
             try:
-                mpl.cm.get_cmap(cmap.name)
+                _get_cmap(cmap.name)
             except ValueError:
-                mpl.cm.register_cmap(cmap=cmap)
+                _register_cmap(cmap=cmap)
 
 
 def load_colors():
