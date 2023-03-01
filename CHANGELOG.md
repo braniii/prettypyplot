@@ -12,8 +12,12 @@ All notable changes to this project will be documented in this file. The format 
 ### Added Features and Improvements 🙌:
 - Moved from pdoc to an all new `mkdocs` documentation 🎉
 
+### Bugfix 🐛:
+- Fixed bug with `label_outer` with mpl >= 3.7
+
 ### Other changes:
 - Some submodules, used to add additional pages in pdoc, were removed
+- Remove deprecated usage of `mpl.cm.get_cmaps` and `mpl.cm.register_cmap`
 
 
 ## [0.9.0] - 2022-04-28
