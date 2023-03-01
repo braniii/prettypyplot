@@ -76,9 +76,11 @@ def label_outer(axs=None):
             # for mpl >= 3.4
             lastrow = ss.is_last_row()
             firstcol = ss.is_first_col()
-        else:
+        elif hasattr(ax, 'is_last_row'):  # pragma: no cover # noqa: WPS421
             lastrow = ax.is_last_row()
             firstcol = ax.is_first_col()
+        else:
+            raise TypeError(f'{ax!r} is not a valid axes.')
 
         # check if axes below, left is hidden
         left_empty, bottom_empty = _is_outer_hidden(axs, ax)
