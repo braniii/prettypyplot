@@ -32,7 +32,7 @@ def imshow(*args, ax=None, **kwargs):
         Matplotlib axes to plot in.
 
     args, kwargs
-        See [pyplot.imshow()](MPL_DOC.pyplot.imshow.html)
+        See [matplotlib.pyplot.imshow][].
 
     Returns
     -------
@@ -62,7 +62,7 @@ def plot(*args, ax=None, **kwargs):
         Matplotlib axes to plot in.
 
     args, kwargs
-        See [pyplot.plot()](MPL_DOC.pyplot.plot.html)
+        See [matplotlib.pyplot.plot][].
 
     Returns
     -------
@@ -96,7 +96,7 @@ def savefig(fname, use_canvas_size=True, **kwargs):
         If True the specified figsize will be used as canvas size.
 
     kwargs
-        See [pyplot.savefig()](MPL_DOC.pyplot.savefig.html)
+        See [matplotlib.pyplot.savefig][].
 
     """
     fig = plt.gcf()
@@ -203,7 +203,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         Axes which is used for placing legend.
 
     args, kwargs
-        See [pyplot.legend()](MPL_DOC.pyplot.legend.html)
+        See [matplotlib.pyplot.legend][].
 
     Returns
     -------
@@ -353,8 +353,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         Specify the colorbar label.
 
     kwargs
-        Colorbar properties of
-        [pyplot.colorbar()](MPL_DOC.pyplot.colorbar.html)
+        Colorbar properties of, [matplotlib.pyplot.colorbar][].
 
     Returns
     -------
@@ -407,7 +406,7 @@ def grid(*args, ax=None, **kwargs):
         Axes to plot grid.
 
     args, kwargs
-        See [pyplot.grid()](MPL_DOC.pyplot.grid.html)
+        See [matplotlib.pyplot.grid][].
 
     """
     # parse axes
