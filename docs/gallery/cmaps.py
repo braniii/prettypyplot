@@ -52,4 +52,4 @@ def plot_color_gradients(cmap_category, cmap_list):
 
 for cmap_category, cmap_list in cmaps.items():
     fig = plot_color_gradients(cmap_category, cmap_list)
-    pplt.savefig(f'{cmap_category}.svg')
+    pplt.savefig(f'images/{cmap_category}.svg')
