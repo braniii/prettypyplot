@@ -77,3 +77,25 @@ a[href^="https://codecov.io"]::after
 {
   display: none !important;
 }
+
+.grid {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid-item {
+  background-color: var(--md-admonition-bg-color);
+  border: .05rem solid #448aff;
+  border-color: #9e9e9e;
+  border-radius: .2rem;
+  box-shadow: var(--md-shadow-z1);
+  color: var(--md-admonition-fg-color);
+  display: flow-root;
+  margin: 1.5625em 0;
+  padding: 0 .6rem;
+  page-break-inside: avoid;
+  text-align: center;
+}
