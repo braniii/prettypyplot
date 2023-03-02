@@ -7,16 +7,14 @@ edit_uri: "blob/main/docs/"
 repo_name: "braniii/prettypyplot"
 site_dir: "site"
 copyright: Copyright &copy; 2023 Daniel Nagel
-watch: [src/prettypyplot, gallery]
+watch: [src/prettypyplot]
 
 nav:
 - Home:
   - Overview: index.md
   - Changelog: changelog.md
   - License: license.md
-- Gallery:
-  - Gallery: gallery/index.md
-  - Cmaps and Colors: gallery/cmaps.md
+- Gallery: gallery/
 - Code Reference: reference/
 - FAQ: faq.md
 - Development:
