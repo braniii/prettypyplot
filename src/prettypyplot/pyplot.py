@@ -397,22 +397,25 @@ def grid(*args, ax=None, **kwargs):
     # parse axes
     args, ax = tools.parse_axes(*args, ax=ax)
 
-    if 'b' not in kwargs:
+    if 'visible' in kwargs: # mpl >= 3.6
+        show_grid = kwargs['visible']
+    elif 'b' in kwargs:  # mpl <=3.5
+        show_grid = kwargs['b']
+    else:
         boolargs = [arg for arg in args if isinstance(arg, bool)]
-        if len(boolargs) > 1:
-            raise ValueError('Only a single bool parameter is allowed.')
-        elif len(boolargs) == 1:
-            show_grid = boolargs[0]
-        else:
-            show_grid = True
+        show_grid = boolargs[0] if len(boolargs) >= 1 else True
 
-        kwargs['b'] = show_grid
+    if _pplt.STYLE != Style.MINIMAL and show_grid:
+        gr_maj = ax.grid(show_grid, which='major', linestyle='--', **kwargs)
+        gr_min = ax.grid(
+            show_grid, which='minor', linestyle='dotted', **kwargs
+        )
+    else:
+        gr_maj = ax.grid(False, which='major')
+        gr_min = ax.grid(False, which='minor')
 
-    if _pplt.STYLE == Style.DEFAULT:
-        gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
-        gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
-        ax.set_axisbelow(True)
-        return (gr_maj, gr_min)
+    ax.set_axisbelow(True)
+    return (gr_maj, gr_min)
 
 
 def _xminmax(ax):

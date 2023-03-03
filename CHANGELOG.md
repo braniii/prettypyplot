@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Bugfix 🐛:
 - Fixed bug with `label_outer` with mpl >= 3.7
+- Fixed bug due deprecation in mpl>=3.6, where the kwarg `b` in `ax.grid` was renamed to `visibile`
 
 ### Other changes:
 - Some submodules, used to add additional pages in pdoc, were removed
