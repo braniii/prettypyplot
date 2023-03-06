@@ -5,13 +5,13 @@ This page consists of a gallery with some example usage.
 
 <div class="grid" markdown>
 
-[![cmaps](images/Qualitative.svg)](cmaps) colormaps
+colormaps [![cmaps](images/Qualitative.svg)](cmaps)
 { .grid-item }
 
-[![legend](images/legend_preview.svg)](legend) legend
+legend [![legend](images/legend_preview.svg)](legend)
 { .grid-item }
 
-[![cmaps](images/Qualitative.svg)](cmaps) colormaps
+colorbar [![colorbar](images/colorbar_preview.svg)](colorbar)
 { .grid-item }
 
 
