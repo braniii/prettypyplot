@@ -8,7 +8,7 @@ This page consists of a gallery with some example usage.
 [![cmaps](images/Qualitative.svg)](cmaps) colormaps
 { .grid-item }
 
-[![cmaps](images/Qualitative.svg)](cmaps) colormaps
+[![legend](images/legend_preview.svg)](legend) legend
 { .grid-item }
 
 [![cmaps](images/Qualitative.svg)](cmaps) colormaps
