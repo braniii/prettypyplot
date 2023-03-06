@@ -1,6 +1,6 @@
 <div align="center">
   <img
-    src="https://gitlab.com/braniii/prettypyplot/-/raw/master/gallery/logo_large.png"
+    src="https://gitlab.com/braniii/prettypyplot/-/raw/main/gallery/logo_large.png"
   />
 
   <p>
@@ -10,15 +10,15 @@
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
         <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/commits/master">
-        <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/master/coverage.svg" /></a>
+    <a href="https://gitlab.com/braniii/prettypyplot/-/commits/main">
+        <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/main/coverage.svg" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
     <a href="https://pepy.tech/project/prettypyplot" alt="Downloads" >
         <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/blob/master/LICENSE" alt="PyPI - License" >
+    <a href="https://gitlab.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
     <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
         <img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
@@ -188,7 +188,7 @@ CI action.
 ## Citing Prettypyplot
 
 If you want to cite prettypyplot in scientific work please use:
-> **Prettypyplot: publication ready matplotlib figures made simple**  
+> **Prettypyplot: publication ready matplotlib figures made simple**
 > D. Nagel, **2022**. Zenodo:
 > [10.5281/zenodo.7278312](https://doi.org/10.5281/zenodo.7278312)
 
