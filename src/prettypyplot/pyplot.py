@@ -397,7 +397,7 @@ def grid(*args, ax=None, **kwargs):
     # parse axes
     args, ax = tools.parse_axes(*args, ax=ax)
 
-    if 'visible' in kwargs: # mpl >= 3.6
+    if 'visible' in kwargs:  # mpl >= 3.6
         show_grid = kwargs['visible']
     elif 'b' in kwargs:  # mpl <=3.5
         show_grid = kwargs['b']
