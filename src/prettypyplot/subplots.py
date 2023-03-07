@@ -1,10 +1,8 @@
-"""Wrapper for matplotlib functions for subplots.
-
-BSD 3-Clause License
-Copyright (c) 2020-2021, Daniel Nagel
-All rights reserved.
-
-"""
+# -*- coding: utf-8 -*-
+# BSD 3-Clause License
+# Copyright (c) 2020-2023, Daniel Nagel
+# All rights reserved.
+"""Wrapper for matplotlib functions for subplots."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import numpy as np
@@ -22,8 +20,8 @@ def hide_empty_axes(axs=None):
     Parameters
     ----------
     axs : mpl.axes.Axes or list of
-        Specify axes to check for empty state. Default use all of current
-        figure.
+        Specify [matplotlib.axes.Axes][] to check for empty state. Default use
+        all of current figure.
 
     """
     # check for single axes
@@ -56,8 +54,8 @@ def label_outer(axs=None):
     Parameters
     ----------
     axs : mpl.axes.AxesSubplot or list of
-        Specify axes to check for labeling only outer. Default use all of
-        current figure.
+        Specify [matplotlib.axes.Axes][] to check for labeling only outer.
+        Default use all of current figure.
 
     """
     # check for single axes
@@ -164,10 +162,8 @@ def subplot_labels(*, fig=None, xlabel=None, ylabel=None):
     ----------
     fig : matplotlib figure, optional
         If `None` the current figure will be used instead.
-
     xlabel : str, optional
         String of x label.
-
     ylabel : str, optional
         String of y label.
 

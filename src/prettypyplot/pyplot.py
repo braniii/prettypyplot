@@ -182,8 +182,11 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     labels, for all other options to 1. In case of many labels this parameter
     needs to be adjusted.
 
-    !!! todo
+    !!! note
         Use handles and labels from *args if provided
+
+    !!! example
+        Checkout the gallery for [an example](../../gallery/legend).
 
     Parameters
     ----------
@@ -201,10 +204,6 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     -------
     leg : Legend
         [matplotlib.legend.Legend] legend handle.
-
-    Examples
-    --------
-    --8<-- "gallery/legend/README.md"
 
     """
     default_kwargs = _legend_default_kwargs()
@@ -321,6 +320,9 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     """Generate colorbar of same height as image.
 
     Wrapper around pyplot.colorbar which corrects the height.
+
+    !!! example
+        Checkout the gallery for [an example](../../gallery/colorbar).
 
     Parameters
     ----------

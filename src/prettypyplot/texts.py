@@ -32,8 +32,7 @@ def text(x, y, s, *, contour=None, ax=None, **kwargs):
     ax : matplotlib axes
         Matplotlib axes to plot in.
     kwargs
-        Text properties of
-        [matplotlib.pyplot.text][]
+        Text properties of [matplotlib.pyplot.text][]
 
     """
     # parse axes
@@ -68,7 +67,7 @@ def figtext(x, y, s, *, contour=None, **kwargs):
     x, y : scalars
         The position to place the text. By default, this is in data
         coordinates. The coordinate system can be changed using the
-        *transform* parameter.
+        `transform` parameter.
     s : str
         The text.
     contour : bool or tuple(scalar, color)
@@ -77,8 +76,7 @@ def figtext(x, y, s, *, contour=None, **kwargs):
     ax : matplotlib axes
         Matplotlib axes to plot in.
     kwargs
-        Text properties of
-        [matplotlib.pyplot.figtext][]
+        Text properties of [matplotlib.pyplot.figtext][]
 
     """
     # change default alignment
@@ -104,8 +102,8 @@ def add_contour(txt, contourwidth, contourcolor='w'):
 
     Parameters
     ----------
-    txt : matplotlib.text.Text
-        Instance of matplotlib text. Can be obtained by, e.g.,
+    txt : mpl Text
+        Instance of [matplotlib.text.Text][]. Can be obtained by, e.g.,
         `txt = plt.text()` or `txt = plt.figtext()`.
     contourwidth : scalar
         Width of contour.

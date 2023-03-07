@@ -79,7 +79,7 @@ def load_cmaps():
     top of the data.
 
     !!! see
-        Choosing an [][cmaps].
+        Choosing an [cmaps](../../gallery/cmaps).
 
     """
     colormaps = (
@@ -123,9 +123,8 @@ def load_colors():
     `pplt:lightgray`. Further, the current colors will be added `pplt:axes`,
     `pplt:text`, `pplt:grid`.
 
-    .. see:: `prettypyplot.cmaps`
     !!! see
-        Choosing an [][cmaps].
+        Choosing an [cmaps](../../gallery/cmaps).
 
     """
     # register own colors

@@ -1,10 +1,8 @@
-"""Set-up matplotlib environment.
-
-BSD 3-Clause License
-Copyright (c) 2020-2021, Daniel Nagel
-All rights reserved.
-
-"""
+# -*- coding: utf-8 -*-
+# BSD 3-Clause License
+# Copyright (c) 2020-2023, Daniel Nagel
+# All rights reserved.
+"""Set-up matplotlib environment."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from enum import Enum, auto
 from os import path as ospath
@@ -82,50 +80,39 @@ def update_style(
     ----------
     interactive : bool, optional
         Set interactive mode.
-
-    colors : matplotlib colormap, optional
+    colors : string, optional
         Set the default color cycler from continuous or discrete maps. Use any
         of matplotlibs defaults or specified in the colors submodule.
-
-    cmap : matplotlib colormap, optional
+    cmap : string, optional
         Set the default colormap.
-
     ncs : int, optional
         Number of colors if continuous cmap is selected.
-
     figsize : int or int tuple, optional
         Give size of default figure in inches, either as tuple (x, y) or a
         single float for the x-axis. The y-axis will be determined by figratio.
-
     figratio : str or float, optional
         Set ratio of figsize x:y to 1:1/'option', where 'option' is one
-        of ['sqrt(2)', 'golden', 'sqrt(3)'] or any number. Golden stands for
+        of `['sqrt(2)', 'golden', 'sqrt(3)']` or any number. Golden stands for
         the golden ratio (1.618). This option is ignored if figsize is used
         with tuple.
-
     mode : str, optional
-        One of the following modes.
-        default: use matplotlib defaults
-        beamer: extra large fontsize
-        print: default sizes
-        poster: for Din A0 posters
-
+        One of the following modes:
+        `'default'`: use matplotlib defaults
+        `'beamer'`: extra large fontsize
+        `'print'`: default sizes
+        `'poster'`: for Din A0 posters
     style : str, optional
-        One of the following styles.
-        default: enables grid and upper and right spines
-        minimal: removes all unneeded lines
-        none: no changes to style
-
+        One of the following styles:
+        `'default'`: enables grid and upper and right spines
+        `'minimal'`: removes all unneeded lines
+        `'none'`: no changes to style
     ipython : bool, optional
         Deactivate high-res in jpg/png for compatibility with IPyhton, e.g.
         jupyter notebook/lab.
-
     true_black : bool, optional
         If true black will be used for labels and co., else a dark grey.
-
     latex : bool, optional
         If true LaTeX font will be used.
-
     sf : bool, optional
         Use sans-serif font for text and latex math environment.
 
@@ -233,6 +220,8 @@ def use_style(
     changes depicted values to achieve a more appealing appearence.
     It additionally loads pplts colormaps and colors in matplolib.
 
+    See [update_style][prettypyplot.update_style] for parameters.
+
     """
     # restore matplotlib defaults
     _reset_style()
@@ -262,7 +251,7 @@ def use_style(
 
 @copy_doc_params(update_style)
 @deprecated(
-    msg=r'Use prettypyplot.use_style instead.', since='0.4', remove='1.0',
+    msg=r'Use prettypyplot.use_style instead.', since='0.4', remove='0.11',
 )
 def setup_pyplot(
     ssh=None,
@@ -282,8 +271,8 @@ def setup_pyplot(
     This function restores first the matplolib default values and finally
     changes depicted values to achieve a more appealing appearence.
 
-    .. deprecated:: 0.4
-        use `use_style` instead
+    !!! deprecated
+        This is deprecated since version 0.4, please use `use_style` instead.
 
     """
     interactive = ssh
