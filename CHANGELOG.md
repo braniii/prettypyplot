@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### API changes warning ⚠️:
 - Renamed submodule `plot` to `pyplot` to avoid shadowing with function `pplt.plot`
+- Method `pplt.activate_axis` needs to be called via `pplt.pyplot.activate_axis`
 
 ### Added Features and Improvements 🙌:
 - Moved from pdoc to an all new `mkdocs` documentation 🎉
