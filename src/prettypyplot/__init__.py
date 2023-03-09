@@ -27,7 +27,7 @@ STYLE = None
 # style dictionary
 STYLE_DICT = {}
 
-__all__ = [
+__all__ = [  # noqa: F405
     'setup_pyplot',
     'update_style',
     'use_style',
