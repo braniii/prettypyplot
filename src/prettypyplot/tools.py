@@ -1,10 +1,8 @@
-"""Helper functions.
-
-BSD 3-Clause License
-Copyright (c) 2020-2021, Daniel Nagel
-All rights reserved.
-
-"""
+# -*- coding: utf-8 -*-
+# BSD 3-Clause License
+# Copyright (c) 2020-2023, Daniel Nagel
+# All rights reserved.
+"""This module contains utility functions used in multiple submodules."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl
 import numpy as np
@@ -18,7 +16,6 @@ def is_number(number, *, dtype=float):
     ----------
     number : string, float, int
         Variable to be check if it can be casted to float.
-
     dtype : dtype, optional
         Check for different dtypes, so if is float or if it is int.
 

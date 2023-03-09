@@ -1,10 +1,8 @@
-"""Wrapper for matplotlib plotting functions.
-
-BSD 3-Clause License
-Copyright (c) 2020-2021, Daniel Nagel
-All rights reserved.
-
-"""
+# -*- coding: utf-8 -*-
+# BSD 3-Clause License
+# Copyright (c) 2020-2023, Daniel Nagel
+# All rights reserved.
+"""Wrapper for matplotlib plotting functions."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import warnings
 from os import path
@@ -28,16 +26,15 @@ def imshow(*args, ax=None, **kwargs):
 
     Parameters
     ----------
-    ax : matplotlib axes, optional
-        Matplotlib axes to plot in.
-
+    ax : Axes, optional
+        [matplotlib.axes.Axes][] to plot in.
     args, kwargs
-        See [pyplot.imshow()](MPL_DOC.pyplot.imshow.html)
+        See [matplotlib.pyplot.imshow][].
 
     Returns
     -------
-    im : matplolib.image.AxesImage
-        Reference to plotted image.
+    im : AxesImage
+        Reference to plotted image [matplotlib.image.AxesImage][]
 
     """
     args, ax = tools.parse_axes(*args, ax=ax)
@@ -54,20 +51,19 @@ def plot(*args, ax=None, **kwargs):
 
     Wrapping pyplot.plot() to adjust to style. For more information on the
     arguments see in matplotlib documentation.
-    If STYLE='minimal', spines will be limited to plotting range.
+    If `STYLE='minimal'`, spines will be limited to plotting range.
 
     Parameters
     ----------
-    ax : matplotlib axes
-        Matplotlib axes to plot in.
-
+    ax : Axes
+        [matplotlib.axes.Axes][] to plot in.
     args, kwargs
-        See [pyplot.plot()](MPL_DOC.pyplot.plot.html)
+        See [matplotlib.pyplot.plot][].
 
     Returns
     -------
-    lines : list of matplolib.lines.Line2D
-        A list of lines representing the plotted data.
+    lines : list of Line2D
+        A list of [matplotlib.lines.Line2D][] representing the plotted data.
 
     """
     # parse axes
@@ -91,12 +87,10 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     ----------
     fname : str
         Output filename. If no file ending, pdf will be used.
-
     use_canvas_size : bool, optional
         If True the specified figsize will be used as canvas size.
-
     kwargs
-        See [pyplot.savefig()](MPL_DOC.pyplot.savefig.html)
+        See [matplotlib.pyplot.savefig][].
 
     """
     fig = plt.gcf()
@@ -188,31 +182,28 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     labels, for all other options to 1. In case of many labels this parameter
     needs to be adjusted.
 
-    .. todo::
+    !!! note
         Use handles and labels from *args if provided
+
+    !!! example
+        Checkout the gallery for [an example](../../gallery/legend).
 
     Parameters
     ----------
     outside : str or bool
         False, 'top', 'right', 'bottom' or 'left'.
-
-    axs : list of mpl.axes.Axes
-        List of axes which are used for extracting all labels.
-
-    ax : mpl.axes.Axes
-        Axes which is used for placing legend.
-
+    axs : list of Axes
+        List of [matplotlib.axes.Axes][] which are used for extracting all
+        labels.
+    ax : Axes
+        [matplotlib.axes.Axes][] which is used for placing legend.
     args, kwargs
-        See [pyplot.legend()](MPL_DOC.pyplot.legend.html)
+        See [matplotlib.pyplot.legend][].
 
     Returns
     -------
-    leg : matplotlib.legend.Legend
-        Matplotlib legend handle.
-
-    Examples
-    --------
-    .. include:: ../../gallery/legend/README.md
+    leg : Legend
+        [matplotlib.legend.Legend] legend handle.
 
     """
     default_kwargs = _legend_default_kwargs()
@@ -294,10 +285,9 @@ def activate_axis(position, ax=None):
     Parameters
     ----------
     position : str or list of str
-        Specify axis to flip, one of ['left', 'right', 'top', 'bottom'].
-
-    ax : matplotlib axes
-        Matplotlib axes to flip axis.
+        Specify axis to flip, one of `['left', 'right', 'top', 'bottom']`.
+    ax : Axes
+        [matplotlib.axes.Axes][] axes to flip axis.
 
     """
     # get axes
@@ -331,35 +321,32 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
 
     Wrapper around pyplot.colorbar which corrects the height.
 
+    !!! example
+        Checkout the gallery for [an example](../../gallery/colorbar).
+
     Parameters
     ----------
     im : matplotlib.axes.AxesImage
         Specify the object the colorbar belongs to, e.g. the return value of
-        pyplot.imshow().
-
+        [matplotlib.pyplot.imshow][].
     width : str or float, optional
         The width between figure and colorbar stated relative as string ending
         with '%' or absolute value in inches.
-
     pad : str or float, optional
         The width between figure and colorbar stated relative as string ending
         with '%' or absolute value in inches.
-
     position : str, optional
         Specify the position relative to the image where the colorbar is
         plotted, choose one of ['left', 'top', 'right', 'bottom']
-
     label : str, optional
         Specify the colorbar label.
-
     kwargs
-        Colorbar properties of
-        [pyplot.colorbar()](MPL_DOC.pyplot.colorbar.html)
+        Colorbar properties of, [matplotlib.pyplot.colorbar][].
 
     Returns
     -------
-    colorbar : matplotlib.colorbar.Colorbar
-        Colorbar instance.
+    colorbar : Colorbar
+        [matplotlib.colorbar.Colorbar][] instance.
 
     """
     orientation = 'vertical'
@@ -403,32 +390,34 @@ def grid(*args, ax=None, **kwargs):
 
     Parameters
     ----------
-    ax : matplotlib axes
-        Axes to plot grid.
-
+    ax : Axes
+        [matplotlib.axes.Axes] axes to plot grid.
     args, kwargs
-        See [pyplot.grid()](MPL_DOC.pyplot.grid.html)
+        See [matplotlib.pyplot.grid][].
 
     """
     # parse axes
     args, ax = tools.parse_axes(*args, ax=ax)
 
-    if 'b' not in kwargs:
+    if 'visible' in kwargs:  # mpl >= 3.6
+        show_grid = kwargs['visible']
+    elif 'b' in kwargs:  # mpl <=3.5
+        show_grid = kwargs['b']
+    else:
         boolargs = [arg for arg in args if isinstance(arg, bool)]
-        if len(boolargs) > 1:
-            raise ValueError('Only a single bool parameter is allowed.')
-        elif len(boolargs) == 1:
-            show_grid = boolargs[0]
-        else:
-            show_grid = True
+        show_grid = boolargs[0] if len(boolargs) >= 1 else True
 
-        kwargs['b'] = show_grid
+    if _pplt.STYLE != Style.MINIMAL and show_grid:
+        gr_maj = ax.grid(show_grid, which='major', linestyle='--', **kwargs)
+        gr_min = ax.grid(
+            show_grid, which='minor', linestyle='dotted', **kwargs
+        )
+    else:
+        gr_maj = ax.grid(False, which='major')
+        gr_min = ax.grid(False, which='minor')
 
-    if _pplt.STYLE == Style.DEFAULT:
-        gr_maj = ax.grid(which='major', linestyle='--', **kwargs)
-        gr_min = ax.grid(which='minor', linestyle='dotted', **kwargs)
-        ax.set_axisbelow(True)
-        return (gr_maj, gr_min)
+    ax.set_axisbelow(True)
+    return (gr_maj, gr_min)
 
 
 def _xminmax(ax):

@@ -11,7 +11,7 @@ All colormaps starting with `tol:` were designed by Paul Tol. All of them are co
 
 `viridis` and `jet` are only included here for comparsion. Both, `macaw` and `bownair` are modified versions of `viridis`. While `turbo` tries to be a better `jet` (see [here](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html)).
 
-![Perceptually Uniform Sequential](gallery/cmaps/Perceptually Uniform Sequential.png)
-![Qualitative](gallery/cmaps/Qualitative.png)
+![Perceptually Uniform Sequential](images/Perceptually Uniform Sequential.svg){: style="width: 100%"}
+![Qualitative](images/Qualitative.svg){: style="width: 100%"}
 
 For more colormaps see [matplolib colormaps](https://matplotlib.org/tutorials/colors/colormaps.html).

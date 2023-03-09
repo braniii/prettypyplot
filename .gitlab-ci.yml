@@ -24,11 +24,11 @@ pages:
   stage: deploy
   script:
     - python3 -m pip install .[docs]
-    - cd docs; bash create_doc.sh; cd ..
-    - mv docs public
+    - python3 -m mkdocs build
+    - mv site public
     - mv gallery public/
   artifacts:
     paths:
     - public
   only:
-    - master
+    - main

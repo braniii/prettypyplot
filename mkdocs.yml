@@ -1,11 +1,12 @@
+# mkdocs.yml
 site_name: "prettypyplot"
-site_description: "Publication ready styles for Matplotlib."
+site_description: "Markov State Modelling of Protein Dynamics."
 site_url: "https://braniii.github.io/prettypyplot"
 repo_url: "https://github.com/braniii/prettypyplot"
 edit_uri: "blob/main/docs/"
-repo_name: "prettypyplot"
+repo_name: "braniii/prettypyplot"
 site_dir: "site"
-copyright: Copyright &copy; 2022 Daniel Nagel
+copyright: Copyright &copy; 2023 Daniel Nagel
 watch: [src/prettypyplot]
 
 nav:
@@ -13,24 +14,26 @@ nav:
   - Overview: index.md
   - Changelog: changelog.md
   - License: license.md
+- Gallery: gallery/
 - Code Reference: reference/
+- FAQ: faq.md
 - Development:
   - Contributing: contributing.md
 
 theme:
   name: material
   favicon: icon.png
-  logo_slate_mode: logo_dark.svg
-  logo_default_mode: logo_light.svg
+  logo_slate_mode: logo.svg
+  logo_default_mode: logo.svg
   custom_dir: docs/overrides
   features:
   - content.code.annotate
   - navigation.tabs
   - navigation.top
   font:
-    text: Roboto
+    text: Source Sans Pro
     headline: Playfair Display
-    code: Roboto Mono
+    code: Source Code Pro
   palette:
   - media: "(prefers-color-scheme: light)"
     scheme: default
@@ -83,6 +86,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 plugins:
+- section-index
 - search
 - gen-files:
     scripts:
@@ -94,12 +98,12 @@ plugins:
       python:
         paths: [src]
         import:
-        - https://numpy.org/doc/stable/objects.inv
+        - https://matplotlib.org/stable/objects.inv
         options:
           members_order: "source"
           docstring_style: "numpy"
           docstring_section_style: "list"
-          merge_init_into_class: True
+          merge_init_into_class: true
           filters: ["!^_"]
 
 extra_css:
@@ -116,3 +120,5 @@ extra:
     link: https://braniii.github.io
   - icon: fontawesome/brands/github
     link: https://github.com/braniii
+  - icon: fontawesome/brands/gitlab
+    link: https://gitlab.com/braniii

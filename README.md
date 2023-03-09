@@ -21,14 +21,14 @@
     <a href="https://gitlab.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
     <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
-        <img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
+        <img src="https://img.shields.io/badge/mkdocs-Documentation-brightgreen" /></a>
   </p>
 
   <p>
     <a href="https://braniii.gitlab.io/prettypyplot">Docs</a> •
     <a href="#features">Features</a> •
     <a href="#Installation">Installation</a> •
-    <a href="#usage">Usage</a>
+    <a href="https://braniii.gitlab.io/prettypyplot/gallery">Gellaery</a>
   </p>
 </div>
 

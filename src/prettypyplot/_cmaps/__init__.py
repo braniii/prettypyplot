@@ -1,0 +1,1 @@
+"""Submodule conataining all colormaps."""

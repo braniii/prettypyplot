@@ -2,11 +2,11 @@
 
 This is an example of using `prettypyplot.plot.legend`.
 
-.. warning::
+!!! warning
     This is not yet correctly implemented for `STYLE='minimal'`.
 
 ```python
-.. include:: ../../gallery/legend/legend.py
-    :start-line: 7
+--8<--  "gallery/legend/legend.py:7:"
 ```
-![legend](gallery/legend/default_default_plot_legend.png)
+
+![legend](/gallery/legend/default_default_plot_legend.png)

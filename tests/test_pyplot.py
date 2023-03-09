@@ -54,3 +54,29 @@ def test_plot(data, style, args, kwargs):
     _ = prettypyplot.plot(*data, *args, **kwargs)
 
     return fig
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize('data, style, args, ylog', (
+    ((np.arange(25), np.arange(25)), 'default', (True, ), False),
+    ((np.arange(25), np.arange(25)), 'default', (), False),
+    ((np.arange(25), np.arange(25)), 'default', (False, ), False),
+    ((np.arange(25), 2 + np.arange(25)**2), 'default', (True, ), True),
+    ((np.arange(25), np.arange(25)), 'minimal', (True, ), False),
+    ((np.arange(25), np.arange(25)), 'minimal', (False, ), False),
+    ((np.arange(25), np.arange(25)), 'minimal', (), False),
+    ((np.arange(25), 2 + np.arange(25)**2), 'minimal', (True, ), True),
+))
+def test_grid(data, style, args, ylog):
+    """Test grid."""
+    prettypyplot.use_style(style=style)
+
+    fig, ax = plt.subplots()
+
+    _ = prettypyplot.plot(*data)
+    _ = prettypyplot.grid(*args)
+
+    if ylog:
+        ax.set_yscale('log')
+
+    return fig

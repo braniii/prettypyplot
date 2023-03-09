@@ -1,10 +1,8 @@
-"""Helper functions for plotting text.
-
-BSD 3-Clause License
-Copyright (c) 2020-2021, Daniel Nagel
-All rights reserved.
-
-"""
+# -*- coding: utf-8 -*-
+# BSD 3-Clause License
+# Copyright (c) 2020-2023, Daniel Nagel
+# All rights reserved.
+"""Helper functions for plotting text."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl
 import matplotlib.colors as clr
@@ -26,20 +24,15 @@ def text(x, y, s, *, contour=None, ax=None, **kwargs):
         The position to place the text. By default, this is in data
         coordinates. The coordinate system can be changed using the
         *transform* parameter.
-
     s : str
         The text.
-
     contour : bool or tuple(scalar, color)
         Add a contour to the text. Either use a boolean for default values,
         or give a tuple with linewidth and linecolor.
-
     ax : matplotlib axes
         Matplotlib axes to plot in.
-
     kwargs
-        Text properties of
-        [pyplot.text()](MPL_DOC.pyplot.text.html)
+        Text properties of [matplotlib.pyplot.text][]
 
     """
     # parse axes
@@ -74,21 +67,16 @@ def figtext(x, y, s, *, contour=None, **kwargs):
     x, y : scalars
         The position to place the text. By default, this is in data
         coordinates. The coordinate system can be changed using the
-        *transform* parameter.
-
+        `transform` parameter.
     s : str
         The text.
-
     contour : bool or tuple(scalar, color)
         Add a contour to the text. Either use a boolean for default values,
         or give a tuple with linewidth and linecolor.
-
     ax : matplotlib axes
         Matplotlib axes to plot in.
-
     kwargs
-        Text properties of
-        [pyplot.figtext()](MPL_DOC.pyplot.figtext.html)
+        Text properties of [matplotlib.pyplot.figtext][]
 
     """
     # change default alignment
@@ -114,13 +102,11 @@ def add_contour(txt, contourwidth, contourcolor='w'):
 
     Parameters
     ----------
-    txt : matplotlib.text.Text
-        Instance of matplotlib text. Can be obtained by, e.g.,
+    txt : mpl Text
+        Instance of [matplotlib.text.Text][]. Can be obtained by, e.g.,
         `txt = plt.text()` or `txt = plt.figtext()`.
-
     contourwidth : scalar
         Width of contour.
-
     contourcolor : RGB color or matplotlib predefined color, optional
         Color of contour, default is white.
 
