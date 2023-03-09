@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+
+
+## [0.10.0] - 2023-03-09
 ### API changes warning ⚠️:
 - Renamed submodule `plot` to `pyplot` to avoid shadowing with function `pplt.plot`
 - Method `pplt.activate_axis` needs to be called via `pplt.pyplot.activate_axis`
@@ -151,7 +154,9 @@ All notable changes to this project will be documented in this file. The format 
 ### Other changes:
 - refactored all submodules
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.9.0...master
+
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.10.0...master
+[0.10.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.9.0...v0.10.0
 [0.9.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.8.0...v0.9.0
 [0.8.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.1...v0.8.0
 [0.7.1]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.0...v0.7.1

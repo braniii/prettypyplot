@@ -57,4 +57,4 @@ from .style import (setup_pyplot, update_style, use_style)
 from .texts import (add_contour, figtext, text)
 from .subplots import (hide_empty_axes, label_outer, subplot_labels)
 
-__version__ = '0.9.0'
+__version__ = '0.10.0'
