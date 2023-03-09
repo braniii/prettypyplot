@@ -26,7 +26,6 @@ pages:
     - python3 -m pip install .[docs]
     - python3 -m mkdocs build
     - mv site public
-    - mv gallery public/
   artifacts:
     paths:
     - public

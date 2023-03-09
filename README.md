@@ -9,7 +9,7 @@
     <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
-        <img src="https://img.shields.io/gitlab/pipeline/braniii/prettypyplot" /></a>
+        <img src="https://img.shields.io/gitlab/pipeline-status/braniii/prettypyplot?branch=main" /></a>
     <a href="https://gitlab.com/braniii/prettypyplot/-/commits/main">
         <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/main/coverage.svg" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
@@ -28,7 +28,7 @@
     <a href="https://braniii.gitlab.io/prettypyplot">Docs</a> •
     <a href="#features">Features</a> •
     <a href="#Installation">Installation</a> •
-    <a href="https://braniii.gitlab.io/prettypyplot/gallery">Gellaery</a>
+    <a href="https://braniii.gitlab.io/prettypyplot/gallery">Gallery</a>
   </p>
 </div>
 
