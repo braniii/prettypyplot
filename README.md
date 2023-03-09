@@ -119,41 +119,41 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.plot</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_plot.png" width="350">
         </td>
         <td>
             <code>prettypyplot.plot</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_plot.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.legend</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_plot_legend.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_plot_legend.png" width="350">
         </td>
         <td>
             <code>prettypyplot.legend</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_plot_legend.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_plot_legend.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.imshow</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_imshow.png" width="350">
         </td>
         <td>
             <code>prettypyplot.imshow</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_imshow.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.colorbar</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/mpl_imshow_cbar.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_imshow_cbar.png" width="350">
         </td>
         <td>
             <code>prettypyplot.colorbar</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/default_imshow_cbar.png" width="350">
+            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_imshow_cbar.png" width="350">
         </td>
     </tr>
 </table>
@@ -165,21 +165,26 @@ The following list is sorted from *near future* to *hopefully ever*.
 - [x] add pytest
 - [x] add search functionality in doc
 - [x] refactoring code to improve readabilty
+- [x] add package to conda_forge
+- [x] add gallery page
+- [x] improve `plt.suplots()` behaviour together with `pplt.savefig()`
 - [ ] add more colorpalettes
 - [ ] add countour line plot
 - [ ] add [axes_grid](https://matplotlib.org/3.1.1/tutorials/toolkits/axes_grid.html) examples
-- [ ] add more gallery entries
-- [ ] add package to conda_forge
-- [ ] improve `plt.suplots()` behaviour together with `pplt.savefig()`
 - [ ] setup widths and scaling factors for beamer and poster mode
 - [ ] tweak all function to enable `STYLE='minimal'`
 - [ ] implement tufte style
 
 ## Building Documentation:
 
-The doc is based on [pdoc](https://pdoc3.github.io/pdoc/) and can be created by
-simply running `bash create_doc.sh` from the docs folder. For dependencies see in the
-CI action.
+The doc is based on [mkdocs](https://mkdocs.org) and can be created by
+```bash
+# installing all dependencies
+python -m pip install -e .[docs]
+
+# serve interactively
+python -m mkdocs serve
+```
 
 ## Similar Projects
 
