@@ -44,7 +44,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     keywords='matplotlib pyplot',
     author='braniii',
-    url='https://gitlab.com/braniii/prettypyplot',
+    url='https://github.com/braniii/prettypyplot',
     license='BSD 3-Clause License',
     license_files=('LICENSE', ),
     classifiers=[
