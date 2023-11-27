@@ -13,6 +13,7 @@ from matplotlib import pyplot as plt
 
 import prettypyplot
 
+
 @pytest.mark.parametrize('data, ticks', (
     (np.arange(10), None),
     (np.arange(10), np.arange(10)),
