@@ -13,6 +13,29 @@ from matplotlib import pyplot as plt
 
 import prettypyplot
 
+@pytest.mark.parametrize('data, ticks', (
+    (np.arange(10), None),
+    (np.arange(10), np.arange(10)),
+    (np.arange(10), np.arange(2)),
+))
+def test__reduce_ticks(data, ticks):
+    # check that the number of ticks is not reduced when setting the ticks
+    # explicitly
+    fig, ax = plt.subplots()
+    ax.plot(data)
+
+    if ticks is not None:
+        ax.set_xticks(ticks)
+
+    nticks = len(ax.get_xticks())
+
+    prettypyplot.pyplot._reduce_ticks(fig)
+
+    if ticks is None:
+        assert nticks >= len(ax.get_xticks())
+    else:
+        assert nticks == len(ax.get_xticks())
+
 
 @pytest.mark.mpl_image_compare(remove_text=True)
 @pytest.mark.parametrize('data, style, kwargs', (

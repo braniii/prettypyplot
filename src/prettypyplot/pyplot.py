@@ -10,6 +10,7 @@ from os import path
 import numpy as np
 from matplotlib import legend as mlegend
 from matplotlib import pyplot as plt
+from matplotlib import ticker as mticker
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
 import prettypyplot as _pplt
@@ -135,13 +136,19 @@ def _reduce_ticks(fig):
     # TODO: replace this by mpl built-in class
     tick_reduc = 1.5
     for axes in fig.get_axes():
-        if len(axes.get_xticks()) > 4:
+        custom_xticks = isinstance(
+            axes.xaxis.get_major_locator(), mticker.FixedLocator,
+        )
+        custom_yticks = isinstance(
+            axes.yaxis.get_major_locator(), mticker.FixedLocator,
+        )
+        if len(axes.get_xticks()) > 4 and not custom_xticks:
             axes.locator_params(
                 tight=False,
                 axis='x',
                 nbins=len(axes.get_xticks()) / tick_reduc,
             )
-        if len(axes.get_yticks()) > 4:
+        if len(axes.get_yticks()) > 4 and not custom_yticks:
             axes.locator_params(
                 tight=False,
                 axis='y',
