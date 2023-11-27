@@ -11,6 +11,11 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 
 
+## [0.10.1] - 2023-11-27
+### Bugfix 🐛:
+- Fixed bug when using `style='minimal'` that lead to altering custom ticks, see #1
+
+
 ## [0.10.0] - 2023-03-09
 ### API changes warning ⚠️:
 - Renamed submodule `plot` to `pyplot` to avoid shadowing with function `pplt.plot`
@@ -155,7 +160,8 @@ All notable changes to this project will be documented in this file. The format 
 - refactored all submodules
 
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.10.0...master
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.10.1...master
+[0.10.1]: https://gitlab.com/braniii/prettypyplot/compare/v0.10.0...v0.10.1
 [0.10.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.9.0...v0.10.0
 [0.9.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.8.0...v0.9.0
 [0.8.0]: https://gitlab.com/braniii/prettypyplot/compare/v0.7.1...v0.8.0
