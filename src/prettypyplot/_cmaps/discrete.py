@@ -43,7 +43,7 @@ RAINBOW_ARRAY = [
 # https://coolors.co/ef476f-ffd166-06d6a0-118ab2-073b4c
 SPRING_ARRAY = ['#ef476f', '#ffd166', '#06d6a0', '#118ab2', '#073b4c']
 # https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51
-AUTUNM_ARRAY = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']
+AUTUMN_ARRAY = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']
 
 # Uni Corporate Design
 # copyright by Albert-Ludwigs-Universität Freiburg
@@ -93,8 +93,8 @@ def _pastel_spring():
     return clr.ListedColormap(SPRING_ARRAY, 'pastel_spring')
 
 
-def _pastel_autunm():
-    return clr.ListedColormap(AUTUNM_ARRAY, 'pastel_autunm')
+def _pastel_autumn():
+    return clr.ListedColormap(AUTUMN_ARRAY, 'pastel_autumn')
 
 
 def _ufcd():
