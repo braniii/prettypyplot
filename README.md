@@ -20,7 +20,7 @@
         <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
+    <a href="https://github.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
     <a href="https://braniii.github.io/prettypyplot" alt="Doc" >
         <img src="https://img.shields.io/badge/mkdocs-Documentation-brightgreen" /></a>
@@ -64,6 +64,7 @@ production.
 
 The most notable features are:
 
+- Tested with matplotlib `3.2`-`3.8`
 - figsize specifies size of canvas. So labels, ticks or colorbars are not counted.
 - Nice top-aligned outter legends
 - New colors

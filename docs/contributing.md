@@ -39,13 +39,13 @@ If you want to request a change, you first have to [fork the repository](https:/
 
 Apply your changes and check if you followed the codeing style (PEP8) by running
 ```bash
-python -m flake8 --config flake8-CI.cfg
+python -m tox -e lint
 ```
 All errors pointing to `./build/` can be neglected, they are caused by my lazy approach of using no wildcards in the setup.
 
 If you add a new function/method/class please ensure that you add a test function, as well. Running the test simply by
 ```bash
-python -m pytest
+python -m tox
 ```
 And please ensure that the coverage does not decrease. Otherwise the CodeCov bot will complain.
 
