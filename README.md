@@ -1,6 +1,6 @@
 <div align="center">
   <img
-    src="https://gitlab.com/braniii/prettypyplot/-/raw/main/gallery/logo_large.png"
+    src="https://github.com/braniii/prettypyplot/blob/main/gallery/logo_large.png"
   />
 
   <p>
@@ -8,27 +8,29 @@
         <img src="https://zenodo.org/badge/350406950.svg" alt="DOI" /></a>
     <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
-        <img src="https://img.shields.io/gitlab/pipeline-status/braniii/prettypyplot?branch=main" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/commits/main">
-        <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/main/coverage.svg" /></a>
+    <a href="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml" alt="Pytest" >
+        <img src="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml/badge.svg?branch=main" /></a>
+    <a href="https://codecov.io/gh/braniii/prettypyplot" alt="Code coverage">
+        <img src="https://codecov.io/gh/braniii/prettypyplot/branch/main/graph/badge.svg" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
+    <a href="https://anaconda.org/conda-forge/prettypyplot" alt="conda version">
+        <img src="https://img.shields.io/conda/vn/conda-forge/prettypyplot" /></a>
     <a href="https://pepy.tech/project/prettypyplot" alt="Downloads" >
         <img src="https://pepy.tech/badge/prettypyplot" /></a>
     <a href="https://img.shields.io/pypi/pyversions/prettypyplot" alt="PyPI - Python Version">
         <img src="https://img.shields.io/pypi/pyversions/prettypyplot" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
+    <a href="https://github.com/braniii/prettypyplot/-/blob/main/LICENSE" alt="PyPI - License" >
         <img src="https://img.shields.io/pypi/l/prettypyplot" /></a>
-    <a href="https://braniii.gitlab.io/prettypyplot" alt="Doc" >
+    <a href="https://braniii.github.io/prettypyplot" alt="Doc" >
         <img src="https://img.shields.io/badge/mkdocs-Documentation-brightgreen" /></a>
   </p>
 
   <p>
-    <a href="https://braniii.gitlab.io/prettypyplot">Docs</a> •
+    <a href="https://braniii.github.io/prettypyplot">Docs</a> •
     <a href="#features">Features</a> •
     <a href="#Installation">Installation</a> •
-    <a href="https://braniii.gitlab.io/prettypyplot/gallery">Gallery</a>
+    <a href="https://braniii.github.io/prettypyplot/gallery">Gallery</a>
   </p>
 </div>
 
@@ -36,7 +38,7 @@
 
 # prettypyplot
 
-The documentation including an gallery can be found [here](https://braniii.gitlab.io/prettypyplot).
+The documentation including an gallery can be found [here](https://braniii.github.io/prettypyplot).
 
 This is a wrapper package for matplotlib to achieve more easily pretty figures.
 If you are looking for something complete, this project is nothing for you
@@ -62,6 +64,7 @@ production.
 
 The most notable features are:
 
+- Tested with matplotlib `3.2`-`3.8`
 - figsize specifies size of canvas. So labels, ticks or colorbars are not counted.
 - Nice top-aligned outter legends
 - New colors
@@ -79,7 +82,7 @@ python3 -m pip install --upgrade prettypyplot
 ```
 or for the latest dev version
 ```python
-python3 -m pip install git+https://gitlab.com/braniii/prettypyplot.git
+python3 -m pip install git+https://github.com/braniii/prettypyplot.git
 ```
 
 ### Usage
@@ -119,41 +122,41 @@ fig, axs = plt.subplots(..., gridspec_kw={'hspace': 0.000})
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.plot</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_plot.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/mpl_plot.png" width="350">
         </td>
         <td>
             <code>prettypyplot.plot</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_plot.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/default_plot.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.legend</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_plot_legend.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/mpl_plot_legend.png" width="350">
         </td>
         <td>
             <code>prettypyplot.legend</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_plot_legend.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/default_plot_legend.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.imshow</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_imshow.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/mpl_imshow.png" width="350">
         </td>
         <td>
             <code>prettypyplot.imshow</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_imshow.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/default_imshow.png" width="350">
         </td>
     </tr>
     <tr width="700" valign="top">
         <td>
             <code>matplotlib.pyplot.colorbar</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/mpl_imshow_cbar.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/mpl_imshow_cbar.png" width="350">
         </td>
         <td>
             <code>prettypyplot.colorbar</code><br>
-            <img src="https://braniii.gitlab.io/prettypyplot/gallery/comparison/default_imshow_cbar.png" width="350">
+            <img src="https://braniii.github.io/prettypyplot/gallery/comparison/default_imshow_cbar.png" width="350">
         </td>
     </tr>
 </table>
