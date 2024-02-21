@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### Added Features and Improvements 🙌:
+- Added tox setup with pytests againgst mpl 3.2-3.8 and py 3.8-3.12
+
+### Other changes:
+- Move to new git repository: Welcome to Github🎉
 
 
 ## [0.10.1] - 2023-11-27
