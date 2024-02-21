@@ -8,10 +8,10 @@
         <img src="https://zenodo.org/badge/350406950.svg" alt="DOI" /></a>
     <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
         <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/pipelines" alt="Gitlab pipeline status" >
-        <img src="https://img.shields.io/gitlab/pipeline-status/braniii/prettypyplot?branch=main" /></a>
-    <a href="https://gitlab.com/braniii/prettypyplot/-/commits/main">
-        <img alt="coverage report" src="https://gitlab.com/braniii/prettypyplot/badges/main/coverage.svg" /></a>
+    <a href="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml" alt="Pytest" >
+        <img src="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml/badge.svg?branch=main" /></a>
+    <a href="https://codecov.io/gh/braniii/prettypyplot" alt="Code coverage">
+        <img src="https://codecov.io/gh/braniii/prettypyplot/branch/main/graph/badge.svg" /></a>
     <a href="https://pypi.org/project/prettypyplot" alt="PyPI" >
         <img src="https://img.shields.io/pypi/v/prettypyplot" /></a>
     <a href="https://anaconda.org/conda-forge/prettypyplot" alt="conda version">
