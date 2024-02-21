@@ -42,7 +42,7 @@ def test_discrete():
         cmaps.discrete._cbf8(),
         cmaps.discrete._pastel_rainbow(),
         cmaps.discrete._pastel_spring(),
-        cmaps.discrete._pastel_autunm(),
+        cmaps.discrete._pastel_autumn(),
         cmaps.discrete._ufcd(),
         cmaps.discrete._paula(),
         cmaps.discrete._summertimes(),
