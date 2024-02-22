@@ -17,7 +17,7 @@ cmaps['Perceptually Uniform Sequential'] = [
     'macaw', 'viridis', 'bownair', 'turbo', 'jet',
 ]
 cmaps['Qualitative'] = [
-    'pastel5', 'pastel6', 'pastel_autunm', 'pastel_spring', 'pastel_rainbow',
+    'pastel5', 'pastel6', 'pastel_autumn', 'pastel_spring', 'pastel_rainbow',
     'summertimes', 'cbf4', 'cbf5', 'cbf8', 'ufcd', 'paula', 'argon',
     'tol:bright', 'tol:muted', 'tol:high_contrast', 'tol:medium_contrast',
     'tol:vibrant',
