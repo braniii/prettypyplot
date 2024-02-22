@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- The cmap `pastel_autunm` was renamed to `pastel_autumn`
+
 ### Added Features and Improvements 🙌:
 - Added tox setup with pytests againgst mpl 3.2-3.8 and py 3.8-3.12
 
