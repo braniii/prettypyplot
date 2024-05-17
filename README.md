@@ -80,6 +80,10 @@ one needs to pass here the axes as an argument (args or kwargs).
 ```python
 python3 -m pip install --upgrade prettypyplot
 ```
+or
+```python
+conda install -c conda-forge prettypyplot
+```
 or for the latest dev version
 ```python
 python3 -m pip install git+https://github.com/braniii/prettypyplot.git
