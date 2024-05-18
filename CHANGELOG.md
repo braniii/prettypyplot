@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Other changes:
 - Move to new git repository: Welcome to Github🎉
+- Removed deprecated function `setup_pyplot`, use `use_style`
 
 
 ## [0.10.1] - 2023-11-27
