@@ -34,9 +34,9 @@ jobs:
     - name: Run test suite
       run: |
         tox --skip-pkg-install
-        # - name: Upload coverage to Codecov
-        #   uses: codecov/codecov-action@v3
-        #   with:
-        #     token: ${{ secrets.CODECOV_TOKEN }}
-        #     files: ./coverage.xml
-        #     env_vars: PYTHON
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
+        env_vars: PYTHON
