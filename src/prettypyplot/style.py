@@ -10,7 +10,7 @@ from os import path as ospath
 
 import numpy as np
 from matplotlib import pyplot as plt
-from decorit import copy_doc_params, deprecated
+from decorit import copy_doc_params
 
 import prettypyplot as _pplt
 from prettypyplot import tools
@@ -248,52 +248,6 @@ def use_style(
 
     # register used colors
     pclr.load_colors()
-
-
-@copy_doc_params(update_style)
-@deprecated(
-    msg=r'Use prettypyplot.use_style instead.', since='0.4', remove='0.11',
-)
-def setup_pyplot(
-    ssh=None,
-    colors='pastel5',
-    cmap='macaw',
-    ncs=10,
-    figsize=(3,),
-    figratio='golden',
-    mode=_pplt.MODE,
-    style=_pplt.STYLE,
-    ipython=False,
-    true_black=False,
-    latex=True,
-):
-    """Define alternative matplotlib style.
-
-    This function restores first the matplolib default values and finally
-    changes depicted values to achieve a more appealing appearence.
-
-    !!! deprecated
-        This is deprecated since version 0.4, please use `use_style` instead.
-
-    """
-    interactive = ssh
-    if interactive is not None:
-        interactive = not interactive
-
-    use_style(
-        interactive=interactive,
-        colors=colors,
-        cmap=cmap,
-        ncs=ncs,
-        figsize=figsize,
-        figratio=figratio,
-        mode=mode,
-        style=style,
-        ipython=ipython,
-        true_black=true_black,
-        latex=latex,
-        sf=False,
-    )
 
 
 def _set_rc_colors(colors, cmap, true_black, ncs):
