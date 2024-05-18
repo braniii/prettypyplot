@@ -1,0 +1,12 @@
+[paths]
+source =
+   src
+   */site-packages
+
+[run]
+source =
+    prettypyplot
+
+[report]
+show_missing = true
+precision = 2
