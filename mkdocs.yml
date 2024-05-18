@@ -90,6 +90,7 @@ plugins:
 - search
 - gen-files:
     scripts:
+    - docs/gallery/gen_gallery.py
     - docs/gen_ref_nav.py
 - literate-nav:
     nav_file: SUMMARY.md

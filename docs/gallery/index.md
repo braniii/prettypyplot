@@ -14,6 +14,9 @@ legend [![legend](images/legend_preview.svg)](legend)
 colorbar [![colorbar](images/colorbar_preview.svg)](colorbar)
 { .grid-item }
 
+logo [![logo](images/logo_large.svg)](logo)
+{ .grid-item }
+
 
 </div>
 
