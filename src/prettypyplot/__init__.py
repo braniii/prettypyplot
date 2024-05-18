@@ -28,7 +28,6 @@ STYLE = None
 STYLE_DICT = {}
 
 __all__ = [  # noqa: F405
-    'setup_pyplot',
     'update_style',
     'use_style',
     'add_contour',
@@ -53,8 +52,8 @@ from .pyplot import (
     colorbar,
     grid,
 )
-from .style import (setup_pyplot, update_style, use_style)
-from .texts import (add_contour, figtext, text)
-from .subplots import (hide_empty_axes, label_outer, subplot_labels)
+from .style import update_style, use_style
+from .texts import add_contour, figtext, text
+from .subplots import hide_empty_axes, label_outer, subplot_labels
 
 __version__ = '0.10.1'
