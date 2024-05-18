@@ -4,6 +4,7 @@
 # All rights reserved.
 """Set-up matplotlib environment."""
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import shutil
 from enum import Enum, auto
 from os import path as ospath
 
@@ -186,9 +187,9 @@ def update_style(
         # set interactive mode
         _set_ineractive_mode(interactive=interactive)
 
-        # setup LaTeX font
+        # setup LaTeX font if latex is available
         # plt.style.use can not be used.
-        if latex:
+        if latex and shutil.which('latex'):
             _apply_style('stylelib/latex.mplstyle')
 
         if sf:

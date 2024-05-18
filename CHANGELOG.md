@@ -11,9 +11,10 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### API changes warning ⚠️:
 - The cmap `pastel_autunm` was renamed to `pastel_autumn`
+- Use `latex` font only if available
 
 ### Added Features and Improvements 🙌:
-- Added tox setup with pytests againgst mpl 3.2-3.8 and py 3.8-3.12
+- Added tox setup with pytests against mpl 3.2-3.8 and py 3.8-3.12
 
 ### Other changes:
 - Move to new git repository: Welcome to Github🎉
