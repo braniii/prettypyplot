@@ -79,7 +79,7 @@ def plot(*args, ax=None, **kwargs):
     return lines
 
 
-def savefig(fname, use_canvas_size=True, **kwargs):
+def savefig(fname, reference_ax=None, use_canvas_size=True, **kwargs):
     """Save figure as png and pdf.
 
     This methods corrects figsize for poster/beamer mode.
@@ -88,14 +88,77 @@ def savefig(fname, use_canvas_size=True, **kwargs):
     ----------
     fname : str
         Output filename. If no file ending, pdf will be used.
+    reference_ax : Axes, optional
+        [matplotlib.axes.Axes][] used for resizing. If `None` first axes of
+        figure is used.
     use_canvas_size : bool, optional
         If True the specified figsize will be used as canvas size.
     kwargs
         See [matplotlib.pyplot.savefig][].
 
     """
+    set_figsize = _resize_canvas(
+        reference_ax=reference_ax, use_canvas_size=use_canvas_size,
+    )
+
+    # save as pdf if not specified
+    if 'format' not in kwargs:
+        if path.splitext(fname)[1][1:] == '':
+            fname = '{0}.pdf'.format(fname)
+
+    # save fig
+    plt.savefig(fname, **kwargs)
+
+    # reset figsize, if user calls this function multiple times on same figure
     fig = plt.gcf()
-    ax = fig.get_axes()[0]
+    fig.set_size_inches(set_figsize)
+
+
+def show(reference_ax=None, use_canvas_size=True, **kwargs):
+    """Show figure and rescale similar to pplt.savefig.
+
+    Parameters
+    ----------
+    reference_ax : Axes, optional
+        [matplotlib.axes.Axes][] used for resizing. If `None` first axes of
+        figure is used.
+    use_canvas_size : bool, optional
+        If True the specified figsize will be used as canvas size.
+    kwargs
+        See [matplotlib.pyplot.show][].
+
+    """
+    set_figsize = _resize_canvas(
+        reference_ax=reference_ax, use_canvas_size=use_canvas_size,
+    )
+
+    # save fig
+    plt.show(**kwargs)
+
+    # reset figsize, if user calls this function multiple times on same figure
+    fig = plt.gcf()
+    fig.set_size_inches(set_figsize)
+
+
+def _resize_canvas(reference_ax=None, use_canvas_size=True):
+    """Resize canvas size.
+
+    Parameters
+    ----------
+    reference_ax : Axes, optional
+        [matplotlib.axes.Axes][] used for resizing. If `None` first axes of
+        figure is used.
+    use_canvas_size : bool, optional
+        If True the specified figsize will be used as canvas size.
+
+    Returns
+    -------
+    figsize : Tuple(float)
+        Original fig size to restore size.
+    """
+    fig = plt.gcf()
+    if reference_ax is None:
+        reference_ax = fig.get_axes()[0]
     figsize = fig.get_size_inches()
 
     # store figsize to reset it later
@@ -115,20 +178,11 @@ def savefig(fname, use_canvas_size=True, **kwargs):
 
     # convert figsize to canvas size
     if use_canvas_size:
-        x0, y0, width, height = ax.get_position().bounds
+        _, _, width, height = reference_ax.get_position().bounds
         figsize = (figsize[0] / width, figsize[1] / height)
         fig.set_size_inches(figsize)
 
-    # save as pdf if not specified
-    if 'format' not in kwargs:
-        if path.splitext(fname)[1][1:] == '':
-            fname = '{0}.pdf'.format(fname)
-
-    # save fig
-    plt.savefig(fname, **kwargs)
-
-    # reset figsize, if user calls this function multiple times on same figure
-    fig.set_size_inches(set_figsize)
+    return set_figsize
 
 
 def _reduce_ticks(fig):

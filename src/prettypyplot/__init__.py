@@ -45,12 +45,13 @@ __all__ = [  # noqa: F405
 
 from .colors import *
 from .pyplot import (
-    imshow,
-    plot,
-    savefig,
-    legend,
     colorbar,
     grid,
+    imshow,
+    legend,
+    plot,
+    savefig,
+    show,
 )
 from .style import update_style, use_style
 from .texts import add_contour, figtext, text
