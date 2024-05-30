@@ -5,7 +5,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ctornau/latex
     strategy:
       max-parallel: 5
       fail-fast: false
@@ -35,9 +34,10 @@ jobs:
     - name: Run test suite
       run: |
         tox --skip-pkg-install
-        # - name: Upload coverage to Codecov
-        #   uses: codecov/codecov-action@v3
-        #   with:
-        #     token: ${{ secrets.CODECOV_TOKEN }}
-        #     files: ./coverage.xml
-        #     env_vars: PYTHON
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: braniii/prettypyplot
+        files: ./coverage.xml
+        env_vars: PYTHON

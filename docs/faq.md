@@ -1,7 +1,7 @@
 # Frequently Asked Questions
 
 ### Feature X is missing
-First, if you are looking for a feature complete package, I would recommand you to take a look at [seaborn](https://seaborn.pydata.org/), or use [matplotlib](https://matplotlib.or) directly. If you believe that a functionality/method/colormap is missing, feel free to [open an issue](https://github.com/braniii/prettypyplot/issues) and describe the missing feature and why it should be added. Alternatively, you can implement it yourself and create a PR to add it to this package, see [contributing guide](../contributing).
+First, if you are looking for a feature complete package, I would recommand you to take a look at [seaborn](https://seaborn.pydata.org/), or use [matplotlib](https://matplotlib.or) directly. If you believe that a functionality/method/colormap is missing, feel free to [open an issue](https://github.com/braniii/prettypyplot/issues) and describe the missing feature and why it should be added. Alternatively, you can implement it yourself and create a PR to add it to this package, see [contributing guide](../contributing.md).
 
 
 ### I found a bug. What to do next?

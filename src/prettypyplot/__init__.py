@@ -17,7 +17,7 @@ The module is structured into the following submodules:
 - [**texts:**][prettypyplot.texts] This module provides methods to
   plot text with the possibility to add a contour.
 
-- [**tools:**][prettypyplot.tools] This module provides uitility methods to.
+- [**tools:**][prettypyplot.tools] This module provides utility methods to.
 
 """
 # both are set in style submodule to default value
@@ -28,7 +28,6 @@ STYLE = None
 STYLE_DICT = {}
 
 __all__ = [  # noqa: F405
-    'setup_pyplot',
     'update_style',
     'use_style',
     'add_contour',
@@ -46,15 +45,16 @@ __all__ = [  # noqa: F405
 
 from .colors import *
 from .pyplot import (
-    imshow,
-    plot,
-    savefig,
-    legend,
     colorbar,
     grid,
+    imshow,
+    legend,
+    plot,
+    savefig,
+    show,
 )
-from .style import (setup_pyplot, update_style, use_style)
-from .texts import (add_contour, figtext, text)
-from .subplots import (hide_empty_axes, label_outer, subplot_labels)
+from .style import update_style, use_style
+from .texts import add_contour, figtext, text
+from .subplots import hide_empty_axes, label_outer, subplot_labels
 
-__version__ = '0.10.1'
+__version__ = '0.11.0'

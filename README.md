@@ -1,6 +1,6 @@
 <div align="center">
   <img
-    src="https://github.com/braniii/prettypyplot/blob/main/gallery/logo_large.png"
+    src="https://github.com/braniii/prettypyplot/blob/main/docs/gallery/images/logo_large.svg"
   />
 
   <p>
