@@ -17,7 +17,7 @@ The module is structured into the following submodules:
 - [**texts:**][prettypyplot.texts] This module provides methods to
   plot text with the possibility to add a contour.
 
-- [**tools:**][prettypyplot.tools] This module provides uitility methods to.
+- [**tools:**][prettypyplot.tools] This module provides utility methods to.
 
 """
 # both are set in style submodule to default value
