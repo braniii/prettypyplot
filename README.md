@@ -200,7 +200,7 @@ python -m mkdocs serve
 ## Citing Prettypyplot
 
 If you want to cite prettypyplot in scientific work please use:
-> **Prettypyplot: publication ready matplotlib figures made simple**
+> **Prettypyplot: publication ready matplotlib figures made simple**  
 > D. Nagel, **2022**. Zenodo:
 > [10.5281/zenodo.7278312](https://doi.org/10.5281/zenodo.7278312)
 
