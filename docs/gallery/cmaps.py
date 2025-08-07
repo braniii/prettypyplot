@@ -40,7 +40,8 @@ def plot_color_gradients(cmap_category, cmap_list):
         pos = list(ax.get_position().bounds)
         x_text = pos[0] - 0.01
         y_text = pos[1] + pos[3] / 2
-        name = name.replace('_', r'\textunderscore{}')
+        # this is needed when LaTeX text engine is used
+        # name = name.replace('_', r'\textunderscore{}')
         fig.text(x_text, y_text, name, va='center', ha='right')
 
     # Turn off *all* ticks & spines, not just the ones with colormaps.
