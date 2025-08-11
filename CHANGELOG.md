@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added Features and Improvements 🙌:
 - Goodbye setup.py, welcome modern Python packaging standards with `uv` and `ruff` 🎉
+- Added beautiful GeoDataViz colormaps, checkout the gallery😎
 
 
 ## [0.11.0] - 2024-05-30
