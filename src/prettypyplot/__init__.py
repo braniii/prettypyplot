@@ -21,8 +21,6 @@ The module is structured into the following submodules:
 
 """
 
-from importlib.metadata import version
-
 # both are set in style submodule to default value
 MODE = None
 STYLE = None
@@ -45,6 +43,8 @@ __all__ = [  # noqa: F405
     'categorical_color',
     'text_color',
 ]
+
+from importlib.metadata import version
 
 from .colors import (
     categorical_cmap,
