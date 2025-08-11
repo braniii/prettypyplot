@@ -2,4 +2,6 @@
 
 import prettypyplot as pplt
 
-pplt.use_style()
+
+if __name__ == '__main__':
+    pplt.use_style()
