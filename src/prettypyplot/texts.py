@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """Helper functions for plotting text."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl
 import matplotlib.colors as clr
@@ -114,8 +115,7 @@ def add_contour(txt, contourwidth, contourcolor='w'):
     # check if is text object
     if not isinstance(txt, mpl.text.Text):
         raise TypeError(
-            'txt needs to be "matplotlib.text.Text", but ' +
-            'is {t}'.format(t=txt),
+            'txt needs to be "matplotlib.text.Text", but ' + 'is {t}'.format(t=txt),
         )
     # check if number
     if not tools.is_number(contourwidth):
@@ -126,13 +126,16 @@ def add_contour(txt, contourwidth, contourcolor='w'):
     # check if color
     if not clr.is_color_like(contourcolor):
         raise TypeError(
-            'contourcolor={c} can not be '.format(c=contourcolor) +
-            'interpreted as color.',
+            'contourcolor={c} can not be '.format(c=contourcolor)
+            + 'interpreted as color.',
         )
 
-    path_args = [path_effects.withStroke(
-        linewidth=contourwidth, foreground=contourcolor,
-    )]
+    path_args = [
+        path_effects.withStroke(
+            linewidth=contourwidth,
+            foreground=contourcolor,
+        )
+    ]
     txt.set_path_effects(path_args)
 
 
@@ -149,11 +152,10 @@ def _parse_contour(contour):
         lw, lc = contour
         if not clr.is_color_like(lc):
             raise ValueError(
-                'contourcolor={c} can not be '.format(c=lc) +
-                'interpreted as color.',
+                'contourcolor={c} can not be '.format(c=lc) + 'interpreted as color.',
             )
         return {'contourwidth': lw, 'contourcolor': lc}
     raise TypeError(
-        'contour needs to be a boolean or a tuple/list, but given was: ' +
-        '{c}.'.format(c=contour),
+        'contour needs to be a boolean or a tuple/list, but given was: '
+        + '{c}.'.format(c=contour),
     )

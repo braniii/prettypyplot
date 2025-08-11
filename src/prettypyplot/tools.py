@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """This module contains utility functions used in multiple submodules."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl
 import numpy as np
@@ -41,8 +42,7 @@ def invert_sign(num):
             return num[1:]
         return '-{0}'.format(num)
     raise ValueError(
-        'Num needs to be numeric value or string, not ' +
-        '{0}.'.format(num),
+        'Num needs to be numeric value or string, not ' + '{0}.'.format(num),
     )
 
 
@@ -53,9 +53,7 @@ def parse_axes(*args, ax):
         if isinstance(ax, mpl.axes.Axes) or len(axes) > 1:
             raise ValueError('Multiple axes provided')
         ax = axes[0]
-        args = tuple(
-            arg for arg in args if not isinstance(arg, mpl.axes.Axes)
-        )
+        args = tuple(arg for arg in args if not isinstance(arg, mpl.axes.Axes))
     else:
         ax = gca(ax)
     return args, ax
@@ -76,8 +74,8 @@ def get_axes(axs):
     axs = np.ravel(axs)
     if not all((isinstance(arg, mpl.axes.Axes) for arg in axs)):
         raise TypeError(
-            'If `axs` is given, it needs to be of type matplotlib.axes.Axes.' +
-            ' or list of',
+            'If `axs` is given, it needs to be of type matplotlib.axes.Axes.'
+            + ' or list of',
         )
     return axs
 

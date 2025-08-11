@@ -20,6 +20,7 @@ The module is structured into the following submodules:
 - [**tools:**][prettypyplot.tools] This module provides utility methods to.
 
 """
+
 # both are set in style submodule to default value
 MODE = None
 STYLE = None

@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """Set-up matplotlib environment."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import shutil
 from enum import Enum, auto
@@ -20,6 +21,7 @@ from prettypyplot import colors as pclr
 # ~~~ CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Style(Enum):
     """Enum for all styles defined in pplt."""
+
     DEFAULT = auto()
     # default style, good for scientific usage
     MINIMAL = auto()
@@ -35,6 +37,7 @@ class Style(Enum):
 
 class Mode(Enum):
     """Enum for all modes defined in pplt."""
+
     DEFAULT = auto()
     # default font size, good for monitor use
     PRINT = auto()
@@ -174,7 +177,10 @@ def update_style(
 
         # set color cycle and cmap
         _set_rc_colors(
-            colors=colors, cmap=cmap, ncs=ncs, true_black=true_black,
+            colors=colors,
+            cmap=cmap,
+            ncs=ncs,
+            true_black=true_black,
         )
 
         # set figsize
@@ -261,8 +267,9 @@ def _set_rc_colors(colors, cmap, true_black, ncs):
         clrs = plt.get_cmap(colors)
         plt.rcParams['axes.prop_cycle'] = plt.cycler(
             color=(
-                clrs.colors if tools.is_discrete_cmap(colors) else
-                clrs(np.linspace(0, 1, ncs))
+                clrs.colors
+                if tools.is_discrete_cmap(colors)
+                else clrs(np.linspace(0, 1, ncs))
             ),
         )
 
@@ -349,9 +356,7 @@ def _set_rc_widths(mode):
                 plt.rcParams[rcParam] = scale * val
                 # apply all changes to yticks as well
                 if rcParam.startswith('xtick'):
-                    plt.rcParams[
-                        'y{0}'.format(rcParam[1:])
-                    ] = plt.rcParams[rcParam]
+                    plt.rcParams['y{0}'.format(rcParam[1:])] = plt.rcParams[rcParam]
 
 
 def _set_rc_dpi(ipython, dpi=384):
@@ -453,8 +458,8 @@ def _parse_figratio(figratio):
         }
         if figratio not in figratios:
             raise ValueError(
-                'figratio needs to be an numeric value or one of [' +
-                '{0}].'.format(', '.join(figratios.keys())),
+                'figratio needs to be an numeric value or one of ['
+                + '{0}].'.format(', '.join(figratios.keys())),
             )
         figratio = figratios.get(figratio, None)
     return figratio
@@ -496,7 +501,7 @@ def _parse_figsize(figsize, figratio):
 
     if sizetuple is None:
         raise ValueError(
-            'figsize needs to be an numeric value or a tuple, not ' +
-            '{0}.'.format(figsize),
+            'figsize needs to be an numeric value or a tuple, not '
+            + '{0}.'.format(figsize),
         )
     return sizetuple

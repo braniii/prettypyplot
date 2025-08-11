@@ -5,6 +5,7 @@ Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from matplotlib import colors as clr
 
@@ -26,7 +27,12 @@ CBF8_ARRAY = [
 ]
 PASTEL5_ARRAY = ['#3362b0', '#cc3164', '#1ea69c', '#f78746', '#9dd2e7']
 PASTEL6_ARRAY = [
-    '#2452c7', '#c42f22', '#2aa069', '#67b2cf', '#f8a7ae', '#a6f89c',
+    '#2452c7',
+    '#c42f22',
+    '#2aa069',
+    '#67b2cf',
+    '#f8a7ae',
+    '#a6f89c',
 ]
 
 # Coolors Exported Palette
@@ -52,7 +58,12 @@ UFCD_ARRAY = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
 # own creation
 PAULA_ARRAY = ['#fec21f', '#ed6a0c', '#df0712', '#df017b', '#4a287d']
 ARGON_ARRAY = [
-    '#252b3b', '#406558', '#628d79', '#cda901', '#e26b00', '#cb1a26',
+    '#252b3b',
+    '#406558',
+    '#628d79',
+    '#cda901',
+    '#e26b00',
+    '#cb1a26',
 ]
 
 SUMMER_ARRAY = [

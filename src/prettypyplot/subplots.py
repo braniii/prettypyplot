@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """Wrapper for matplotlib functions for subplots."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import numpy as np
@@ -88,8 +89,7 @@ def label_outer(axs=None):
 def _is_subplot_axes(ax):
     """Check is is subplot axes."""
     return (
-        isinstance(ax, mpl.axes.Axes) and
-        hasattr(ax, 'get_subplotspec')  # noqa: WPS421
+        isinstance(ax, mpl.axes.Axes) and hasattr(ax, 'get_subplotspec')  # noqa: WPS421
     )
 
 
@@ -120,13 +120,9 @@ def _has_neighbor_distance(ax1, ax2, row_offset=0, col_offset=0):
         return False
 
     ss1, ss2 = ax1.get_subplotspec(), ax2.get_subplotspec()
-    return (
-        any((
-            row + row_offset in list(ss2.rowspan) for row in list(ss1.rowspan)
-        )) and any((
-            col + col_offset in list(ss2.colspan) for col in list(ss1.colspan)
-        ))
-    )
+    return any(
+        (row + row_offset in list(ss2.rowspan) for row in list(ss1.rowspan))
+    ) and any((col + col_offset in list(ss2.colspan) for col in list(ss1.colspan)))
 
 
 def _label_outer(ax, lastrow, firstcol):
@@ -145,11 +141,13 @@ def _label_outer(ax, lastrow, firstcol):
 
 def _is_empty_axes(ax):
     """Return if axes is empty."""
-    return (
-        not any([
-            ax.lines, ax.collections, ax.patches, ax.texts, ax.images,
-        ])
-    )
+    return not any([
+        ax.lines,
+        ax.collections,
+        ax.patches,
+        ax.texts,
+        ax.images,
+    ])
 
 
 def subplot_labels(*, fig=None, xlabel=None, ylabel=None):

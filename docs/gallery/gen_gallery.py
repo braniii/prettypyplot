@@ -1,4 +1,5 @@
 """Generate the images of the gallery."""
+
 import os
 import subprocess
 
