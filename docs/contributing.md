@@ -40,7 +40,11 @@ All errors pointing to `./build/` can be neglected, they are caused by my lazy a
 
 If you add a new function/method/class please ensure that you add a test function, as well. Running the test simply by
 ```bash
+# run tox
 uv run tox
+
+# or run it in parallel to speed it up
+uv run tox run-parallel
 ```
 And please ensure that the coverage does not decrease. Otherwise the CodeCov bot will complain.
 
