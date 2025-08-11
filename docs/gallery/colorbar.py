@@ -45,4 +45,4 @@ im = pplt.imshow(
 )
 
 pplt.colorbar(im, label=r'$P(x,y)$', position='right')
-pplt.savefig(f'images/colorbar_preview.svg')
+pplt.savefig('images/colorbar_preview.svg')
