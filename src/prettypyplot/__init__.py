@@ -39,12 +39,18 @@ __all__ = [  # noqa: F405
     'subplot_labels',
     'load_cmaps',
     'load_colors',
-    'categorical_cmaps',
+    'categorical_cmap',
     'categorical_color',
     'text_color',
 ]
 
-from .colors import *
+from .colors import (
+    categorical_cmap,
+    categorical_color,
+    load_cmaps,
+    load_colors,
+    text_color,
+)
 from .pyplot import (
     colorbar,
     grid,

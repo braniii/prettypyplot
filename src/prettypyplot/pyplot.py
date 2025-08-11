@@ -297,7 +297,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     kwargs = {**default_kwargs.get(outside, {}), **kwargs}
 
     # get handles and labels of selected axes
-    handles, labels = mlegend._get_legend_handles_labels(axs)  # noqa: WPS437
+    handles, labels = mlegend._get_legend_handles_labels(axs)
 
     # set number of ncol to the number of items
     if outside in {'top', 'bottom'}:
@@ -323,8 +323,8 @@ def _shift_legend_title(leg):
     child = leg.get_children()[0]
     title = child.get_children()[0]
     hpack = child.get_children()[1]
-    child._children = [hpack]  # noqa: WPS437
-    hpack._children = [title] + hpack.get_children()  # noqa: WPS437
+    child._children = [hpack]
+    hpack._children = [title] + hpack.get_children()
 
 
 def _opposite_side(pos):
@@ -421,9 +421,9 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         orientation = 'horizontal'
 
     # get axes
-    if hasattr(im, 'axes'):  # noqa: WPS421
+    if hasattr(im, 'axes'):
         ax = im.axes
-    elif hasattr(im, 'ax'):  # noqa: WPS421
+    elif hasattr(im, 'ax'):
         ax = im.ax
     else:
         ax = plt.gca()

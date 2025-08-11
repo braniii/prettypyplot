@@ -61,7 +61,7 @@ if _pplt.STYLE is None:
 
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def update_style(
+def update_style(  # noqa: C901
     interactive=None,
     colors=None,
     cmap=None,

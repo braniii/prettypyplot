@@ -143,7 +143,7 @@ def load_colors():
         'pplt:text': plt.rcParams['text.color'],
         'pplt:grid': plt.rcParams['grid.color'],
     }
-    clr._colors_full_map.update(pplt_colors)  # noqa: WPS437
+    clr._colors_full_map.update(pplt_colors)
 
 
 def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
