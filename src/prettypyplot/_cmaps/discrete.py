@@ -57,6 +57,8 @@ UFCD_ARRAY = ['#2a6ebb', '#de3831', '#739600', '#e98300', '#a7c1e3']
 
 # own creation
 PAULA_ARRAY = ['#fec21f', '#ed6a0c', '#df0712', '#df017b', '#4a287d']
+PAULA_CBF_ARRAY = ['#fec21f', '#f48a14', '#e74711', '#ac1e6e', '#4a287d']
+PAULA_LIME_ARRAY = ['#ffcc14', '#c7c013', '#8bb21b', '#55a026', '#0b8c2b']
 ARGON_ARRAY = [
     '#252b3b',
     '#406558',
@@ -114,6 +116,14 @@ def _ufcd():
 
 def _paula():
     return clr.ListedColormap(PAULA_ARRAY, 'paula')
+
+
+def _paula_cbf():
+    return clr.ListedColormap(PAULA_CBF_ARRAY, 'paula_cbf')
+
+
+def _paula_lime():
+    return clr.ListedColormap(PAULA_LIME_ARRAY, 'paula_lime')
 
 
 def _argon():

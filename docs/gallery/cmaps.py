@@ -5,12 +5,12 @@ https://matplotlib.org/tutorials/colors/colormaps.html
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import pyplot as plt
 
 import prettypyplot as pplt
 
-# run setuo
+# run setup
 pplt.use_style()
 
 cmaps = {}
@@ -20,6 +20,8 @@ cmaps['Perceptually Uniform Sequential'] = [
     'bownair',
     'turbo',
     'jet',
+    'plasma',
+    'paula2',
 ]
 cmaps['Qualitative'] = [
     'pastel5',
@@ -33,6 +35,8 @@ cmaps['Qualitative'] = [
     'cbf8',
     'ufcd',
     'paula',
+    'paula_cbf',
+    'paula_lime',
     'argon',
 ]
 cmaps['PaulTol'] = [

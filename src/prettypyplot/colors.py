@@ -25,17 +25,10 @@ from prettypyplot._cmaps.discrete import (
     _pastel_rainbow,
     _pastel_spring,
     _paula,
+    _paula_cbf,
+    _paula_lime,
     _summertimes,
     _ufcd,
-)
-from prettypyplot._cmaps.macaw import _macaw
-from prettypyplot._cmaps.tol_discrete import (
-    _tol_bright,
-    _tol_high_contrast,
-    _tol_light,
-    _tol_medium_contrast,
-    _tol_muted,
-    _tol_vibrant,
 )
 from prettypyplot._cmaps.gdv_discrete import (
     _gdv_rag,
@@ -61,6 +54,16 @@ from prettypyplot._cmaps.gdv_discrete import (
     _gdv_d4,
     _gdv_mars,
     _gdv_moon,
+)
+from prettypyplot._cmaps.macaw import _macaw
+from prettypyplot._cmaps.paula2 import _paula2
+from prettypyplot._cmaps.tol_discrete import (
+    _tol_bright,
+    _tol_high_contrast,
+    _tol_light,
+    _tol_medium_contrast,
+    _tol_muted,
+    _tol_vibrant,
 )
 from prettypyplot._cmaps.turbo import _turbo
 from prettypyplot.tools import is_number
@@ -141,6 +144,9 @@ def load_cmaps():
         _pastel_rainbow(),
         _pastel_spring(),
         _paula(),
+        _paula2(),
+        _paula_cbf(),
+        _paula_lime(),
         _summertimes(),
         _tol_bright(),
         _tol_high_contrast(),
