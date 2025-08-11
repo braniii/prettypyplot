@@ -4,8 +4,6 @@ This module defines some perceptually uniform sequential and several qualitative
 
 The qualitative colors `'pastel_autumn'`, `'pastel_spring'`, `'pastel_rainbow'` are neither  colorblind friendly nor suited for black-white.
 
-All colormaps starting with `tol:` were designed by Paul Tol. All of them are colorblind friendly and some are even print friendly. For a detailed discussion check out his lovely [blog](https://personal.sron.nl/~pault/).
-
 !!! warning
     `macaw`, `pastel5`, `pastel6`, and `ufcd` will be only modified slightly in future relases. All others will probably change dramatically.
 
@@ -13,5 +11,13 @@ All colormaps starting with `tol:` were designed by Paul Tol. All of them are co
 
 ![Perceptually Uniform Sequential](images/Perceptually Uniform Sequential.svg){: style="width: 100%"}
 ![Qualitative](images/Qualitative.svg){: style="width: 100%"}
+
+All colormaps starting with `tol:` were designed by Paul Tol. All of them are colorblind friendly and some are even print friendly. For a detailed discussion check out his lovely [blog](https://personal.sron.nl/~pault/).
+
+![PaulTol](images/PaulTol.svg){: style="width: 100%"}
+
+And some beautiful taken from GeoDataViz. They should be all colorblind friendly. For more info please checkout [GeoDataViz](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit). The sequential colormaps with `s` are based on a single hue value, while `m` are multi-hue, and `d` are diverging.
+
+![GeoDataViz](images/GeoDataViz.svg){: style="width: 100%"}
 
 For more colormaps see [matplolib colormaps](https://matplotlib.org/tutorials/colors/colormaps.html).

@@ -34,12 +34,40 @@ cmaps['Qualitative'] = [
     'ufcd',
     'paula',
     'argon',
+]
+cmaps['PaulTol'] = [
     'tol:bright',
     'tol:muted',
     'tol:high_contrast',
     'tol:medium_contrast',
     'tol:vibrant',
 ]
+cmaps['GeoDataViz'] = [
+    'gdv:rag',
+    'gdv:rag_cvd',
+    'gdv:palette',
+    'gdv:6a',
+    'gdv:5a',
+    'gdv:4a',
+    'gdv:4b',
+    'gdv:3a',
+    'gdv:3b',
+    'gdv:2a',
+    'gdv:2b',
+    'gdv:s1',
+    'gdv:s2',
+    'gdv:s3',
+    'gdv:m1',
+    'gdv:m2',
+    'gdv:m3',
+    'gdv:d1',
+    'gdv:d2',
+    'gdv:d3',
+    'gdv:d4',
+    'gdv:mars',
+    'gdv:moon',
+]
+
 
 gradient = np.linspace(0, 1, 256)
 gradient = np.vstack((gradient, gradient))
