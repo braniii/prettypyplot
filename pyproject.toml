@@ -1,0 +1,77 @@
+[project]
+name = "prettypyplot"
+version = "0.11.0"
+description = "Wrapper for matplotlib to generate pretty plots."
+readme = "README.md"
+authors = [
+    { name = "braniii" }
+]
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["BSD 3-Clause License"]
+keywords = [
+    "matplotlib",
+    "pyplot",
+]
+classifiers = [
+  "License :: OSI Approved :: BSD License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "decorit>=0.2.0",
+]
+
+[project.urls]
+Documentation = "https://braniii.github.io/prettypyplot"
+Repository = "https://github.com/braniii/prettypyplot"
+Issues = "https://github.com/braniii/prettypyplot/issues"
+Changelog = "https://braniii.github.io/prettypyplot/changelog"
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F", "C901"]
+ignore = ["F722"]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+preview = true
+
+[tool.ruff.format]
+quote-style = "single"
+preview = true
+
+[dependency-groups]
+dev = [
+    "pre-commit>=3.5.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.0",
+    "tox>=4.27.0",
+    "tox-uv>=1.26.1",
+]
+docs = [
+    "jupyter>=1.1.1",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-jupyter>=0.25.1",
+    "mkdocs-literate-nav>=0.6.2",
+    "mkdocs-material>=9.6.14",
+    "mkdocs-section-index>=0.3.10",
+    "mkdocstrings-python>=1.16.12",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]
+"**/{tests,docs}/*" = ["E402"]
