@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """Set-up matplotlib environment."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 
@@ -142,7 +143,7 @@ def load_colors():
         'pplt:text': plt.rcParams['text.color'],
         'pplt:grid': plt.rcParams['grid.color'],
     }
-    clr._colors_full_map.update(pplt_colors)  # noqa: WPS437
+    clr._colors_full_map.update(pplt_colors)
 
 
 def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
@@ -173,10 +174,18 @@ def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
     """
     # check correct data type
     _is_number_in_range(
-        nc, name='nc', dtype=int, low=1, high=np.iinfo(int).max,
+        nc,
+        name='nc',
+        dtype=int,
+        low=1,
+        high=np.iinfo(int).max,
     )
     _is_number_in_range(
-        nsc, name='nsc', dtype=int, low=1, high=np.iinfo(int).max,
+        nsc,
+        name='nsc',
+        dtype=int,
+        low=1,
+        high=np.iinfo(int).max,
     )
     nc, nsc = int(nc), int(nsc)
 
@@ -233,7 +242,11 @@ def categorical_color(nsc, color, *, return_hex=False):
     # check correct data type
     color = clr.to_rgb(color)
     _is_number_in_range(
-        nsc, name='nsc', dtype=int, low=1, high=np.iinfo(int).max,
+        nsc,
+        name='nsc',
+        dtype=int,
+        low=1,
+        high=np.iinfo(int).max,
     )
     nsc = int(nsc)
 
@@ -294,7 +307,7 @@ def _channel_transf(channel):
     """Transform channel for luminance calculation."""
     if channel < 0.03928:
         return channel / 12.92
-    return ((channel + 0.055) / 1.055)**2.4
+    return ((channel + 0.055) / 1.055) ** 2.4
 
 
 def _relative_luminance(color):
@@ -322,14 +335,14 @@ def _is_number_in_range(num, *, dtype=float, name='Variable', low=0, high=1):
     """Check if number is in range [low, high]."""
     if not is_number(num, dtype=dtype):
         raise TypeError(
-            '{0} needs to be {1} but given '.format(name, dtype.__name__) +
-            '{num}'.format(num=num),
+            '{0} needs to be {1} but given '.format(name, dtype.__name__)
+            + '{num}'.format(num=num),
         )
     num = dtype(num)
     if num < low or num > high:
         raise ValueError(
-            '{name} needs to be within [{low}'.format(name=name, low=low) +
-            ', {high}] but given {num}'.format(high=high, num=num),
+            '{name} needs to be within [{low}'.format(name=name, low=low)
+            + ', {high}] but given {num}'.format(high=high, num=num),
         )
 
 

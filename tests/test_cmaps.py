@@ -6,6 +6,7 @@ Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
+
 from matplotlib.colors import LinearSegmentedColormap, ListedColormap
 
 from prettypyplot import _cmaps as cmaps
@@ -14,21 +15,24 @@ from prettypyplot import _cmaps as cmaps
 def test_bownair():
     """Test bownair cmap."""
     assert isinstance(
-        cmaps.bownair._bownair(), LinearSegmentedColormap,
+        cmaps.bownair._bownair(),
+        LinearSegmentedColormap,
     )
 
 
 def test_macaw():
     """Test macaw cmap."""
     assert isinstance(
-        cmaps.macaw._macaw(), LinearSegmentedColormap,
+        cmaps.macaw._macaw(),
+        LinearSegmentedColormap,
     )
 
 
 def test_turbo():
     """Test turbo cmap."""
     assert isinstance(
-        cmaps.turbo._turbo(), LinearSegmentedColormap,
+        cmaps.turbo._turbo(),
+        LinearSegmentedColormap,
     )
 
 

@@ -3,6 +3,7 @@
 # Copyright (c) 2020-2023, Daniel Nagel
 # All rights reserved.
 """Wrapper for matplotlib plotting functions."""
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import warnings
 from os import path
@@ -98,7 +99,8 @@ def savefig(fname, reference_ax=None, use_canvas_size=True, **kwargs):
 
     """
     set_figsize = _resize_canvas(
-        reference_ax=reference_ax, use_canvas_size=use_canvas_size,
+        reference_ax=reference_ax,
+        use_canvas_size=use_canvas_size,
     )
 
     # save as pdf if not specified
@@ -129,7 +131,8 @@ def show(reference_ax=None, use_canvas_size=True, **kwargs):
 
     """
     set_figsize = _resize_canvas(
-        reference_ax=reference_ax, use_canvas_size=use_canvas_size,
+        reference_ax=reference_ax,
+        use_canvas_size=use_canvas_size,
     )
 
     # save fig
@@ -191,10 +194,12 @@ def _reduce_ticks(fig):
     tick_reduc = 1.5
     for axes in fig.get_axes():
         custom_xticks = isinstance(
-            axes.xaxis.get_major_locator(), mticker.FixedLocator,
+            axes.xaxis.get_major_locator(),
+            mticker.FixedLocator,
         )
         custom_yticks = isinstance(
-            axes.yaxis.get_major_locator(), mticker.FixedLocator,
+            axes.yaxis.get_major_locator(),
+            mticker.FixedLocator,
         )
         if len(axes.get_xticks()) > 4 and not custom_xticks:
             axes.locator_params(
@@ -292,7 +297,7 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     kwargs = {**default_kwargs.get(outside, {}), **kwargs}
 
     # get handles and labels of selected axes
-    handles, labels = mlegend._get_legend_handles_labels(axs)  # noqa: WPS437
+    handles, labels = mlegend._get_legend_handles_labels(axs)
 
     # set number of ncol to the number of items
     if outside in {'top', 'bottom'}:
@@ -318,8 +323,8 @@ def _shift_legend_title(leg):
     child = leg.get_children()[0]
     title = child.get_children()[0]
     hpack = child.get_children()[1]
-    child._children = [hpack]  # noqa: WPS437
-    hpack._children = [title] + hpack.get_children()  # noqa: WPS437
+    child._children = [hpack]
+    hpack._children = [title] + hpack.get_children()
 
 
 def _opposite_side(pos):
@@ -365,8 +370,9 @@ def activate_axis(position, ax=None):
     for pos in position:
         if pos not in positions:
             raise ValueError(
-                '{0:!r} is not a valid value for {1}; supported values are {2}'
-                .format(pos, 'position', ', '.join(positions))
+                '{0:!r} is not a valid value for {1}; supported values are {2}'.format(
+                    pos, 'position', ', '.join(positions)
+                )
             )
 
         if pos in {'bottom', 'top'}:
@@ -415,9 +421,9 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
         orientation = 'horizontal'
 
     # get axes
-    if hasattr(im, 'axes'):  # noqa: WPS421
+    if hasattr(im, 'axes'):
         ax = im.axes
-    elif hasattr(im, 'ax'):  # noqa: WPS421
+    elif hasattr(im, 'ax'):
         ax = im.ax
     else:
         ax = plt.gca()
@@ -470,9 +476,7 @@ def grid(*args, ax=None, **kwargs):
 
     if _pplt.STYLE != Style.MINIMAL and show_grid:
         gr_maj = ax.grid(show_grid, which='major', linestyle='--', **kwargs)
-        gr_min = ax.grid(
-            show_grid, which='minor', linestyle='dotted', **kwargs
-        )
+        gr_min = ax.grid(show_grid, which='minor', linestyle='dotted', **kwargs)
     else:
         gr_maj = ax.grid(False, which='major')
         gr_min = ax.grid(False, which='minor')
@@ -496,8 +500,7 @@ def _minmax(lim, rcparam):
     width = lim[1] - lim[0]
     margin = plt.rcParams[rcparam]
     return lim[0] + np.array([  # min max
-        (margin + idx) / (1 + 2 * margin) * width
-        for idx in (0, 1)
+        (margin + idx) / (1 + 2 * margin) * width for idx in (0, 1)
     ])
 
 

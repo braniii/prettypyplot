@@ -6,6 +6,7 @@ Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
+
 import numpy as np
 import pytest
 from matplotlib import collections
@@ -16,45 +17,67 @@ from mpl_toolkits.axes_grid1 import ImageGrid
 import prettypyplot
 
 
-@pytest.mark.parametrize('ij1, ij2, kwargs, refdist', [
-    ((0, 0), (1, 1), {'row_offset': 1, 'col_offset': 1}, True),
-    ((0, 0), (1, 1), {'row_offset': 1}, False),
-    ((1, 2), (1, 2), {}, True),
-])
+@pytest.mark.parametrize(
+    'ij1, ij2, kwargs, refdist',
+    [
+        ((0, 0), (1, 1), {'row_offset': 1, 'col_offset': 1}, True),
+        ((0, 0), (1, 1), {'row_offset': 1}, False),
+        ((1, 2), (1, 2), {}, True),
+    ],
+)
 def test__has_neighbor_distance(ij1, ij2, kwargs, refdist):
     """Test neighbor distance."""
     fig, axs = plt.subplots(4, 4)
-    assert prettypyplot.subplots._has_neighbor_distance(
-        axs[ij1], axs[ij2], **kwargs,
-    ) == refdist
+    assert (
+        prettypyplot.subplots._has_neighbor_distance(
+            axs[ij1],
+            axs[ij2],
+            **kwargs,
+        )
+        == refdist
+    )
 
 
-@pytest.mark.parametrize('ij1, ij2, refneighbor', [
-    ((1, 1), (2, 1), False),
-    ((2, 1), (1, 1), True),
-    ((1, 2), (1, 2), False),
-])
+@pytest.mark.parametrize(
+    'ij1, ij2, refneighbor',
+    [
+        ((1, 1), (2, 1), False),
+        ((2, 1), (1, 1), True),
+        ((1, 2), (1, 2), False),
+    ],
+)
 def test__is_bottom_neighbor(ij1, ij2, refneighbor):
     """Test is bottom neighbor."""
     fig, axs = plt.subplots(4, 4)
 
-    assert prettypyplot.subplots._is_bottom_neighbor(
-        axs[ij1], axs[ij2],
-    ) == refneighbor
+    assert (
+        prettypyplot.subplots._is_bottom_neighbor(
+            axs[ij1],
+            axs[ij2],
+        )
+        == refneighbor
+    )
 
 
-@pytest.mark.parametrize('ij1, ij2, refneighbor', [
-    ((1, 1), (1, 1), False),
-    ((1, 1), (1, 2), True),
-    ((1, 2), (1, 2), False),
-])
+@pytest.mark.parametrize(
+    'ij1, ij2, refneighbor',
+    [
+        ((1, 1), (1, 1), False),
+        ((1, 1), (1, 2), True),
+        ((1, 2), (1, 2), False),
+    ],
+)
 def test__is_left_neighbor(ij1, ij2, refneighbor):
     """Test is left neighbor."""
     fig, axs = plt.subplots(4, 4)
 
-    assert prettypyplot.subplots._is_left_neighbor(
-        axs[ij1], axs[ij2],
-    ) == refneighbor
+    assert (
+        prettypyplot.subplots._is_left_neighbor(
+            axs[ij1],
+            axs[ij2],
+        )
+        == refneighbor
+    )
 
 
 def test__is_subplot_axes():
@@ -132,11 +155,14 @@ def test__is_outer_hidden():
         assert le == left_empty and re == right_empty
 
 
-@pytest.mark.parametrize('plotmask', [
-    [True, False, True],
-    [[True, True], [True, True]],
-    [[False, True], [False, True]],
-])
+@pytest.mark.parametrize(
+    'plotmask',
+    [
+        [True, False, True],
+        [[True, True], [True, True]],
+        [[False, True], [False, True]],
+    ],
+)
 def test_hide_empty_axes(plotmask):
     """Test hide empty axes."""
     plotmask = np.atleast_2d(plotmask)
@@ -166,11 +192,14 @@ def test_hide_empty_axes_mpl():
     return fig
 
 
-@pytest.mark.parametrize('plotmask', [
-    [True, False, True],
-    [[True, True], [True, True]],
-    [[False, True], [False, True]],
-])
+@pytest.mark.parametrize(
+    'plotmask',
+    [
+        [True, False, True],
+        [[True, True], [True, True]],
+        [[False, True], [False, True]],
+    ],
+)
 def test_label_outer(plotmask):
     """Check that no error occurs at labeling outer axes."""
     plotmask = np.atleast_2d(plotmask)

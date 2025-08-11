@@ -4,6 +4,7 @@ This script is taken from the matplotlib documentation
 https://matplotlib.org/tutorials/colors/colormaps.html
 
 """
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -14,12 +15,29 @@ pplt.use_style()
 
 cmaps = {}
 cmaps['Perceptually Uniform Sequential'] = [
-    'macaw', 'viridis', 'bownair', 'turbo', 'jet',
+    'macaw',
+    'viridis',
+    'bownair',
+    'turbo',
+    'jet',
 ]
 cmaps['Qualitative'] = [
-    'pastel5', 'pastel6', 'pastel_autumn', 'pastel_spring', 'pastel_rainbow',
-    'summertimes', 'cbf4', 'cbf5', 'cbf8', 'ufcd', 'paula', 'argon',
-    'tol:bright', 'tol:muted', 'tol:high_contrast', 'tol:medium_contrast',
+    'pastel5',
+    'pastel6',
+    'pastel_autumn',
+    'pastel_spring',
+    'pastel_rainbow',
+    'summertimes',
+    'cbf4',
+    'cbf5',
+    'cbf8',
+    'ufcd',
+    'paula',
+    'argon',
+    'tol:bright',
+    'tol:muted',
+    'tol:high_contrast',
+    'tol:medium_contrast',
     'tol:vibrant',
 ]
 
@@ -33,7 +51,7 @@ def plot_color_gradients(cmap_category, cmap_list):
     axes[0].set_title(cmap_category + ' colormaps')
 
     # for similar absolute width of figures
-    fig.text(0, .5, r'.', c='w')
+    fig.text(0, 0.5, r'.', c='w')
 
     for ax, name in zip(axes, cmap_list):
         ax.imshow(gradient, aspect='auto', cmap=plt.get_cmap(name))

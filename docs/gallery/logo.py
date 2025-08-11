@@ -4,6 +4,7 @@ This script is taken from
 https://matplotlib.org/gallery/misc/logos2.html#sphx-glr-gallery-misc-logos2-py
 an heavily simplified to fit the spirit of prettypyplot.
 """
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Rectangle
@@ -16,7 +17,7 @@ def create_icon_axes(fig):
     ax = fig.add_axes((0, 0, 1, 1), projection='polar')
 
     N = 7
-    arc = 2. * np.pi
+    arc = 2.0 * np.pi
     theta = np.arange(0.0, arc, arc / N)
     radii = np.array([3, 6, 8, 7, 4, 5, 8])
     bars = ax.bar(
@@ -97,4 +98,3 @@ figsize = (height, height)
 fig = plt.figure(figsize=figsize)
 ax = create_icon_axes(fig)
 pplt.savefig('images/logo.png')
-

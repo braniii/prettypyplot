@@ -7,6 +7,7 @@ Copyright (c) 2020-2021, Daniel Nagel
 All rights reserved.
 
 """
+
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from matplotlib import colors as clr
 

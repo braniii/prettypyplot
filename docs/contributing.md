@@ -19,33 +19,28 @@ If you want to request a change, you first have to [fork the repository](https:/
 
 ### Setup a development environment
 
-=== "conda"
+First you need to install `uv`. Please follow the installation instruction provided on their page [docs.astral.sh/uv](https://docs.astral.sh/uv/).
 
-    ``` bash
-    conda create -n pplt -c conda-forge python
-    conda activate pplt
-    python -m pip install -e .[all]
-    ```
+```bash
+# setup venv
+uv sync --all-groups
 
-=== "venv"
-
-    ``` bash
-    python -m venv ./prettypyplot
-    source ./prettypyplot/bin/activate
-    python -m pip install -e .[all]
-    ```
+# install pre-commit
+uv run pre-commit install
+```
 
 ### Make changes and run tests
 
 Apply your changes and check if you followed the codeing style (PEP8) by running
 ```bash
-python -m tox -e lint
+uv run check --format
 ```
+
 All errors pointing to `./build/` can be neglected, they are caused by my lazy approach of using no wildcards in the setup.
 
 If you add a new function/method/class please ensure that you add a test function, as well. Running the test simply by
 ```bash
-python -m tox
+uv run tox
 ```
 And please ensure that the coverage does not decrease. Otherwise the CodeCov bot will complain.
 

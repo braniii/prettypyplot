@@ -1,4 +1,5 @@
 """Show options of legend."""
+
 import numpy as np
 import prettypyplot as pplt
 from matplotlib import pyplot as plt
@@ -8,8 +9,7 @@ np.random.seed(1337)
 N = 500
 T = np.linspace(0, 3 * np.pi, N)
 X1, X2 = [
-    np.sin(T + np.pi * np.random.rand()) + 0.1 * np.random.rand(N)
-    for _ in range(2)
+    np.sin(T + np.pi * np.random.rand()) + 0.1 * np.random.rand(N) for _ in range(2)
 ]
 
 # loop over  random data to plot
@@ -37,4 +37,4 @@ fig, ax = plt.subplots()
 pplt.plot(T, X1, ax=ax, label='$x_1$')
 pplt.plot(T, X2, ax=ax, label='$x_2$')
 pplt.legend(title='title', ax=ax, outside='top')
-pplt.savefig(f'images/legend_preview.svg')
+pplt.savefig('images/legend_preview.svg')

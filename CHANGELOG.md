@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- Drop Python 3.8 due to EOL. Please use v0.11.0.
+
+### Added Features and Improvements 🙌:
+- Goodbye setup.py, welcome modern Python packaging standards with `uv` and `ruff` 🎉
 
 
 ## [0.11.0] - 2024-05-30
