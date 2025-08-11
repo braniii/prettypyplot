@@ -54,18 +54,17 @@ default_grays_darkmode = GrayTones('#b2b0ac', '#22201a')
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def _get_cmap(cmap):
-    """Wrapper for get_cmap with mpl <=3.6 and >=3.7."""
+    """Wrapper for get_cmap with mpl <=3.2 and >=3.4."""
     if hasattr(mpl, 'colormaps') and hasattr(mpl.colormaps, 'get_cmap'):
-        mpl.colormaps.get_cmap(cmap)
-    else:
-        mpl.cm.get_cmap(cmap)
+        return mpl.colormaps.get_cmap(cmap)
+    return mpl.cm.get_cmap(cmap)  # pragma: no cover
 
 
 def _register_cmap(cmap):
-    """Wrapper for register_cmap with mpl <=3.6 and >=3.7."""
+    """Wrapper for register_cmap with mpl <=3.2 and >=3.4."""
     if hasattr(mpl, 'colormaps') and hasattr(mpl.colormaps, 'register'):
         mpl.colormaps.register(cmap)
-    else:
+    else:  # pragma: no cover
         mpl.cm.register_cmap(cmap=cmap)
 
 
