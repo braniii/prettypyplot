@@ -44,6 +44,8 @@ __all__ = [  # noqa: F405
     'text_color',
 ]
 
+from importlib.metadata import version
+
 from .colors import (
     categorical_cmap,
     categorical_color,
@@ -64,4 +66,4 @@ from .style import update_style, use_style
 from .texts import add_contour, figtext, text
 from .subplots import hide_empty_axes, label_outer, subplot_labels
 
-__version__ = '0.11.0'
+__version__ = version('prettypyplot')

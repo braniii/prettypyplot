@@ -1,6 +1,6 @@
 [project]
 name = "prettypyplot"
-version = "0.11.0"
+version = "0.12.0"
 description = "Wrapper for matplotlib to generate pretty plots."
 readme = "README.md"
 authors = [
@@ -34,10 +34,14 @@ Repository = "https://github.com/braniii/prettypyplot"
 Issues = "https://github.com/braniii/prettypyplot/issues"
 Changelog = "https://braniii.github.io/prettypyplot/changelog"
 
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "docs",
+]
 
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
