@@ -1,2 +1,1 @@
-include extra-requirements.txt
 recursive-include src/prettypyplot *.mplstyle
