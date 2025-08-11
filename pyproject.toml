@@ -1,6 +1,6 @@
 [project]
 name = "prettypyplot"
-version = "0.11.0"
+version = "0.12.0"
 description = "Wrapper for matplotlib to generate pretty plots."
 readme = "README.md"
 authors = [

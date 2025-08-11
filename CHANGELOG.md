@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+
+
+## [0.12.0] - 2024-08-11
 ### API changes warning ⚠️:
 - Drop Python 3.8 due to EOL. Please use v0.11.0.
 
@@ -185,7 +188,8 @@ All notable changes to this project will be documented in this file. The format 
 - refactored all submodules
 
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.11.0...main
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.12.0...main
+[0.12.0]: https://github.com/braniii/prettypyplot/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/braniii/prettypyplot/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/braniii/prettypyplot/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/braniii/prettypyplot/compare/v0.9.0...v0.10.0
