@@ -10,7 +10,11 @@ from os import path
 
 import numpy as np
 from matplotlib import legend as mlegend
+from matplotlib import lines as mlines
+from matplotlib import patches as mpatches
 from matplotlib import pyplot as plt
+from matplotlib.collections import PathCollection
+from matplotlib.container import BarContainer, ErrorbarContainer
 from matplotlib import ticker as mticker
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
@@ -299,6 +303,17 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     # get handles and labels of selected axes
     handles, labels = mlegend._get_legend_handles_labels(axs)
 
+    # deduplicate by (label, handle visual key)
+    seen = set()
+    unique_handles, unique_labels = [], []
+    for handle, label in zip(handles, labels):
+        key = (label, _legend_handle_key(handle))
+        if key not in seen:
+            seen.add(key)
+            unique_handles.append(handle)
+            unique_labels.append(label)
+    handles, labels = unique_handles, unique_labels
+
     # set number of ncol to the number of items
     if outside in {'top', 'bottom'}:
         kwargs.setdefault('ncol', len(labels))
@@ -315,6 +330,46 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         _shift_legend_title(leg)
 
     return leg
+
+
+def _legend_handle_key(handle):
+    """Return a hashable visual key for a legend handle."""
+    if isinstance(handle, mlines.Line2D):
+        return (
+            handle.get_color(),
+            handle.get_linestyle(),
+            handle.get_marker(),
+            handle.get_linewidth(),
+        )
+    if isinstance(handle, mpatches.Patch):
+        return (
+            tuple(handle.get_facecolor()),
+            tuple(handle.get_edgecolor()),
+            handle.get_hatch(),
+        )
+    if isinstance(handle, PathCollection):
+        fc = handle.get_facecolor()
+        ec = handle.get_edgecolor()
+        return (
+            tuple(fc[0]) if len(fc) else (),
+            tuple(ec[0]) if len(ec) else (),
+        )
+    if isinstance(handle, ErrorbarContainer):
+        line = handle[0]
+        return (
+            line.get_color(),
+            line.get_marker(),
+            line.get_linestyle(),
+        )
+    if isinstance(handle, BarContainer):
+        p = handle.patches[0]
+        return (
+            tuple(p.get_facecolor()),
+            tuple(p.get_edgecolor()),
+            p.get_hatch(),
+        )
+    # fallback: use repr so unknown handle types don't crash
+    return repr(handle)
 
 
 def _shift_legend_title(leg):

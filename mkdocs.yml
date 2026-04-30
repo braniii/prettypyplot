@@ -97,7 +97,7 @@ plugins:
     handlers:
       python:
         paths: [src]
-        import:
+        inventories:
         - https://matplotlib.org/stable/objects.inv
         options:
           members_order: "source"

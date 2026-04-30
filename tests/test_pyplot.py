@@ -92,6 +92,58 @@ def test_plot(data, style, args, kwargs):
 
 @pytest.mark.mpl_image_compare(remove_text=True)
 @pytest.mark.parametrize(
+    'style',
+    ('default', 'minimal'),
+)
+def test_legend_dedup(style):
+    """Test that duplicate handles+labels are removed from the legend."""
+    np.random.seed(42)
+    T = np.linspace(0, 2 * np.pi, 100)
+    X1 = np.sin(T)
+    X2 = np.cos(T)
+
+    prettypyplot.use_style(style=style)
+    fig, axs = plt.subplots(1, 2)
+
+    for ax in axs:
+        prettypyplot.plot(T, X1, ax=ax, label='sin')
+        prettypyplot.plot(T, X2, ax=ax, label='cos')
+
+    # axs collects 4 entries (sin+cos from each panel); dedup reduces to 2
+    leg = prettypyplot.legend(outside='top', ax=axs[0], axs=axs)
+    assert len(leg.get_texts()) == 2
+
+    return fig
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize(
+    'style',
+    ('default', 'minimal'),
+)
+def test_legend_dedup_handle_types(style):
+    """Test dedup across scatter, errorbar, and bar/hatch handle types."""
+    np.random.seed(42)
+    x = np.arange(5, dtype=float)
+    y = np.array([1.0, 2.0, 1.5, 3.0, 2.5])
+
+    prettypyplot.use_style(style=style)
+    fig, axs = plt.subplots(1, 2)
+
+    for ax in axs:
+        ax.scatter(x, y, marker='s', color='C0', label='scatter')
+        ax.errorbar(x, y + 1, yerr=0.3, color='C1', label='errorbar')
+        ax.bar(x, y, color='C2', hatch='//', label='bar')
+
+    # 9 entries total (3 per axis × 2 axes); dedup should reduce to 3
+    leg = prettypyplot.legend(outside='top', ax=axs[0], axs=axs)
+    assert len(leg.get_texts()) == 3
+
+    return fig
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize(
     'data, style, args, ylog',
     (
         ((np.arange(25), np.arange(25)), 'default', (True,), False),
