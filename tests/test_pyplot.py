@@ -10,9 +10,11 @@ All rights reserved.
 import matplotlib as mpl
 import numpy as np
 import pytest
+from matplotlib import patches as mpatches
 from matplotlib import pyplot as plt
 
 import prettypyplot
+from prettypyplot.pyplot import _legend_handle_key
 
 
 @pytest.mark.parametrize(
@@ -88,6 +90,85 @@ def test_plot(data, style, args, kwargs):
     _ = prettypyplot.plot(*data, *args, **kwargs)
 
     return fig
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize(
+    'style',
+    ('default', 'minimal'),
+)
+def test_legend_dedup(style):
+    """Test that duplicate handles+labels are removed from the legend."""
+    np.random.seed(42)
+    T = np.linspace(0, 2 * np.pi, 100)
+    X1 = np.sin(T)
+    X2 = np.cos(T)
+
+    prettypyplot.use_style(style=style)
+    fig, axs = plt.subplots(1, 2)
+
+    for ax in axs:
+        prettypyplot.plot(T, X1, ax=ax, label='sin')
+        prettypyplot.plot(T, X2, ax=ax, label='cos')
+
+    # axs collects 4 entries (sin+cos from each panel); dedup reduces to 2
+    leg = prettypyplot.legend(outside='right', ax=axs[-1], axs=axs)
+    assert len(leg.get_texts()) == 2
+
+    return fig
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize(
+    'style',
+    ('default', 'minimal'),
+)
+def test_legend_dedup_handle_types(style):
+    """Test dedup across scatter, errorbar, and bar/hatch handle types."""
+    np.random.seed(42)
+    x = np.arange(5, dtype=float)
+    y = np.array([1.0, 2.0, 1.5, 3.0, 2.5])
+
+    prettypyplot.use_style(style=style)
+    fig, axs = plt.subplots(1, 2, gridspec_kw={'wspace': 0})
+
+    for ax in axs:
+        ax.scatter(x, y, marker='s', color='C0', label='scatter')
+        ax.errorbar(x, y + 1, yerr=0.3, color='C1', label='errorbar')
+        ax.bar(x, y, color='C2', hatch='//', label='bar')
+
+    # 9 entries total (3 per axis × 2 axes); dedup should reduce to 3
+    leg = prettypyplot.legend(
+        outside='top',
+        ax=axs[0],
+        axs=axs,
+        bbox_to_anchor=(0.0, 1.0, len(axs), 0.01),
+        frameon=False,
+    )
+    assert len(leg.get_texts()) == 3
+
+    return fig
+
+
+def test_legend_handle_key_patch():
+    """Test _legend_handle_key for a bare Patch handle (fill_between)."""
+    fig, ax = plt.subplots()
+    _ = ax.fill_between([0, 1], [0, 0], [1, 1], color='C3', label='fill')
+    plt.close(fig)
+
+    # fill_between returns a PolyCollection (PathCollection subclass) on some
+    # mpl versions, but we can also test a plain Patch directly.
+    patch = mpatches.Patch(facecolor='red', edgecolor='blue', hatch='/')
+    key = _legend_handle_key(patch)
+    assert isinstance(key, tuple)
+    assert len(key) == 3
+
+
+def test_legend_handle_key_fallback():
+    """Test _legend_handle_key fallback for an unknown handle type."""
+    key = _legend_handle_key('not-a-handle')
+    assert isinstance(key, str)
+    assert 'not-a-handle' in key
 
 
 @pytest.mark.mpl_image_compare(remove_text=True)

@@ -29,6 +29,23 @@ for style in ['default', 'minimal']:
     pplt.savefig(f'images/legend_{style}.svg')
 
 
+# deduplication example: shared legend over a 1x2 subplot griuv sync --all-groupsd
+for style in ['default', 'minimal']:
+    pplt.use_style(style=style, figsize=1.2)
+
+    fig, axs = plt.subplots(1, 2, gridspec_kw={'wspace': 0.25})
+
+    # plot the same series in both panels — labels appear twice in each axes
+    for ax in axs:
+        pplt.plot(T, X1, ax=ax, label='$x_1$')
+        pplt.plot(T, X2, ax=ax, label='$x_2$')
+
+    # collect handles from both axes; duplicates are removed automatically
+    pplt.legend(outside='right', ax=axs[1], axs=axs)
+
+    pplt.savefig(f'images/legend_dedup_{style}.svg')
+
+
 # generate thumbnail
 pplt.use_style(figsize=1.4)
 fig, ax = plt.subplots()
