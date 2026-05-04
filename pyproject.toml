@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "braniii" }
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 license-files = ["BSD 3-Clause License"]
 keywords = [
@@ -16,11 +16,11 @@ keywords = [
 classifiers = [
   "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
     "matplotlib",
@@ -62,7 +62,7 @@ preview = true
 dev = [
     "coverage>=7.10.3",
     "pre-commit>=3.5.0",
-    "pytest>=8.4.1",
+    "pytest>=9.0.3",
     "pytest-cov>=6.2.1",
     "pytest-mpl>=0.17.0",
     "ruff>=0.12.0",
