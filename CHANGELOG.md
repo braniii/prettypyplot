@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 
 
-## [0.13.0] - 2026-05-04
+## [0.13.1] - 2026-05-04
 ### API changes warning ⚠️:
 - Drop Python 3.9 together with mpl 3.3+3.4 due to EOL.
 - `pplt.legend(outside!=False)` now defaults to `frameon=False` and deduplicates identical entries. To restore the previous behavior, use `pplt.legend(..., frameon=True, deduplicate=False)`.
@@ -198,8 +198,8 @@ All notable changes to this project will be documented in this file. The format 
 - refactored all submodules
 
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.0...main
-[0.13.0]: https://github.com/braniii/prettypyplot/compare/v0.12.0...v0.13.0
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.1...main
+[0.13.1]: https://github.com/braniii/prettypyplot/compare/v0.12.0...v0.13.1
 [0.12.0]: https://github.com/braniii/prettypyplot/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/braniii/prettypyplot/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/braniii/prettypyplot/compare/v0.10.0...v0.10.1
