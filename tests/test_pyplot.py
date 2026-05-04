@@ -196,7 +196,7 @@ def test_legend_handle_key_fallback():
 
 
 @pytest.mark.mpl_image_compare(remove_text=True)
-@pytest.mark.parametrize('outside', ('top', 'right'))
+@pytest.mark.parametrize('outside', ('top', 'bottom', 'right', 'left'))
 def test_legend_spanning(outside):
     """Test figure-level legend spanning two rows of a 3×2 grid."""
     np.random.seed(0)
@@ -236,7 +236,7 @@ def test_legend_spanning_requires_outside():
     plt.close(fig)
 
 
-@pytest.mark.parametrize('outside', ('top', 'bottom', 'right'))
+@pytest.mark.parametrize('outside', ('top', 'bottom', 'right', 'left'))
 def test_legend_spanning_figure_level(outside):
     """Legend placed via axs-only mode is attached to the figure."""
     T = np.linspace(0, 2 * np.pi, 50)
@@ -298,6 +298,53 @@ def test_legend_spanning_right_center():
     tol = 0.02
     actual_center = anchor.y0 / fig_h
     assert abs(actual_center - expected_center) < tol
+    plt.close(fig)
+
+
+def test_legend_spanning_left_center():
+    """For outside='left', legend is vertically centred and to the left of the axes."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    fig, axs = plt.subplots(2, 1, figsize=(4, 6))
+    for ax in axs:
+        ax.plot(T, np.sin(T), label='sin')
+
+    leg = prettypyplot.legend(outside='left', axs=axs)
+
+    fig.canvas.draw()
+    positions = [ax.get_position() for ax in axs]
+    x0 = min(p.x0 for p in positions)
+    y0 = min(p.y0 for p in positions)
+    y1 = max(p.y1 for p in positions)
+    expected_center = (y0 + y1) / 2
+
+    anchor = leg.get_bbox_to_anchor()
+    fig_w = fig.get_size_inches()[0] * fig.dpi
+    fig_h = fig.get_size_inches()[1] * fig.dpi
+    tol = 0.02
+    assert anchor.x0 / fig_w < x0
+    assert abs(anchor.y0 / fig_h - expected_center) < tol
+    plt.close(fig)
+
+
+def test_legend_spanning_bottom_width():
+    """For outside='bottom', legend bbox covers the full axes span."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    fig, axs = plt.subplots(1, 3, figsize=(9, 3))
+    for ax in axs:
+        ax.plot(T, np.sin(T), label='sin')
+
+    leg = prettypyplot.legend(outside='bottom', axs=axs)
+
+    fig.canvas.draw()
+    positions = [ax.get_position() for ax in axs]
+    expected_x0 = min(p.x0 for p in positions)
+    expected_x1 = max(p.x1 for p in positions)
+
+    anchor = leg.get_bbox_to_anchor()
+    fig_w = fig.get_size_inches()[0] * fig.dpi
+    tol = 0.01
+    assert abs(anchor.x0 / fig_w - expected_x0) < tol
+    assert abs(anchor.x1 / fig_w - expected_x1) < tol
     plt.close(fig)
 
 

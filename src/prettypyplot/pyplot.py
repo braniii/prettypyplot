@@ -401,7 +401,8 @@ def _legend_spanning(axs, handles, labels, outside, *args, **kwargs):
 
     For `outside='top'` and `'bottom'` the legend spans the full horizontal
     extent of the axes (including the space between them). For `outside='right'`
-    it is placed to the right of the rightmost axes and vertically centred.
+    and `'left'` it is placed to the right/left of the axes group and
+    vertically centred.
     """
     fig = axs[0].get_figure()
     fig.canvas.draw()
@@ -431,7 +432,7 @@ def _legend_spanning(axs, handles, labels, outside, *args, **kwargs):
         kwargs.pop('bbox_to_anchor', None)
         pad = 0.03 * (x1 - x0)
         y_center = (y0 + y1) / 2
-        kwargs['bbox_to_anchor'] = (x1 + pad, y_center)
+        kwargs['bbox_to_anchor'] = (x0 - pad, y_center)
         kwargs['bbox_transform'] = fig.transFigure
 
     return fig.legend(handles, labels, *args, **kwargs)

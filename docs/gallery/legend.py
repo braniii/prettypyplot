@@ -29,7 +29,7 @@ for style in ['default', 'minimal']:
     pplt.savefig(f'images/legend_{style}.svg')
 
 
-# deduplication example: shared legend over a 1x2 subplot griuv sync --all-groupsd
+# deduplication example: shared legend over a 1x2 subplot grid
 for style in ['default', 'minimal']:
     pplt.use_style(style=style, figsize=1.2)
 
