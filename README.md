@@ -64,7 +64,7 @@ production.
 
 The most notable features are:
 
-- Tested with matplotlib `3.3`-`3.10`
+- Tested with matplotlib `3.5`-`3.10`, for `3.3` and `3.4` please use `pplt <=0.12.0`
 - figsize specifies size of canvas. So labels, ticks or colorbars are not counted.
 - Nice top-aligned outter legends
 - New colors

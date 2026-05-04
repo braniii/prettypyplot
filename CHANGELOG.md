@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### API changes warning ⚠️:
+- Drop Python 3.9 together with mpl 3.3+3.4 due to EOL.
+
+### Added Features and Improvements 🙌:
+- Added support for Python 3.14
 
 
 ## [0.12.0] - 2024-08-11
