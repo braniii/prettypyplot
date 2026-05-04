@@ -11,9 +11,11 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### API changes warning ⚠️:
 - Drop Python 3.9 together with mpl 3.3+3.4 due to EOL.
+- `pplt.legend(outside!=False)` now defaults to `frameon=False` and deduplicates identical entries. To restore the previous behavior, use `pplt.legend(..., frameon=True, deduplicate=False)`.
 
 ### Added Features and Improvements 🙌:
 - Added support for Python 3.14
+- `pplt.legend` now deduplicates identical entries by default. A new `axs` parameter (without using `ax`) enables figure-level legends aligned to the provided axes (e.g. `pplt.legend(axs=axs, outside='top'/'right')`).
 
 
 ## [0.12.0] - 2024-08-11

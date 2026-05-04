@@ -150,6 +150,30 @@ def test_legend_dedup_handle_types(style):
     return fig
 
 
+def test_legend_deduplicate_false():
+    """With deduplicate=False all handles are kept, even visual duplicates."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    prettypyplot.use_style()
+    fig, axs = plt.subplots(1, 2)
+    for ax in axs:
+        prettypyplot.plot(T, np.sin(T), ax=ax, label='sin')
+        prettypyplot.plot(T, np.cos(T), ax=ax, label='cos')
+
+    leg = prettypyplot.legend(outside='right', ax=axs[-1], axs=axs, deduplicate=False)
+    assert len(leg.get_texts()) == 4
+    plt.close(fig)
+
+
+def test_legend_background_outside():
+    """Legend outside the axes should have a transparent background."""
+    prettypyplot.use_style()
+    fig, ax = plt.subplots()
+    prettypyplot.plot([0, 1], [0, 1], ax=ax, label='a')
+    leg = prettypyplot.legend(outside='right', ax=ax)
+    assert leg.get_frame().get_alpha() == 0.0
+    plt.close(fig)
+
+
 def test_legend_handle_key_patch():
     """Test _legend_handle_key for a bare Patch handle (fill_between)."""
     fig, ax = plt.subplots()
@@ -169,6 +193,112 @@ def test_legend_handle_key_fallback():
     key = _legend_handle_key('not-a-handle')
     assert isinstance(key, str)
     assert 'not-a-handle' in key
+
+
+@pytest.mark.mpl_image_compare(remove_text=True)
+@pytest.mark.parametrize('outside', ('top', 'right'))
+def test_legend_spanning(outside):
+    """Test figure-level legend spanning two rows of a 3×2 grid."""
+    np.random.seed(0)
+    T = np.linspace(0, 2 * np.pi, 100)
+
+    prettypyplot.use_style()
+    fig, all_axs = plt.subplots(
+        3,
+        2,
+        gridspec_kw={
+            'wspace': 0.2,
+            'hspace': 0.3,
+            'height_ratios': [1, 1.5, 2],
+            'width_ratios': [1, 2],
+        },
+    )
+
+    used_axs = all_axs[:2, :].ravel()
+
+    for ax in all_axs.ravel():
+        prettypyplot.plot(T, np.sin(T), ax=ax, label='sin')
+        prettypyplot.plot(T, np.cos(T), ax=ax, label='cos')
+
+    leg = prettypyplot.legend(outside=outside, axs=used_axs)
+    assert len(leg.get_texts()) == 2
+
+    return fig
+
+
+def test_legend_spanning_requires_outside():
+    """axs without ax must have outside set."""
+    fig, axs = plt.subplots(1, 2)
+    for ax in axs:
+        ax.plot([0, 1], label='a')
+    with pytest.raises(ValueError, match='outside'):
+        prettypyplot.legend(axs=axs)
+    plt.close(fig)
+
+
+@pytest.mark.parametrize('outside', ('top', 'bottom', 'right'))
+def test_legend_spanning_figure_level(outside):
+    """Legend placed via axs-only mode is attached to the figure."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    fig, axs = plt.subplots(1, 2)
+    for ax in axs:
+        ax.plot(T, np.sin(T), label='sin')
+        ax.plot(T, np.cos(T), label='cos')
+
+    leg = prettypyplot.legend(outside=outside, axs=axs)
+
+    # figure.legends contains figure-level legends; axes.get_legend() should be None
+    assert leg in fig.legends
+    for ax in axs:
+        assert ax.get_legend() is None
+    assert len(leg.get_texts()) == 2
+    plt.close(fig)
+
+
+def test_legend_spanning_top_width():
+    """For outside='top', legend bbox covers the full axes span."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    fig, axs = plt.subplots(1, 3, figsize=(9, 3))
+    for ax in axs:
+        ax.plot(T, np.sin(T), label='sin')
+
+    leg = prettypyplot.legend(outside='top', axs=axs)
+
+    fig.canvas.draw()
+    positions = [ax.get_position() for ax in axs]
+    expected_x0 = min(p.x0 for p in positions)
+    expected_x1 = max(p.x1 for p in positions)
+    # bbox_to_anchor stores (x0, y1, width, height) in figure coords
+    anchor = leg.get_bbox_to_anchor()
+    # anchor is a Bbox in display coords; convert to figure fraction
+    fig_w = fig.get_size_inches()[0] * fig.dpi
+    tol = 0.01
+    assert abs(anchor.x0 / fig_w - expected_x0) < tol
+    assert abs(anchor.x1 / fig_w - expected_x1) < tol
+    plt.close(fig)
+
+
+def test_legend_spanning_right_center():
+    """For outside='right', legend is vertically centred across all axes."""
+    T = np.linspace(0, 2 * np.pi, 50)
+    fig, axs = plt.subplots(2, 1, figsize=(4, 6))
+    for ax in axs:
+        ax.plot(T, np.sin(T), label='sin')
+
+    leg = prettypyplot.legend(outside='right', axs=axs)
+
+    fig.canvas.draw()
+    positions = [ax.get_position() for ax in axs]
+    y0 = min(p.y0 for p in positions)
+    y1 = max(p.y1 for p in positions)
+    expected_center = (y0 + y1) / 2
+
+    anchor = leg.get_bbox_to_anchor()
+    fig_h = fig.get_size_inches()[1] * fig.dpi
+    tol = 0.02
+    actual_center = anchor.y0 / fig_h
+    assert abs(actual_center - expected_center) < tol
+    plt.close(fig)
 
 
 @pytest.mark.mpl_image_compare(remove_text=True)

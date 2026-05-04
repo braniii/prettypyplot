@@ -41,7 +41,7 @@ for style in ['default', 'minimal']:
         pplt.plot(T, X2, ax=ax, label='$x_2$')
 
     # collect handles from both axes; duplicates are removed automatically
-    pplt.legend(outside='right', ax=axs[1], axs=axs)
+    pplt.legend(outside='right', axs=axs)
 
     pplt.savefig(f'images/legend_dedup_{style}.svg')
 
