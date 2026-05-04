@@ -243,7 +243,7 @@ def _legend_default_kwargs():
     }
 
 
-def legend(*args, outside=False, ax=None, axs=None, **kwargs):
+def legend(*args, outside=False, ax=None, axs=None, deduplicate=True, **kwargs):
     """Generate a nice legend.
 
     This is a wrapper of pyplot.legend(). Take a look there for the default
@@ -251,6 +251,12 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     For `top` and `bottom` the default value of columns is set to the number of
     labels, for all other options to 1. In case of many labels this parameter
     needs to be adjusted.
+
+    When `axs` is provided without `ax`, the legend spans the full extent of
+    all given axes. `outside` must be set to `'top'`, `'bottom'`, or `'right'`
+    in this case. For `'top'` and `'bottom'` the legend spans the full width
+    (including the space between the axes); for `'right'` it is vertically
+    centred across all axes.
 
     !!! note
         Use handles and labels from *args if provided
@@ -264,9 +270,14 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
         False, 'top', 'right', 'bottom' or 'left'.
     axs : list of Axes
         List of [matplotlib.axes.Axes][] which are used for extracting all
-        labels.
+        labels. When provided without `ax`, `outside` must be `'top'`,
+        `'bottom'`, or `'right'` and the legend is placed at figure level
+        spanning all axes.
     ax : Axes
         [matplotlib.axes.Axes][] which is used for placing legend.
+    deduplicate : bool, optional
+        If `True` (default), duplicate legend entries with the same label and
+        visual appearance are removed. Set to `False` to keep all entries.
     args, kwargs
         See [matplotlib.pyplot.legend][].
 
@@ -280,6 +291,15 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     if outside not in {False, *default_kwargs}:
         raise ValueError(
             'Use for outside one of [False, {0}]'.format(
+                ', '.join(['"{0}"'.format(dr) for dr in default_kwargs]),
+            ),
+        )
+
+    # resolve whether we are in "multi-axes spanning" mode
+    axs_only = axs is not None and ax is None
+    if axs_only and not outside:
+        raise ValueError(
+            'When using axs without ax, outside must be set to {0}'.format(
                 ', '.join(['"{0}"'.format(dr) for dr in default_kwargs]),
             ),
         )
@@ -304,6 +324,67 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
     handles, labels = mlegend._get_legend_handles_labels(axs)
 
     # deduplicate by (label, handle visual key)
+    if deduplicate:
+        handles, labels = _legend_deduplicate(handles=handles, labels=labels)
+
+    # set number of ncol to the number of items
+    if outside in {'top', 'bottom'}:
+        kwargs.setdefault('ncol', len(labels))
+
+    if axs_only:
+        leg = _legend_spanning(axs, handles, labels, outside, *args, **kwargs)
+    else:
+        leg = ax.legend(handles, labels, *args, **kwargs)
+
+    _legend_style_frame(leg, outside=outside)
+
+    # shift title to the left if on top or bottom
+    if outside in {'top', 'bottom'}:
+        _shift_legend_title(leg)
+
+    return leg
+
+
+def _legend_style_frame(leg, *, outside):
+    """Apply style-dependent frame width and background to a legend.
+
+    Parameters
+    ----------
+    leg : Legend
+        The [matplotlib.legend.Legend][] to style.
+    outside : str or bool
+        The `outside` value passed to [legend][prettypyplot.pyplot.legend].
+        When `False` the frame background is set to white; otherwise it is
+        made transparent so the legend does not obscure the figure background.
+    """
+    frame = leg.get_frame()
+    if _pplt.STYLE == Style.MINIMAL:
+        frame.set_linewidth(0.0)
+    elif _pplt.STYLE == Style.DEFAULT:
+        frame.set_linewidth(plt.rcParams['axes.linewidth'])
+
+    if outside:
+        frame.set_alpha(0.0)
+
+
+def _legend_deduplicate(handles, labels):
+    """Remove duplicate legend entries that share the same label and appearance.
+
+    Parameters
+    ----------
+    handles : list
+        Legend handles as returned by
+        [matplotlib.legend._get_legend_handles_labels][].
+    labels : list of str
+        Corresponding legend labels.
+
+    Returns
+    -------
+    handles : list
+        Deduplicated handles.
+    labels : list of str
+        Deduplicated labels.
+    """
     seen = set()
     unique_handles, unique_labels = [], []
     for handle, label in zip(handles, labels):
@@ -312,24 +393,49 @@ def legend(*args, outside=False, ax=None, axs=None, **kwargs):
             seen.add(key)
             unique_handles.append(handle)
             unique_labels.append(label)
-    handles, labels = unique_handles, unique_labels
+    return unique_handles, unique_labels
 
-    # set number of ncol to the number of items
-    if outside in {'top', 'bottom'}:
-        kwargs.setdefault('ncol', len(labels))
 
-    # generate legend
-    leg = ax.legend(handles, labels, *args, **kwargs)
-    if _pplt.STYLE == Style.MINIMAL:
-        leg.get_frame().set_linewidth(0.0)
-    elif _pplt.STYLE == Style.DEFAULT:
-        leg.get_frame().set_linewidth(plt.rcParams['axes.linewidth'])
+def _legend_spanning(axs, handles, labels, outside, *args, **kwargs):
+    """Place a figure-level legend spanning all axes in axs.
 
-    # shift title to the left if on top or bottom
-    if outside in {'top', 'bottom'}:
-        _shift_legend_title(leg)
+    For `outside='top'` and `'bottom'` the legend spans the full horizontal
+    extent of the axes (including the space between them). For `outside='right'`
+    and `'left'` it is placed to the right/left of the axes group and
+    vertically centred.
+    """
+    fig = axs[0].get_figure()
+    fig.canvas.draw()
 
-    return leg
+    # collect axes bounding boxes in figure-fraction coordinates
+    bboxes = [ax.get_position() for ax in axs]
+    x0 = min(bb.x0 for bb in bboxes)
+    x1 = max(bb.x1 for bb in bboxes)
+    y0 = min(bb.y0 for bb in bboxes)
+    y1 = max(bb.y1 for bb in bboxes)
+
+    if outside == 'top':
+        kwargs.pop('bbox_to_anchor', None)
+        kwargs['bbox_to_anchor'] = (x0, y1, x1 - x0, 0.01)
+        kwargs['bbox_transform'] = fig.transFigure
+    elif outside == 'bottom':
+        kwargs.pop('bbox_to_anchor', None)
+        kwargs['bbox_to_anchor'] = (x0, y0, x1 - x0, 0.01)
+        kwargs['bbox_transform'] = fig.transFigure
+    elif outside == 'right':
+        kwargs.pop('bbox_to_anchor', None)
+        pad = 0.03 * (x1 - x0)
+        y_center = (y0 + y1) / 2
+        kwargs['bbox_to_anchor'] = (x1 + pad, y_center)
+        kwargs['bbox_transform'] = fig.transFigure
+    elif outside == 'left':
+        kwargs.pop('bbox_to_anchor', None)
+        pad = 0.03 * (x1 - x0)
+        y_center = (y0 + y1) / 2
+        kwargs['bbox_to_anchor'] = (x0 - pad, y_center)
+        kwargs['bbox_transform'] = fig.transFigure
+
+    return fig.legend(handles, labels, *args, **kwargs)
 
 
 def _legend_handle_key(handle):
