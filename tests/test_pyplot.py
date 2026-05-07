@@ -14,7 +14,7 @@ from matplotlib import patches as mpatches
 from matplotlib import pyplot as plt
 
 import prettypyplot
-from prettypyplot.pyplot import _legend_handle_key
+from prettypyplot.pyplot import _legend_handle_color, _legend_handle_key
 
 
 @pytest.mark.parametrize(
@@ -193,6 +193,37 @@ def test_legend_handle_key_fallback():
     key = _legend_handle_key('not-a-handle')
     assert isinstance(key, str)
     assert 'not-a-handle' in key
+
+
+def test_legend_dedup_same_color_different_patches():
+    """Same label + same color but different handle types → single filled square."""
+    prettypyplot.use_style()
+    fig, ax = plt.subplots()
+    color = 'C0'
+    ax.plot([0, 1], [0, 1], color=color, label='data')
+    ax.scatter([0, 1], [0.5, 0.5], color=color, label='data')
+    ax.bar([0], [1], color=color, label='data')
+
+    leg = prettypyplot.legend(ax=ax)
+    assert len(leg.get_texts()) == 1
+    handle = leg.legend_handles[0]
+    assert isinstance(handle, mpatches.Patch)
+    plt.close(fig)
+
+
+def test_legend_handle_color_line2d():
+    """_legend_handle_color returns RGBA tuple for Line2D."""
+    fig, ax = plt.subplots()
+    (line,) = ax.plot([0, 1], [0, 1], color='red')
+    plt.close(fig)
+    color = _legend_handle_color(line)
+    assert isinstance(color, tuple)
+    assert len(color) == 4
+
+
+def test_legend_handle_color_unknown():
+    """_legend_handle_color returns None for unknown handle types."""
+    assert _legend_handle_color('not-a-handle') is None
 
 
 @pytest.mark.mpl_image_compare(remove_text=True)

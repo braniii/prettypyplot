@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### Added Features and Improvements 🙌:
+- Improved deduplication algorithm in `pplt.legend`.
 
 
 ## [0.13.1] - 2026-05-04
