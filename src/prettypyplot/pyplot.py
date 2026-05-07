@@ -9,6 +9,7 @@ import warnings
 from os import path
 
 import numpy as np
+from matplotlib import colors as mcolors
 from matplotlib import legend as mlegend
 from matplotlib import lines as mlines
 from matplotlib import patches as mpatches
@@ -368,7 +369,13 @@ def _legend_style_frame(leg, *, outside):
 
 
 def _legend_deduplicate(handles, labels):
-    """Remove duplicate legend entries that share the same label and appearance.
+    """Deduplicate legend entries by label and visual appearance.
+
+    Entries that share the same label and identical visual appearance are
+    collapsed to a single entry (keeping the first occurrence).  Entries that
+    share the same label and the same color but have *different* visual
+    appearances (e.g. a line, a marker, a bar, a patch) are all replaced by a
+    single filled-square [matplotlib.patches.Patch][] of that color.
 
     Parameters
     ----------
@@ -385,14 +392,34 @@ def _legend_deduplicate(handles, labels):
     labels : list of str
         Deduplicated labels.
     """
-    seen = set()
-    unique_handles, unique_labels = [], []
+    # group by (label, color), preserving first-seen insertion order
+    groups = {}  # (label, color_key) -> {'handle_keys': set, 'first_handle': handle}
+    order = []  # insertion-order list of (label, color_key)
+
     for handle, label in zip(handles, labels):
-        key = (label, _legend_handle_key(handle))
-        if key not in seen:
-            seen.add(key)
-            unique_handles.append(handle)
-            unique_labels.append(label)
+        color = _legend_handle_color(handle)
+        color_key = tuple(round(c, 6) for c in color) if color is not None else None
+        group_key = (label, color_key)
+        hkey = _legend_handle_key(handle)
+
+        if group_key not in groups:
+            groups[group_key] = {'handle_keys': {hkey}, 'first_handle': handle}
+            order.append(group_key)
+        else:
+            groups[group_key]['handle_keys'].add(hkey)
+
+    unique_handles, unique_labels = [], []
+    for group_key in order:
+        label, color_key = group_key
+        entry = groups[group_key]
+        if len(entry['handle_keys']) > 1 and color_key is not None:
+            # same label, same color, different appearances → filled square
+            patch = mpatches.Patch(facecolor=color_key, edgecolor='none')
+            unique_handles.append(patch)
+        else:
+            unique_handles.append(entry['first_handle'])
+        unique_labels.append(label)
+
     return unique_handles, unique_labels
 
 
@@ -436,6 +463,36 @@ def _legend_spanning(axs, handles, labels, outside, *args, **kwargs):
         kwargs['bbox_transform'] = fig.transFigure
 
     return fig.legend(handles, labels, *args, **kwargs)
+
+
+def _legend_handle_color(handle):
+    """Return the primary color of a legend handle as an RGBA tuple, or None.
+
+    The returned tuple has four float components in [0, 1].  Returns `None`
+    when no meaningful single color can be extracted.
+    """
+
+    def _to_rgba(color):
+        try:
+            return tuple(mcolors.to_rgba(color))
+        except (ValueError, TypeError):
+            return None
+
+    if isinstance(handle, mlines.Line2D):
+        return _to_rgba(handle.get_color())
+    if isinstance(handle, mpatches.Patch):
+        fc = handle.get_facecolor()
+        return tuple(fc) if len(fc) == 4 else _to_rgba(fc)
+    if isinstance(handle, PathCollection):
+        fc = handle.get_facecolor()
+        if len(fc):
+            return tuple(fc[0])
+        return None
+    if isinstance(handle, ErrorbarContainer):
+        return _to_rgba(handle[0].get_color())
+    if isinstance(handle, BarContainer):
+        return tuple(handle.patches[0].get_facecolor())
+    return None
 
 
 def _legend_handle_key(handle):
