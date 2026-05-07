@@ -9,7 +9,10 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
-### Added Features and Improvements 🙌:
+
+
+## [0.13.2] - 2026-05-07
+### Other changes:
 - Improved deduplication algorithm in `pplt.legend`.
 
 
@@ -200,7 +203,8 @@ All notable changes to this project will be documented in this file. The format 
 - refactored all submodules
 
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.1...main
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.2...main
+[0.13.2]: https://github.com/braniii/prettypyplot/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/braniii/prettypyplot/compare/v0.12.0...v0.13.1
 [0.12.0]: https://github.com/braniii/prettypyplot/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/braniii/prettypyplot/compare/v0.10.1...v0.11.0
