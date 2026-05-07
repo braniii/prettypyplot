@@ -226,6 +226,31 @@ def test_legend_handle_color_unknown():
     assert _legend_handle_color('not-a-handle') is None
 
 
+def test_legend_handle_color_invalid_color_returns_none():
+    """_to_rgba fallback: a Line2D whose color cannot be parsed returns None."""
+    from matplotlib import lines as mlines
+
+    line = mlines.Line2D([0, 1], [0, 1])
+    line.get_color = lambda: 'definitely-not-a-color'
+    assert _legend_handle_color(line) is None
+
+
+def test_legend_handle_color_patch():
+    """_legend_handle_color returns the facecolor of a Patch."""
+    patch = mpatches.Patch(facecolor='red')
+    color = _legend_handle_color(patch)
+    assert color == (1.0, 0.0, 0.0, 1.0)
+
+
+def test_legend_handle_color_path_collection_empty():
+    """_legend_handle_color returns None when PathCollection has no facecolor."""
+    from matplotlib.collections import PathCollection
+
+    pc = PathCollection([], facecolors='none')
+    pc.get_facecolor = lambda: np.empty((0, 4))
+    assert _legend_handle_color(pc) is None
+
+
 @pytest.mark.mpl_image_compare(remove_text=True)
 @pytest.mark.parametrize('outside', ('top', 'bottom', 'right', 'left'))
 def test_legend_spanning(outside):
