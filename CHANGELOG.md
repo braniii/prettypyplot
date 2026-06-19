@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### Added Features and Improvements 🙌:
+- Added support for Matplotlib 3.11
 
 
 ## [0.13.2] - 2026-05-07
