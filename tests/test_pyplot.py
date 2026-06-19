@@ -211,6 +211,37 @@ def test_legend_dedup_same_color_different_patches():
     plt.close(fig)
 
 
+def test_legend_dedup_same_color_different_alpha():
+    """Same label + same color differing only in alpha → single filled square."""
+    prettypyplot.use_style()
+    fig, ax = plt.subplots()
+    ax.plot([0, 1], [0, 1], color=(0.1, 0.2, 0.7, 1.0), label='data')
+    ax.plot([0, 1], [0.5, 0.5], color=(0.1, 0.2, 0.7, 0.3), label='data')
+
+    leg = prettypyplot.legend(ax=ax)
+    assert len(leg.get_texts()) == 1
+    handle = leg.legend_handles[0]
+    assert isinstance(handle, mpatches.Patch)
+    # the merged box is opaque and keeps the shared rgb
+    fc = handle.get_facecolor()
+    assert fc[:3] == pytest.approx((0.1, 0.2, 0.7))
+    assert fc[3] == pytest.approx(1.0)
+    plt.close(fig)
+
+
+def test_legend_dedup_alpha_via_kwarg():
+    """Alpha set via the separate ``alpha`` kwarg is also detected and merged."""
+    prettypyplot.use_style()
+    fig, ax = plt.subplots()
+    ax.plot([0, 1], [0, 1], color='C0', label='data')
+    ax.plot([0, 1], [0.5, 0.5], color='C0', alpha=0.3, label='data')
+
+    leg = prettypyplot.legend(ax=ax)
+    assert len(leg.get_texts()) == 1
+    assert isinstance(leg.legend_handles[0], mpatches.Patch)
+    plt.close(fig)
+
+
 def test_legend_handle_color_line2d():
     """_legend_handle_color returns RGBA tuple for Line2D."""
     fig, ax = plt.subplots()
