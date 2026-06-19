@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### Added Features and Improvements 🙌:
 - Added support for Matplotlib 3.11
+- `pplt.legend` now merges entries sharing the same label and color but differing in appearance (e.g. line vs. marker) or only in alpha into a single colored box.
 
 
 ## [0.13.2] - 2026-05-07
