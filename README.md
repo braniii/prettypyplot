@@ -6,7 +6,7 @@
   <p>
     <a href="https://zenodo.org/badge/latestdoi/350406950" alt="DOI">
         <img src="https://zenodo.org/badge/350406950.svg" alt="DOI" /></a>
-    <a href="https://github.com/astral-sh/ruff" alt="wemake-python-styleguide" >
+    <a href="https://github.com/astral-sh/ruff" alt="ruff" >
         <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" /></a>
     <a href="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml" alt="Pytest" >
         <img src="https://github.com/braniii/prettypyplot/actions/workflows/pytest.yml/badge.svg?branch=main" /></a>
