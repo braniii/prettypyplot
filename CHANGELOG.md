@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+
+
+## [0.13.3] - 2026-07-23
 ### Added Features and Improvements 🙌:
 - Added support for Matplotlib 3.11
 - `pplt.legend` now merges entries sharing the same label and color but differing in appearance (e.g. line vs. marker) or only in alpha into a single colored box.
@@ -206,7 +209,8 @@ All notable changes to this project will be documented in this file. The format 
 - refactored all submodules
 
 
-[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.2...main
+[Unreleased]: https://github.com/braniii/prettypyplot/compare/v0.13.3...main
+[0.13.3]: https://github.com/braniii/prettypyplot/compare/v0.13.2...v0.13.3
 [0.13.2]: https://github.com/braniii/prettypyplot/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/braniii/prettypyplot/compare/v0.12.0...v0.13.1
 [0.12.0]: https://github.com/braniii/prettypyplot/compare/v0.11.0...v0.12.0
