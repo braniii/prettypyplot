@@ -188,6 +188,23 @@ def test_legend_handle_key_patch():
     assert len(key) == 3
 
 
+@pytest.mark.parametrize(
+    'color',
+    (np.array([0.1, 0.2, 0.3]), [0.1, 0.2, 0.3], np.array([0.1, 0.2, 0.3, 1.0])),
+)
+def test_legend_array_color(color):
+    """Lines with array or list colors must not break the deduplication."""
+    prettypyplot.use_style()
+    fig, ax = plt.subplots()
+    prettypyplot.plot([0, 1], [0, 1], ax=ax, color=color, label='a')
+    ax.errorbar([0, 1], [1, 0], yerr=0.1, color=color, label='b')
+    hash(_legend_handle_key(ax.get_lines()[0]))
+
+    leg = prettypyplot.legend(ax=ax)
+    assert [txt.get_text() for txt in leg.get_texts()] == ['a', 'b']
+    plt.close(fig)
+
+
 def test_legend_handle_key_fallback():
     """Test _legend_handle_key fallback for an unknown handle type."""
     key = _legend_handle_key('not-a-handle')
