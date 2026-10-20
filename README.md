@@ -98,7 +98,7 @@ import prettypyplot as pplt
 pplt.use_style()
 fig, ax = plt.subplots()
 ...
-pplt.plot(ax=ax, x, y)
+pplt.plot(x, y, ax=ax)
 pplt.savefig(output)
 ```
 

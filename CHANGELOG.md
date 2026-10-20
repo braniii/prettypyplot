@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file. The format 
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.
 
+### Other changes:
+- Fixed usage example in README.
+
 
 ## [0.13.3] - 2026-07-23
 ### Added Features and Improvements 🙌:
