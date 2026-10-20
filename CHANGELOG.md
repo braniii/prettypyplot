@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.
+- Fixed `pplt.legend` for lines with array colors.
 
 ### Other changes:
 - Fixed usage example in README.

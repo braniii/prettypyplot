@@ -514,11 +514,18 @@ def _apply_artist_alpha(rgba, artist):
     return rgba
 
 
+def _hashable_color(color):
+    """Return color as hashable object, so arrays and lists as tuple."""
+    if isinstance(color, (list, np.ndarray)):
+        return tuple(np.ravel(color).tolist())
+    return color
+
+
 def _legend_handle_key(handle):
     """Return a hashable visual key for a legend handle."""
     if isinstance(handle, mlines.Line2D):
         return (
-            handle.get_color(),
+            _hashable_color(handle.get_color()),
             handle.get_linestyle(),
             handle.get_marker(),
             handle.get_linewidth(),
@@ -539,7 +546,7 @@ def _legend_handle_key(handle):
     if isinstance(handle, ErrorbarContainer):
         line = handle[0]
         return (
-            line.get_color(),
+            _hashable_color(line.get_color()),
             line.get_marker(),
             line.get_linestyle(),
         )
