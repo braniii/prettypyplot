@@ -5,8 +5,11 @@
 """Wrapper for matplotlib plotting functions."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
 import warnings
 from os import path
+from typing import TYPE_CHECKING, Literal
 
 import numpy as np
 from matplotlib import colors as mcolors
@@ -24,9 +27,20 @@ import prettypyplot as _pplt
 from prettypyplot import tools
 from prettypyplot.style import Mode, Style
 
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+    from os import PathLike
+
+    from matplotlib.axes import Axes
+    from matplotlib.cm import ScalarMappable
+    from matplotlib.colorbar import Colorbar
+    from matplotlib.image import AxesImage
+    from matplotlib.legend import Legend
+    from matplotlib.lines import Line2D
+
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def imshow(*args, ax=None, **kwargs):
+def imshow(*args, ax: Axes | None = None, **kwargs) -> AxesImage:
     """Display an image, i.e. data on a 2D regular raster.
 
     This is a wrapper of pyplot.imshow(). In contrast to the original function
@@ -54,7 +68,7 @@ def imshow(*args, ax=None, **kwargs):
     return ax.imshow(*args, **kwargs)
 
 
-def plot(*args, ax=None, **kwargs):
+def plot(*args, ax: Axes | None = None, **kwargs) -> list[Line2D]:
     """Plot simple lineplot.
 
     Wrapping pyplot.plot() to adjust to style. For more information on the
@@ -86,14 +100,24 @@ def plot(*args, ax=None, **kwargs):
     return lines
 
 
-def savefig(fname, reference_ax=None, use_canvas_size=True, **kwargs):
-    """Save figure as png and pdf.
+def savefig(
+    fname: str | PathLike[str],
+    reference_ax: Axes | None = None,
+    use_canvas_size: bool = True,
+    **kwargs,
+) -> None:
+    """Save the current figure.
 
-    This methods corrects figsize for poster/beamer mode.
+    Wrapper of pyplot.savefig() which first applies `tight_layout`. If
+    `use_canvas_size`, the figure is resized such that `reference_ax` has the
+    specified figsize and labels, ticks and legends are added around it. In
+    poster and beamer mode the figure is enlarged by a factor of 3 before
+    calculating the layout. The figsize is restored afterwards, so the figure
+    can be saved multiple times.
 
     Parameters
     ----------
-    fname : str
+    fname : str or path-like
         Output filename. If no file ending, pdf will be used.
     reference_ax : Axes, optional
         [matplotlib.axes.Axes][] used for resizing. If `None` first axes of
@@ -122,8 +146,12 @@ def savefig(fname, reference_ax=None, use_canvas_size=True, **kwargs):
     fig.set_size_inches(set_figsize)
 
 
-def show(reference_ax=None, use_canvas_size=True, **kwargs):
-    """Show figure and rescale similar to pplt.savefig.
+def show(
+    reference_ax: Axes | None = None,
+    use_canvas_size: bool = True,
+    **kwargs,
+) -> None:
+    """Show the current figure, resized like with `savefig`.
 
     Parameters
     ----------
@@ -245,7 +273,14 @@ def _legend_default_kwargs():
     }
 
 
-def legend(*args, outside=False, ax=None, axs=None, deduplicate=True, **kwargs):
+def legend(
+    *args,
+    outside: Literal[False, 'top', 'bottom', 'left', 'right'] = False,
+    ax: Axes | None = None,
+    axs: Sequence[Axes] | np.ndarray | None = None,
+    deduplicate: bool = True,
+    **kwargs,
+) -> Legend:
     """Generate a nice legend.
 
     This is a wrapper of pyplot.legend(). Take a look there for the default
@@ -588,7 +623,10 @@ def _opposite_side(pos):
     return opposite[pos]
 
 
-def activate_axis(position, ax=None):
+def activate_axis(
+    position: Literal['top', 'bottom', 'left', 'right'] | Sequence[str],
+    ax: Axes | None = None,
+) -> None:
     """Shift the specified axis to the opposite side.
 
     Parameters
@@ -626,7 +664,14 @@ def activate_axis(position, ax=None):
         axis.set_label_position(pos)
 
 
-def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
+def colorbar(
+    im: ScalarMappable,
+    width: str | float = '7%',
+    pad: str | float = '0%',
+    position: Literal['top', 'bottom', 'left', 'right'] = 'right',
+    label: str | None = None,
+    **kwargs,
+) -> Colorbar:
     """Generate colorbar of same height as image.
 
     Wrapper around pyplot.colorbar which corrects the height.
@@ -636,12 +681,12 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
 
     Parameters
     ----------
-    im : matplotlib.axes.AxesImage
+    im : ScalarMappable
         Specify the object the colorbar belongs to, e.g. the return value of
-        [matplotlib.pyplot.imshow][].
+        [matplotlib.pyplot.imshow][] or [matplotlib.pyplot.pcolormesh][].
     width : str or float, optional
-        The width between figure and colorbar stated relative as string ending
-        with '%' or absolute value in inches.
+        The width of the colorbar stated relative as string ending with '%' or
+        absolute value in inches.
     pad : str or float, optional
         The width between figure and colorbar stated relative as string ending
         with '%' or absolute value in inches.
@@ -692,7 +737,7 @@ def colorbar(im, width='7%', pad='0%', position='right', label=None, **kwargs):
     return cbar
 
 
-def grid(*args, ax=None, **kwargs):
+def grid(*args, ax: Axes | None = None, **kwargs):
     """Generate grid.
 
     This function will add a major and minor grid in case of STYLE='default',

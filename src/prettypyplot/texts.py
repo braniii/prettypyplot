@@ -5,6 +5,10 @@
 """Helper functions for plotting text."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import matplotlib as mpl
 import matplotlib.colors as clr
 import matplotlib.patheffects as path_effects
@@ -12,9 +16,22 @@ import matplotlib.pyplot as plt
 
 from prettypyplot import tools
 
+if TYPE_CHECKING:
+    from matplotlib.axes import Axes
+    from matplotlib.text import Text
+    from matplotlib.typing import ColorType
+
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def text(x, y, s, *, contour=None, ax=None, **kwargs):
+def text(
+    x: float,
+    y: float,
+    s: str,
+    *,
+    contour: bool | tuple[float, ColorType] | None = None,
+    ax: Axes | None = None,
+    **kwargs,
+) -> Text:
     """Generate text object at (x,y).
 
     Wrapper around pyplot.text. The default alignment is changed to centered.
@@ -57,7 +74,14 @@ def text(x, y, s, *, contour=None, ax=None, **kwargs):
     return txt
 
 
-def figtext(x, y, s, *, contour=None, **kwargs):
+def figtext(
+    x: float,
+    y: float,
+    s: str,
+    *,
+    contour: bool | tuple[float, ColorType] | None = None,
+    **kwargs,
+) -> Text:
     """Generate text object at figure position (x,y).
 
     Wrapper around pyplot.figtext. The default alignment is changed to
@@ -66,16 +90,13 @@ def figtext(x, y, s, *, contour=None, **kwargs):
     Parameters
     ----------
     x, y : scalars
-        The position to place the text. By default, this is in data
-        coordinates. The coordinate system can be changed using the
-        `transform` parameter.
+        The position to place the text in figure coordinates, so (0, 0) is
+        the bottom left and (1, 1) the top right of the figure.
     s : str
         The text.
     contour : bool or tuple(scalar, color)
         Add a contour to the text. Either use a boolean for default values,
         or give a tuple with linewidth and linecolor.
-    ax : matplotlib axes
-        Matplotlib axes to plot in.
     kwargs
         Text properties of [matplotlib.pyplot.figtext][]
 
@@ -98,7 +119,11 @@ def figtext(x, y, s, *, contour=None, **kwargs):
     return txt
 
 
-def add_contour(txt, contourwidth, contourcolor='w'):
+def add_contour(
+    txt: Text,
+    contourwidth: float,
+    contourcolor: ColorType = 'w',
+) -> None:
     r"""Draw contour around txt.
 
     Parameters

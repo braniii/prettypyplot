@@ -31,6 +31,13 @@ STYLE_DICT = {}
 __all__ = [  # noqa: F405
     'update_style',
     'use_style',
+    'colorbar',
+    'grid',
+    'imshow',
+    'legend',
+    'plot',
+    'savefig',
+    'show',
     'add_contour',
     'text',
     'figtext',

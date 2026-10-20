@@ -9,10 +9,14 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### Added Features and Improvements 🙌:
+- Added type hints and `py.typed`.
+
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.
 - Fixed `pplt.legend` for lines with array colors.
 - Fixed position of `pplt.legend(axs=...)` when the axes move afterwards.
+- Added plotting functions to `__all__`.
 
 ### Other changes:
 - Fixed usage example in README.
