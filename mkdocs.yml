@@ -1,6 +1,6 @@
 # mkdocs.yml
 site_name: "prettypyplot"
-site_description: "Markov State Modelling of Protein Dynamics."
+site_description: "Wrapper for matplotlib to generate pretty plots."
 site_url: "https://braniii.github.io/prettypyplot"
 repo_url: "https://github.com/braniii/prettypyplot"
 edit_uri: "blob/main/docs/"
