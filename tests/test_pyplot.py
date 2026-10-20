@@ -18,6 +18,13 @@ import prettypyplot
 from prettypyplot.pyplot import _legend_handle_color, _legend_handle_key
 
 
+def _legend_handles(leg):
+    """Return handles of legend, renamed in mpl 3.7 to legend_handles."""
+    if hasattr(leg, 'legend_handles'):
+        return leg.legend_handles
+    return leg.legendHandles  # pragma: no cover
+
+
 @pytest.mark.parametrize(
     'data, ticks',
     (
@@ -224,7 +231,7 @@ def test_legend_dedup_same_color_different_patches():
 
     leg = prettypyplot.legend(ax=ax)
     assert len(leg.get_texts()) == 1
-    handle = leg.legend_handles[0]
+    handle = _legend_handles(leg)[0]
     assert isinstance(handle, mpatches.Patch)
     plt.close(fig)
 
@@ -238,7 +245,7 @@ def test_legend_dedup_same_color_different_alpha():
 
     leg = prettypyplot.legend(ax=ax)
     assert len(leg.get_texts()) == 1
-    handle = leg.legend_handles[0]
+    handle = _legend_handles(leg)[0]
     assert isinstance(handle, mpatches.Patch)
     # the merged box is opaque and keeps the shared rgb
     fc = handle.get_facecolor()
@@ -256,7 +263,7 @@ def test_legend_dedup_alpha_via_kwarg():
 
     leg = prettypyplot.legend(ax=ax)
     assert len(leg.get_texts()) == 1
-    assert isinstance(leg.legend_handles[0], mpatches.Patch)
+    assert isinstance(_legend_handles(leg)[0], mpatches.Patch)
     plt.close(fig)
 
 
