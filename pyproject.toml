@@ -7,14 +7,13 @@ authors = [
     { name = "braniii" }
 ]
 requires-python = ">=3.10"
-license = "MIT"
-license-files = ["BSD 3-Clause License"]
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 keywords = [
     "matplotlib",
     "pyplot",
 ]
 classifiers = [
-  "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",

@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file. The format 
 [//]: # (### Other changes:)
 
 ## [Unreleased]
+### Bugfix 🐛:
+- Fixed license in `pyproject.toml`.
 
 
 ## [0.13.3] - 2026-07-23
