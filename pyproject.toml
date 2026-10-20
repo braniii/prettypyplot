@@ -43,6 +43,10 @@ exclude = [
   "docs",
 ]
 
+[tool.ruff]
+# code blocks in the docs use mkdocs snippets, which are not valid Python
+extend-exclude = ["*.md"]
+
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
