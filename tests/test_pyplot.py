@@ -12,6 +12,7 @@ import numpy as np
 import pytest
 from matplotlib import patches as mpatches
 from matplotlib import pyplot as plt
+from matplotlib.transforms import Bbox
 
 import prettypyplot
 from prettypyplot.pyplot import _legend_handle_color, _legend_handle_key
@@ -356,6 +357,64 @@ def test_legend_spanning_figure_level(outside):
     for ax in axs:
         assert ax.get_legend() is None
     assert len(leg.get_texts()) == 2
+    plt.close(fig)
+
+
+@pytest.mark.parametrize('outside', ('top', 'bottom', 'right', 'left'))
+def test_legend_spanning_follows_axes(outside):
+    """The spanning legend stays aligned when the axes move afterwards."""
+    prettypyplot.use_style()
+    fig, axs = plt.subplots(1, 2)
+    for ax in axs:
+        prettypyplot.plot([0, 1], [0, 1], ax=ax, label='a')
+        prettypyplot.plot([0, 1], [1, 0], ax=ax, label='b')
+    leg = prettypyplot.legend(outside=outside, axs=axs)
+    fig.canvas.draw()
+
+    # move the axes after the legend was drawn, like tight_layout in savefig
+    fig.subplots_adjust(left=0.3, right=0.7, bottom=0.3, top=0.7)
+    fig.canvas.draw()
+
+    legend_bbox = leg.get_window_extent()
+    axes_bbox = Bbox.union([ax.bbox for ax in axs])
+    tol = 0.02 * axes_bbox.height
+    if outside in {'top', 'bottom'}:
+        assert legend_bbox.x0 == pytest.approx(axes_bbox.x0, abs=1)
+        assert legend_bbox.x1 == pytest.approx(axes_bbox.x1, abs=1)
+    else:
+        center = (legend_bbox.y0 + legend_bbox.y1) / 2
+        assert center == pytest.approx((axes_bbox.y0 + axes_bbox.y1) / 2, abs=1)
+
+    is_outside = {
+        'top': legend_bbox.y0 >= axes_bbox.y1 - tol,
+        'bottom': legend_bbox.y1 <= axes_bbox.y0 + tol,
+        'right': legend_bbox.x0 >= axes_bbox.x1,
+        'left': legend_bbox.x1 <= axes_bbox.x0,
+    }
+    assert is_outside[outside]
+    plt.close(fig)
+
+
+def test_legend_spanning_custom_anchor():
+    """A custom bbox_to_anchor is relative to the bounding box of all axes."""
+    prettypyplot.use_style()
+    fig, axs = plt.subplots(1, 2)
+    for ax in axs:
+        prettypyplot.plot([0, 1], [0, 1], ax=ax, label='a')
+    leg = prettypyplot.legend(
+        outside='right',
+        axs=axs,
+        bbox_to_anchor=(0.5, 0.5),
+        loc='center',
+    )
+    fig.canvas.draw()
+
+    legend_bbox = leg.get_window_extent()
+    axes_bbox = Bbox.union([ax.bbox for ax in axs])
+    assert (legend_bbox.x0 + legend_bbox.x1) / 2 == pytest.approx(
+        (axes_bbox.x0 + axes_bbox.x1) / 2,
+        abs=1,
+    )
     plt.close(fig)
 
 
