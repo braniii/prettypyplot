@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Other changes:
 - Fixed usage example in README.
+- Tox environments use their own matplotlib version.
+- Compare test images with matplotlib 3.11.
 
 
 ## [0.13.3] - 2026-07-23
