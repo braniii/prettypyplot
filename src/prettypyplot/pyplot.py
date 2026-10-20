@@ -17,6 +17,7 @@ from matplotlib import pyplot as plt
 from matplotlib.collections import PathCollection
 from matplotlib.container import BarContainer, ErrorbarContainer
 from matplotlib import ticker as mticker
+from matplotlib import transforms as mtransforms
 from mpl_toolkits import axes_grid1 as mpl_axes_grid1
 
 import prettypyplot as _pplt
@@ -333,7 +334,7 @@ def legend(*args, outside=False, ax=None, axs=None, deduplicate=True, **kwargs):
         kwargs.setdefault('ncol', len(labels))
 
     if axs_only:
-        leg = _legend_spanning(axs, handles, labels, outside, *args, **kwargs)
+        leg = _legend_spanning(axs, handles, labels, *args, **kwargs)
     else:
         leg = ax.legend(handles, labels, *args, **kwargs)
 
@@ -429,45 +430,43 @@ def _legend_deduplicate(handles, labels):
     return unique_handles, unique_labels
 
 
-def _legend_spanning(axs, handles, labels, outside, *args, **kwargs):
+class _AxesUnionBbox(mtransforms.BboxBase):
+    """Bounding box enclosing all given axes, following them when they move.
+
+    The bounds are calculated from the current axes positions whenever they
+    are needed, so anything anchored to this box stays aligned with the axes
+    if the layout changes later on, e.g. by `tight_layout` in `savefig`.
+    """
+
+    def __init__(self, axs):
+        super().__init__()
+        self._bboxes = [ax.bbox for ax in axs]
+        self.set_children(*self._bboxes)
+
+    def get_points(self):
+        # mark as valid, otherwise invalidations of the axes are not passed on
+        # to transforms depending on this box, see matplotlib.TransformedBbox
+        if self._invalid:
+            self._points = mtransforms.Bbox.union(self._bboxes).get_points()
+            self._invalid = 0
+        return self._points
+
+
+def _legend_spanning(axs, handles, labels, *args, **kwargs):
     """Place a figure-level legend spanning all axes in axs.
 
-    For `outside='top'` and `'bottom'` the legend spans the full horizontal
-    extent of the axes (including the space between them). For `outside='right'`
-    and `'left'` it is placed to the right/left of the axes group and
-    vertically centred.
+    The anchor `bbox_to_anchor` is interpreted relative to the bounding box of
+    all axes, like the axes coordinates of a legend of a single axes. Hence,
+    for `outside='top'` and `'bottom'` the legend spans the full horizontal
+    extent of the axes (including the space between them). For
+    `outside='right'` and `'left'` it is placed to the right/left of the axes
+    group and vertically centred.
     """
     fig = axs[0].get_figure()
-    fig.canvas.draw()
-
-    # collect axes bounding boxes in figure-fraction coordinates
-    bboxes = [ax.get_position() for ax in axs]
-    x0 = min(bb.x0 for bb in bboxes)
-    x1 = max(bb.x1 for bb in bboxes)
-    y0 = min(bb.y0 for bb in bboxes)
-    y1 = max(bb.y1 for bb in bboxes)
-
-    if outside == 'top':
-        kwargs.pop('bbox_to_anchor', None)
-        kwargs['bbox_to_anchor'] = (x0, y1, x1 - x0, 0.01)
-        kwargs['bbox_transform'] = fig.transFigure
-    elif outside == 'bottom':
-        kwargs.pop('bbox_to_anchor', None)
-        kwargs['bbox_to_anchor'] = (x0, y0, x1 - x0, 0.01)
-        kwargs['bbox_transform'] = fig.transFigure
-    elif outside == 'right':
-        kwargs.pop('bbox_to_anchor', None)
-        pad = 0.03 * (x1 - x0)
-        y_center = (y0 + y1) / 2
-        kwargs['bbox_to_anchor'] = (x1 + pad, y_center)
-        kwargs['bbox_transform'] = fig.transFigure
-    elif outside == 'left':
-        kwargs.pop('bbox_to_anchor', None)
-        pad = 0.03 * (x1 - x0)
-        y_center = (y0 + y1) / 2
-        kwargs['bbox_to_anchor'] = (x0 - pad, y_center)
-        kwargs['bbox_transform'] = fig.transFigure
-
+    kwargs.setdefault(
+        'bbox_transform',
+        mtransforms.BboxTransformTo(_AxesUnionBbox(axs)),
+    )
     return fig.legend(handles, labels, *args, **kwargs)
 
 

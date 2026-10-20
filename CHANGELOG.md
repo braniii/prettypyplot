@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. The format 
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.
 - Fixed `pplt.legend` for lines with array colors.
+- Fixed position of `pplt.legend(axs=...)` when the axes move afterwards.
 
 ### Other changes:
 - Fixed usage example in README.
