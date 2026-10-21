@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### Added Features and Improvements 🙌:
 - Added type hints and `py.typed`.
+- Added `python -m prettypyplot api` to print the API reference.
 
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.

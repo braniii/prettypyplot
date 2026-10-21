@@ -2521,6 +2521,7 @@ name = "prettypyplot"
 version = "0.13.3"
 source = { editable = "." }
 dependencies = [
+    { name = "click" },
     { name = "decorit" },
     { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "matplotlib", version = "3.11.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -2552,6 +2553,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.1" },
     { name = "decorit", specifier = ">=0.2.0" },
     { name = "matplotlib" },
     { name = "numpy" },

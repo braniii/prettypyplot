@@ -102,6 +102,14 @@ pplt.plot(x, y, ax=ax)
 pplt.savefig(output)
 ```
 
+The API reference of the installed version, e.g. for coding agents, is
+printed with
+```bash
+python -m prettypyplot api                # complete reference
+python -m prettypyplot api legend         # only the given functions
+python -m prettypyplot api colormaps      # all colormaps
+```
+
 ### Known Bugs
 
 - `plt.subplots_adjust()` does not work with `pplt.savefig(use_canvas_size=True)`
