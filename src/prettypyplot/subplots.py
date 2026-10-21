@@ -5,15 +5,25 @@
 """Wrapper for matplotlib functions for subplots."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import matplotlib as mpl  # mpl = dm.tryImport('matplotlib')
 import numpy as np
 from matplotlib import pyplot as plt
 
 from prettypyplot import tools
 
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def hide_empty_axes(axs=None):
+def hide_empty_axes(axs: Axes | Sequence[Axes] | np.ndarray | None = None) -> None:
     """Hide empty axes.
 
     Loop over all axes and hide empty ones.
@@ -47,7 +57,7 @@ def _activate_outer_ticks(axs):
             ax.tick_params(axis='x', reset=True)
 
 
-def label_outer(axs=None):
+def label_outer(axs: Axes | Sequence[Axes] | np.ndarray | None = None) -> None:
     """Only show outer labels and tick labels.
 
     This checks for outest visible axes only. Works only with single Gridspec.
@@ -150,7 +160,12 @@ def _is_empty_axes(ax):
     ])
 
 
-def subplot_labels(*, fig=None, xlabel=None, ylabel=None):
+def subplot_labels(
+    *,
+    fig: Figure | None = None,
+    xlabel: str | None = None,
+    ylabel: str | None = None,
+) -> None:
     """Add global labels for subplots.
 
     This method adds shared x- and y-labels for a grid of subplots. These can

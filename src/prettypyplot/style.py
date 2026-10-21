@@ -5,9 +5,12 @@
 """Set-up matplotlib environment."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
 import shutil
 from enum import Enum, auto
 from os import path as ospath
+from typing import Literal
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -62,19 +65,19 @@ if _pplt.STYLE is None:
 
 # ~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def update_style(  # noqa: C901
-    interactive=None,
-    colors=None,
-    cmap=None,
-    ncs=None,
-    figsize=None,
-    figratio=None,
-    mode=None,
-    style=None,
-    ipython=None,
-    true_black=None,
-    latex=None,
-    sf=None,
-):
+    interactive: bool | None = None,
+    colors: str | None = None,
+    cmap: str | None = None,
+    ncs: int | None = None,
+    figsize: float | tuple[float] | tuple[float, float] | None = None,
+    figratio: Literal['sqrt(2)', 'golden', 'sqrt(3)'] | float | None = None,
+    mode: Literal['default', 'print', 'beamer', 'poster'] | Mode | None = None,
+    style: Literal['default', 'minimal', 'none'] | Style | None = None,
+    ipython: bool | None = None,
+    true_black: bool | None = None,
+    latex: bool | None = None,
+    sf: bool | None = None,
+) -> None:
     """Update alternative matplotlib style.
 
     This function updates specified parameters of `use_style` without changing
@@ -91,9 +94,11 @@ def update_style(  # noqa: C901
         Set the default colormap.
     ncs : int, optional
         Number of colors if continuous cmap is selected.
-    figsize : int or int tuple, optional
+    figsize : float or tuple of floats, optional
         Give size of default figure in inches, either as tuple (x, y) or a
         single float for the x-axis. The y-axis will be determined by figratio.
+        When saving with [savefig][prettypyplot.savefig], this is the size of
+        the axes.
     figratio : str or float, optional
         Set ratio of figsize x:y to 1:1/'option', where 'option' is one
         of `['sqrt(2)', 'golden', 'sqrt(3)']` or any number. Golden stands for
@@ -102,8 +107,8 @@ def update_style(  # noqa: C901
     mode : str, optional
         One of the following modes:
         `'default'`: use matplotlib defaults
-        `'beamer'`: extra large fontsize
-        `'print'`: default sizes
+        `'print'`: slightly larger fonts and lines
+        `'beamer'`: extra large fontsize, for slides
         `'poster'`: for Din A0 posters
     style : str, optional
         One of the following styles:
@@ -116,7 +121,8 @@ def update_style(  # noqa: C901
     true_black : bool, optional
         If true black will be used for labels and co., else a dark grey.
     latex : bool, optional
-        If true LaTeX font will be used.
+        If true LaTeX font will be used. This is only applied if a `latex`
+        executable is found, so text rendering depends on the machine.
     sf : bool, optional
         Use sans-serif font for text and latex math environment.
 
@@ -208,19 +214,19 @@ def update_style(  # noqa: C901
 
 @copy_doc_params(update_style)
 def use_style(
-    interactive=None,
-    colors='pastel5',
-    cmap='macaw',
-    ncs=10,
-    figsize=(3,),
-    figratio='golden',
-    mode=_pplt.MODE,
-    style=_pplt.STYLE,
-    ipython=False,
-    true_black=False,
-    latex=True,
-    sf=False,
-):
+    interactive: bool | None = None,
+    colors: str = 'pastel5',
+    cmap: str = 'macaw',
+    ncs: int = 10,
+    figsize: float | tuple[float] | tuple[float, float] = (3,),
+    figratio: Literal['sqrt(2)', 'golden', 'sqrt(3)'] | float = 'golden',
+    mode: Literal['default', 'print', 'beamer', 'poster'] | Mode = 'default',
+    style: Literal['default', 'minimal', 'none'] | Style = 'default',
+    ipython: bool = False,
+    true_black: bool = False,
+    latex: bool = True,
+    sf: bool = False,
+) -> None:
     """Define alternative matplotlib style.
 
     This function restores first the matplolib default values and finally

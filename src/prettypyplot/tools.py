@@ -5,12 +5,21 @@
 """This module contains utility functions used in multiple submodules."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import matplotlib as mpl
 import numpy as np
 from matplotlib import pyplot as plt
 
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
-def is_number(number, *, dtype=float):
+    from matplotlib.axes import Axes
+
+
+def is_number(number: object, *, dtype: type = float) -> bool:
     """Check if argument can be interpreated as number.
 
     Parameters
@@ -33,7 +42,7 @@ def is_number(number, *, dtype=float):
     return float(number) == dtype(number)
 
 
-def invert_sign(num):
+def invert_sign(num: float | str) -> float | str:
     """Change sign of number or add/remove leading sign of str."""
     if isinstance(num, (float, int)):
         return -1 * num
@@ -46,7 +55,7 @@ def invert_sign(num):
     )
 
 
-def parse_axes(*args, ax):
+def parse_axes(*args, ax: Axes | None) -> tuple[tuple, Axes]:
     """Extract axes from ax, args or returns args and current axes."""
     axes = [arg for arg in args if isinstance(arg, mpl.axes.Axes)]
     if axes:
@@ -59,14 +68,16 @@ def parse_axes(*args, ax):
     return args, ax
 
 
-def gca(ax):
+def gca(ax: Axes | None) -> Axes:
     """Return ax if it is axes instance, else the current active axes."""
     if isinstance(ax, mpl.axes.Axes):
         return ax
     return plt.gca()
 
 
-def get_axes(axs):
+def get_axes(
+    axs: Axes | Sequence[Axes] | np.ndarray | None,
+) -> list[Axes] | np.ndarray:
     """Return axs if it is all axes instances, else the all current axes."""
     if axs is None:
         return plt.gcf().get_axes()

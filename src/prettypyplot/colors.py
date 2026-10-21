@@ -5,7 +5,10 @@
 """Set-up matplotlib environment."""
 
 # ~~~ IMPORT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from __future__ import annotations
+
 from collections import namedtuple
+from typing import TYPE_CHECKING
 
 import matplotlib as mpl
 import numpy as np
@@ -68,6 +71,12 @@ from prettypyplot._cmaps.tol_discrete import (
 from prettypyplot._cmaps.turbo import _turbo
 from prettypyplot.tools import is_number
 
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from matplotlib.colors import Colormap, ListedColormap
+    from matplotlib.typing import ColorType
+
 
 # ~~~ COLORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class GrayTones(namedtuple('GrayTones', 'dark light')):
@@ -96,7 +105,7 @@ def _register_cmap(cmap):
         mpl.cm.register_cmap(cmap=cmap)
 
 
-def load_cmaps():
+def load_cmaps() -> None:
     """Load and include custom colormaps to matplotlib.
 
     Add sequential colormaps `pastel5`, `pastel6`, `cbf4`, `cbf5`, `cbf8`,
@@ -169,7 +178,7 @@ def load_cmaps():
                 _register_cmap(cmap=cmap)
 
 
-def load_colors():
+def load_colors() -> None:
     """Load and include custom colors to matplotlib.
 
     Add colors of `pastel5` which can be accessed via `pplt:blue`, `pplt:red`,
@@ -199,7 +208,13 @@ def load_colors():
     clr._colors_full_map.update(pplt_colors)
 
 
-def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
+def categorical_cmap(
+    nc: int,
+    nsc: int,
+    *,
+    cmap: str | Colormap | None = None,
+    return_colors: bool = False,
+) -> ListedColormap | np.ndarray:
     """Generate categorical colors of given cmap.
 
     Exract from a predefined colormap colors and generate for each the desired
@@ -268,7 +283,12 @@ def categorical_cmap(nc, nsc, *, cmap=None, return_colors=False):
     return clr.ListedColormap(np.concatenate(scolors))
 
 
-def categorical_color(nsc, color, *, return_hex=False):
+def categorical_color(
+    nsc: int,
+    color: ColorType,
+    *,
+    return_hex: bool = False,
+) -> np.ndarray | list[str]:
     """Generate categorical shades of given colors.
 
     Generate for each provided color the number of specified shades. The shaded
@@ -319,7 +339,10 @@ def categorical_color(nsc, color, *, return_hex=False):
     return colors_rgb
 
 
-def text_color(bgcolor, colors=('#000000', '#ffffff')):
+def text_color(
+    bgcolor: ColorType,
+    colors: Sequence[ColorType] = ('#000000', '#ffffff'),
+) -> ColorType:
     """Select textcolor with maximal contrast on background.
 
     All parameters needs to be colors accepted by matplotlib, see
@@ -399,7 +422,7 @@ def _is_number_in_range(num, *, dtype=float, name='Variable', low=0, high=1):
         )
 
 
-def is_greyshade(color):
+def is_greyshade(color: ColorType) -> bool:
     """Check if color is a greyscale value including bw."""
     # check if color is greyscale value, need to fix arbitrary hue value
     color = clr.to_rgb(color)
