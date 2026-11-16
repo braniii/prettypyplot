@@ -7,7 +7,7 @@ edit_uri: "blob/main/docs/"
 repo_name: "braniii/prettypyplot"
 site_dir: "site"
 copyright: Copyright &copy; 2023 Daniel Nagel
-watch: [src/prettypyplot]
+watch: [src/prettypyplot, skills/prettypyplot]
 
 nav:
 - Home:
@@ -91,6 +91,7 @@ plugins:
     scripts:
     - docs/gallery/gen_gallery.py
     - docs/gen_ref_nav.py
+    - docs/gen_llms_txt.py
 - literate-nav:
     nav_file: SUMMARY.md
 - mkdocstrings:

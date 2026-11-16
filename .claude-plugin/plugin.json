@@ -1,0 +1,13 @@
+{
+  "name": "prettypyplot",
+  "version": "0.13.3",
+  "description": "Agent skill for writing matplotlib figures with prettypyplot: setup, calling conventions, legends, colorbars, figure sizing and common pitfalls.",
+  "author": {
+    "name": "braniii",
+    "url": "https://github.com/braniii"
+  },
+  "homepage": "https://braniii.github.io/prettypyplot",
+  "repository": "https://github.com/braniii/prettypyplot",
+  "license": "BSD-3-Clause",
+  "keywords": ["matplotlib", "plotting", "visualization", "python", "skill"]
+}
