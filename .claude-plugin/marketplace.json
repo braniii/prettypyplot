@@ -1,0 +1,15 @@
+{
+  "name": "prettypyplot",
+  "owner": {
+    "name": "braniii",
+    "url": "https://github.com/braniii"
+  },
+  "description": "Plugins for prettypyplot, a wrapper for matplotlib to generate pretty plots.",
+  "plugins": [
+    {
+      "name": "prettypyplot",
+      "source": ".",
+      "description": "Agent skill for writing matplotlib figures with prettypyplot: setup, calling conventions, legends, colorbars, figure sizing and common pitfalls."
+    }
+  ]
+}

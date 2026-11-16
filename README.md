@@ -110,6 +110,19 @@ python -m prettypyplot api legend         # only the given functions
 python -m prettypyplot api colormaps      # all colormaps
 ```
 
+### Usage with Coding Agents
+
+This repository provides an [agent skill](https://github.com/braniii/prettypyplot/blob/main/skills/prettypyplot/SKILL.md)
+which teaches coding agents the conventions and pitfalls of prettypyplot.
+In [Claude Code](https://code.claude.com) it can be installed as plugin
+```
+/plugin marketplace add braniii/prettypyplot
+/plugin install prettypyplot@prettypyplot
+```
+Other agents supporting [Agent Skills](https://agentskills.io) can use the
+folder `skills/prettypyplot` directly. The documentation additionally
+provides an [`llms.txt`](https://braniii.github.io/prettypyplot/llms.txt).
+
 ### Known Bugs
 
 - `plt.subplots_adjust()` does not work with `pplt.savefig(use_canvas_size=True)`

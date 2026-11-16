@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file. The format 
 ### Added Features and Improvements 🙌:
 - Added type hints and `py.typed`.
 - Added `python -m prettypyplot api` to print the API reference.
+- Added agent skill for coding agents, installable as Claude Code plugin.
+- Added `llms.txt` to the documentation.
 
 ### Bugfix 🐛:
 - Fixed license in `pyproject.toml`.
